@@ -1,0 +1,18 @@
+@import "@/styles/apx.scss";
+
+.button {
+
+  outline: none;
+  border: unset;
+  border-radius: $apx-40;
+  padding: $apx-12 $apx-18;
+  background: var(--color-gradient-blue-main);
+
+  &__name {
+  
+    font-weight: 600;
+    color: var(--color-bw-white);
+  
+  }
+
+}

@@ -1,3 +1,4 @@
+import Header from "./header";
 import s from "./carcas.module.scss";
 
 const Carcas = ({
@@ -11,11 +12,12 @@ const Carcas = ({
 
     <div className = {`${ s.carcas } relative`}>
 
-      <header className = {`flex items-center ${ s.carcas }`}>
+      <Header
 
-        
+        authorized = { authorized }
+        isClient = { isClient }
 
-      </header>
+      />
 
     </div>
 

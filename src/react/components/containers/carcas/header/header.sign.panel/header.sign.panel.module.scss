@@ -1,0 +1,27 @@
+@import "@/styles/apx.scss";
+
+.sign-panel {
+
+  width: $apx-250;
+  height: $apx-48;
+
+  &__in {
+    
+    &__text {
+  
+      font-weight: 600;
+      margin-right: $apx-8;
+      color: var(--color-accent-blue-700);
+    
+    }
+
+    &__icon {
+  
+      min-width: $apx-24;
+      min-height: $apx-24;
+    
+    }
+
+  }
+
+}

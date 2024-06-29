@@ -1,17 +1,25 @@
-// import { useState } from "react/cjs/react.production.min";
-
 import Carcas from "@/react/components/containers/carcas";
-
-// const [ authorized, setAuthorized ] = useState( false );
-// const [ isClient, setIsClient ] = useState( false );
 
 export default function Home() {
 
+  //тестовые данные
+  const FAKEPROPS = {
+
+    authorized: false,
+    isClient: false
+
+  }
+
   return (
 
-    <main className = {``}>
+    <main id = {``} className = {``}>
 
-      <Carcas/>
+      <Carcas
+      
+        authorized = { FAKEPROPS.authorized }
+        isClient = { FAKEPROPS.isClient }
+      
+      />
 
     </main>
 
