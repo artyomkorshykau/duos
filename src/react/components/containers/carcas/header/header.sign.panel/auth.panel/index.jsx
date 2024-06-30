@@ -32,8 +32,8 @@ const HeaderAuthPanel = ({
   const [ menuIsOpened, setMenuIsOpened ] = useState( false );
   function toggleAuthMenu() { setMenuIsOpened( !menuIsOpened ) };
 
-  function openQuiz() { setMenuIsOpened( !menuIsOpened ) };
-  function logOut() { setMenuIsOpened( !menuIsOpened ) };
+  function openQuiz() {}; //TODO: реализация перехода на анкету
+  function logOut() {}; //TODO: реализация выхода из системы
 
   return (
 
@@ -100,7 +100,7 @@ const AuthMenu = ({
       >
 
         <p className = {`${ s['auth-panel__quiz__title'] } text-14`}>Открыть анкету</p>
-        
+
         <MenuPersonIcon className = {`${ s['sign-panel__in__icon'] } pointer`}/>
 
       </div>
