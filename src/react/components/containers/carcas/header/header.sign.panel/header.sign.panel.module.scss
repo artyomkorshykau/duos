@@ -2,14 +2,31 @@
 
 .sign-panel {
 
-  width: $apx-250;
+  min-width: $apx-350;
   height: $apx-48;
 
   &__in {
+
+    margin-right: $apx-24;
+
+    &_auth {
+      
+      min-width: unset !important;
+      justify-content: flex-end !important;
+    
+    }
+
+    &_unauth {
+      
+      min-width: $apx-250;
+      justify-content: space-between !important;
+    
+    }
     
     &__text {
-  
+
       font-weight: 600;
+      margin-top: $apx-4;
       margin-right: $apx-8;
       color: var(--color-accent-blue-700);
     
@@ -23,5 +40,13 @@
     }
 
   }
+
+}
+
+.button {
+
+  max-height: $apx-40;
+
+  &__quiz { margin-right: $apx-12; }
 
 }

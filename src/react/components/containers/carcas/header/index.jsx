@@ -9,6 +9,7 @@ const Header = ({
 
   authorized = false,
   isClient = false,
+  userData = {},
 
 }) => {
 
@@ -103,6 +104,7 @@ const Header = ({
 
         authorized = { authorized }
         isClient = { isClient }
+        userData = { userData }
 
       />
 

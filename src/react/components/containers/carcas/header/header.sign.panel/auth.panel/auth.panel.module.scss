@@ -1,0 +1,78 @@
+@import "@/styles/apx.scss";
+
+.auth-panel {
+
+  min-width: $apx-155;
+  padding-right: $apx-16;
+
+  &__avatar {
+  
+    $size: $apx-30;
+    min-width: $size;
+    max-width: $size;
+    min-height: $size;
+    max-height: $size;
+    margin-left: $apx-8;
+    border-radius: 100%;
+  
+  }
+
+  &__text {
+  
+    &__status {
+    
+      font-weight: 600;
+      white-space: nowrap;
+      margin-top: $apx-2;
+      color: var(--color-accent-black-500);
+    
+    }
+   
+    &__userdata {
+      
+      margin: 0 $apx-2;
+      font-weight: 600;
+      color: var(--color-accent-blue-700);
+    
+    }
+
+  }
+
+  &__menu {
+  
+    top: $apx-45;
+    right: $apx-5;
+    width: $apx-280;
+    height: $apx-100;
+    padding: $apx-8;
+    border-radius: $apx-20;
+    background: var(--color-bw-white);
+    box-shadow: 0 0 $apx-25 $apx-5 rgba( 10, 10, 10, 0.1 );
+    display: none;
+
+    &--opened {
+    
+      display: block;
+    
+    }
+
+    &__liner {
+    
+      width: 100%;
+      margin: 0 auto;
+      margin: $apx-4 0;
+      border: $apx-1 solid var(--color-accent-background);
+    
+    }
+
+    &__row {
+    
+      height: $apx-38;
+      padding-left: $apx-16;
+      padding-right: $apx-16;
+    
+    }
+
+  }
+
+}

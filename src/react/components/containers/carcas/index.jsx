@@ -5,6 +5,7 @@ const Carcas = ({
 
   authorized = false,
   isClient = false,
+  userData = {},
 
 }) => {
 
@@ -16,6 +17,7 @@ const Carcas = ({
 
         authorized = { authorized }
         isClient = { isClient }
+        userData = { userData }
 
       />
 

@@ -2,11 +2,20 @@
 
 .button {
 
+  // transition: 0.35s;
   outline: none;
   border: unset;
   border-radius: $apx-40;
   padding: $apx-12 $apx-18;
   background: var(--color-gradient-blue-main);
+  white-space: nowrap;
+
+  &:hover {
+  
+    // transition: 0.5s;
+    background: var(--color-accent-blue-700);
+  
+  }
 
   &__name {
   
