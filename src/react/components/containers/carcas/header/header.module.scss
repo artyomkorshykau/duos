@@ -121,3 +121,52 @@
   box-shadow: 0 0 $apx-20 $apx-10 #1f00cc24;
 
 }
+
+.circles_container {
+  
+  z-index: 115;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: $apx-1240;
+  height: $apx-650;
+  overflow: hidden;
+  border-bottom-left-radius: $apx-1900;
+  border-bottom-right-radius: $apx-1900;
+
+  &--appear { animation: fadeInSlow 2s; }
+  &--disappear { animation: fadeOutSlow 2s; }
+
+  &__green_circle,
+  &__blue_circle {
+
+    filter: blur($apx-55);
+    opacity: 0.75;
+    top: $apx-350;
+    left: $apx-300;
+    width: 0;
+    height: 0;
+    border-radius: 100%;
+    transform: rotate(0deg);
+    animation: rotate 15s 30 linear;
+    transform-origin: $apx-200 $apx-200;
+  
+  }
+
+  &__green_circle {
+
+    box-shadow: 0 0 $apx-360 $apx-280 var(--color-accent-green);
+  
+  }
+
+  &__blue_circle {
+
+    top: $apx-400;
+    left: $apx-450;
+    width: $apx-350;
+    box-shadow: 0 0 $apx-360 $apx-280 #008cc5;
+  
+  }
+
+}

@@ -22,6 +22,22 @@
   
 }
 
+@keyframes fadeInSlow {
+  
+  0% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+  
+}
+
 @keyframes fadeOut {
   
   from {
@@ -29,6 +45,22 @@
   }
 
   to {
+    opacity: 0;
+  }
+  
+}
+
+@keyframes fadeOutSlow {
+  
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
     opacity: 0;
   }
   
@@ -44,6 +76,18 @@
   to {
     transform: translateY(100%);
     transform: scale(10);
+  }
+
+}
+
+@keyframes rotate {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
   }
 
 }
