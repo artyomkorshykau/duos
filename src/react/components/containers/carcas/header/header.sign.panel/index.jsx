@@ -9,16 +9,16 @@ const HeaderSignPanel = ({
   authorized = false,
   isClient = false,
   quizHadCompleted = false,
+  signIn = () => {},
+  signUp = () => {}
 
 }) => {
 
-  function signIn() { alert('открыть анкету SignIn') }
-  function signUp() { alert('открыть анкету SignUp') }
   function sendQuiz() { alert('закочить анкету') }
 
   return (
 
-    <div className = {`flex items-center justify-between ${ s['sign-panel'] } ${ authorized ? s['sign-panel__in_auth'] : s['sign-panel__in_unauth'] }`}>
+    <div className = {`flex items-center justify-between ${ s['sign-panel'] } ${ authorized ? s['sign-panel__in_auth'] : s['sign-panel__in_unauth'] } relative`}>
 
       { !authorized
 
@@ -73,7 +73,7 @@ const HeaderSignPanel = ({
             />
 
           </>
-    
+
       }
 
     </div>

@@ -5,7 +5,7 @@ export default function Home() {
   //тестовые данные
   const FAKEPROPS = {
 
-    authorized: true,
+    authorized: false,
     isClient: false
 
   }

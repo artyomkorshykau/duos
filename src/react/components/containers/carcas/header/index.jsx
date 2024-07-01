@@ -1,7 +1,7 @@
+import { useState } from "react";
 import Link from "next/link";
 import Logo from "../../../icons/logo";
 import LogoWord from "../../../icons/logoword";
-import LogoCircle from "@/react/components/icons/logocircle";
 import HeaderSignPanel from "./header.sign.panel";
 import s from "./header.module.scss";
 
@@ -60,15 +60,36 @@ const Header = ({
 
   ]
 
+  const [ isAuthStarted, setAuthStarted ] = useState( false );
+
+  function signIn() {
+
+    setAuthStarted( true );
+
+  }
+
+  function signUp() {
+
+    setAuthStarted( true );
+
+  }
+
   return (
 
-    <header className = {`fixed flex items-center justify-between ${ s.header }`}>
+    <header className = {`fixed flex items-center justify-between ${ s.header } relative`}>
 
-      { !authorized && <div className = {`${ s.white_blur } absolute`}/> }
+      <div className = {`${ s['auth-back'] } ${ isAuthStarted && s['auth-back--opened'] } ${ s.white_blur } absolute`}/>
+
+      <div
       
-      { !authorized && <LogoCircle className = {`${ s.header__logocircle } absolute`}/> }
+        id = "logocircle"
+        className = {`${ s['auth-back'] } ${ isAuthStarted && s['auth-back--opened'] } ${ s.logocircle } ${ s['logocircle--scaled'] } absolute`}
 
-      { !authorized
+      >
+
+      </div>
+
+      { isAuthStarted
       
         ? 
       
@@ -105,6 +126,8 @@ const Header = ({
         authorized = { authorized }
         isClient = { isClient }
         userData = { userData }
+        signIn = { () => signIn() }
+        signUp = { () => signUp() }
 
       />
 

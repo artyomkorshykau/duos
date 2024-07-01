@@ -1,13 +1,13 @@
 @keyframes pulseLoop {
-  
+
   from {
     transform: scale(1);
   }
-
+  
   to {
     transform: scale(1.05);
   }
-  
+
 }
 
 @keyframes fadeIn {
@@ -32,4 +32,18 @@
     opacity: 0;
   }
   
+}
+
+@keyframes radialScale {
+
+  from {
+    transform: translateY(-100%);
+    transform: scale(1);
+  }
+
+  to {
+    transform: translateY(100%);
+    transform: scale(10);
+  }
+
 }
