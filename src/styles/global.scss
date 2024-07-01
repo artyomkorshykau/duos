@@ -33,8 +33,13 @@ body {
    scroll-behavior: smooth;
    text-rendering: optimizeSpeed;
 
+}
 
- 
+body {
+  
+  z-index: 1;
+  background: var(--color-accent-background);
+
 }
  
 body,
