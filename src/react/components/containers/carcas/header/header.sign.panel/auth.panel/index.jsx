@@ -1,26 +1,17 @@
 import { useState } from "react";
-import SignOutIcon from "@/react/components/icons/sign.out.icon";
-import MenuPersonIcon from "@/react/components/icons/menu.person.icon";
+import useGlobal from "@/store";
+import AuthMenu from "./auth.menu";
 import s from "./auth.panel.module.scss";
+
+import FAKEDATA from "./FAKEDATA";
 
 const HeaderAuthPanel = ({
 
-  quizHadCompleted = false,
-  userData = {},
+  quizHadCompleted = false
 
 }) => {
 
-  //тестовые данные
-  const FAKEDATA = {
-
-    userName: "Иван",
-    userLastName: "Иванович",
-    userAvatar: "/img/test.default.data/avatar.jpeg",
-
-  }
-
-  userData = FAKEDATA;
-  //тестовые данные
+  const [ globalState, globalActions ] = useGlobal();
 
   const quizStatusText = {
 
@@ -29,23 +20,37 @@ const HeaderAuthPanel = ({
 
   }
 
+  
   const [ menuIsOpened, setMenuIsOpened ] = useState( false );
-  function toggleAuthMenu() { setMenuIsOpened( !menuIsOpened ) };
 
-  function openQuiz() {}; //TODO: реализация перехода на анкету
-  function logOut() {}; //TODO: реализация выхода из системы
+  const handleMouseOver = () => {
+    setMenuIsOpened( true );
+  };
+
+  const handleMouseOut = () => {
+    setMenuIsOpened( false );
+  };
 
   return (
 
     <div className = {`flex flex-row-reverse items-center ${ s['auth-panel'] } relative`}>
 
-      <img
-      
-        src = { userData.userAvatar }
-        onClick = { () => toggleAuthMenu() }
-        className = {`${ s['auth-panel__avatar'] } pointer`}
+      <div
+
+        onMouseOut = { handleMouseOut }
+        onMouseOver = { handleMouseOver }
+        className = {`flex items-center justify-center ${ s['auth-panel__avatar'] } pointer`}
         
-      />
+      >
+
+        <img
+        
+          src = { globalState.userData.userAvatar }
+          className = {`${ s['auth-panel__avatar__img'] } pointer`}
+          
+        />
+
+      </div>
       
       <div>
 
@@ -61,8 +66,8 @@ const HeaderAuthPanel = ({
 
         <div className = "flex items-center justify-end">
 
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ userData.userLastName }</p>
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ userData.userName }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.userData.userLastName }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.userData.userName }</p>
 
         </div>
 
@@ -71,6 +76,9 @@ const HeaderAuthPanel = ({
       <AuthMenu
 
         isOpened = { menuIsOpened }
+        onMouseOut = { handleMouseOut }
+        onMouseOver = { handleMouseOver }
+        pointPosition = "right"
 
       />
 
@@ -81,47 +89,3 @@ const HeaderAuthPanel = ({
 }
 
 export default HeaderAuthPanel;
-
-const AuthMenu = ({
-
-  isOpened = false,
-
-}) => {
-
-  return(
-
-    <div className = {`${ s['auth-panel__menu'] } ${ isOpened && s['auth-panel__menu--opened'] } absolute`}>
-
-      <div
-      
-        onClick = { () => openQuiz() }
-        className = {`flex items-center justify-between pointer ${ s['auth-panel__menu__row'] } ${ s['auth-panel__menu__row__open_quiz'] }`}
-        
-      >
-
-        <p className = {`${ s['auth-panel__quiz__title'] } text-14`}>Открыть анкету</p>
-
-        <MenuPersonIcon className = {`${ s['sign-panel__in__icon'] } pointer`}/>
-
-      </div>
-
-      <div className = {`${ s['auth-panel__menu__liner'] }`}/>
-
-      <div
-      
-        onClick = { () => LogOut() }
-        className = {`flex items-center justify-between pointer ${ s['auth-panel__menu__row'] } ${ s['auth-panel__menu__row__log_out'] }`}
-        
-      >
-
-        <p className = {`${ s['auth-panel__quiz__title'] } text-14`}>Выйти из системы</p>
-        
-        <SignOutIcon className = {`${ s['auth-panel__quiz__icon'] } pointer`}/>
-
-      </div>
-
-    </div>
-
-  )
-
-}

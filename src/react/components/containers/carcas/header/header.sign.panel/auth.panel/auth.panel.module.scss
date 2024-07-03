@@ -7,13 +7,20 @@
 
   &__avatar {
   
-    $size: $apx-30;
-    min-width: $size;
-    max-width: $size;
-    min-height: $size;
-    max-height: $size;
+    $size: $apx-65;
+    width: $size;
+    height: $size;
     margin-left: $apx-8;
     border-radius: 100%;
+
+    &__img {
+    
+      $size: $apx-35;
+      width: $size;
+      height: $size;
+      border-radius: 100%;
+    
+    }
   
   }
 
@@ -40,8 +47,8 @@
 
   &__menu {
   
-    top: $apx-45;
-    right: $apx-5;
+    top: $apx-61;
+    right: $apx-25;
     width: $apx-280;
     height: $apx-100;
     padding: $apx-8;
@@ -53,6 +60,26 @@
     &--opened {
     
       display: block;
+    
+    }
+
+    &__point {
+
+      &__container { width: 100%; }
+
+      top: -$apx-13;
+      left: 0;
+      right: 0;
+      margin: auto;
+      $size: $apx-11;
+      width: $size;
+      height: $size;
+      border-radius: 100%;
+      background-color: var(--color-accent-blue-270);
+
+      &--left { left: $apx-9; right: unset; }
+
+      &--right { right: $apx-9; left: unset; }
     
     }
 
@@ -70,6 +97,36 @@
       height: $apx-38;
       padding-left: $apx-16;
       padding-right: $apx-16;
+
+      &__open_quiz {
+      
+        font-weight: 600;
+        color: var(--color-accent-blue-700);
+
+        &__icon {
+        
+          $size: $apx-16;
+          width: $size;
+          height: $size;
+        
+        }
+      
+      }
+
+      &__logout {
+      
+        font-weight: 600;
+        color: var(--color-notice-error-500);
+
+        &__icon {
+        
+          $size: $apx-24;
+          width: $size;
+          height: $size;
+        
+        }
+      
+      }
     
     }
 

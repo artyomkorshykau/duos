@@ -5,9 +5,8 @@ import s from "./header.sign.panel.module.scss";
 
 const HeaderSignPanel = ({
 
-  userData = {},
-  authorized = false,
   isClient = false,
+  authorized = false,
   quizHadCompleted = false,
   signIn = () => {},
   signUp = () => {}
@@ -51,7 +50,7 @@ const HeaderSignPanel = ({
 
         :
 
-          <>
+          <div className = {`flex items-center ${ s['sign-panel__in_auth__avatar'] }`}>
 
             { !quizHadCompleted &&
 
@@ -67,12 +66,11 @@ const HeaderSignPanel = ({
 
             <HeaderAuthPanel
 
-              userData = { userData }
               quizHadCompleted = { quizHadCompleted }
 
             />
 
-          </>
+          </div>
 
       }
 

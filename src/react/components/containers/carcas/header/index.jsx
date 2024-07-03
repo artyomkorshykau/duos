@@ -3,62 +3,15 @@ import Link from "next/link";
 import Logo from "../../../icons/logo";
 import LogoWord from "../../../icons/logoword";
 import HeaderSignPanel from "./header.sign.panel";
+import NAVBAR from "./header.navbar";
 import s from "./header.module.scss";
 
 const Header = ({
 
   authorized = false,
-  isClient = false,
-  userData = {},
+  isClient = false
 
 }) => {
-
-  //навигационная панель - назания и ссылки
-  const NAVBAR = [
-
-    {
-
-      url: "/#about",
-      name: "Главная"
-
-    },
-
-    {
-
-      url: "/#about",
-      name: "О проекте"
-
-    },
-
-    {
-
-      url: "/#leads",
-      name: "Направления"
-
-    },
-
-    {
-
-      url: "/#services",
-      name: "Услуги"
-
-    },
-
-    {
-
-      url: "/#library",
-      name: "Библиотека"
-
-    },
-
-    {
-
-      url: "/#help",
-      name: "Помощь"
-
-    }
-
-  ]
 
   const [ isAuthStarted, setAuthStarted ] = useState( false );
 
@@ -110,7 +63,7 @@ const Header = ({
 
       <div className = {`flex items-center ${ s.header__navbar }`}>
 
-        { NAVBAR.map(( el, key) => (
+        { NAVBAR.map(( el, key ) => (
 
           <Link
           
@@ -132,7 +85,6 @@ const Header = ({
 
         authorized = { authorized }
         isClient = { isClient }
-        userData = { userData }
         signIn = { () => signIn() }
         signUp = { () => signUp() }
 

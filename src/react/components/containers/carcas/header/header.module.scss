@@ -7,8 +7,8 @@
   width: 100%;
   height: $apx-64;
   padding: $apx-16;
-  border-bottom-left-radius: $apx-32;
-  border-bottom-right-radius: $apx-32;
+  border-bottom-left-radius: $apx-36;
+  border-bottom-right-radius: $apx-36;
   background: var(--color-bw-white);
   box-shadow: 0 0 $apx-25 $apx-5 rgba( 10, 10, 10, 0.05 );
   position: fixed !important;
@@ -42,8 +42,8 @@
   &__logo {
   
     top: -$apx-24;
-    min-width: $apx-96;
-    min-height: $apx-83;
+    width: $apx-140;
+    height: $apx-120;
   
   }
 
@@ -130,7 +130,7 @@
   right: 0;
   margin: auto;
   width: $apx-1240;
-  height: $apx-650;
+  height: $apx-651;
   overflow: hidden;
   border-bottom-left-radius: $apx-1900;
   border-bottom-right-radius: $apx-1900;
