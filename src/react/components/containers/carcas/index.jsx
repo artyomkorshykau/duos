@@ -5,7 +5,6 @@ import s from "./carcas.module.scss";
 const Carcas = ({
 
   authorized = false,
-  isClient = false
 
 }) => {
 
@@ -18,7 +17,6 @@ const Carcas = ({
       <Header
 
         authorized = { authorized }
-        isClient = { isClient }
         userData = { globalState.userData }
 
       />

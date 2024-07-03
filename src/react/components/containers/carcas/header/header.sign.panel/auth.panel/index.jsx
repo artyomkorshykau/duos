@@ -3,8 +3,6 @@ import useGlobal from "@/store";
 import AuthMenu from "./auth.menu";
 import s from "./auth.panel.module.scss";
 
-import FAKEDATA from "./FAKEDATA";
-
 const HeaderAuthPanel = ({
 
   quizHadCompleted = false
@@ -20,7 +18,6 @@ const HeaderAuthPanel = ({
 
   }
 
-  
   const [ menuIsOpened, setMenuIsOpened ] = useState( false );
 
   const handleMouseOver = () => {
@@ -45,7 +42,7 @@ const HeaderAuthPanel = ({
 
         <img
         
-          src = { globalState.userData.userAvatar }
+          src = { globalState.user_avatar }
           className = {`${ s['auth-panel__avatar__img'] } pointer`}
           
         />
@@ -60,14 +57,14 @@ const HeaderAuthPanel = ({
           
         >
 
-         { quizHadCompleted ? quizStatusText.completed : quizStatusText.uncompleted }
+         { globalState.user_role === "expert" && (quizHadCompleted ? quizStatusText.completed : quizStatusText.uncompleted) }
 
         </p>
 
         <div className = "flex items-center justify-end">
 
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.userData.userLastName }</p>
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.userData.userName }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.user_lastname }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.user_name }</p>
 
         </div>
 

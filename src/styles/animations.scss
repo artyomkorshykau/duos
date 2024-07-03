@@ -93,25 +93,31 @@
 }
 
 @keyframes changeButtonBackground {
-
-  from {
-    background: linear-gradient( to right, #18009E 0%, #1A97E2 80%, #11E3E3 100% );
+  0% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 65%, #11E3E3 100%);
   }
-
-  to {
+  25% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 80%, #11E3E3 100%);
+  }
+  50% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 95%, #11E3E3 100%);
+  }
+  100% {
     background: #18009E;
   }
-
 }
 
 @keyframes returnButtonBackground {
-
-  from {
+  0% {
     background: #18009E;
   }
-
-  to {
-    background: linear-gradient( to right, #18009E 0%, #1A97E2 80%, #11E3E3 100% );
+  25% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 50%, #11E3E3 100%);
   }
-
+  50% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 65%, #11E3E3 100%);
+  }
+  100% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 80%, #11E3E3 100%);
+  }
 }

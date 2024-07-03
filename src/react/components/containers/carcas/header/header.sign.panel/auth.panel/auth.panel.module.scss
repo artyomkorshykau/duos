@@ -97,10 +97,21 @@
       height: $apx-38;
       padding-left: $apx-16;
       padding-right: $apx-16;
+      transition: 0.135s;
+
+      &:hover,
+      &:focus {
+
+        transition: 0.135s;
+        border-radius: $apx-32;
+        background: var(--color-accent-blue-200);
+
+      }
 
       &__open_quiz {
       
         font-weight: 600;
+        transition: 0.35s;
         color: var(--color-accent-blue-700);
 
         &__icon {

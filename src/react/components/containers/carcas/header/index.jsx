@@ -9,21 +9,20 @@ import s from "./header.module.scss";
 const Header = ({
 
   authorized = false,
-  isClient = false
 
 }) => {
 
-  const [ isAuthStarted, setAuthStarted ] = useState( false );
+  const [ isSignUIopened, setIsSignUIopened ] = useState( false );
 
   function signIn() {
 
-    setAuthStarted( true );
+    setIsSignUIopened( true );
 
   }
 
   function signUp() {
 
-    setAuthStarted( true );
+    setIsSignUIopened( true );
 
   }
 
@@ -31,9 +30,9 @@ const Header = ({
 
     <header className = {`fixed flex items-center justify-between ${ s.header } relative`}>
 
-      <div className = {`${ s['auth-back'] } ${ isAuthStarted && s['auth-back--opened'] }  ${ s.white_blur } absolute`}/>
+      <div className = {`${ s['auth-back'] } ${ isSignUIopened && s['auth-back--opened'] }  ${ s.white_blur } absolute`}/>
 
-      <div className = {`flex items-center justify-center ${ s['auth-back'] } ${ isAuthStarted && s['auth-back--opened'] } ${ s.circles_container } ${ isAuthStarted ? s['circles_container--appear'] : s['circles_container--disappear'] } absolute`}>
+      <div className = {`flex items-center justify-center ${ s['auth-back'] } ${ isSignUIopened && s['auth-back--opened'] } ${ s.circles_container } ${ isSignUIopened ? s['circles_container--appear'] : s['circles_container--disappear'] } absolute`}>
         
         <div className = {`${ s.circles_container__blue_circle } absolute`}/>
         <div className = {`${ s.circles_container__green_circle } absolute`}/>
@@ -43,13 +42,13 @@ const Header = ({
       <div
       
         id = "logocircle"
-        className = {`${ s['auth-back'] } ${ isAuthStarted && s['auth-back--opened'] } ${ s.logocircle } ${ s['logocircle--scaled'] } absolute`}
+        className = {`${ s['auth-back'] } ${ isSignUIopened && s['auth-back--opened'] } ${ s.logocircle } ${ s['logocircle--scaled'] } absolute`}
 
       >
 
       </div>
 
-      { isAuthStarted
+      { isSignUIopened
       
         ? 
       
@@ -84,7 +83,6 @@ const Header = ({
       <HeaderSignPanel
 
         authorized = { authorized }
-        isClient = { isClient }
         signIn = { () => signIn() }
         signUp = { () => signUp() }
 

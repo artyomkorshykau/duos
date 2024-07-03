@@ -50,7 +50,11 @@
 
   &__quiz {
     
+    padding-top: $apx-10;
     margin-right: $apx-20;
+    display: none;
+
+    &--opened { display: block; }
   
   }
 

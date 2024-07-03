@@ -1,14 +1,9 @@
+import useGlobal from "@/store";
 import Carcas from "@/react/components/containers/carcas";
 
 export default function Home() {
 
-  //тестовые данные
-  const FAKEPROPS = {
-
-    authorized: false,
-    isClient: false
-
-  }
+  const [ globalState, globalActions ] = useGlobal();
 
   return (
 
@@ -16,8 +11,7 @@ export default function Home() {
 
       <Carcas
       
-        authorized = { FAKEPROPS.authorized }
-        isClient = { FAKEPROPS.isClient }
+        authorized = { globalState.authorized }
       
       />
 

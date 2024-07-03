@@ -72,7 +72,8 @@
       position: relative;
       padding: 0 $apx-16;
 
-      &:hover {
+      &:hover,
+      &:focus {
 
         transition: 0.135s;
         min-height: $apx-45;
@@ -125,12 +126,16 @@
 .circles_container {
   
   z-index: 115;
-  top: 0;
+  top: -50%;
+  transform: translateY(100%);
   left: 0;
   right: 0;
   margin: auto;
   width: $apx-1240;
   height: $apx-651;
+  width: $apx-124;
+  height: $apx-124;
+  transform: scale(10);
   overflow: hidden;
   border-bottom-left-radius: $apx-1900;
   border-bottom-right-radius: $apx-1900;
@@ -149,7 +154,7 @@
     height: 0;
     border-radius: 100%;
     transform: rotate(0deg);
-    animation: rotate 15s 30 linear;
+    animation: rotate 9s 30 linear;
     transform-origin: $apx-200 $apx-200;
   
   }

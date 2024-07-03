@@ -1,3 +1,4 @@
+import useGlobal from "@/store";
 import HeaderAuthPanel from "./auth.panel";
 import SignInIcon from "@/react/components/icons/sign.in.icon";
 import DefaultButton from "@/react/components/buttons/default.button";
@@ -5,7 +6,6 @@ import s from "./header.sign.panel.module.scss";
 
 const HeaderSignPanel = ({
 
-  isClient = false,
   authorized = false,
   quizHadCompleted = false,
   signIn = () => {},
@@ -13,7 +13,9 @@ const HeaderSignPanel = ({
 
 }) => {
 
-  function sendQuiz() { alert('закочить анкету') }
+  const [ globalState, globalActions ] = useGlobal();
+
+  function sendQuiz() { alert('закончить анкету') }
 
   return (
 
@@ -57,7 +59,7 @@ const HeaderSignPanel = ({
               <DefaultButton
 
                 name = "Закончить анкету"
-                className = {`${ s.button } ${ s.button__quiz }`}
+                className = {`${ s.button } ${ s.button__quiz } ${ globalState.user_role === "expert" && s['button__quiz--opened'] }`}
                 action = { () => sendQuiz() }
 
               />

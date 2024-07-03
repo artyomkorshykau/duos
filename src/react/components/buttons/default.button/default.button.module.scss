@@ -10,11 +10,12 @@
   padding: $apx-12 $apx-18;
   background: var(--color-gradient-blue-main);
   white-space: nowrap;
-  animation: returnButtonBackground 1.1s forwards;
+  animation: returnButtonBackground 0.25s forwards;
 
-  &:hover {
+  &:hover,
+  &:focus {
   
-    animation: changeButtonBackground 1.2s forwards;
+    animation: changeButtonBackground 0.15s forwards;
   
   }
 
