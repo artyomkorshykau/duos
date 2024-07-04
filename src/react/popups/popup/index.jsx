@@ -9,8 +9,9 @@ const Popup = ({
   boxClassName = "",
   bodyClassName = "",
   isOpened = false,
-  openPopup = false,
-  closePopup = false
+  closePopup = () => {},
+  title = "",
+  subtitle = "",
 
 }) => {
 
@@ -27,7 +28,7 @@ const Popup = ({
 
         className = {
 
-          `absolute flex flex-column justify-center
+          `absolute flex flex-column justify-center text-center
           ${ s.popup } ${ bodyClassName }
 
         `}
@@ -36,9 +37,17 @@ const Popup = ({
 
         <div className = {`flex items-center justify-end ${ s.popup__close_icon__container }`}>
 
-          <CloseInCircle className = {`${ s.popup__close_icon } pointer`}/>
+          <CloseInCircle
+          
+            onClick = { closePopup() }
+            className = {`${ s.popup__close_icon } pointer`}
+            
+          />
 
         </div>
+
+        <p className = {`font-bold text-24 ${ s.popup__title }`}>{ title }</p>
+        <p className = {`font-semibold text-13 ${ s.popup__subtitle }`}>{ subtitle }</p>
 
         { children }
 

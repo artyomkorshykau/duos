@@ -35,4 +35,23 @@
   
   }
 
+  &__title,
+  &__subtitle {
+  
+    margin-bottom: $apx-16;
+  
+  }
+
+  &__title {
+  
+    color: var(--color-accent-blue-700);
+  
+  }
+
+  &__subtitle {
+  
+    color: var(--color-accent-black-500);
+  
+  }
+
 }

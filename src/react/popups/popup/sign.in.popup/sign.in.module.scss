@@ -1,0 +1,82 @@
+@import "@/styles/apx.scss";
+
+.checkbox {
+
+  width: $apx-164;
+  margin: $apx-16 0;
+  padding-left: $apx-8;
+  &__container { max-height: $apx-56; }
+
+}
+
+.tooltip {
+
+  width: $apx-42;
+  height: $apx-56;
+
+  &__container {
+    
+    width: $apx-180;
+    height: $apx-56;
+  
+  }
+
+  &__icon {
+  
+    $size: $apx-16;
+    width: $size;
+    height: $size;
+  
+  }
+
+  &__message {
+  
+    top: 0;
+    display: none;
+    padding: $apx-4 $apx-16;
+    border-radius: $apx-20;
+    position: absolute !important;
+
+    &--opened { display: block; }
+
+    &__text {
+    
+      white-space: nowrap;
+      color: var(--color-accent-black-900);
+    
+    }
+  
+  }
+
+}
+
+.button {
+  
+  width: 100%;
+  margin-bottom: $apx-50;
+  
+  &__icon {
+
+    $size: $apx-24;
+    width: $size;
+    height: $size;
+    margin-left: $apx-8;
+
+  }
+
+  &__gray {
+  
+    width: 100%;
+  
+  }
+
+}
+
+.calltext {
+
+  width: 100%;
+  text-align: start;
+  margin: $apx-16 0;
+  color: var(--color-accent-black-500);
+
+}

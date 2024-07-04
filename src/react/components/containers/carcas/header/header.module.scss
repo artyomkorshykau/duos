@@ -124,7 +124,7 @@
 }
 
 .circles_container {
-  
+
   z-index: 115;
   top: -50%;
   transform: translateY(100%);
@@ -180,7 +180,7 @@
 
   &__popup {
 
-    max-width: $apx-360;
+    width: $apx-360;
 
   }
 

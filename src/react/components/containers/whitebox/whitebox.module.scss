@@ -8,6 +8,8 @@
   padding: $apx-20 $apx-24;
   background: var(--color-bw-white);
 
+  &--bordered { border: $apx-1 solid var(--color-accent-blue-200); }
+
   &__point {
 
     display: none;

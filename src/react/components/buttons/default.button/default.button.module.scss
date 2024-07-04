@@ -26,4 +26,25 @@
   
   }
 
+  &__gray {
+  
+    animation: none !important;
+    background: var(--color-accent-blue-100) !important;
+    .button__name { color: var(--color-accent-blue-700) !important; }
+  
+  }
+
+  &__small {
+  
+    height: $apx-31 !important;
+
+    .button__name {
+
+      font-size: $apx-14 !important;
+      line-height: $apx-18 !important;
+
+    }
+    
+  }
+
 }

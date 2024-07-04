@@ -6,16 +6,21 @@ const WhiteBox = ({
   children,
   className = "",
   withPoint = false,
-  pointPosition = "center"
+  withBorder = false,
+  pointPosition = "center",
+  onMouseOut,
+  onMouseOver
 
 }) => {
 
   return(
 
     <div
-
-      className = {`${ s.whitebox } ${ className } relative`}
-
+    
+      onMouseOut = { onMouseOut }
+      onMouseOver = { onMouseOver }
+      className = {`${ s.whitebox } ${ withBorder && s['whitebox--bordered'] } ${ className } relative`}
+      
     >
       
       <div className = {`absolute ${ s.whitebox__point } ${ cssIf( withPoint, s['whitebox__point--exist']) } ${ s['whitebox__point--'+pointPosition ] }`}/>
