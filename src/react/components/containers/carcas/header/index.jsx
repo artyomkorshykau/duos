@@ -5,6 +5,7 @@ import LogoWord from "../../../icons/logoword";
 import HeaderSignPanel from "./header.sign.panel";
 import NAVBAR from "./header.navbar";
 import s from "./header.module.scss";
+import Popup from "@/react/popups/popup";
 
 const Header = ({
 
@@ -87,6 +88,15 @@ const Header = ({
         signUp = { () => signUp() }
 
       />
+
+      <Popup
+
+        isOpened = { true }
+        bodyClassName = { s.auth__popup }
+
+      >
+
+      </Popup>
 
     </header>
 

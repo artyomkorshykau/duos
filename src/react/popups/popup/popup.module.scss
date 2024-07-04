@@ -1,0 +1,38 @@
+@import "@/styles/apx.scss";
+
+.popup {
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+  &__container {
+
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 123;
+    display: none;
+    &--opened { display: flex; }
+
+  }
+
+  &__close_icon {
+  
+    $size: $apx-40;
+    width: $size;
+    height: $size;
+
+    &__container {
+    
+      width: 100%;
+      margin-bottom: $apx-20;
+    
+    }
+  
+  }
+
+}

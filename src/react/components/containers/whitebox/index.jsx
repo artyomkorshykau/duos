@@ -1,3 +1,4 @@
+import cssIf from "@/scripts/helpers/css.if";
 import s from "./whitebox.module.scss";
 
 const WhiteBox = ({
@@ -5,7 +6,7 @@ const WhiteBox = ({
   children,
   className = "",
   withPoint = false,
-  pointPosition = "left"
+  pointPosition = "center"
 
 }) => {
 
@@ -13,11 +14,11 @@ const WhiteBox = ({
 
     <div
 
-      className = {`${ s.whitebox } ${ s.className } relative`}
-      
+      className = {`${ s.whitebox } ${ className } relative`}
+
     >
       
-      <div className = {`absolute ${ s.whitebox__point } ${ s['whitebox__point--'+pointPosition ] }`}/>
+      <div className = {`absolute ${ s.whitebox__point } ${ cssIf( withPoint, s['whitebox__point--exist']) } ${ s['whitebox__point--'+pointPosition ] }`}/>
 
       { children }
 
