@@ -1,0 +1,26 @@
+@import "@/styles/apx.scss";
+
+.whitebox {
+
+  margin-top: $apx-50;
+  border-radius: $apx-32;
+  padding: $apx-20 $apx-24;
+  background: var(--color-bw-white);
+
+  &__point {
+
+    top: -$apx-6;
+    left: 0;
+    right: 0;
+    margin: auto;
+    $size: $apx-11;
+    width: $size;
+    height: $size;
+    border-radius: 100%;
+    background-color: var(--color-accent-blue-270);
+    &--left { left: $apx-16; right: unset; }
+    &--right { right: $apx-16; left: unset; }
+
+  }
+
+}
