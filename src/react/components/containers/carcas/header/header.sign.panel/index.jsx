@@ -1,3 +1,4 @@
+import useGlobal from "@/store";
 import HeaderAuthPanel from "./auth.panel";
 import SignInIcon from "@/react/components/icons/sign.in.icon";
 import DefaultButton from "@/react/components/buttons/default.button";
@@ -5,20 +6,20 @@ import s from "./header.sign.panel.module.scss";
 
 const HeaderSignPanel = ({
 
-  userData = {},
   authorized = false,
-  isClient = false,
   quizHadCompleted = false,
+  signIn = () => {},
+  signUp = () => {}
 
 }) => {
 
-  function signIn() { alert('открыть анкету SignIn') }
-  function signUp() { alert('открыть анкету SignUp') }
-  function sendQuiz() { alert('закочить анкету') }
+  const [ globalState, globalActions ] = useGlobal();
+
+  function sendQuiz() { alert('закончить анкету') }
 
   return (
 
-    <div className = {`flex items-center justify-between ${ s['sign-panel'] } ${ authorized ? s['sign-panel__in_auth'] : s['sign-panel__in_unauth'] }`}>
+    <div className = {`flex items-center justify-between ${ s['sign-panel'] } ${ authorized ? s['sign-panel__in_auth'] : s['sign-panel__in_unauth'] } relative`}>
 
       { !authorized
 
@@ -51,14 +52,14 @@ const HeaderSignPanel = ({
 
         :
 
-          <>
+          <div className = {`flex items-center ${ s['sign-panel__in_auth__avatar'] }`}>
 
             { !quizHadCompleted &&
 
               <DefaultButton
 
                 name = "Закончить анкету"
-                className = {`${ s.button } ${ s.button__quiz }`}
+                className = {`${ s.button } ${ s.button__quiz } ${ globalState.user_role === "expert" && s['button__quiz--opened'] }`}
                 action = { () => sendQuiz() }
 
               />
@@ -67,13 +68,12 @@ const HeaderSignPanel = ({
 
             <HeaderAuthPanel
 
-              userData = { userData }
               quizHadCompleted = { quizHadCompleted }
 
             />
 
-          </>
-    
+          </div>
+
       }
 
     </div>

@@ -1,4 +1,5 @@
 @import "@/styles/apx.scss";
+@import "@/styles/animations.scss";
 
 .header {
 
@@ -6,10 +7,11 @@
   width: 100%;
   height: $apx-64;
   padding: $apx-16;
-  border-bottom-left-radius: $apx-32;
-  border-bottom-right-radius: $apx-32;
+  border-bottom-left-radius: $apx-36;
+  border-bottom-right-radius: $apx-36;
   background: var(--color-bw-white);
   box-shadow: 0 0 $apx-25 $apx-5 rgba( 10, 10, 10, 0.05 );
+  position: fixed !important;
 
   &__circle {
 
@@ -40,8 +42,8 @@
   &__logo {
   
     top: -$apx-24;
-    min-width: $apx-96;
-    min-height: $apx-83;
+    width: $apx-140;
+    height: $apx-120;
   
   }
 
@@ -50,16 +52,6 @@
     top: $apx-24;
     min-width: $apx-64;
     min-height: $apx-18;
-
-  }
-
-  &__logocircle {
-
-    top: 0;
-    min-width: $apx-1248;
-    max-width: $apx-1900;
-    min-height: $apx-600;
-    max-height: $apx-960;
 
   }
 
@@ -80,7 +72,8 @@
       position: relative;
       padding: 0 $apx-16;
 
-      &:hover {
+      &:hover,
+      &:focus {
 
         transition: 0.135s;
         min-height: $apx-45;
@@ -95,14 +88,90 @@
 
 }
 
+.auth-back {
+
+  display: none;
+  &--opened { display: block; }
+
+}
+
 .white_blur {
 
   z-index: 105;
   opacity: 0.84;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   background: var(--color-bw-white);
+
+}
+
+.logocircle {
+
+  z-index: 110;
+  top: -50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: $apx-124;
+  height: $apx-124;
+  border-radius: 100%;
+  animation: radialScale 2s forwards;
+  background: var(--color-gradient-blue-light);
+  box-shadow: 0 0 $apx-20 $apx-10 #1f00cc24;
+
+}
+
+.circles_container {
+  
+  z-index: 115;
+  top: -50%;
+  transform: translateY(100%);
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: $apx-1240;
+  height: $apx-651;
+  width: $apx-124;
+  height: $apx-124;
+  transform: scale(10);
+  overflow: hidden;
+  border-bottom-left-radius: $apx-1900;
+  border-bottom-right-radius: $apx-1900;
+
+  &--appear { animation: fadeInSlow 2s; }
+  &--disappear { animation: fadeOutSlow 2s; }
+
+  &__green_circle,
+  &__blue_circle {
+
+    filter: blur($apx-55);
+    opacity: 0.75;
+    top: $apx-350;
+    left: $apx-300;
+    width: 0;
+    height: 0;
+    border-radius: 100%;
+    transform: rotate(0deg);
+    animation: rotate 9s 30 linear;
+    transform-origin: $apx-200 $apx-200;
+  
+  }
+
+  &__green_circle {
+
+    box-shadow: 0 0 $apx-360 $apx-280 var(--color-accent-green);
+  
+  }
+
+  &__blue_circle {
+
+    top: $apx-400;
+    left: $apx-450;
+    width: $apx-350;
+    box-shadow: 0 0 $apx-360 $apx-280 #008cc5;
+  
+  }
 
 }

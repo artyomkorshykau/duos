@@ -1,74 +1,54 @@
+import { useState } from "react";
 import Link from "next/link";
 import Logo from "../../../icons/logo";
 import LogoWord from "../../../icons/logoword";
-import LogoCircle from "@/react/components/icons/logocircle";
 import HeaderSignPanel from "./header.sign.panel";
+import NAVBAR from "./header.navbar";
 import s from "./header.module.scss";
 
 const Header = ({
 
   authorized = false,
-  isClient = false,
-  userData = {},
 
 }) => {
 
-  //навигационная панель - назания и ссылки
-  const NAVBAR = [
+  const [ isSignUIopened, setIsSignUIopened ] = useState( false );
 
-    {
+  function signIn() {
 
-      url: "/#about",
-      name: "Главная"
+    setIsSignUIopened( true );
 
-    },
+  }
 
-    {
+  function signUp() {
 
-      url: "/#about",
-      name: "О проекте"
+    setIsSignUIopened( true );
 
-    },
-
-    {
-
-      url: "/#leads",
-      name: "Направления"
-
-    },
-
-    {
-
-      url: "/#services",
-      name: "Услуги"
-
-    },
-
-    {
-
-      url: "/#library",
-      name: "Библиотека"
-
-    },
-
-    {
-
-      url: "/#help",
-      name: "Помощь"
-
-    }
-
-  ]
+  }
 
   return (
 
-    <header className = {`fixed flex items-center justify-between ${ s.header }`}>
+    <header className = {`fixed flex items-center justify-between ${ s.header } relative`}>
 
-      { !authorized && <div className = {`${ s.white_blur } absolute`}/> }
+      <div className = {`${ s['auth-back'] } ${ isSignUIopened && s['auth-back--opened'] }  ${ s.white_blur } absolute`}/>
+
+      <div className = {`flex items-center justify-center ${ s['auth-back'] } ${ isSignUIopened && s['auth-back--opened'] } ${ s.circles_container } ${ isSignUIopened ? s['circles_container--appear'] : s['circles_container--disappear'] } absolute`}>
+        
+        <div className = {`${ s.circles_container__blue_circle } absolute`}/>
+        <div className = {`${ s.circles_container__green_circle } absolute`}/>
+
+      </div>
       
-      { !authorized && <LogoCircle className = {`${ s.header__logocircle } absolute`}/> }
+      <div
+      
+        id = "logocircle"
+        className = {`${ s['auth-back'] } ${ isSignUIopened && s['auth-back--opened'] } ${ s.logocircle } ${ s['logocircle--scaled'] } absolute`}
 
-      { !authorized
+      >
+
+      </div>
+
+      { isSignUIopened
       
         ? 
       
@@ -82,7 +62,7 @@ const Header = ({
 
       <div className = {`flex items-center ${ s.header__navbar }`}>
 
-        { NAVBAR.map(( el, key) => (
+        { NAVBAR.map(( el, key ) => (
 
           <Link
           
@@ -103,8 +83,8 @@ const Header = ({
       <HeaderSignPanel
 
         authorized = { authorized }
-        isClient = { isClient }
-        userData = { userData }
+        signIn = { () => signIn() }
+        signUp = { () => signUp() }
 
       />
 

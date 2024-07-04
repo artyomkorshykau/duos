@@ -1,13 +1,14 @@
 import Header from "./header";
+import useGlobal from "@/store";
 import s from "./carcas.module.scss";
 
 const Carcas = ({
 
   authorized = false,
-  isClient = false,
-  userData = {},
 
 }) => {
+
+  const [ globalState, globalActions ] = useGlobal();
 
   return (
 
@@ -16,8 +17,7 @@ const Carcas = ({
       <Header
 
         authorized = { authorized }
-        isClient = { isClient }
-        userData = { userData }
+        userData = { globalState.userData }
 
       />
 

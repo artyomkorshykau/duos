@@ -13,6 +13,7 @@
       
       min-width: unset !important;
       justify-content: flex-end !important;
+      &__avatar { margin-right: -$apx-25; }
     
     }
 
@@ -34,8 +35,8 @@
 
     &__icon {
   
-      min-width: $apx-24;
-      min-height: $apx-24;
+      width: $apx-30;
+      height: $apx-30;
     
     }
 
@@ -47,6 +48,14 @@
 
   max-height: $apx-40;
 
-  &__quiz { margin-right: $apx-12; }
+  &__quiz {
+    
+    padding-top: $apx-10;
+    margin-right: $apx-20;
+    display: none;
+
+    &--opened { display: block; }
+  
+  }
 
 }

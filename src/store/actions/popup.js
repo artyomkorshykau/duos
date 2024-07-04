@@ -1,5 +1,3 @@
-import initialPopupStates from "@/react/popups/popup/initial.popup.states"
-
 async function show( store, name ) {
 
   store.setState({
@@ -17,13 +15,6 @@ async function hide( store, callBack ) {
   store.setState({ 
     popup_animate_close: true 
   })
-
-
-  setTimeout(() => {
-
-    store.setState( initialPopupStates )
-
-  }, 600)
 
 }
 
