@@ -1,6 +1,6 @@
-const CloseInCircle = ({ className }) => (
+const CloseInCircle = ({ className, onClick = () => {} }) => (
 
-  <svg className = { className } width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg className = { className } onClick = { onClick } width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect y="0.5" width="40" height="40" rx="20" fill="#F3F7FF"/>
     <g clipPath="url(#clip0_8703_22856)">
     <path d="M16 24.4998L23.9999 16.4999" stroke="#18009E" strokeWidth="1.7" strokeLinecap="round"/>
