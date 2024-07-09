@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Popup from "..";
+import Popup from "../popup";
 import WhiteBox from "@/react/components/containers/whitebox";
 import Checkbox from "@/react/components/forms/checkbox";
 import Textfield from "@/react/components/forms/textfield";
@@ -18,11 +18,10 @@ const SignInPopup = ({
   isOpened = false,
   isRememberUser = false,
   setIsRememberUser = () => {},
-  closePopup = () => {},
+  closePopup = () => {}
 
 }) => {
 
-  
   const [ showToolTip, setShowToolTip ] = useState( false );
 
   const handleMouseOut = () => { setShowToolTip( false ) };
@@ -35,7 +34,7 @@ const SignInPopup = ({
       title = "Вход"
       subtitle = "Введите номер телефона"
       isOpened = { isOpened }
-      closePopup = { closePopup() }
+      closePopup = { () => closePopup() }
       bodyClassName = { bodyClassName }
 
     >

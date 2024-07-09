@@ -1,4 +1,5 @@
 @import "@/styles/apx.scss";
+// @import "@/styles/animations.scss";
 
 .popup {
 
@@ -16,7 +17,13 @@
     height: 100vh;
     z-index: 123;
     display: none;
-    &--opened { display: flex; }
+
+    &--opened {
+      
+      display: flex;
+      // animation: fadeInSlow 2s forwards;
+    
+    }
 
   }
 
@@ -45,12 +52,21 @@
   &__title {
   
     color: var(--color-accent-blue-700);
+
+      &_bottom {
+        
+      margin-top: -$apx-10;
+      margin-bottom: $apx-16;
+      color: var(--color-accent-blue-700);
+  
+    }
   
   }
 
   &__subtitle {
   
     color: var(--color-accent-black-500);
+    &--margined { margin: $apx-24 0 $apx-16; }
   
   }
 
