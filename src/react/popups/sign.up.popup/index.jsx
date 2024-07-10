@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Popup from "../popup";
 import Checkbox from "@/react/components/forms/checkbox";
@@ -11,56 +11,113 @@ import s from "./sign.up.module.scss";
 const SignUpPopup = ({
 
   set,
-  value,
   logIn = () => {},
-  getCode = () => {},
   bodyClassName = "",
   isOpened = false,
-  policyAgree = false,
-  codeModeOpened = false,
-  setPolicyAgree = () => {},
   closePopup = () => {},
   closePopups = () => {}
 
 }) => {
 
+  const [ userNumber, setUserNumber ] = useState("");
+  const [ policyAgree, setPolicyAgree ] = useState( false );
+  const [ codeModeOpened, setCodeModeOpened ] = useState( false );
+  const [ showTimer, setShowTimer ] = useState( false );
+  const [ time, setTime ] = useState( 31 );
+  const [ intervalId, setIntervalId ] = useState(null);
+
+  const handleClosePopup = () => {
+
+    closePopup();
+    setUserNumber("");
+
+  };
+
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    let formattedValue = value.replace(/^(\+)?/, "");
+    if (value.length === 1 && value === "+") {
+      formattedValue = "";
+    } else if (value.length === 1) {
+      formattedValue = "+" + value;
+    } else {
+      formattedValue = "+" + formattedValue;
+    }
+    if (formattedValue.length > 12) {
+      formattedValue = formattedValue.substring(0, 12);
+      formattedValue = "+" + formattedValue.substring(1);
+    }
+    setUserNumber(formattedValue);
+  };
+
+  useEffect(() => {
+    if (codeModeOpened) {
+      const id = setInterval(() => {
+        if (time > 0) {
+          setTime(time - 1);
+        } else {
+          setShowTimer(true);
+        }
+      }, 1000);
+      setIntervalId(id);
+      return () => clearInterval(id);
+    }
+  }, [codeModeOpened, time]);
+
+  const getCode = () => {
+    if (userNumber.length >= 11 && policyAgree === true) {
+      setCodeModeOpened(true);
+    }
+  };
+
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
 
-  const [ code1, setCode1 ] = useState('-');
-  const [ code2, setCode2 ] = useState('-');
-  const [ code3, setCode3 ] = useState('-');
-  const [ code4, setCode4 ] = useState('-');
-  const [ code5, setCode5 ] = useState('-');
+  const [ code1, setCode1 ] = useState('');
+  const [ code2, setCode2 ] = useState('');
+  const [ code3, setCode3 ] = useState('');
+  const [ code4, setCode4 ] = useState('');
+  const [ code5, setCode5 ] = useState('');
 
   const handleCode1Change = (e) => {
     const newValue = e.target.value;
     setCode1(newValue);
-    if (newValue !== "-" && newValue.length === 1) {
-      document.querySelector(`[data-index="2"]`).focus();
+    if (newValue!== '-' && newValue.length === 1) {
+      const nextInput = document.querySelector(`[data-index="2"]`);
+      if (nextInput) {
+        nextInput.focus();
+      }
     }
   };
 
   const handleCode2Change = (e) => {
     const newValue = e.target.value;
     setCode2(newValue);
-    if (newValue !== "-" && newValue.length === 1) {
-      document.querySelector(`[data-index="3"]`).focus();
+    if (newValue!== '-' && newValue.length === 1) {
+      const nextInput = document.querySelector(`[data-index="3"]`);
+      if (nextInput) {
+        nextInput.focus();
+      }
     }
   };
 
   const handleCode3Change = (e) => {
     const newValue = e.target.value;
     setCode3(newValue);
-    if (newValue !== "-" && newValue.length === 1) {
-      document.querySelector(`[data-index="4"]`).focus();
+    if (newValue!== '-' && newValue.length === 1) {
+      const nextInput = document.querySelector(`[data-index="4"]`);
+      if (nextInput) {
+        nextInput.focus();
+      }
     }
   };
-
   const handleCode4Change = (e) => {
     const newValue = e.target.value;
     setCode4(newValue);
-    if (newValue !== "-" && newValue.length === 1) {
-      document.querySelector(`[data-index="5"]`).focus();
+    if (newValue!== '-' && newValue.length === 1) {
+      const nextInput = document.querySelector(`[data-index="5"]`);
+      if (nextInput) {
+        nextInput.focus();
+      }
     }
   };
 
@@ -93,28 +150,13 @@ const SignUpPopup = ({
 
   };
 
-  const [ showTimer, setShowTimer ] = useState( false );
-  const [ time, setTime ] = useState( 31 );
+  function getNewCode() {
 
-  useEffect(() => {
+    alert('отправить новый код');
+    setShowTimer( false );
+    setTime( 31 );
 
-    const intervalId = setInterval(() => {
-
-      if ( time > 0 ) {
-
-        setTime( time - 1 );
-
-      } else {
-
-        setShowTimer( true );
-
-      }
-
-    }, 1000);
-
-    return () => clearInterval( intervalId );
-
-  }, [ time ]);
+  }
 
   const rolechoice = <RoleChoice close = { () => closePopups } />
 
@@ -126,11 +168,12 @@ const SignUpPopup = ({
       titlebottom = { !codeModeOpened ? `к сообществу DUOS` : `` }
       subtitle = { !codeModeOpened ? `Введите номер телефона` : `Мы отправили его вам в СМС` }
       isOpened = { isOpened }
-      closePopup = { closePopup }
+      closePopup = { handleClosePopup }
       bodyClassName = { bodyClassName }
       subtitleMargin = { codeModeOpened ? true : false }
       contentOnly = { roleModeOpened && true }
       content = { rolechoice }
+      doubletitle
 
     >
 
@@ -141,9 +184,9 @@ const SignUpPopup = ({
             <Textfield
 
               set = { set }
-              value = { value }
+              value = { userNumber }
               withTitle = { false }
-              type = "number"
+              onChange = { handleInputChange }
               placeholder = "+7 (___) ___-__-__"
 
             />
@@ -154,7 +197,7 @@ const SignUpPopup = ({
 
                 className = { s.checkbox }
                 isChecked = { policyAgree }
-                setIsChecked = { setPolicyAgree }
+                setIsChecked =  { (value) => setPolicyAgree(value) }
 
               />
 
@@ -170,7 +213,7 @@ const SignUpPopup = ({
 
               name = "Получить код"
               className = { s.button }
-              action = { getCode }
+              action = { () => getCode() }
 
             >
 
@@ -189,6 +232,7 @@ const SignUpPopup = ({
                 index = { 1 }
                 data-index = "1"
                 value = { code1 }
+                placeholder = "-"
                 onChange = { handleCode1Change }
                 
               />
@@ -198,6 +242,7 @@ const SignUpPopup = ({
                 index = { 2 }
                 data-index = "2"
                 value = { code2 }
+                placeholder = "-"
                 onChange = { handleCode2Change }
 
               />
@@ -207,6 +252,7 @@ const SignUpPopup = ({
                 index = { 3 }
                 data-index = "3"
                 value = { code3 }
+                placeholder = "-"
                 onChange = { handleCode3Change }
 
               />
@@ -216,6 +262,7 @@ const SignUpPopup = ({
                 index = { 4 }
                 data-index = "4"
                 value = { code4 }
+                placeholder = "-"
                 onChange = { handleCode4Change }
 
               />
@@ -225,6 +272,7 @@ const SignUpPopup = ({
                 index = { 5 }
                 data-index = "5"
                 value = { code5 }
+                placeholder = "-"
                 onChange = { handleCode5Change }
 
               />
@@ -233,11 +281,30 @@ const SignUpPopup = ({
 
             <div className = {`flex items-center ${ s.checkbox__container }`}>
 
-              <p className = {`font-semibold text-13 ${ s.gettext } ${ showTimer && s['gettext--hidden'] }`}>
+              { !showTimer ?
+
+                  <p className = {`font-semibold text-13 ${ s.gettext }`}>
+                    
+                    Отправить код повторно можно через { time }
+                    
+                  </p>
+
+                : 
                 
-                Отправить код повторно можно через { time }
-                
-              </p>
+                  <p
+                  
+                    onClick = { () => getNewCode() }
+                    className = {`font-semibold text-15 ${ s.gettext } ${ s.gettext__new_code } relative pointer`}
+                    
+                  >
+                      
+                    Отправить новый код
+
+                    <div className = {`${ s.gettext__new_code__liner } absolute`}/>
+                  
+                  </p>
+
+              }
               
             </div>
 
@@ -245,7 +312,7 @@ const SignUpPopup = ({
 
         }
 
-      <p className = {`font-semibold text-13 ${ s.calltext }`}>У вас уже есть личный кабинет?</p>
+      <p className = {`font-semibold text-13 ${ s.calltext } relative`}>У вас уже есть личный кабинет?</p>
 
       <DefaultButton
 

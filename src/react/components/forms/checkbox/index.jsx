@@ -18,9 +18,10 @@ const Checkbox = ( props ) => {
 
     <label
     
-      onClick = { () => setIsChecked() }
+      onClick = { () => setIsChecked( !isChecked ) }
       className = {`flex items-center relative ${ s.checkbox } ${ cssIf( isChecked, s.checked )} ${ className }`}
-      
+      tabIndex = { 0 }
+
     >
 
       <div className = {`flex items-center justify-center ${ s.checkmark } ${ cssIf( isChecked, s['checkmark--checked'] ) } pointer`}>

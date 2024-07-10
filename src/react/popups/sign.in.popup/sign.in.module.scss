@@ -5,7 +5,13 @@
   width: $apx-164;
   margin: $apx-16 0;
   padding-left: $apx-8;
-  &__container { max-height: $apx-56; }
+
+  &__container {
+    
+    margin: $apx-4 0;
+    max-height: $apx-56;
+  
+  }
 
 }
 
@@ -74,9 +80,10 @@
 
 .calltext {
 
+  top: $apx-10;
   width: 100%;
   text-align: start;
-  margin: $apx-16 0;
+  margin: $apx-26 0;
   color: var(--color-accent-black-500);
 
 }

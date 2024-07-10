@@ -10,7 +10,7 @@ import s from "./header.module.scss";
 
 const Header = ({
 
-  authorized = false,
+  authorized = false
 
 }) => {
 
@@ -18,21 +18,15 @@ const Header = ({
 
   const [ userNumber, setUserNumber ] = useState( 0 );
   const [ isAuthBackOpened, setIsAuthBackOpened ] = useState( false );
+  const [ isAuthBackReversed, setIsAuthBackReversed ] = useState( true );
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
   const [ showSignUpPopup, setShowSignUpPopup ] = useState( false );
-  const [ codeModeOpened, setCodeModeOpened ] = useState( false );
-
-  const [ policyAgree, setPolicyAgree ] = useState( false );
-  const [ rememberUser, setRememberUser ] = useState( false );
-
-  const toggleRememberUser = () => { setRememberUser( !rememberUser )};
-  const togglePolicyAgree = () => { setPolicyAgree( !policyAgree )};
 
   function signIn( fast = false ) {
 
     setShowSignUpPopup( false );
     setIsAuthBackOpened( true );
-    
+
     if ( fast !== true ) {
 
       setTimeout(() => {
@@ -75,6 +69,7 @@ const Header = ({
     setShowSignInPopup( false );
     setShowSignUpPopup( false );
     setIsAuthBackOpened( false );
+    setIsAuthBackReversed( false );
 
   }
 
@@ -88,14 +83,6 @@ const Header = ({
       setShowSignInPopup( false );
       setIsAuthBackOpened( false );
 
-    }
-  
-  }
-
-  function getCode() {
-    
-    if ( userNumber.length === 11 && policyAgree === true ) {
-      setCodeModeOpened( true );
     }
   
   }
@@ -125,7 +112,7 @@ const Header = ({
 
           <Fragment>
 
-            <div className = {`${ s.logocircle } ${ !isAuthBackOpened && s['logocircle--closed'] } absolute`}/>
+            <div className = {`${ s.logocircle } ${ !isAuthBackOpened && s['logocircle--closed'] } ${ setIsAuthBackReversed && s['logocircle--unanimate'] } absolute`}/>
             <LogoWord className = {`${ s.header__logoword } absolute`}/>
           
           </Fragment>
@@ -168,9 +155,7 @@ const Header = ({
         signUp = { () => signUp( true ) }
         val = { userNumber }
         set = { setUserNumber }
-        bodyClassName = { s.auth__popup }
-        isRememberUser = { rememberUser }
-        setIsRememberUser = { toggleRememberUser }
+        bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__in }`}
 
       />
 
@@ -179,14 +164,11 @@ const Header = ({
         isOpened = { showSignUpPopup }
         closePopup = { () => closePopups() }
         closePopups = { () => closePopups() }
+        logIn = { () => signIn( true ) }
         signIn = { () => signIn( true ) }
-        getCode = { () => getCode() }
-        codeModeOpened = { codeModeOpened }
         val = { userNumber }
         set = { setUserNumber }
-        bodyClassName = { s.auth__popup }
-        policyAgree = { policyAgree }
-        setPolicyAgree = { togglePolicyAgree }
+        bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__up }`}
 
       />
 

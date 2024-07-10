@@ -1,11 +1,10 @@
 @import "@/styles/apx.scss";
-// @import "@/styles/animations.scss";
 
 .popup {
 
-  top: 0;
-  bottom: 0;
   left: 0;
+  top: $apx-24;
+  bottom: 0;
   right: 0;
   margin: 0 auto;
 
@@ -21,7 +20,6 @@
     &--opened {
       
       display: flex;
-      // animation: fadeInSlow 2s forwards;
     
     }
 
@@ -37,7 +35,9 @@
     
       width: 100%;
       margin-bottom: $apx-20;
-    
+
+      &__doubletitle { margin-bottom: -$apx-20; }
+
     }
   
   }
@@ -51,9 +51,10 @@
 
   &__title {
   
+    margin-top: $apx-50;
     color: var(--color-accent-blue-700);
 
-      &_bottom {
+    &_bottom {
         
       margin-top: -$apx-10;
       margin-bottom: $apx-16;

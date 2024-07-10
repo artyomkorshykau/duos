@@ -15,7 +15,8 @@ const Popup = ({
   titlebottom = "",
   subtitle = "",
   subtitleMargin = false,
-  contentOnly = false
+  contentOnly = false,
+  doubletitle = false
 
 }) => {
 
@@ -41,7 +42,7 @@ const Popup = ({
 
             >
 
-              <div className = {`flex items-center justify-end ${ s.popup__close_icon__container }`}>
+              <div className = {`flex items-center justify-end ${ s.popup__close_icon__container } ${ cssIf( doubletitle, s.popup__close_icon__container__doubletitle ) }`}>
 
                 <CloseInCircle
                 
@@ -54,7 +55,7 @@ const Popup = ({
 
               <p className = {`font-bold text-24 ${ s.popup__title }`}>{`${ title }`}</p>
               <p className = {`font-bold text-24 ${ s.popup__title_bottom }`}>{`${ titlebottom }`}</p>
-              <p className = {`font-semibold text-13 ${ s.popup__subtitle } ${ subtitleMargin && s['popup__subtitle--margined'] }`}>{ subtitle }</p>
+              <p className = {`font-semibold text-13 ${ s.popup__subtitle } ${ doubletitle && s.popup__subtitle__double } ${ subtitleMargin && s['popup__subtitle--margined'] }`}>{ subtitle }</p>
 
               { children }
 

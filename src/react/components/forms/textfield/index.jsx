@@ -20,6 +20,7 @@ const Textfield = ( props ) => {
     onClick = () => {},
     onKeyUp = () => {},
     onBlur = () => {},
+    onChange = () => {},
     ...inputParams
 
   } = props;
@@ -38,7 +39,8 @@ const Textfield = ( props ) => {
         type = { type }
         placeholder = { placeholder }
         className = { inputClassName }
-        onChange = { ( e ) => set( e.target.value ) }
+        // onChange = { ( e ) => set( e.target.value ) }
+        onChange = { onChange }
         onKeyUp = { onKeyUp }
         onBlur = { onBlur }
         {...inputParams}

@@ -11,7 +11,7 @@
   &__container {
     
     max-height: $apx-56;
-    margin: $apx-16 0;
+    margin: $apx-8 0;
   
   }
 
@@ -19,10 +19,10 @@
 
 .code__numbers {
 
-  width: $apx-300;
+  width: $apx-250;
   margin: 0 auto;
   margin: $apx-75 0;
-  padding-left: $apx-8;
+  padding-left: $apx-55;
 
 }
 
@@ -51,7 +51,8 @@
 .calltext {
 
   width: 100%;
-  margin: $apx-16 0;
+  top: -$apx-2;
+  margin: $apx-8 0 $apx-12;
   color: var(--color-accent-black-500);
 
 }
@@ -59,8 +60,25 @@
 .gettext {
 
   width: 100%;
-  margin: $apx-16 0 $apx-32;
+  margin: 0 0 $apx-32;
   color: var(--color-accent-black-500);
+
+  &__new_code {
+  
+    font-weight: 600;
+    color: var(--color-accent-blue-700);
+
+    &__liner {
+    
+      top: $apx-16;
+      left: $apx-78;
+      height: $apx-1;
+      width: $apx-157;
+      background: var(--color-accent-blue-700);
+    
+    }
+  
+  }
 
   &--hidden { display: none; }
 
@@ -91,6 +109,8 @@
 
   &__title {
   
+    line-height: 120% !important;
+    margin-top: $apx-8;
     margin-bottom: $apx-32;
     color: var(--color-bw-white);
   
@@ -124,7 +144,7 @@
 
       &__title {
       
-        margin-bottom: $apx-10;
+        margin: $apx-5 0;
       
       }
 

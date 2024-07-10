@@ -34,24 +34,19 @@
 
     left: 0;
     right: 0;
-    margin: 0 auto;
     z-index: 110;
+    margin: 0 auto;
  
-  }
-
-  &__logo {
-  
-    top: -$apx-24;
-    width: $apx-140;
-    height: $apx-120;
-  
   }
 
   &__logoword {
 
-    top: $apx-24;
+    top: $apx-25;
+    left: $apx-25;
     min-width: $apx-64;
+    max-width: $apx-64;
     min-height: $apx-18;
+    max-height: $apx-18;
 
   }
 
@@ -104,11 +99,11 @@
 
   z-index: 110;
   top: -50%;
-  left: 0;
   right: 0;
+  left: $apx-26;
   margin: auto;
-  width: $apx-124;
-  height: $apx-124;
+  width: $apx-125;
+  height: $apx-116;
   border-radius: 100%;
   animation: radialScale 2s forwards;
   background: var(--color-gradient-blue-light);
@@ -123,6 +118,13 @@
 
   }
 
+  &--unanimate {
+  
+    transform: scale(5);
+    animation: unset;
+  
+  }
+
 }
 
 .circles_container {
@@ -130,12 +132,12 @@
   z-index: 115;
   top: -50%;
   transform: translateY(100%);
-  top: $apx-280;
-  left: 0;
+  top: $apx-260;
+  left: $apx-24;
   right: 0;
   margin: auto;
-  width: $apx-124;
-  height: $apx-69;
+  width: $apx-128;
+  height: $apx-65;
   transform: scale(10);
   overflow: hidden !important;
   border-bottom-left-radius: $apx-1900;
@@ -181,6 +183,18 @@
   &__popup {
 
     width: $apx-360;
+
+    &__in {
+    
+      height: $apx-486;
+    
+    }
+
+    &__up {
+    
+      height: $apx-510;
+    
+    }
 
   }
 

@@ -31,6 +31,19 @@
     animation: none !important;
     background: var(--color-accent-blue-100) !important;
     .button__name { color: var(--color-accent-blue-700) !important; }
+
+    &:hover,
+    &:focus {
+    
+      background: var(--color-accent-blue-200) !important;
+    
+    }
+
+    &:active {
+
+      p { opacity: 0.8; }
+
+    }
   
   }
 

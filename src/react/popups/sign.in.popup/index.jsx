@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Popup from "../popup";
 import WhiteBox from "@/react/components/containers/whitebox";
 import Checkbox from "@/react/components/forms/checkbox";
@@ -11,18 +11,51 @@ import s from "./sign.in.module.scss";
 const SignInPopup = ({
 
   set,
-  value,
   logIn = () => {},
   signUp = () => {},
   bodyClassName = "",
   isOpened = false,
-  isRememberUser = false,
-  setIsRememberUser = () => {},
   closePopup = () => {}
 
 }) => {
 
+  const [ userNumber, setUserNumber ] = useState("");
   const [ showToolTip, setShowToolTip ] = useState( false );
+  const [ rememberUser, setRememberUser ] = useState( false );
+
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    let formattedValue = value.replace(/^(\+)?/, "");
+    if (value.length === 1 && value === "+") {
+      formattedValue = "";
+    } else if (value.length === 1) {
+      formattedValue = "+" + value;
+    } else {
+      formattedValue = "+" + formattedValue;
+    }
+    if (formattedValue.length > 12) {
+      formattedValue = formattedValue.substring(0, 12);
+      formattedValue = "+" + formattedValue.substring(1);
+    }
+    setUserNumber(formattedValue);
+  };
+
+  const handleClosePopup = () => {
+
+    closePopup();
+    setUserNumber("");
+
+  };
+
+  function log() {
+
+    if ( userNumber.length >= 11 && rememberUser === true ) {
+
+      logIn();
+
+    }
+
+  };
 
   const handleMouseOut = () => { setShowToolTip( false ) };
   const handleMouseOver = () => { setShowToolTip( true ) };
@@ -34,7 +67,7 @@ const SignInPopup = ({
       title = "Вход"
       subtitle = "Введите номер телефона"
       isOpened = { isOpened }
-      closePopup = { () => closePopup() }
+      closePopup = { handleClosePopup }
       bodyClassName = { bodyClassName }
 
     >
@@ -42,9 +75,9 @@ const SignInPopup = ({
       <Textfield
 
         set = { set }
-        value = { value }
+        value = { userNumber }
         withTitle = { false }
-        type = "number"
+        onChange = { handleInputChange }
         placeholder = "+7 (___) ___-__-__"
 
       />
@@ -55,8 +88,8 @@ const SignInPopup = ({
 
           title = "Запомнить меня"
           className = { s.checkbox }
-          isChecked = { isRememberUser }
-          setIsChecked = { setIsRememberUser }
+          isChecked = { rememberUser }
+          setIsChecked = { (value) => setRememberUser(value) }
 
         />
 
@@ -97,7 +130,7 @@ const SignInPopup = ({
 
         name = "Войти"
         className = { s.button }
-        action = { logIn }
+        action = { () => log() }
 
       >
 
@@ -105,7 +138,7 @@ const SignInPopup = ({
 
       </DefaultButton>
 
-      <p className = {`font-semibold text-13 ${ s.calltext }`}>Вы все еще не часть DUOS?</p>
+      <p className = {`font-semibold text-13 ${ s.calltext } relative`}>Вы все еще не часть DUOS?</p>
 
       <DefaultButton
 
