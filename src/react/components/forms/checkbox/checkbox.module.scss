@@ -6,6 +6,8 @@
   line-height: $apx-16;
   color: var(--color-gray-500);
 
+  &:focus { border: 1px solid red; }
+
   &__title {
   
     color: var(--color-accent-black-900);

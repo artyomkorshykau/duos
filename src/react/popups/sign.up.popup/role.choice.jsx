@@ -1,7 +1,18 @@
 import Link from "next/link";
+// import { useRouter } from "next/router";
 import s from "./sign.up.module.scss";  
 
-const RoleChoice = ({ close = () => {} }) => {
+const RoleChoice = ({
+  
+  close = () => {}
+
+}) => {
+
+  // const router = useRouter();
+
+  // const close = () => {
+  //   router.push("/");
+  // };
 
   return (
 

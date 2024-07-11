@@ -158,7 +158,13 @@ const SignUpPopup = ({
 
   }
 
-  const rolechoice = <RoleChoice close = { () => closePopups } />
+  const rolechoice = 
+  
+    <RoleChoice
+    
+      close = { () => closePopups }
+    
+    />
 
   return (
 
@@ -186,7 +192,11 @@ const SignUpPopup = ({
               set = { set }
               value = { userNumber }
               withTitle = { false }
-              onChange = { handleInputChange }
+              onChange = {(e) => {
+                const { value } = e.target;
+                const onlyNumbers = value.replace(/[^0-9+]/g, '');
+                handleInputChange({ target: { value: onlyNumbers } });
+              }}
               placeholder = "+7 (___) ___-__-__"
 
             />
@@ -233,7 +243,11 @@ const SignUpPopup = ({
                 data-index = "1"
                 value = { code1 }
                 placeholder = "-"
-                onChange = { handleCode1Change }
+                onChange = {(e) => {
+                  const { value } = e.target;
+                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
+                  handleCode1Change({ target: { value: onlyNumbers } });
+                }}
                 
               />
 
@@ -243,7 +257,11 @@ const SignUpPopup = ({
                 data-index = "2"
                 value = { code2 }
                 placeholder = "-"
-                onChange = { handleCode2Change }
+                onChange = {(e) => {
+                  const { value } = e.target;
+                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
+                  handleCode2Change({ target: { value: onlyNumbers } });
+                }}
 
               />
 
@@ -253,7 +271,11 @@ const SignUpPopup = ({
                 data-index = "3"
                 value = { code3 }
                 placeholder = "-"
-                onChange = { handleCode3Change }
+                onChange = {(e) => {
+                  const { value } = e.target;
+                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
+                  handleCode3Change({ target: { value: onlyNumbers } });
+                }}
 
               />
 
@@ -263,7 +285,11 @@ const SignUpPopup = ({
                 data-index = "4"
                 value = { code4 }
                 placeholder = "-"
-                onChange = { handleCode4Change }
+                onChange = {(e) => {
+                  const { value } = e.target;
+                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
+                  handleCode4Change({ target: { value: onlyNumbers } });
+                }}
 
               />
 
@@ -273,7 +299,11 @@ const SignUpPopup = ({
                 data-index = "5"
                 value = { code5 }
                 placeholder = "-"
-                onChange = { handleCode5Change }
+                onChange = {(e) => {
+                  const { value } = e.target;
+                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
+                  handleCode5Change({ target: { value: onlyNumbers } });
+                }}
 
               />
 
@@ -289,7 +319,7 @@ const SignUpPopup = ({
                     
                   </p>
 
-                : 
+                :
                 
                   <p
                   

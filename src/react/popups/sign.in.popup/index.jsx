@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Popup from "../popup";
 import WhiteBox from "@/react/components/containers/whitebox";
 import Checkbox from "@/react/components/forms/checkbox";
@@ -77,7 +77,11 @@ const SignInPopup = ({
         set = { set }
         value = { userNumber }
         withTitle = { false }
-        onChange = { handleInputChange }
+        onChange = {(e) => {
+          const { value } = e.target;
+          const onlyNumbers = value.replace(/[^0-9+]/g, '');
+          handleInputChange({ target: { value: onlyNumbers } });
+        }}
         placeholder = "+7 (___) ___-__-__"
 
       />

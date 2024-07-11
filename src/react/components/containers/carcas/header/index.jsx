@@ -16,7 +16,6 @@ const Header = ({
 
   const router = useRouter();
 
-  const [ userNumber, setUserNumber ] = useState( 0 );
   const [ isAuthBackOpened, setIsAuthBackOpened ] = useState( false );
   const [ isAuthBackReversed, setIsAuthBackReversed ] = useState( true );
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
@@ -150,11 +149,9 @@ const Header = ({
       <SignInPopup
 
         isOpened = { showSignInPopup }
-        closePopup = { () => closePopups() }
+        closePopup = { () => closePopups }
         logIn = { () => logIn() }
         signUp = { () => signUp( true ) }
-        val = { userNumber }
-        set = { setUserNumber }
         bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__in }`}
 
       />
@@ -162,12 +159,10 @@ const Header = ({
       <SignUpPopup
 
         isOpened = { showSignUpPopup }
-        closePopup = { () => closePopups() }
-        closePopups = { () => closePopups() }
+        closePopup = { () => closePopups }
+        closePopups = { () => closePopups }
         logIn = { () => signIn( true ) }
         signIn = { () => signIn( true ) }
-        val = { userNumber }
-        set = { setUserNumber }
         bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__up }`}
 
       />

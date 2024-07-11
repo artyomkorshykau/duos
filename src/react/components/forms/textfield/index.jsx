@@ -29,7 +29,7 @@ const Textfield = ( props ) => {
     
     <div className = {`${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}>
 
-      { title === "" ? "" : <p className = { s.title }>{ title }</p> }
+      { !!title && <p className = { s.title }>{ title }</p> }
       
       <input 
 
@@ -39,7 +39,6 @@ const Textfield = ( props ) => {
         type = { type }
         placeholder = { placeholder }
         className = { inputClassName }
-        // onChange = { ( e ) => set( e.target.value ) }
         onChange = { onChange }
         onKeyUp = { onKeyUp }
         onBlur = { onBlur }
@@ -53,7 +52,7 @@ const Textfield = ( props ) => {
       
       />
 
-      { error === "" ? "" : <p className = { s.error }>{ error }</p> }
+      { !!error && <p className = { s.error }>{ error }</p> }
 
     </div>
     

@@ -29,7 +29,6 @@ const NumberField = ( props ) => {
       
     <input 
 
-      id = "numberfield"
       ref = { refDOM }
       value = { value }
       set = { ( e ) => set( e.target.value ) }

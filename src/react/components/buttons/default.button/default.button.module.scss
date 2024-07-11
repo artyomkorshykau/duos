@@ -11,12 +11,19 @@
   background: var(--color-gradient-blue-main);
   white-space: nowrap;
   animation: returnButtonBackground 0.25s forwards;
+  p { opacity: 1; }
 
   &:hover,
   &:focus {
   
     animation: changeButtonBackground 0.15s forwards;
   
+  }
+
+  &:active {
+
+    p { opacity: 0.8; }
+
   }
 
   &__name {
@@ -31,14 +38,13 @@
     animation: none !important;
     background: var(--color-accent-blue-100) !important;
     .button__name { color: var(--color-accent-blue-700) !important; }
-
+    p { opacity: 1; }
     &:hover,
     &:focus {
     
       background: var(--color-accent-blue-200) !important;
     
     }
-
     &:active {
 
       p { opacity: 0.8; }
@@ -55,6 +61,12 @@
 
       font-size: $apx-14 !important;
       line-height: $apx-18 !important;
+      p { opacity: 1; }
+      &:active {
+
+        p { opacity: 0.8; }
+  
+      }
 
     }
     
