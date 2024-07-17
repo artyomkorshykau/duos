@@ -15,7 +15,8 @@ const SignUpPopup = ({
   bodyClassName = "",
   isOpened = false,
   closePopup = () => {},
-  closePopups = () => {}
+  closePopups = () => {},
+  codeModeClosed = false
 
 }) => {
 
@@ -24,7 +25,7 @@ const SignUpPopup = ({
   const [ codeModeOpened, setCodeModeOpened ] = useState( false );
   const [ showTimer, setShowTimer ] = useState( false );
   const [ time, setTime ] = useState( 31 );
-  const [ intervalId, setIntervalId ] = useState(null);
+  const [ intervalId, setIntervalId ] = useState( null);
 
   const handleClosePopup = () => {
 
@@ -157,6 +158,30 @@ const SignUpPopup = ({
     setTime( 31 );
 
   }
+
+  useEffect(() => {
+
+    const nextInput = document.querySelector(`[data-index="1"]`);
+    if (nextInput) {
+      nextInput.focus();
+    }
+
+  }, [ codeModeOpened ]);
+
+  useEffect(() => {
+
+    if ( codeModeClosed ) {
+
+      setCodeModeOpened( false );
+      setCode1('');
+      setCode2('');
+      setCode3('');
+      setCode4('');
+      setCode5('');
+
+    }
+
+  }, [ codeModeClosed ]);
 
   const rolechoice = 
   

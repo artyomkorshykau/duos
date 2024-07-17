@@ -1,6 +1,6 @@
 import Link from "next/link";
 // import { useRouter } from "next/router";
-import s from "./sign.up.module.scss";  
+import s from "./sign.up.module.scss";
 
 const RoleChoice = ({
   

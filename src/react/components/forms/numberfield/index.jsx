@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import s from './numberfield.module.scss';
 
 const NumberField = ( props ) => {

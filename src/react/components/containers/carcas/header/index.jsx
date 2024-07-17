@@ -20,6 +20,7 @@ const Header = ({
   const [ isAuthBackReversed, setIsAuthBackReversed ] = useState( true );
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
   const [ showSignUpPopup, setShowSignUpPopup ] = useState( false );
+  const [ codeModeClosed, setCodeModeClosed ] = useState( false );
 
   function signIn( fast = false ) {
 
@@ -69,6 +70,7 @@ const Header = ({
     setShowSignUpPopup( false );
     setIsAuthBackOpened( false );
     setIsAuthBackReversed( false );
+    setCodeModeClosed( true );
 
   }
 
@@ -163,6 +165,7 @@ const Header = ({
         closePopups = { () => closePopups }
         logIn = { () => signIn( true ) }
         signIn = { () => signIn( true ) }
+        codeModeClosed = { codeModeClosed }
         bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__up }`}
 
       />
