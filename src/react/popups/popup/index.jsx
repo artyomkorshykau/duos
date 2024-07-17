@@ -24,7 +24,7 @@ const Popup = ({
 
       <div className = {`
         
-        flex items-center justify-center fixed ${ s.popup__container }
+        flex fixed ${ s.popup__container }
         ${ cssIf( isOpened, s['popup__container--opened']) } ${ boxClassName }
       
       `}>

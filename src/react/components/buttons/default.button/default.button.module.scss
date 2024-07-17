@@ -20,6 +20,8 @@
   
   }
 
+  &:not(&:hover) { animation: none; }
+
   &:active {
 
     p { opacity: 0.8; }

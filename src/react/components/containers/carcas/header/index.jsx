@@ -63,7 +63,7 @@ const Header = ({
 
   }
 
-  function closePopups() {
+  const closePopups = () => {
 
     setShowSignInPopup( false );
     setShowSignUpPopup( false );
@@ -149,7 +149,7 @@ const Header = ({
       <SignInPopup
 
         isOpened = { showSignInPopup }
-        closePopup = { () => closePopups }
+        closePopup = { () => closePopups() }
         logIn = { () => logIn() }
         signUp = { () => signUp( true ) }
         bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__in }`}
@@ -159,7 +159,7 @@ const Header = ({
       <SignUpPopup
 
         isOpened = { showSignUpPopup }
-        closePopup = { () => closePopups }
+        closePopup = { () => closePopups() }
         closePopups = { () => closePopups }
         logIn = { () => signIn( true ) }
         signIn = { () => signIn( true ) }

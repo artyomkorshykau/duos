@@ -19,6 +19,14 @@ const Checkbox = ( props ) => {
     <label
     
       onClick = { () => setIsChecked( !isChecked ) }
+      onKeyPress = {( e ) => {
+        if( e.key === " ") { 
+          
+          setIsChecked( !isChecked );
+          e.preventDefault();
+
+        }
+      }}    
       className = {`flex items-center relative ${ s.checkbox } ${ cssIf( isChecked, s.checked )} ${ className }`}
       tabIndex = { 0 }
 
