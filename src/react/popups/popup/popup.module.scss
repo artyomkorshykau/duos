@@ -1,0 +1,74 @@
+@import "@/styles/apx.scss";
+
+.popup {
+
+  left: 0;
+  top: $apx-16;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+
+  &__container {
+
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 123;
+    display: none;
+
+    &--opened {
+      
+      display: flex;
+    
+    }
+
+  }
+
+  &__close_icon {
+  
+    $size: $apx-40;
+    width: $size;
+    height: $size;
+
+    &__container {
+    
+      width: 100%;
+      margin-bottom: $apx-20;
+
+      &__doubletitle { margin-bottom: -$apx-20; }
+
+    }
+  
+  }
+
+  &__title,
+  &__subtitle {
+  
+    margin-bottom: $apx-16;
+  
+  }
+
+  &__title {
+  
+    margin-top: $apx-50;
+    color: var(--color-accent-blue-700);
+
+    &_bottom {
+        
+      margin-top: -$apx-10;
+      margin-bottom: $apx-16;
+      color: var(--color-accent-blue-700);
+  
+    }
+  
+  }
+
+  &__subtitle {
+  
+    color: var(--color-accent-black-500);
+    &--margined { margin: $apx-24 0 $apx-16; }
+  
+  }
+
+}

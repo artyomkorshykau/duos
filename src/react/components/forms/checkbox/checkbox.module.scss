@@ -1,0 +1,40 @@
+@import "@/styles/apx.scss";
+
+.checkbox {
+
+  font-size: $apx-12;
+  line-height: $apx-16;
+  color: var(--color-gray-500);
+
+  &:focus { div { border: $apx-1 solid var(--color-accent-blue-270); } }
+
+  &__title {
+  
+    color: var(--color-accent-black-900);
+  
+  }
+
+}
+
+.checkmark {
+
+  $size: $apx-24;
+  width: $size;
+  height: $size; 
+  border-radius: $apx-8;
+  margin-right: $apx-8;
+  background: var(--color-accent-background);
+  
+  &:hover,
+  &:focus,
+  &--checked  { border: $apx-1 solid var(--color-accent-blue-270); }
+
+  &__icon {
+  
+    $size: $apx-16;
+    width: $size;
+    height: $size;   
+  
+  }
+
+}

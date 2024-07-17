@@ -155,120 +155,120 @@ const LogoWord = ({ className }) => (
     </g>
     <defs>
     <radialGradient id="paint0_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.6158 9.29294) rotate(26.1208) scale(42.1824 42.3095)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.07" stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.07" stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint1_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.6158 9.29294) rotate(26.1208) scale(42.1824 42.3095)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.07" stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.07" stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint2_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-3.95628 -8.55164) rotate(32.4069) scale(62.028 62.1581)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint3_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.6197 9.29245) rotate(26.1208) scale(42.1824 42.3095)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.07" stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.07" stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint4_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.6197 9.29245) rotate(26.1208) scale(42.1824 42.3095)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.07" stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.07" stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint5_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-3.95628 -8.55212) rotate(32.4069) scale(62.028 62.1581)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint6_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.6118 9.2927) rotate(26.1208) scale(42.1824 42.3095)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.07" stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.07" stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint7_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.6118 9.2927) rotate(26.1208) scale(42.1824 42.3095)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.07" stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.07" stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint8_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-3.96214 -8.55164) rotate(32.4069) scale(62.028 62.1581)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint9_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.6158 9.29099) rotate(26.1208) scale(42.1824 42.3095)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.07" stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.07" stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint10_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.6158 9.29099) rotate(26.1208) scale(42.1824 42.3095)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.07" stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.07" stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     <radialGradient id="paint11_radial_8703_22964" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-3.95628 -8.55188) rotate(32.4069) scale(62.028 62.1581)">
-    <stop stop-color="#7252F8"/>
-    <stop offset="0.46" stop-color="#00E7FF"/>
-    <stop offset="0.52" stop-color="#00E8EE"/>
-    <stop offset="0.62" stop-color="#00ECC4"/>
-    <stop offset="0.76" stop-color="#00F280"/>
-    <stop offset="0.94" stop-color="#00FB24"/>
-    <stop offset="1" stop-color="#00FF00"/>
+    <stop stopColor="#7252F8"/>
+    <stop offset="0.46" stopColor="#00E7FF"/>
+    <stop offset="0.52" stopColor="#00E8EE"/>
+    <stop offset="0.62" stopColor="#00ECC4"/>
+    <stop offset="0.76" stopColor="#00F280"/>
+    <stop offset="0.94" stopColor="#00FB24"/>
+    <stop offset="1" stopColor="#00FF00"/>
     </radialGradient>
     </defs>
   </svg>

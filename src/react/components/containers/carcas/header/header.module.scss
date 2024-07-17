@@ -34,24 +34,19 @@
 
     left: 0;
     right: 0;
-    margin: 0 auto;
     z-index: 110;
+    margin: 0 auto;
  
-  }
-
-  &__logo {
-  
-    top: -$apx-24;
-    width: $apx-140;
-    height: $apx-120;
-  
   }
 
   &__logoword {
 
-    top: $apx-24;
+    top: $apx-25;
+    left: $apx-25;
     min-width: $apx-64;
+    max-width: $apx-64;
     min-height: $apx-18;
+    max-height: $apx-18;
 
   }
 
@@ -88,13 +83,6 @@
 
 }
 
-.auth-back {
-
-  display: none;
-  &--opened { display: block; }
-
-}
-
 .white_blur {
 
   z-index: 105;
@@ -111,67 +99,116 @@
 
   z-index: 110;
   top: -50%;
-  left: 0;
   right: 0;
+  left: $apx-26;
   margin: auto;
-  width: $apx-124;
-  height: $apx-124;
+  width: $apx-125;
+  height: $apx-116;
   border-radius: 100%;
   animation: radialScale 2s forwards;
   background: var(--color-gradient-blue-light);
   box-shadow: 0 0 $apx-20 $apx-10 #1f00cc24;
 
+  &--closed {
+
+    top: $apx-20;
+    width: $apx-24;
+    height: $apx-24;
+    animation: radialScaleReverse 2s forwards;
+
+  }
+
+  &--unanimate {
+  
+    transform: scale(5);
+    animation: unset;
+  
+  }
+
 }
 
 .circles_container {
-  
+
   z-index: 115;
   top: -50%;
   transform: translateY(100%);
-  left: 0;
+  top: $apx-260;
+  left: $apx-24;
   right: 0;
   margin: auto;
-  width: $apx-1240;
-  height: $apx-651;
-  width: $apx-124;
-  height: $apx-124;
+  width: $apx-128;
+  height: $apx-65;
   transform: scale(10);
-  overflow: hidden;
+  overflow: hidden !important;
   border-bottom-left-radius: $apx-1900;
   border-bottom-right-radius: $apx-1900;
 
   &--appear { animation: fadeInSlow 2s; }
   &--disappear { animation: fadeOutSlow 2s; }
 
-  &__green_circle,
-  &__blue_circle {
+}
 
-    filter: blur($apx-55);
-    opacity: 0.75;
-    top: $apx-350;
-    left: $apx-300;
-    width: 0;
-    height: 0;
-    border-radius: 100%;
-    transform: rotate(0deg);
-    animation: rotate 9s 30 linear;
-    transform-origin: $apx-200 $apx-200;
-  
+.green_circle,
+.blue_circle {
+
+  transform: scale(1) !important;
+  filter: blur($apx-55);
+  opacity: 0.75;
+  top: $apx-350;
+  left: $apx-300;
+  border-radius: 100%;
+  transform: rotate(0deg);
+  animation: rotate 9s 30 linear;
+  transform-origin: $apx-200 $apx-200;
+  position: absolute !important;
+
+}
+
+.green_circle {
+
+  box-shadow: 0 0 $apx-236 $apx-228 var(--color-accent-green);border: 1px solid red; 
+
+}
+
+.blue_circle {
+
+  top: $apx-400;
+  left: $apx-450;
+  box-shadow: 0 0 $apx-236 $apx-228 #008cc5;
+
+}
+
+.auth {
+
+  &__popup {
+
+    width: $apx-360;
+    top: $apx-210 !important;
+
+    &__in {
+    
+      height: $apx-486;
+    
+    }
+
+    &__up {
+    
+      height: $apx-510;
+    
+    }
+
   }
 
-  &__green_circle {
+  &-back {
 
-    box-shadow: 0 0 $apx-360 $apx-280 var(--color-accent-green);
-  
-  }
+    display: none !important;
+    
+    &--opened {
+      
+      display: block !important;
+    
+    }
 
-  &__blue_circle {
-
-    top: $apx-400;
-    left: $apx-450;
-    width: $apx-350;
-    box-shadow: 0 0 $apx-360 $apx-280 #008cc5;
-  
   }
 
 }

@@ -1,0 +1,35 @@
+@import "@/styles/apx.scss";
+
+.numberfield {
+
+  width: $apx-50;
+  height: $apx-64;
+  padding-left: $apx-20;
+  padding-right: unset;
+  outline: unset;
+  font-weight: 500;
+  font-size: $apx-16;
+  line-height: $apx-21;
+  color: var(--color-accent-black-500);
+  background: var(--color-accent-background);
+  border: $apx-2 solid var(--color-accent-blue-200);
+  border-radius: $apx-28;
+  border: unset;
+
+  &::placeholder {
+  
+    font-weight: 400;
+    font-size: $apx-16;
+    line-height: $apx-21;
+  
+  }
+
+  &:not([readonly]):not([disabled]):focus, &:hover {
+
+    border: $apx-2 solid var(--color-accent-blue-270);
+
+  }
+
+  & + .numberfield { margin-left: $apx-4; }
+
+}
