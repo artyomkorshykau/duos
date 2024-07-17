@@ -25,7 +25,7 @@ const SignUpPopup = ({
   const [ codeModeOpened, setCodeModeOpened ] = useState( false );
   const [ showTimer, setShowTimer ] = useState( false );
   const [ time, setTime ] = useState( 31 );
-  const [ intervalId, setIntervalId ] = useState( null);
+  const [ intervalId, setIntervalId ] = useState( null );
 
   const handleClosePopup = () => {
 
