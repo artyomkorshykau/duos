@@ -1,0 +1,116 @@
+@import "@/styles/apx.scss";
+
+.questionnaire {
+
+  width: $apx-1000;
+  height: $apx-487;
+  background-color: white;
+  border-radius: $apx-32;
+  padding-left: $apx-64 $apx-32;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  &__form_logo {
+
+    margin-top: $apx-20;
+
+  }
+
+  &__title {
+
+    margin-top: $apx-10;
+    margin-bottom: $apx-10;
+    color: var(--color-accent-blue-700);
+
+    &_bottom {
+
+      color: var(--color-accent-blue-700);
+
+    }
+
+  }
+
+  &__subtitle {
+
+    width: $apx-640;
+    color: #2B3358;
+    font-weight: 500;
+    text-align: center;
+
+  }
+
+  &__context_notise {
+
+    background-color: #F3F7FF;
+    border-radius: $apx-28;
+    width: $apx-287;
+    height: $apx-33;
+    padding: $apx-8 $apx-16;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $apx-10;
+
+    &__title {
+
+      font-size: $apx-13;
+      font-weight: bold;
+      color: var(--color-accent-blue-700);
+
+    }
+
+  }
+
+  &__button {
+
+    width: $apx-287;
+    margin-top: $apx-20;
+
+  }
+
+  &__separator {
+
+    width: 100%;
+
+  }
+
+  &__footer {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: $apx-90;
+
+    width: 100%;
+    margin-top: $apx-30;
+    border-top: 2px solid #F4F6F9;
+
+    &__item {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $apx-5;
+
+      &__title {
+
+        font-size: $apx-16;
+        font-weight: bolder;
+        color: #7C92A7;
+
+      }
+
+      &__minutes {
+
+        font-size: $apx-13;
+        color: #7C92A7;
+
+      }
+
+    }
+
+  }
+
+}
