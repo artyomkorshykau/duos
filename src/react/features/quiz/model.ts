@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 
-export const useQuestionnaire = () => {
+export const useQuiz = () => {
 	
 	const { push } = useRouter()
 	

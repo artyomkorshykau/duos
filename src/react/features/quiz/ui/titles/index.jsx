@@ -1,4 +1,4 @@
-import s from "@/react/features/questionnaire/ui/questionnaire.module.scss";
+import s from "@/react/features/quiz/ui/quiz.module.scss";
 
 const Titles = ({
 

@@ -1,13 +1,13 @@
-import s from "@/react/features/questionnaire/ui/questionnaire.module.scss";
+import s from "@/react/features/quiz/ui/quiz.module.scss";
 import NotiseSuccess from "@/react/components/icons/notise.success";
 
-const questionnaires = [
+const quiz = [
 
-  { title: 'Профиль', timeToComplete: '1 минута' },
-  { title: 'Услуги', timeToComplete: '10 минут' },
-  { title: 'Ценности', timeToComplete: '5 минут' },
-  { title: 'Документы', timeToComplete: '3 минуты' },
-  { title: 'Публикации', timeToComplete: '1 минута' }
+  { id: 1, title: 'Профиль', timeToComplete: '1 минута' },
+  { id: 2, title: 'Услуги', timeToComplete: '10 минут' },
+  { id: 3, title: 'Ценности', timeToComplete: '5 минут' },
+  { id: 4, title: 'Документы', timeToComplete: '3 минуты' },
+  { id: 5, title: 'Публикации', timeToComplete: '1 минута' }
 
 ]
 
@@ -21,11 +21,11 @@ const Footer = ({
 
     <div className = {`${ s.questionnaire__footer }`}>
 
-      {questionnaires.map( el => {
+      {quiz.map( el => {
 
         return (
 
-          <div className = {`${ s.questionnaire__footer__item }`}>
+          <div className = {`${ s.questionnaire__footer__item }`} key={ el.id }>
 
             <p className = {`${ s.questionnaire__footer__item__title }`}>{ el.title }</p>
 
