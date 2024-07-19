@@ -5,7 +5,8 @@ import s from "./auth.panel.module.scss";
 
 const HeaderAuthPanel = ({
 
-  quizHadCompleted = false
+  quizHadCompleted = false,
+  status
 
 }) => {
 
@@ -57,7 +58,7 @@ const HeaderAuthPanel = ({
           
         >
 
-         { globalState.user_role === "expert" && (quizHadCompleted ? quizStatusText.completed : quizStatusText.uncompleted) }
+         { globalState.user_role === "expert" && (status === 'end' ? quizStatusText.completed : quizStatusText.uncompleted) }
 
         </p>
 

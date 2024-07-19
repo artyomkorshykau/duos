@@ -9,7 +9,8 @@ const HeaderSignPanel = ({
   authorized = false,
   quizHadCompleted = false,
   signIn = () => {},
-  signUp = () => {}
+  signUp = () => {},
+  status
 
 }) => {
 
@@ -69,6 +70,7 @@ const HeaderSignPanel = ({
             <HeaderAuthPanel
 
               quizHadCompleted = { quizHadCompleted }
+              status = { status }
 
             />
 

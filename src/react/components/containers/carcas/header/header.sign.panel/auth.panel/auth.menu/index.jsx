@@ -14,8 +14,8 @@ const AuthMenu = ({
 
   const { push } = useRouter()
 
-  function openQuiz() { push('/questionnaire') };
-  function logOut() { alert('TODO: реализация выхода из системы') };
+  function openQuiz() { push('/quiz') }
+  function logOut() { alert('TODO: реализация выхода из системы') }
 
   return(
 
