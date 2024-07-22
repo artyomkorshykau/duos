@@ -1,7 +1,7 @@
 import FormLogoBegin from "@/react/components/icons/form.logo.begin";
 import FormLogoContinue from "@/react/components/icons/form.logo.continue";
 import FormLogoEnd from "@/react/components/icons/form.logo.end";
-import s from "@/react/features/quiz/ui/quiz.module.scss";
+import s from "@/react/widgets/quiz/ui/quiz.module.scss";
 
 const FormLogo = ({
 

@@ -1,9 +1,9 @@
 import s from './quiz.module.scss'
 import DefaultButton from "@/react/components/buttons/default.button";
-import FormLogo from "@/react/features/quiz/ui/form.img";
-import Titles from "@/react/features/quiz/ui/titles";
-import ContextNotise from "@/react/features/quiz/ui/context.notise";
-import Footer from "@/react/features/quiz/ui/footer";
+import FormLogo from "@/react/widgets/quiz/ui/form.img";
+import Titles from "@/react/widgets/quiz/ui/titles";
+import ContextNotise from "@/react/widgets/quiz/ui/context.notise";
+import Footer from "@/react/widgets/quiz/ui/footer";
 
 const Quiz = ({
 

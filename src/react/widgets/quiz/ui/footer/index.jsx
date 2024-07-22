@@ -1,15 +1,7 @@
-import s from "@/react/features/quiz/ui/quiz.module.scss";
+import s from "@/react/widgets/quiz/ui/quiz.module.scss";
 import NotiseSuccess from "@/react/components/icons/notise.success";
+import useGlobal from "@/store";
 
-const quiz = [
-
-  { id: 1, title: 'Профиль', timeToComplete: '1 минута' },
-  { id: 2, title: 'Услуги', timeToComplete: '10 минут' },
-  { id: 3, title: 'Ценности', timeToComplete: '5 минут' },
-  { id: 4, title: 'Документы', timeToComplete: '3 минуты' },
-  { id: 5, title: 'Публикации', timeToComplete: '1 минута' }
-
-]
 
 const Footer = ({
 
@@ -17,11 +9,13 @@ const Footer = ({
 
 }) => {
 
+  const [ globalState ] = useGlobal();
+
   return (
 
     <div className = {`${ s.questionnaire__footer }`}>
 
-      {quiz.map( el => {
+      {globalState.quizData.map( el => {
 
         return (
 
