@@ -1,10 +1,10 @@
 @import "@/styles/apx.scss";
 
-.questionnaire {
+.quiz {
 
   width: $apx-1000;
   height: $apx-487;
-  background-color: white;
+  background-color: var(--color-bw-white);
   border-radius: $apx-32;
   padding-left: $apx-64 $apx-32;
   display: flex;
@@ -23,6 +23,7 @@
     margin-top: $apx-10;
     margin-bottom: $apx-10;
     color: var(--color-accent-blue-700);
+    font-weight: 700;
 
     &_bottom {
 
@@ -35,7 +36,7 @@
   &__subtitle {
 
     width: $apx-640;
-    color: #2B3358;
+    color: var(--color-accent-black-900);
     font-weight: 500;
     text-align: center;
 
@@ -43,7 +44,7 @@
 
   &__context_notise {
 
-    background-color: #F3F7FF;
+    background-color: var(--color-accent-blue-100);
     border-radius: $apx-28;
     width: $apx-287;
     height: $apx-33;
@@ -55,8 +56,7 @@
 
     &__title {
 
-      font-size: $apx-13;
-      font-weight: bold;
+      font-weight: 600;
       color: var(--color-accent-blue-700);
 
     }
@@ -85,7 +85,7 @@
 
     width: 100%;
     margin-top: $apx-30;
-    border-top: 2px solid #F4F6F9;
+    border-top: 2px solid var(--color-accent-background);
 
     &__item {
 
@@ -96,16 +96,15 @@
 
       &__title {
 
-        font-size: $apx-16;
-        font-weight: bolder;
-        color: #7C92A7;
+        font-weight: 700;
+        color: var(--color-accent-black-500);
 
       }
 
       &__minutes {
 
-        font-size: $apx-13;
-        color: #7C92A7;
+        font-weight: 600;
+        color: var(--color-accent-black-500);
 
       }
 

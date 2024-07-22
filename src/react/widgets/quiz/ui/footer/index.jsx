@@ -13,23 +13,23 @@ const Footer = ({
 
   return (
 
-    <div className = {`${ s.questionnaire__footer }`}>
+    <div className = {`${ s.quiz__footer }`}>
 
       {globalState.quizData.map( el => {
 
         return (
 
-          <div className = {`${ s.questionnaire__footer__item }`} key={ el.id }>
+          <div className = {`${ s.quiz__footer__item }`} key={ el.id }>
 
-            <p className = {`${ s.questionnaire__footer__item__title }`}>{ el.title }</p>
+            <p className = {`text-16 ${ s.quiz__footer__item__title }`}>{ el.title }</p>
 
             {status !== 'end'
 
-              ? <p className = {`${ s.questionnaire__footer__item__minutes }`}>{ el.timeToComplete }</p>
+              ? <p className = {`text-13 ${ s.quiz__footer__item__minutes }`}>{ el.timeToComplete }</p>
 
               : <div className = { `flex` }>
 
-                <p className = {`${ s.questionnaire__footer__item__minutes }`}>{ `Завершено` }</p>
+                <p className = {`text-13 ${ s.quiz__footer__item__minutes }`}>{ `Завершено` }</p>
                 <NotiseSuccess fill={ '#D1E3F7' }/>
 
                 </div>

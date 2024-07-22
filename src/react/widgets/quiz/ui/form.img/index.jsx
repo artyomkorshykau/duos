@@ -11,7 +11,7 @@ const FormLogo = ({
 
   return (
 
-    <div className={`${ s.questionnaire__form_logo }`}>
+    <div className={`${ s.quiz__form_logo }`}>
 
       { status === 'begin' && <FormLogoBegin/> }
       { status === 'continue' && <FormLogoContinue/> }

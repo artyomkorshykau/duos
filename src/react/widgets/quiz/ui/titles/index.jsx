@@ -20,8 +20,8 @@ const Titles = ({
 
     <>
 
-      <p className={`font-bold text-24 ${ s.questionnaire__title }`}>{ title }</p>
-      <p className={`text-14 ${ s.questionnaire__subtitle }`}>{ subTitle }</p>
+      <p className={`text-26 ${ s.quiz__title }`}>{ title }</p>
+      <p className={`text-14 ${ s.quiz__subtitle }`}>{ subTitle }</p>
 
     </>
 

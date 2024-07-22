@@ -15,7 +15,7 @@ const Quiz = ({
 
   return (
 
-    <div className = {`${ s.questionnaire }`}>
+    <div className = {`${ s.quiz }`}>
 
       <FormLogo status = { status }/>
       <Titles status = { status }/>
@@ -24,7 +24,7 @@ const Quiz = ({
 
         name = { buttonTitle }
         action = { handleButtonAction }
-        className = {`${ s.questionnaire__button }`}
+        className = {`${ s.quiz__button }`}
 
       />
       <Footer status = { status }/>

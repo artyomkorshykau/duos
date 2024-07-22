@@ -11,10 +11,10 @@ const ContextNotise = ({
 
     return (
 
-      <div className = {`${ s.questionnaire__context_notise }`}>
+      <div className = {`${ s.quiz__context_notise }`}>
 
         <NotiseInfo fill = { '#18009E' }/>
-        <p className = {`${ s.questionnaire__context_notise__title }`}>{ `Все поля являются обязательными.` }</p>
+        <p className = {`text-13 ${ s.quiz__context_notise__title }`}>{ `Все поля являются обязательными.` }</p>
 
       </div>
 
