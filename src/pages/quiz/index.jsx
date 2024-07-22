@@ -1,7 +1,7 @@
 import Header from "@/react/components/containers/carcas/header";
 import useGlobal from "@/store";
-import Quiz from "@/react/features/quiz/ui";
-import {useQuiz} from "@/react/features/quiz/model";
+import Quiz from "@/react/widgets/quiz/ui";
+import {useQuiz} from "@/react/widgets/quiz/model";
 
 export default function QuizPage() {
 
