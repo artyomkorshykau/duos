@@ -3,7 +3,7 @@ import DefaultButton from "@/react/components/buttons/default.button";
 import FormLogo from "@/react/widgets/quiz/ui/form.img";
 import Titles from "@/react/widgets/quiz/ui/titles";
 import ContextNotise from "@/react/widgets/quiz/ui/context.notise";
-import Footer from "@/react/widgets/quiz/ui/footer";
+import Steps from "@/react/widgets/quiz/ui/steps";
 
 const Quiz = ({
 
@@ -27,7 +27,7 @@ const Quiz = ({
         className = {`${ s.quiz__button }`}
 
       />
-      <Footer status = { status }/>
+      <Steps status = { status }/>
 
     </div>
 

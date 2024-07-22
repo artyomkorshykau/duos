@@ -1,4 +1,4 @@
-const FAKEQUIZDATA = [
+const STEPS = [
 	
 	{ id: 1, title: 'Профиль', timeToComplete: '1 минута' },
 	{ id: 2, title: 'Услуги', timeToComplete: '10 минут' },
@@ -8,4 +8,4 @@ const FAKEQUIZDATA = [
 
 ]
 
-export default FAKEQUIZDATA
+export default STEPS

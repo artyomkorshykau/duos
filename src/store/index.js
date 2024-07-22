@@ -2,7 +2,7 @@ import GlobalHook from "use-global-hook";
 import * as actions from "./actions";
 //тестовые данные
 import FAKEDATA from "./FAKEDATA";
-import FAKEQUIZDATA from "./FAKEQUIZDATA"
+import STEPS from "./FAKEQUIZDATA"
 
 export const initialUserStates = {
 
@@ -25,7 +25,7 @@ export const initialUserStates = {
 const initialState = {
 
   ...initialUserStates,
-  quizData: FAKEQUIZDATA
+  quizData: STEPS
 
 };
 
