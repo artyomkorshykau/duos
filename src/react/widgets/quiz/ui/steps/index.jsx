@@ -1,5 +1,5 @@
 import s from "@/react/widgets/quiz/ui/quiz.module.scss";
-import NotiseSuccess from "@/react/components/icons/notise.success";
+import NotiseSuccessDisabled from "@/react/components/icons/notise.success.disabled";
 import useGlobal from "@/store";
 
 
@@ -30,7 +30,7 @@ const Steps = ({
               : <div className = { `flex gap-1` }>
 
                 <p className = {`text-13 ${ s.quiz__steps__item__minutes }`}>{ `Завершено` }</p>
-                <NotiseSuccess fill={ '#D1E3F7' }/>
+                <NotiseSuccessDisabled fill={ '#D1E3F7' }/>
 
                 </div>
 
