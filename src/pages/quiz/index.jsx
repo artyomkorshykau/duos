@@ -1,7 +1,7 @@
-import Header from "@/react/components/containers/carcas/header";
 import useGlobal from "@/store";
 import Quiz from "@/react/widgets/quiz/ui";
 import {useQuiz} from "@/react/widgets/quiz/model";
+import Carcas from '@/react/components/containers/carcas';
 
 export default function QuizPage() {
 
@@ -18,23 +18,23 @@ export default function QuizPage() {
 
   return (
 
-    <main id={``} className={`flex justify-center items-center h-screen`}>
+    <main id={``} className={``}>
 
-        <Header
+      <Carcas
 
-          authorized = { true }
-          userData = { globalState.userData }
+        authorized={true}
+
+      >
+
+        <Quiz
+
+          buttonTitle = { buttonTitle }
+          handleButtonAction = { handleButtonAction }
           status = { status }
 
         />
 
-      <Quiz
-
-        buttonTitle = { buttonTitle }
-        handleButtonAction = { handleButtonAction }
-        status = { status }
-
-      />
+      </Carcas>
 
     </main>
 
