@@ -3,7 +3,6 @@
 .quiz {
 
   width: $apx-1000;
-  height: $apx-487;
   background-color: var(--color-bw-white);
   border-radius: $apx-32;
   padding-left: $apx-64 $apx-32;
@@ -14,7 +13,7 @@
 
   &__form_logo {
 
-    margin-top: $apx-20;
+    margin-top: $apx-64;
 
   }
 
