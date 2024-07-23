@@ -1,5 +1,6 @@
 import s from "@/react/widgets/quiz/ui/quiz.module.scss";
 import NotiseInfo from "@/react/components/icons/notise.info";
+import QuizProgress from '@/constants/quiz.progress';
 
 const ContextNotise = ({
 
@@ -7,7 +8,7 @@ const ContextNotise = ({
 
 }) => {
 
-  if ( status === 'begin' ) {
+  if ( status === QuizProgress.begin ) {
 
     return (
 

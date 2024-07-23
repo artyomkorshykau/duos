@@ -1,4 +1,5 @@
 import s from "@/react/widgets/quiz/ui/quiz.module.scss";
+import QuizProgress from '@/constants/quiz.progress';
 
 const Titles = ({
 
@@ -6,15 +7,31 @@ const Titles = ({
 
 }) => {
 
-  const title = status === 'end' ? `Проверяем...` : `Анкетирование`
+  let title
+  let subTitle
 
-  const subTitle = status === 'begin'
+  switch (status) {
 
-    ? `Заполните анкету, чтобы получить новые возможности. В любой момент вы можете прерваться и продолжить позже`
-    : status === 'continue'
+    case QuizProgress.begin:
+      title = 'Анкетирование'
+      subTitle = 'Заполните анкету, чтобы получить новые возможности. В любой момент вы можете прерваться и продолжить позже'
+      break;
 
-      ? `Продолжите заполнение анкеты в любой удобный момент`
-      : `Проверка и верификация анкет займет какое-то время. Мы отправим вам уведомление сразу как будет известен результат`
+    case QuizProgress.continue:
+      title = 'Анкетирование'
+      subTitle = 'Продолжите заполнение анкеты в любой удобный момент'
+      break;
+
+    case QuizProgress.end:
+      title = 'Проверяем...'
+      subTitle = 'Проверка и верификация анкет займет какое-то время. Мы отправим вам уведомление сразу как будет известен результат'
+      break;
+
+    default:
+      title = 'Анкетирование'
+      subTitle = ''
+
+  }
 
   return (
 

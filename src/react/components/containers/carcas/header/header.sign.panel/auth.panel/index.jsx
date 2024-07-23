@@ -2,6 +2,7 @@ import { useState } from "react";
 import useGlobal from "@/store";
 import AuthMenu from "./auth.menu";
 import s from "./auth.panel.module.scss";
+import QuizProgress from '@/constants/quiz.progress';
 
 const HeaderAuthPanel = ({
 
@@ -58,7 +59,7 @@ const HeaderAuthPanel = ({
           
         >
 
-         { globalState.user_role === "expert" && (status === 'end' ? quizStatusText.completed : quizStatusText.uncompleted) }
+         { globalState.user_role === "expert" && (status === QuizProgress.end ? quizStatusText.completed : quizStatusText.uncompleted) }
 
         </p>
 
