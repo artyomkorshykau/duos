@@ -1,6 +1,7 @@
 import s from '../progress.bar.module.scss'
 import useGlobal from '@/store';
 import NotiseSuccess from '@/react/components/icons/notise.success';
+import QuizSteps from '@/constants/quiz.steps';
 
 const Categories = () => {
 
@@ -10,7 +11,7 @@ const Categories = () => {
 
     <div className = {`${ s.progressBar__steps }`}>
 
-      { globalState.quizData.map(category => {
+      { QuizSteps.map(category => {
 
         return (
 
@@ -24,7 +25,12 @@ const Categories = () => {
 
             <div className = {`${ s.progressBar__steps__item__icon }`}>
 
-              <NotiseSuccess fill = { category.id === 1 ? '#E1EBF9' : 'white' }/>
+              <NotiseSuccess
+
+                fill = { category.id === 1 ? '#E1EBF9' : 'white' }
+                check={ category.id === 1 }
+
+              />
 
             </div>
 
