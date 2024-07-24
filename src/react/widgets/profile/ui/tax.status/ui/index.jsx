@@ -1,7 +1,10 @@
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield';
+import useGlobal from '@/store';
 
 const TaxStatus = () => {
+
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -19,39 +22,24 @@ const TaxStatus = () => {
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Налоговый статус'}
-          // value = {lastName}
-          // onChange = { (e) => {
-          //
-          //   setLastName(e.target.value)
-          //   updateLocalStorage('lastName', e.target.value)
-          //
-          // }}
+          value = { globalState.profile.taxStatus }
+          onChange = { (e) => globalActions.profile.setTaxStatus(e.target.value)}
 
         />
         <Textfield
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Полное наименование'}
-          // value = {lastName}
-          // onChange = { (e) => {
-          //
-          //   setLastName(e.target.value)
-          //   updateLocalStorage('lastName', e.target.value)
-          //
-          // }}
+          value = { globalState.profile.taxName }
+          onChange = { (e) => globalActions.profile.setTaxName(e.target.value)}
 
         />
         <Textfield
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'ИНН'}
-          // value = {lastName}
-          // onChange = { (e) => {
-          //
-          //   setLastName(e.target.value)
-          //   updateLocalStorage('lastName', e.target.value)
-          //
-          // }}
+          value = { globalState.profile.taxIIN }
+          onChange = { (e) => globalActions.profile.setTaxIIN(e.target.value)}
 
         />
 

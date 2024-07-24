@@ -1,7 +1,10 @@
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield';
+import useGlobal from '@/store';
 
 const Location = () => {
+
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -25,12 +28,16 @@ const Location = () => {
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Страна'}
+          value = { globalState.profile.country }
+          onChange = { (e) => globalActions.profile.setCountry(e.target.value)}
 
         />
         <Textfield
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Город'}
+          value = { globalState.profile.city }
+          onChange = { (e) => globalActions.profile.setCity(e.target.value)}
 
         />
 

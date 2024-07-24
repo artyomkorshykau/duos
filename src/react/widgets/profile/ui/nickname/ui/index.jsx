@@ -1,16 +1,10 @@
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield'
-import { useUserName } from '@/react/widgets/profile/ui/nickname/model'
-import updateLocalStorage from '@/scripts/helpers/update.local.storage.data'
+import useGlobal from '@/store';
 
 const Nickname = () => {
 
-  const {
-
-    userName,
-    setUserName
-
-  } = useUserName()
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -34,13 +28,8 @@ const Nickname = () => {
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Псевдоним'}
-          value = {userName}
-          onChange = { (e) => {
-
-            setUserName(e.target.value)
-            updateLocalStorage('userName', e.target.value)
-
-          }}
+          value = { globalState.profile.nickName }
+          onChange = { (e) => globalActions.profile.setNickName(e.target.value)}
 
         />
 

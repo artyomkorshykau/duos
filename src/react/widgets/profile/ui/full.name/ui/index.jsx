@@ -1,24 +1,12 @@
+'use client'
+
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield'
-import { useFullName } from '@/react/widgets/profile/ui/full.name/model'
-import updateLocalStorage from '@/scripts/helpers/update.local.storage.data'
+import useGlobal from '@/store';
 
 const FullName = () => {
 
-const {
-
-  firstName,
-  lastName,
-  surName,
-  birthDate,
-  gender,
-  setFirstName,
-  setLastName,
-  setSurName ,
-  setBirthDate,
-  setGender,
-
-} = useFullName()
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -36,13 +24,8 @@ const {
 
             className = {`${ s.profile__section__filedsWrapper__filed }`}
             placeholder = {'Фамилия'}
-            value = {lastName}
-            onChange = { (e) => {
-
-              setLastName(e.target.value)
-              updateLocalStorage('lastName', e.target.value)
-
-            }}
+            value = { globalState.profile.lastName }
+            onChange = { (e) => globalActions.profile.setLastName(e.target.value)}
 
           />
 
@@ -50,52 +33,33 @@ const {
 
             className = {`${ s.profile__section__filedsWrapper__filed }`}
             placeholder = {'Имя'}
-            value = {firstName}
-            onChange = { (e) => {
-
-              setFirstName(e.target.value)
-              updateLocalStorage('firstName', e.target.value)
-
-            }}
+            value = { globalState.profile.firstName }
+            onChange = { (e) => globalActions.profile.setFirstName(e.target.value)}
 
           />
           <Textfield
 
             className = {`${ s.profile__section__filedsWrapper__filed }`}
             placeholder = {'Отчество'}
-            value = {surName}
-            onChange = { (e) => {
-
-              setSurName(e.target.value)
-              updateLocalStorage('surName', e.target.value)
-
-            }}
+            value = { globalState.profile.surName }
+            onChange = { (e) => globalActions.profile.setSurName(e.target.value)}
 
           />
           <Textfield
 
             className = {`${ s.profile__section__filedsWrapper__filed }`}
             placeholder = {'Дата рождения'}
-            value = {birthDate}
-            onChange = { (e) => {
-
-              setBirthDate(e.target.value)
-              updateLocalStorage('birthDate', e.target.value)
-
-            }}
+            type = { 'date' }
+            value = { globalState.profile.birthDate }
+            onChange = { (e) => globalActions.profile.setBirthDate(e.target.value)}
 
           />
           <Textfield
 
             className = {`${ s.profile__section__filedsWrapper__filed }`}
             placeholder = {'Пол'}
-            value = {gender}
-            onChange = { (e) => {
-
-              setGender(e.target.value)
-              updateLocalStorage('gender', e.target.value)
-
-            }}
+            value = { globalState.profile.gender }
+            onChange = { (e) => globalActions.profile.setGender(e.target.value)}
 
           />
 
