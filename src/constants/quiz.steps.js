@@ -1,8 +1,8 @@
 import QuizProgress from '@/constants/quiz.progress';
 
 const QuizSteps = [
-	
-	{
+
+  {
 
     id: 1,
     title: 'Профиль',
@@ -10,7 +10,7 @@ const QuizSteps = [
     progress: QuizProgress
 
   },
-	{
+  {
 
     id: 2,
     title: 'Услуги',
@@ -18,7 +18,7 @@ const QuizSteps = [
     progress: QuizProgress
 
   },
-	{
+  {
 
     id: 3,
     title: 'Ценности',
@@ -26,7 +26,7 @@ const QuizSteps = [
     progress: QuizProgress
 
   },
-	{
+  {
 
     id: 4,
     title: 'Документы',
@@ -34,7 +34,7 @@ const QuizSteps = [
     progress: QuizProgress
 
   },
-	{
+  {
 
     id: 5,
     title: 'Публикации',
@@ -43,6 +43,6 @@ const QuizSteps = [
 
   }
 
-]
+];
 
-export default QuizSteps
+export default QuizSteps;

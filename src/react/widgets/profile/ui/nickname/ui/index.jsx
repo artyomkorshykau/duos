@@ -36,6 +36,7 @@ const Nickname = () => {
       </form>
 
     </div>
+
   )
 
 }
