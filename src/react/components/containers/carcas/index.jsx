@@ -5,6 +5,7 @@ import s from "./carcas.module.scss";
 const Carcas = ({
 
   authorized = false,
+  children
 
 }) => {
 
@@ -20,6 +21,8 @@ const Carcas = ({
         userData = { globalState.userData }
 
       />
+
+      { children }
 
     </div>
 

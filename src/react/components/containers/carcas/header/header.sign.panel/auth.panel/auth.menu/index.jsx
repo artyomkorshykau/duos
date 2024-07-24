@@ -1,6 +1,7 @@
 import SignOutIcon from "@/react/components/icons/sign.out.icon";
 import MenuPersonIcon from "@/react/components/icons/menu.person.icon";
 import s from "../auth.panel.module.scss";
+import {useRouter} from "next/navigation";
 
 const AuthMenu = ({
 
@@ -11,8 +12,10 @@ const AuthMenu = ({
 
 }) => {
 
-  function openQuiz() { alert('TODO: реализация перехода на анкету') };
-  function logOut() { alert('TODO: реализация выхода из системы') };
+  const { push } = useRouter()
+
+  function openQuiz() { push('/quiz') }
+  function logOut() { alert('TODO: реализация выхода из системы') }
 
   return(
 

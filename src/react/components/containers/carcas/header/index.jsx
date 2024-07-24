@@ -10,7 +10,8 @@ import s from "./header.module.scss";
 
 const Header = ({
 
-  authorized = false
+  authorized = false,
+  status
 
 }) => {
 
@@ -145,6 +146,7 @@ const Header = ({
         authorized = { authorized }
         signIn = { () => signIn() }
         signUp = { () => signUp() }
+        status = { status }
 
       />
 

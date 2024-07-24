@@ -11,9 +11,10 @@ export default function Home() {
 
       <Carcas
       
-        authorized = { globalState.authorized }
+        authorized = { true }
       
       />
+
 
     </main>
 
