@@ -4,10 +4,16 @@ import Save from '@/react/components/icons/save';
 import NotiseInfo from '@/react/components/icons/notise.info';
 import { useState } from 'react';
 import NotiseSuccess from '@/react/components/icons/notise.success';
+import { useQuiz } from '@/react/widgets/quiz/model';
+import QuizProgress from '@/constants/quiz.progress';
+import { useRouter } from 'next/navigation';
 
 const Autosave = () => {
 
   const [showNoticeInfo, setShowNotiseInfo] = useState(false)
+
+  const { setStatus } = useQuiz()
+  const { push } = useRouter()
 
   return (
 
@@ -68,6 +74,12 @@ const Autosave = () => {
 
         name = { 'Продолжить позже' }
         className = {`${ s.autosave__button }`}
+        action={ () => {
+
+          setStatus(QuizProgress.continue)
+          push('/quiz')
+
+        }}
 
       >
 

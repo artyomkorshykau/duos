@@ -9,7 +9,7 @@ const Carcas = ({
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal();
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -18,7 +18,7 @@ const Carcas = ({
       <Header
 
         authorized = { authorized }
-        userData = { globalState.userData }
+        userData = { globalState.user }
 
       />
 
