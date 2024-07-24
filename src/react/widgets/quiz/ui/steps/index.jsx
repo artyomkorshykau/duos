@@ -2,6 +2,7 @@ import s from "@/react/widgets/quiz/ui/quiz.module.scss";
 import NotiseSuccessDisabled from "@/react/components/icons/notise.success.disabled";
 import useGlobal from "@/store";
 import QuizProgress from '@/constants/quiz.progress';
+import QuizSteps from '@/constants/quiz.steps';
 
 
 const Steps = ({
@@ -18,7 +19,7 @@ const Steps = ({
 
     <div className = {`${ s.quiz__steps }`}>
 
-      {globalState.quizData.map( el => {
+      {QuizSteps.map(el => {
 
         return (
 
