@@ -2,6 +2,7 @@
 
 .progressBar {
 
+  position: fixed;
   width: $apx-1000;
   background-color: var(--color-bw-white);
   border-radius: $apx-32;
@@ -11,6 +12,7 @@
   flex-direction: column;
   align-items: center;
   gap: $apx-8;
+  margin-top: $apx-65;
 
   &__breadcrumbs {
 
