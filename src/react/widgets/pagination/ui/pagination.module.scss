@@ -3,8 +3,9 @@
 
 .pagination {
 
+  position: fixed;
+  bottom: 0;
   width: $apx-1000;
-  height: $apx-120;
   background-color: var(--color-bw-white);
   border-radius: $apx-32;
   padding: $apx-32;
