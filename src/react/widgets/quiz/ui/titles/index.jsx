@@ -14,7 +14,7 @@ const Titles = ({
 
     case QuizProgress.begin:
       title = 'Анкетирование'
-      subTitle = 'Заполните анкету, чтобы получить новые возможности. В любой момент вы можете прерваться и продолжить позже'
+      subTitle = 'Заполните анкету, чтобы получить новые возможности.'
       break;
 
     case QuizProgress.continue:
@@ -39,6 +39,15 @@ const Titles = ({
 
       <p className={`text-26 ${ s.quiz__title }`}>{ title }</p>
       <p className={`text-14 ${ s.quiz__subtitle }`}>{ subTitle }</p>
+      {status === QuizProgress.begin &&
+
+        <p className={`text-14 ${s.quiz__subtitle}`}>
+
+          В любой момент вы можете прерваться и продолжить позже
+
+        </p>
+
+      }
 
     </>
 
