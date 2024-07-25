@@ -44,7 +44,7 @@ const HeaderAuthPanel = ({
 
         <img
         
-          src = { globalState.user_avatar }
+          src = { globalState.user.userAvatar }
           className = {`${ s['auth-panel__avatar__img'] } pointer`}
           
         />
@@ -59,14 +59,14 @@ const HeaderAuthPanel = ({
           
         >
 
-         { globalState.user_role === "expert" && (status === QuizProgress.end ? quizStatusText.completed : quizStatusText.uncompleted) }
+         { globalState.user.userRole === "expert" && (status === QuizProgress.end ? quizStatusText.completed : quizStatusText.uncompleted) }
 
         </p>
 
         <div className = "flex items-center justify-end">
 
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.user_lastname }</p>
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.user_name }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.user.userLastName }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.user.userName }</p>
 
         </div>
 

@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import QuizProgress from '@/constants/quiz.progress';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import QuizProgress from '@/constants/quiz.progress'
 
 
 export const useQuiz = () => {
-	
-	const { push } = useRouter()
-	
-	const [ status, setStatus ] = useState( QuizProgress.begin )
+
+  const { push } = useRouter()
+
+  const [ status, setStatus ] = useState( QuizProgress.begin )
 
   let buttonTitle
 
-  switch (status) {
+  switch( status ) {
 
     case QuizProgress.begin:
       buttonTitle = 'Начать'
@@ -25,19 +25,19 @@ export const useQuiz = () => {
       buttonTitle = 'На главную'
 
   }
-	
-	const handleButtonAction = () => {
-		
-		if( status === QuizProgress.begin ) setStatus( QuizProgress.continue )
-		if( status === QuizProgress.continue ) setStatus( QuizProgress.end )
-		if( status === QuizProgress.end ) {
-			
-			setStatus( QuizProgress.begin )
-			push( '/' )
-			
-		}
-		
-	}
-	
-	return { buttonTitle, handleButtonAction, status }
+
+  const handleButtonAction = () => {
+
+    if( status === QuizProgress.begin ) setStatus( QuizProgress.continue )
+    if( status === QuizProgress.continue ) setStatus( QuizProgress.end )
+    if( status === QuizProgress.end ) {
+
+      setStatus( QuizProgress.begin )
+      push( '/' )
+
+    }
+
+  }
+
+  return { buttonTitle, handleButtonAction, status }
 }

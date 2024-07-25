@@ -1,0 +1,72 @@
+@import "@/styles/apx.scss";
+
+.progressBar {
+
+  position: fixed;
+  width: $apx-1000;
+  background-color: var(--color-bw-white);
+  border-radius: $apx-32;
+  padding: $apx-32;
+  margin-bottom: $apx-32;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $apx-8;
+  margin-top: $apx-65;
+
+  &__breadcrumbs {
+
+    font-weight: 600;
+    color: var(--color-accent-black-500);
+
+  }
+
+  &__title {
+
+    font-weight: 700;
+    color: var(--color-accent-blue-700);
+
+  }
+
+  &__description {
+
+    font-weight: 500;
+    color: var(--color-accent-black-900);
+
+  }
+
+
+  &__steps {
+
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: $apx-30;
+
+    &__item {
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+
+      &__title {
+
+        font-weight: 700;
+        color: var(--color-accent-black-500);
+
+      }
+
+      &__icon {
+
+        position: absolute;
+        top: $apx-43;
+
+      }
+
+    }
+
+  }
+
+}
