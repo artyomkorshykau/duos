@@ -7,6 +7,8 @@ import cssIf from '@/scripts/helpers/css.if';
 import WorkClients from '../../profile/ui/work.clients/ui';
 import General from '../../profile/ui/general/ui';
 import ServiceDescription from '../../profile/ui/service.description/ui';
+import Attachment from '@/react/components/attachment';
+import useGlobal from '@/store';
 
 const ServicesList = ({
   
@@ -16,6 +18,7 @@ const ServicesList = ({
 
 }) => {
 
+  const [globalState, globalActions] = useGlobal()
   const [open, setOpen] = useState( false );
 
   return (
@@ -70,9 +73,12 @@ const ServicesList = ({
         
           <div className = {`${ s.services__children__left }`}>
             
-            <div className = {`${ s.services__children__left__block }`}></div>
-            
-            <p  className = {`${ s.services__children__left__text }`}>Загрузите картинку к услуге, она будет отображаться в качестве обложки услуги</p>
+            <Attachment
+              accept = ".png, .jpg, .tiff"
+              files = { globalState.profile.category?.[categoryIndex]?.services?.[i]?.files }
+              onChange = { (files) => globalActions.profile.setServiceFiles(files, categoryIndex, i) }
+              
+            />
 
           </div>
 

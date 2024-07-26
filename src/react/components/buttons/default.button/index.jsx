@@ -8,7 +8,8 @@ const DefaultButton = ({
   small = false,
   name = "Ок",
   className = "",
-  action = () => {}
+  action = () => {},
+  icon
 
 }) => {
 
@@ -20,6 +21,8 @@ const DefaultButton = ({
       className = {`flex items-center justify-center ${ s.button } ${ cssIf( gray, s.button__gray ) } ${ cssIf( small, s.button__small ) } ${ className } pointer`}
       
     >
+
+      { icon }
 
       <p className = {`text-16 ${ s.button__name }`}>{ name }</p>
 
