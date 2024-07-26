@@ -12,8 +12,9 @@ const profileState = {
     country: '',
     city: '',
     phoneNumber: '',
-    email: ''
-
+    email: '',
+    services: [],
+    
 }
 
 const getInitialProfileState = () => {

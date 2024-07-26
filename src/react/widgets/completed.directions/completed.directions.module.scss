@@ -1,0 +1,30 @@
+@import "@/styles/apx.scss";
+
+.wrapper {
+
+  background-color: var(--color-bw-white);
+  border-radius: $apx-32;
+  padding: $apx-24;
+
+  &__content {
+
+    display: flex;
+    align-items: center;
+    gap: $apx-4;
+    background-color: var(--color-accent-blue-100);
+    border-radius: $apx-28;
+    padding: $apx-16 $apx-23;
+
+    &__text {
+
+      font-weight: 600;
+      color: var(--color-accent-blue-700);
+      font-size: $apx-13;
+      font-weight: 600;
+      line-height: $apx-17;
+
+    }
+
+  }
+
+}

@@ -1,0 +1,19 @@
+@import "@/styles/apx.scss";
+
+.wrapper {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bw-white);
+  border-radius: $apx-32;
+  padding: $apx-24;
+
+  &__button {
+
+    display: flex;
+    gap: 8px;
+
+  }
+
+}
