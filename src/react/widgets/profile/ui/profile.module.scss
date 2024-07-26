@@ -54,6 +54,57 @@
 
     }
 
+    &__filedsGrid {
+
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: $apx-8;
+      margin-top: $apx-12;
+
+      &__filed {
+
+        max-width: $apx-305 ;
+        height: $apx-64 !important;
+        margin: 0 !important;
+
+      }
+
+      &__textArea {
+        height: $apx-110 !important;
+        margin: 0 !important;
+      }
+
+    }
+
+    &__services {
+
+      margin-top: $apx-12;
+      display: flex;
+      flex-direction: column;
+      gap: $apx-12;
+      
+    }
+
+  }
+
+}
+
+.wrapper{
+
+  width: $apx-1000;
+  display: flex;
+  flex-direction: column;
+  gap: $apx-32;
+  overflow: auto;
+  margin-top: $apx-300;
+  margin-bottom: $apx-110;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+
+    display: none;
+
   }
 
 }

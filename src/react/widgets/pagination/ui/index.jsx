@@ -2,7 +2,11 @@ import s from './pagination.module.scss'
 import DefaultButton from '@/react/components/buttons/default.button';
 import Arrow from '@/react/components/icons/arrow';
 
-const Pagination = () => {
+const Pagination = ({
+  
+  nextStep
+
+}) => {
 
   return (
 
@@ -21,7 +25,8 @@ const Pagination = () => {
       <DefaultButton
 
         name = { 'Далее' }
-        className = {`${ s.pagination__button_next}`}
+        className = {`${ s.pagination__button_next }`}
+        action = { nextStep }
 
       >
 
