@@ -360,6 +360,29 @@ const profileActions = {
     store.setState({ profile })
 
   },
+  setServiceFiles: (store, files, categoryIndex, i) => {
+
+    const profile = JSON.parse(localStorage.getItem("profile")) || {}
+
+    if (!profile?.category) {
+      profile.category = []
+    }
+    const category = profile.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    profile.category[categoryIndex].services[i] = {
+      ...profile.category[categoryIndex].services[i],
+      files,
+    }
+    localStorage.setItem("profile", JSON.stringify(profile))
+    store.setState({ profile })
+
+  },
 
 }
 
