@@ -1,6 +1,6 @@
 import React from 'react'
 import InputMask from 'react-input-mask'
-import s from '../textfield/textfield.module.scss'
+import s from './phonefield.module.scss'
 
 const Phonefield = ( props ) => {
 
@@ -15,24 +15,24 @@ const Phonefield = ( props ) => {
 
   return (
 
-  <div
-    className={ `${ s.textfield } ${ className }` }>
+    <div
+      className = { `${ s.phonefield } ${ className }` }>
 
-    <InputMask
+      <InputMask
 
-      mask = { '+7 (999) 999-99-99' }
-      value = { value }
-      onChange = { onChange }
-      placeholder = { placeholder }
-      type = { 'tel' }
+        mask = { '+7 (999) 999-99-99' }
+        value = { value }
+        onChange = { onChange }
+        placeholder = { placeholder }
+        type = { 'tel' }
 
-    >
+      >
 
-      { ( inputProps ) => <input { ...inputProps } /> }
+        { ( inputProps ) => <input { ...inputProps } /> }
 
-    </InputMask>
+      </InputMask>
 
-  </div>
+    </div>
 
   )
 

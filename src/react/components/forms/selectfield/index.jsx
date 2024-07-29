@@ -1,41 +1,45 @@
-"use client"
+'use client'
 
 import s from './selectfield.module.scss'
-import React from 'react';
+import React from 'react'
 import Arrow from '@/react/components/icons/arrow'
 
 const Selectfield = ( props ) => {
 
   const {
 
-    id = "",
+    id = '',
     set = () => {},
     value,
     withTitle = false,
-    title = "",
-    error = "",
+    title = '',
+    error = '',
     options = [],
-    className = "",
-    inputClassName = "",
-    placeholder = "",
+    className = '',
+    inputClassName = '',
+    placeholder = '',
     refDOM = null,
-    onClick = () => {},
-    onKeyUp = () => {},
-    onBlur = () => {},
-    onChange = () => {},
+    onClick = () => {
+    },
+    onKeyUp = () => {
+    },
+    onBlur = () => {
+    },
+    onChange = () => {
+    },
     ...selectParams
 
-  } = props;
+  } = props
 
   return (
 
-    <div className = {`${ s.selecttrigger } ${ className }`}>
+    <div className = { `${ s.selecttrigger } ${ className }` }>
 
       { !!title && <p> { title } </p> }
 
-      <div className = {`${ s.selecttrigger__icon }`}>
+      <div className = { `${ s.selecttrigger__icon }` }>
 
-        <Arrow direction = {'bottom'} width = {16} fill = {'#7C92A7'}/>
+        <Arrow direction = { 'bottom' } width = { 16 } fill = { '#7C92A7' } />
 
       </div>
 
@@ -48,23 +52,23 @@ const Selectfield = ( props ) => {
         onChange = { onChange }
         onKeyUp = { onKeyUp }
         onBlur = { onBlur }
-        {...selectParams}
-        onClick = {(e) => {
+        { ...selectParams }
+        onClick = { ( e ) => {
 
-          onClick && onClick();
-          e.stopPropagation();
+          onClick && onClick()
+          e.stopPropagation()
 
-        }}
+        } }
 
       >
 
-        <option value = "" disabled selected = { value === undefined } hidden >
+        <option value = "" disabled selected = { value === undefined } hidden>
 
           { placeholder }
 
         </option>
 
-        { options.map(( option ) => (
+        { options.map( ( option ) => (
 
           <option key = { option.id } value = { option.value }>
 
@@ -72,7 +76,7 @@ const Selectfield = ( props ) => {
 
           </option>
 
-        ))}
+        ) ) }
 
       </select>
 
@@ -80,8 +84,8 @@ const Selectfield = ( props ) => {
 
     </div>
 
-  );
+  )
 
 }
 
-export default Selectfield;
+export default Selectfield

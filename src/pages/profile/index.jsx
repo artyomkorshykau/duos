@@ -16,7 +16,7 @@ export default function ProfilePage() {
 
       >
 
-        <div className={`flex flex-column`}>
+        <div className = { `flex flex-column` }>
 
           <ProgressBar />
           <Profile />
