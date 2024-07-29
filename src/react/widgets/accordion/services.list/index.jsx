@@ -48,6 +48,7 @@ const ServicesList = ({
               action = {(e) => e.stopPropagation()}
               name = "Удалить"
               className = {`${ s.services__parent__buttons__delete }`}
+              type = 'any'
 
             /> 
 
@@ -57,11 +58,10 @@ const ServicesList = ({
 
             name = ''
             className = {`${ s.services__parent__buttons__arrow } ${ cssIf( open, s.services__parent__buttons__rotated ) }`}
+            icon = { <Arrow direction = { 'left' } fill = { '#9ba1a1' } /> }
+            type = 'any'
 
-          >
-            <Arrow direction = { 'left' } fill={ '#9ba1a1' } />
-            
-          </DefaultButton>
+          />
 
         </div>
 

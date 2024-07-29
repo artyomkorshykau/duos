@@ -80,12 +80,10 @@ const Autosave = () => {
           push('/quiz')
 
         }}
+        icon = { <Save/> }
+        positionIcon = 'right'
 
-      >
-
-        <Save/>
-
-      </DefaultButton>
+      />
 
     </div>
 

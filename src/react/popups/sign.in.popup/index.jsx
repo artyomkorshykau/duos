@@ -135,12 +135,9 @@ const SignInPopup = ({
         name = "Войти"
         className = { s.button }
         action = { () => log() }
+        icon = { <SignInIconWhite className = { s.button__icon }/>} 
 
-      >
-
-        <SignInIconWhite className = { s.button__icon }/>
-
-      </DefaultButton>
+      />
 
       <p className = {`font-semibold text-13 ${ s.calltext } relative`}>Вы все еще не часть DUOS?</p>
 
