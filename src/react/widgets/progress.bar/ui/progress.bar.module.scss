@@ -2,17 +2,15 @@
 
 .progressBar {
 
-  position: fixed;
   width: $apx-1000;
   background-color: var(--color-bw-white);
   border-radius: $apx-32;
-  padding: $apx-32;
-  margin-bottom: $apx-32;
+  padding: $apx-32 0;
+  margin: $apx-600 0 $apx-41 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: $apx-8;
-  margin-top: $apx-65;
 
   &__breadcrumbs {
 
@@ -39,7 +37,7 @@
   &__steps {
 
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
     margin-top: $apx-30;
 
@@ -49,6 +47,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      width: $apx-201;
 
 
       &__title {
