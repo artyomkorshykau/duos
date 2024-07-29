@@ -1,4 +1,4 @@
-import QuizProgress from '@/constants/quiz.progress';
+import QuizProgress from '@/constants/quiz.progress'
 
 const QuizSteps = [
 
@@ -21,7 +21,7 @@ const QuizSteps = [
   {
 
     id: 3,
-    title: 'Ценности',
+    title: 'Школа',
     timeToComplete: '5 минут',
     progress: QuizProgress
 
@@ -43,6 +43,6 @@ const QuizSteps = [
 
   }
 
-];
+]
 
-export default QuizSteps;
+export default QuizSteps

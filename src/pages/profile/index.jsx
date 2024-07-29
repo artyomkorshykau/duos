@@ -10,7 +10,7 @@ export default function ProfilePage() {
   const [step, setStep] = useState('Profile')
 
   const nextStep = () => {
-   
+
     step === 'Profile' && setStep('Services')
 
   }
@@ -25,7 +25,7 @@ export default function ProfilePage() {
 
       >
 
-        <div className = {`flex flex-column h-[85dvh]`}>
+        <div className = { `flex flex-column` }>
 
           <ProgressBar />
           <Profile step = { step }/>
