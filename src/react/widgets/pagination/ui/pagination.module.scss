@@ -3,13 +3,12 @@
 
 .pagination {
 
-  position: fixed;
   bottom: 0;
   width: $apx-1000;
   background-color: var(--color-bw-white);
   border-radius: $apx-32;
   padding: $apx-32;
-  margin: $apx-32 0;
+  margin: $apx-32 0 ;
   display: flex;
   justify-content: space-between;
   align-items: center;
