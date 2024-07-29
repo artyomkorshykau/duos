@@ -21,7 +21,7 @@ const QuizSteps = [
   {
 
     id: 3,
-    title: 'Ценности',
+    title: 'Школа',
     timeToComplete: '5 минут',
     progress: QuizProgress
 
