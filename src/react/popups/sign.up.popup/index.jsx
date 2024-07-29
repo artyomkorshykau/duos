@@ -249,10 +249,9 @@ const SignUpPopup = ({
               name = "Получить код"
               className = { s.button }
               action = { () => getCode() }
+              width = 'full'
 
-            >
-
-            </DefaultButton>
+            />
 
           </div>
 

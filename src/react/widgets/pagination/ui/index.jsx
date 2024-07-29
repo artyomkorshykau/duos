@@ -16,23 +16,19 @@ const Pagination = ({
 
         gray name = {''}
         className = {`${ s.pagination__button_back }`}
+        icon = { <Arrow direction = { 'left' } fill = { '#9ba1a1' }/> }
 
-      >
+      />
 
-        <Arrow direction = { 'left' } fill = { '#9ba1a1' }/>
-
-      </DefaultButton>
       <DefaultButton
 
         name = { 'Далее' }
         className = {`${ s.pagination__button_next }`}
         action = { nextStep }
+        icon = { <Arrow direction = { 'right' } fill = { '#fff' }/> }
+        positionIcon = 'right'
 
-      >
-
-        <Arrow direction = { 'right' } fill = { '#fff' }/>
-
-      </DefaultButton>
+      />
 
     </div>
 

@@ -39,6 +39,7 @@ const Accordion = ({
               
               name = "Удалить"
               className = {`${ s.accordion__parent__buttons__delete }`}
+              type = 'any'
               
             /> 
 
@@ -49,12 +50,10 @@ const Accordion = ({
             action = {() => setOpen( !open )}
             name = ''
             className = {`${ s.accordion__parent__buttons__arrow } ${ cssIf( open, s.accordion__parent__buttons__rotated ) }`}
+            icon = { <Arrow direction = { 'left' } fill = { '#9ba1a1' } /> }
+            type = 'any'
             
-          >
-
-            <Arrow direction = { 'left' } fill = { '#9ba1a1' } />
-            
-          </DefaultButton>
+          />
 
         </div>
 

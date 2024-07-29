@@ -13,12 +13,10 @@ const AddDirection = () => {
         gray
         name = "Добавить направление"
         className = {`${ s.wrapper__button }`}
+        icon = { <Plus fill = { '#18009E' }/> }
+        positionIcon = 'right'
 
-      >
-
-        <Plus fill = { '#18009E' }/>
-
-      </DefaultButton>
+      />
 
     </div>
 
