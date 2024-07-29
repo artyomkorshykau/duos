@@ -2,18 +2,15 @@ import s from './autosave.module.scss'
 import DefaultButton from '@/react/components/buttons/default.button';
 import Save from '@/react/components/icons/save';
 import NotiseInfo from '@/react/components/icons/notise.info';
-import { useState } from 'react';
 import NotiseSuccess from '@/react/components/icons/notise.success';
-import { useQuiz } from '@/react/widgets/quiz/model';
-import QuizProgress from '@/constants/quiz.progress';
-import { useRouter } from 'next/navigation';
 
-const Autosave = () => {
+const Autosave = ( props ) => {
 
-  const [showNoticeInfo, setShowNotiseInfo] = useState(false)
+  const {
 
-  const { setStatus } = useQuiz()
-  const { push } = useRouter()
+    onClickHandler
+
+  } = props
 
   return (
 
@@ -22,11 +19,10 @@ const Autosave = () => {
       <div
 
         className = {`relative ${ s.autosave__notise }`}
-        onClick={ () => setShowNotiseInfo(!showNoticeInfo)}
 
       >
 
-          <div className={`text-13 ${ s.autosave__notise__info }`}>
+          <div className = {`text-13 ${ s.autosave__notise__info }`}>
 
             <p>
 
@@ -41,7 +37,7 @@ const Autosave = () => {
 
             </p>
 
-            <div className = {`${s.autosave__notise__info__icon}`}>
+            <div className = {`${ s.autosave__notise__info__icon }`}>
 
               <NotiseSuccess
 
@@ -70,12 +66,7 @@ const Autosave = () => {
 
         name = { 'Продолжить позже' }
         className = {`${ s.autosave__button }`}
-        action={ () => {
-
-          setStatus(QuizProgress.continue)
-          push('/quiz')
-
-        }}
+        action = { onClickHandler }
         icon = { <Save/> }
         positionIcon = 'right'
 

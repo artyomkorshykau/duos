@@ -17,7 +17,7 @@ export default function ProfilePage() {
 
   return (
 
-    <main id={``} className={``}>
+    <main id = {``} className = {``}>
 
       <Carcas
 
