@@ -1,0 +1,132 @@
+@import "@/styles/apx.scss";
+
+.services {
+
+  &__parent {
+
+    background-color: var(--color-accent-background);
+    border-radius: $apx-32;
+    padding: $apx-23 $apx-16 $apx-23 $apx-23;
+    display: flex;
+    justify-content: space-between;
+    gap: $apx-8;
+    align-items: center;
+    position: relative;
+
+    &__wrapper {
+
+      display: flex;
+      flex-direction: column;
+      gap: $apx-8;
+
+      &__title {
+
+        font-size: $apx-26;
+        font-weight: 700;
+        line-height: $apx-34;
+        color: var(--color-accent-black-900);
+
+      }
+
+      &__description {
+
+        font-size: $apx-16;
+        font-weight: 500;
+        line-height: $apx-21;
+        color: var(--color-accent-black-900);
+        max-width: $apx-700;
+
+      }
+
+    }
+
+    &__buttons {
+
+      display: flex;
+      align-items: center;
+      gap: $apx-8;
+
+      &__delete {
+
+        background: transparent;
+
+        p {
+
+          color: var(--color-accent-black-500);
+          font-size: $apx-14;
+          font-weight: 600;
+          line-height: $apx-16;
+
+        }
+
+        &:hover,
+        &:focus {
+        
+          animation: none;
+        
+        }
+
+      }
+
+      &__arrow {
+
+        transform: rotate(-90deg);
+        background: transparent;
+        height: $apx-32;
+        width: $apx-32;
+        padding: 0;
+        transition: transform 0.3s ease;
+
+        &:hover,
+        &:focus {
+        
+          animation: none;
+        
+        }
+
+      }
+
+      &__rotated {
+
+        transform: rotate(90deg);
+
+      }
+
+    }
+
+  }
+
+  &__parent__green {
+    
+    background: var(--color-notice-success-100);
+
+  }
+
+  &__children {
+    
+    padding: $apx-96 $apx-32 $apx-32 $apx-32;
+    margin-top: -$apx-86;
+    border-radius: $apx-32;
+    display: flex;
+    gap: $apx-16;
+    border: 1px solid #F4F6F9;
+
+    &__left {
+
+      width: $apx-220;
+
+    }
+
+    &__right {
+
+      display: flex;
+      flex-direction: column;
+      gap: $apx-32;
+      width: 100%;
+
+    }
+
+  }
+
+}
+  

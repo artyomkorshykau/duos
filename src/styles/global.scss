@@ -170,6 +170,9 @@ a:visited {
 .items-center { align-items: center; }
 .self-center { place-self: center; }
 
+//grid-стили
+.col-span-2 { grid-column: span 2 / span 2; }
+
 //стили текста
 .text-left { text-align: left; }
 .text-right { text-align: right; }
@@ -185,6 +188,9 @@ a:visited {
 .font-extrabold { font-weight: 800; }
 .font-black { font-weight: 900; }
 .font-extrablack { font-weight: 1000; }
+
+//ширина
+.max-w-full { max-width: 100% !important; }
 
 /* АДАПТИВ */
  

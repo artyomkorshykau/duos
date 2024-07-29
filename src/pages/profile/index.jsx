@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ProgressBar from '@/react/widgets/progress.bar/ui';
 import Profile from '@/react/widgets/profile/ui';
 import Pagination from '@/react/widgets/pagination/ui';
@@ -6,22 +7,30 @@ import Carcas from '@/react/components/containers/carcas';
 
 export default function ProfilePage() {
 
+  const [step, setStep] = useState('Profile')
+
+  const nextStep = () => {
+
+    step === 'Profile' && setStep('Services')
+
+  }
+
   return (
 
     <main id={``} className={``}>
 
       <Carcas
 
-        authorized={true}
+        authorized = { true }
 
       >
 
         <div className = { `flex flex-column` }>
 
           <ProgressBar />
-          <Profile />
+          <Profile step = { step }/>
           <Autosave />
-          <Pagination />
+          <Pagination nextStep = { nextStep }/>
 
         </div>
 
