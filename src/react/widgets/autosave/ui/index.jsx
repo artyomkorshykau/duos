@@ -26,9 +26,7 @@ const Autosave = () => {
 
       >
 
-        { showNoticeInfo &&
-
-          <div className={`text-13 ${s.autosave__notise__info}`}>
+          <div className={`text-13 ${ s.autosave__notise__info }`}>
 
             <p>
 
@@ -57,8 +55,6 @@ const Autosave = () => {
             </div>
 
           </div>
-
-        }
 
         <NotiseInfo fill = { '#A7CAFF' }/>
 
