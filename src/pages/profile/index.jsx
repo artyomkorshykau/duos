@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ProgressBar from '@/react/widgets/progress.bar/ui';
 import Profile from '@/react/widgets/profile/ui';
 import Pagination from '@/react/widgets/pagination/ui';
 import Autosave from '@/react/widgets/autosave/ui';
 import Carcas from '@/react/components/containers/carcas';
+import Services from '@/react/widgets/services/ui';
+import School from '@/react/widgets/school/ui'
 
 export default function ProfilePage() {
 
@@ -34,7 +36,37 @@ export default function ProfilePage() {
 
   }
 
-  console.log(nextStep.title)
+  const content = useMemo(() => {
+
+    if (step === 'Profile') {
+
+      return (
+
+        <Profile />
+
+      )
+
+    }
+    if (step === 'Services') {
+
+      return (
+
+        <Services />
+      )
+
+    }
+
+    if ( step === 'School' ) {
+
+      return (
+
+        <School/>
+
+      )
+
+    }
+
+  }, [ step ])
 
   return (
 
@@ -49,9 +81,9 @@ export default function ProfilePage() {
         <div className = { `flex flex-column` }>
 
           <ProgressBar title = { title } description = { description }/>
-          <Profile step = { step } />
+          { content }
           <Autosave />
-          <Pagination nextStep = { nextStep } />
+          <Pagination nextStep = { nextStep }/>
 
         </div>
 

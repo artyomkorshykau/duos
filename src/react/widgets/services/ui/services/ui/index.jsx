@@ -1,7 +1,7 @@
 'use client'
 
 import DefaultButton from '@/react/components/buttons/default.button';
-import s from '../../profile.module.scss'
+import s from '../../services.module.scss'
 import ServicesList from '@/react/widgets/accordion/services.list';
 import Plus from '@/react/components/icons/plus';
 
@@ -16,9 +16,9 @@ const Services = ({
 
     <div>
 
-      <p className = {`${ s.profile__section__title }`}>Услуги в рамках направления</p>
+      <p className = {`${ s.service__section__title }`}>Услуги в рамках направления</p>
 
-      <div className = {`${ s.profile__section__services }`}>
+      <div className = {`${ s.service__section__services }`}>
 
         {services.map(( el,i ) => (
 
