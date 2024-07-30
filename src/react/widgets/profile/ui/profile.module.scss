@@ -12,6 +12,10 @@
 
   &__section {
 
+    display: flex;
+    flex-direction: column;
+    gap: $apx-4;
+
     &__title {
 
       font-weight: 700;
@@ -38,6 +42,12 @@
         max-width: $apx-305 !important;
         height: $apx-64 !important;
         margin: 0 !important;
+
+        input, select {
+
+          height: 100%;
+
+        }
 
       }
 

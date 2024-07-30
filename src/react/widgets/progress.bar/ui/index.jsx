@@ -9,7 +9,8 @@ const ProgressBar = ( props ) => {
   const {
 
     title,
-    description
+    description,
+    activeStep
 
   } = props
 
@@ -20,7 +21,7 @@ const ProgressBar = ( props ) => {
       <Breadcrumbs/>
       <Title title = { title }/>
       <Description description = { description }/>
-      <Categories/>
+      <Categories activeStep = { activeStep }/>
 
     </div>
 

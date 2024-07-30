@@ -9,24 +9,24 @@ import School from '@/react/widgets/school/ui'
 
 export default function ProfilePage() {
 
-  const [ step, setStep ] = useState( 'Profile' )
+  const [ step, setStep ] = useState( 'Профиль' )
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
 
   const nextStep = () => {
 
-    if( step === 'Profile' ) {
+    if( step === 'Профиль' ) {
 
-      setStep( 'Services' )
+      setStep( 'Услуги' )
       setTitle('Услуги')
       setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')
 
 
     }
 
-    if( step === 'Services' ) {
+    if( step === 'Услуги' ) {
 
-      setStep( 'School' )
+      setStep( 'Школа' )
       setTitle('Школа')
       setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
 
@@ -38,7 +38,7 @@ export default function ProfilePage() {
 
   const content = useMemo(() => {
 
-    if (step === 'Profile') {
+    if (step === 'Профиль') {
 
       return (
 
@@ -47,7 +47,7 @@ export default function ProfilePage() {
       )
 
     }
-    if (step === 'Services') {
+    if (step === 'Услуги') {
 
       return (
 
@@ -56,7 +56,7 @@ export default function ProfilePage() {
 
     }
 
-    if ( step === 'School' ) {
+    if ( step === 'Школа' ) {
 
       return (
 
@@ -80,7 +80,13 @@ export default function ProfilePage() {
 
         <div className = { `flex flex-column` }>
 
-          <ProgressBar title = { title } description = { description }/>
+          <ProgressBar
+
+            title = { title }
+            description = { description }
+            activeStep = { step }
+
+          />
           { content }
           <Autosave />
           <Pagination nextStep = { nextStep }/>

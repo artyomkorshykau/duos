@@ -55,6 +55,12 @@
         font-weight: 700;
         color: var(--color-accent-black-500);
 
+        &__active {
+
+          color: var(--color-accent-blue-700);
+
+        }
+
       }
 
       &__icon {
