@@ -14,7 +14,8 @@ const Pagination = ({
 
       <DefaultButton
 
-        gray name = {''}
+        gray
+        name = {''}
         className = {`${ s.pagination__button_back }`}
         icon = { <Arrow direction = { 'left' } fill = { '#9ba1a1' }/> }
 

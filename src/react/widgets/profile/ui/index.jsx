@@ -8,6 +8,7 @@ import Contacts from '@/react/widgets/profile/ui/contacts/ui';
 import CompletedDirections from '../../completed.directions';
 import AddDirection from '../../add.direction';
 import Accordion from '../../accordion';
+import School from '@/react/widgets/school/ui'
 
 const service_category = [
 
@@ -77,7 +78,7 @@ const Profile = ({
 
   const content = useMemo(() => {
 
-    if (step === 'Profile') {
+    if ( step === 'Profile' ) {
 
       return (
 
@@ -94,7 +95,8 @@ const Profile = ({
       )
 
     }
-    if (step === 'Services') {
+
+    if ( step === 'Services' ) {
 
       return (
 
@@ -102,7 +104,7 @@ const Profile = ({
           
           <CompletedDirections />
 
-          {service_category.map(( category, i ) => (
+          { service_category.map(( category, i ) => (
 
             <Accordion
             
@@ -112,11 +114,27 @@ const Profile = ({
             
             />
             
-          ))}
+          ))
+
+          }
 
           <AddDirection/>
 
         </div>
+      )
+
+    }
+
+    if ( step === 'School' ) {
+
+      return (
+
+        <div className = {`${ s.profile }`}>
+
+          <School />
+
+        </div>
+
       )
 
     }
