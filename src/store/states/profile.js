@@ -13,7 +13,6 @@ const profileState = {
     city: '',
     phoneNumber: '',
     email: '',
-    services: [],
     
 }
 

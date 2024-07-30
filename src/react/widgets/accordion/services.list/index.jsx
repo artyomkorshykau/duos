@@ -4,11 +4,12 @@ import { useState } from 'react';
 import DefaultButton from '@/react/components/buttons/default.button';
 import Arrow from '@/react/components/icons/arrow';
 import cssIf from '@/scripts/helpers/css.if';
-import WorkClients from '../../profile/ui/work.clients/ui';
-import General from '../../profile/ui/general/ui';
-import ServiceDescription from '../../profile/ui/service.description/ui';
 import Attachment from '@/react/components/attachment';
 import useGlobal from '@/store';
+import DeletePopup from '@/react/popups/delete.popup';
+import General from '../../services/ui/general/ui';
+import WorkClients from '../../services/ui/work.clients/ui';
+import ServiceDescription from '../../services/ui/service.description/ui';
 
 const ServicesList = ({
   
@@ -18,15 +19,29 @@ const ServicesList = ({
 
 }) => {
 
-  const [globalState, globalActions] = useGlobal()
-  const [open, setOpen] = useState( false );
+  const [ globalState, globalActions ] = useGlobal()
+  const [ open, setOpen ] = useState( false );
+  const [ showSignInPopup, setShowSignInPopup ] = useState( false );
+  
+  const closePopups = () => {
+
+    setShowSignInPopup( false );
+
+  }
+
+  const deleteServices = ( e ) => {
+
+    e.stopPropagation()
+    setShowSignInPopup(true)
+
+  }
 
   return (
     <div className = {`${ s.services }`}>
 
       <div 
         className = {`${ s.services__parent } ${ cssIf( el.status === 'Filled', s.services__parent__green ) }`}
-        onClick = {() => setOpen(!open)}
+        onClick = {() => setOpen( !open )}
       >
 
         <div className = {`${ s.services__parent__wrapper }`}>
@@ -45,7 +60,7 @@ const ServicesList = ({
 
             <DefaultButton
 
-              action = {(e) => e.stopPropagation()}
+              action = { deleteServices }
               name = "Удалить"
               className = {`${ s.services__parent__buttons__delete }`}
               type = 'any'
@@ -75,8 +90,8 @@ const ServicesList = ({
             
             <Attachment
               accept = ".png, .jpg, .tiff"
-              files = { globalState.profile.category?.[categoryIndex]?.services?.[i]?.files }
-              onChange = { (files) => globalActions.profile.setServiceFiles(files, categoryIndex, i) }
+              files = { globalState.service.category?.[categoryIndex]?.services?.[i]?.files }
+              onChange = { (files) => globalActions.service.setServiceFiles(files, categoryIndex, i) }
               
             />
 
@@ -93,6 +108,17 @@ const ServicesList = ({
         </div>
         
       )}
+
+      <DeletePopup
+
+        isOpened = { showSignInPopup }
+        closePopup = { () => closePopups() }
+        logIn = { () => logIn() }
+        signUp = { () => signUp( true ) }
+        title = { el.title }
+        type = "Услугу"
+
+      />
 
     </div>
 

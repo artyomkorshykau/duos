@@ -20,6 +20,12 @@
     &--opened {
       
       display: flex;
+
+      &__background {
+
+        background-color: rgba(0, 0, 0, 0.7);
+
+      }
     
     }
 
@@ -62,6 +68,12 @@
   
     }
   
+  }
+
+  &__titleLeft {
+
+    color: var(--color-accent-blue-700);
+    
   }
 
   &__subtitle {

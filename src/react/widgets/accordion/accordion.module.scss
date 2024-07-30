@@ -65,7 +65,19 @@
         &:focus {
         
           animation: none;
+
+          p {
+
+            color: var(--color-accent-blue-700);  
+
+          }
         
+        }
+
+        &:active {
+
+          p { opacity: 0.8; }
+
         }
 
       }

@@ -4,9 +4,10 @@ import { useState } from 'react';
 import DefaultButton from '@/react/components/buttons/default.button';
 import Arrow from '@/react/components/icons/arrow';
 import cssIf from '@/scripts/helpers/css.if';
-import ChoiceDirection from '../profile/ui/choice.direction/ui';
-import Education from '../profile/ui/education/ui';
-import Services from '../profile/ui/services/ui';
+import DeletePopup from '@/react/popups/delete.popup';
+import ChoiceDirection from '../services/ui/choice.direction/ui';
+import Education from '../services/ui/education/ui';
+import Services from '../services/ui/services/ui';
 
 const Accordion = ({
   
@@ -14,7 +15,14 @@ const Accordion = ({
   i
 
 }) => {
-  const [open, setOpen] = useState( false );
+  const [ showSignInPopup, setShowSignInPopup ] = useState( false );
+  const [ open, setOpen ] = useState( false );
+  
+  const closePopups = () => {
+
+    setShowSignInPopup( false );
+
+  }
 
   return (
     <div className = {`${ s.accordion }`}>
@@ -40,6 +48,7 @@ const Accordion = ({
               name = "Удалить"
               className = {`${ s.accordion__parent__buttons__delete }`}
               type = 'any'
+              action = {() => setShowSignInPopup( true )}
               
             /> 
 
@@ -72,6 +81,17 @@ const Accordion = ({
         </div>
         
       )}
+
+      <DeletePopup
+
+        isOpened = { showSignInPopup }
+        closePopup = { () => closePopups() }
+        logIn = { () => logIn() }
+        signUp = { () => signUp( true ) }
+        title = { category.title }
+        type = "Направление"
+
+      />
       
     </div>
 
