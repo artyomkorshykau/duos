@@ -17,7 +17,7 @@ const TaxStatus = () => {
 
     <div>
 
-      <p className = {`${ s.profile__section__title }`}>
+      <p className = {`text-20 ${ s.profile__section__title }`}>
 
         Налоговый статус
 

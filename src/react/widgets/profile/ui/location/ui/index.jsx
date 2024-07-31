@@ -11,7 +11,7 @@ const Location = () => {
 
     <div className = {`${ s.profile__section }`}>
 
-      <p className = {`${ s.profile__section__title }`}>
+      <p className = {`text-20 ${ s.profile__section__title }`}>
 
         Местоположение
 

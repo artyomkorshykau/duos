@@ -67,7 +67,7 @@ const Autosave = ( props ) => {
         name = { 'Продолжить позже' }
         className = {`${ s.autosave__button }`}
         action = { onClickHandler }
-        icon = { <Save/> }
+        icon = { <Save fill = '#fff'/> }
         positionIcon = 'right'
 
       />

@@ -4,16 +4,24 @@ import Description from '@/react/widgets/progress.bar/ui/description';
 import Title from '@/react/widgets/progress.bar/ui/title';
 import Categories from '@/react/widgets/progress.bar/ui/categories';
 
-const ProgressBar = () => {
+const ProgressBar = ( props ) => {
+
+  const {
+
+    title,
+    description,
+    activeStep
+
+  } = props
 
   return (
 
     <div className = {`${ s.progressBar }`}>
 
       <Breadcrumbs/>
-      <Title/>
-      <Description/>
-      <Categories/>
+      <Title title = { title }/>
+      <Description description = { description }/>
+      <Categories activeStep = { activeStep }/>
 
     </div>
 

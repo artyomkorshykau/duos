@@ -8,8 +8,7 @@
 
   &__block {
 
-    border: 2px solid #D1E3F7;
-    width: $apx-220;
+    border: 2px dashed #D1E3F7;
     height: $apx-280;
     border-radius: $apx-28;
     position: relative;
@@ -76,9 +75,13 @@
 
     &__imagePreview {
 
+      height: 100%;
+
       .image {
 
         border-radius: $apx-28;
+        object-fit: cover;
+        height: 100%;
 
       }
 
