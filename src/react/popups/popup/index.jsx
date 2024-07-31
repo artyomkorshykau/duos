@@ -48,7 +48,6 @@ const Popup = ({
             >
 
               <div className = {`flex items-center ${ cssIf(title, 'justify-end') } ${ cssIf(titleLeft, 'justify-between') } ${ s.popup__close_icon__container } ${ cssIf( doubletitle, s.popup__close_icon__container__doubletitle ) }`}
-                onClick={(e) => e.stopPropagation()}
               >
                 
                 { titleLeft && <p className = {`font-bold text-18 ${ s.popup__titleLeft }`}>{`${ titleLeft }`}</p> }

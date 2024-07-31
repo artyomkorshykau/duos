@@ -1,8 +1,10 @@
 'use client'
 
+import Selectfield from '@/react/components/forms/selectfield';
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
+import { deliveryFormatList, minuteHoursDaysList } from '@/constants/services';
 
 const WorkClients = ({
 
@@ -21,12 +23,13 @@ const WorkClients = ({
 
       <form className={`${s.service__section__filedsGrid}`}>
 
-        <Textfield
+        <Selectfield
           
           className = {`${ s.service__section__filedsGrid__filed } col-span-2`}
           placeholder = {'Формат оказания услуги'}
           value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.deliveryFormat }
           onChange = {(e) => globalActions.service.setDeliveryFormat( e.target.value, categoryIndex, i )}
+          options = { deliveryFormatList }
           
         />
 
@@ -39,12 +42,13 @@ const WorkClients = ({
           
         />
         
-        <Textfield
+        <Selectfield
 
           className = {`${ s.service__section__filedsGrid__filed }`}
           placeholder = {'Минут, часов, дней...'}
           value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.minuteHoursDays }
           onChange = {(e) => globalActions.service.setMinuteHoursDays( e.target.value, categoryIndex, i )}
+          options = { minuteHoursDaysList }
           
         />
 

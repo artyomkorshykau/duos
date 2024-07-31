@@ -1,68 +1,149 @@
-export const service_category = [
+export const deliveryFormatList = [
 
   {
 
-    title: "Направление №1",
-    description:
-      "Выберите направление ниже или предложите свое, затем заполните услуги в рамках конкретно этого направления",
-    isDelete: true,
-    status: "NotFilled",
-    services: [
-    
-      {
-
-        title: "Услуга №1",
-        status: "New",
-        isDelete: true,
-        
-      },
-
-    ],
+    id: 0,
+    value: 'Video',
+    label: 'Видео'
 
   },
   {
 
-    title: "Психология",
-    description:
-      "Выберите направление ниже или предложите свое, затем заполните услуги в рамках конкретно этого направления",
-    isDelete: true,
-    status: "NotFilled",
-    services: [
-    
-      {
+    id: 1,
+    value: 'Audio',
+    label: 'Аудио'
 
-        title: "Услуга №1",
-        status: "New",
-        isDelete: true,
-        id: 0,
+  },
+  {
 
-      },
-      {
+    id: 2,
+    value: 'Text',
+    label: 'Текстом'
 
-        title: "Услуга №1",
-        status: "New",
-        isDelete: true,
-        id: 1,
+  },
+  {
 
-      },
-      {
+    id: 3,
+    value: 'Intramural',
+    label: 'Очно'
 
-        title: "Оказание психологической помощи",
-        status: "NotFinished",
-        isDelete: true,
-        id: 2,
+  }
 
-      },
-      {
+]
 
-        title: "Прием у психотерапевта",
-        status: "Filled",
-        isDelete: true,
-        id: 3,
+export const minuteHoursDaysList = [
 
-      },
+  {
 
-    ],
+    id: 0,
+    value: 'minute',
+    label: 'Минут'
+
+  },
+  {
+
+    id: 1,
+    value: 'hours',
+    label: 'Часов'
+
+  },
+  {
+
+    id: 2,
+    value: 'days',
+    label: 'Дней'
+
+  }
+  
+]
+
+export const paymentFormatList = [
+
+  {
+
+    id: 0,
+    value: 'Fixed',
+    label: 'Фиксированная'
+
+  },
+  {
+
+    id: 1,
+    value: 'Subscription',
+    label: 'Подписка'
+
+  },
+  {
+
+    id: 2,
+    value: 'Range',
+    label: 'Диапазон'
+
+  },
+  {
+
+    id: 3,
+    value: 'Free',
+    label: 'Бесплатно'
+
+  }
+
+]
+
+export const dayWeekMonthYearList = [
+
+  {
+
+    id: 0,
+    value: 'Day',
+    label: 'День'
+
+  },
+  {
+
+    id: 1,
+    value: 'Week',
+    label: 'Неделя'
+
+  },
+  {
+
+    id: 2,
+    value: 'Month',
+    label: 'Месяц'
+
+  },
+  {
+
+    id: 3,
+    value: 'Year',
+    label: 'Год'
+
+  }
+
+]
+
+export const directionList = [
+
+  {
+
+    id: 0,
+    value: 'Психология',
+    label: 'Психология'
+
+  },
+  {
+
+    id: 1,
+    value: 'Наука',
+    label: 'Наука'
+
+  },
+  {
+
+    id: 2,
+    value: 'Other',
+    label: 'Другое'
 
   },
 

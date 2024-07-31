@@ -1,6 +1,8 @@
+import { directionList } from '@/constants/services';
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield';
 import useGlobal from '@/store';
+import Selectfield from '@/react/components/forms/selectfield';
 
 const ChoiceDirection = ({
 
@@ -18,22 +20,28 @@ const ChoiceDirection = ({
 
       <form className = {`${ s.service__section__filedsWrapper }`}>
 
-        <Textfield
+        <Selectfield
 
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Выбрать направление'}
           value = { globalState.service.category?.[i]?.direction }
           onChange = { (e) => globalActions.service.setDirection( e.target.value, i )}
+          options = { directionList }
 
         />
-        <Textfield
+        {(globalState.service.category?.[i]?.direction === 'Other') && 
+          
+          <Textfield
 
-          className = {`${ s.service__section__filedsWrapper__filed }`}
-          placeholder = {'Название направления'}
-          value = { globalState.service.category?.[i]?.directionName }
-          onChange = { (e) => globalActions.service.setDirectionName( e.target.value, i )}
+            className = {`${ s.service__section__filedsWrapper__filed }`}
+            placeholder = {'Название направления'}
+            value = { globalState.service.category?.[i]?.directionName }
+            onChange = { (e) => globalActions.service.setDirectionName( e.target.value, i )}
 
-        />
+          />
+          
+        }
+        
         <Textfield
 
           className = {`${ s.service__section__filedsWrapper__filed }`}

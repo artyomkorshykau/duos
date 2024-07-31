@@ -14,7 +14,7 @@
     align-items: center;
     z-index: 1;
     position: sticky;
-    top: 0;
+    top: $apx-120;
 
     &__wrapper {
 
@@ -52,6 +52,7 @@
       &__delete {
 
         background: transparent;
+        padding: $apx-4;
 
         p {
 
@@ -119,6 +120,39 @@
     display: flex;
     flex-direction: column;
     gap: $apx-32;
+
+    &__title {
+
+      font-weight: 700;
+      color: var(--color-accent-blue-700);
+      font-size: $apx-20;
+      line-height: $apx-26;
+
+    }
+
+    &__services {
+
+      margin-top: $apx-12;
+      display: flex;
+      flex-direction: column;
+      gap: $apx-12;
+
+      &__button {
+
+        display: flex;
+        gap: 8px;
+
+        p {
+
+          font-size: $apx-14;
+          font-weight: 600;
+          line-height: $apx-15;
+
+        }
+
+      }
+
+    }
 
   }
 

@@ -49,6 +49,7 @@
       &__delete {
 
         background: transparent;
+        padding: $apx-4;
 
         p {
 
@@ -111,32 +112,6 @@
   &__parent__green {
     
     background: var(--color-notice-success-100);
-
-  }
-
-  &__children {
-    
-    padding: $apx-96 $apx-32 $apx-32 $apx-32;
-    margin-top: -$apx-86;
-    border-radius: $apx-32;
-    display: flex;
-    gap: $apx-16;
-    border: 1px solid #F4F6F9;
-
-    &__left {
-
-      width: $apx-220;
-
-    }
-
-    &__right {
-
-      display: flex;
-      flex-direction: column;
-      gap: $apx-32;
-      width: 100%;
-
-    }
 
   }
 

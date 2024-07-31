@@ -1,10 +1,14 @@
-import { service_category } from '@/constants/services'
 import CompletedDirections from '../../completed.directions'
 import s from './services.module.scss'
-import Accordion from '../../accordion'
 import AddDirection from '../../add.direction'
+import useGlobal from '@/store'
+import AccordionService from './accordion.service'
 
 const Services = () => {
+
+  const [ globalState, globalActions ] = useGlobal()
+  
+  const { service } = globalState;
 
   return (
 
@@ -12,16 +16,10 @@ const Services = () => {
           
       <CompletedDirections />
 
-        {service_category.map(( category, i ) => (
+        {service.category.map(( category, i ) => (
 
-          <Accordion
-            
-            key = { i }
-            category = { category }
-            i = { i }
-            
-          />
-            
+          <AccordionService category = { category } key={ i } index = { i } />
+           
         ))}
 
       <AddDirection />
