@@ -1,8 +1,9 @@
 @import "@/styles/apx.scss";
 
-.profile {
+.school {
 
   width: $apx-1000;
+  height: max-content;
   background-color: var(--color-bw-white);
   border-radius: $apx-32;
   padding: $apx-32;
@@ -33,17 +34,15 @@
     &__filedsWrapper {
 
       display: flex;
-      flex-wrap: wrap;
       gap: $apx-8;
       margin-top: $apx-12;
 
       &__filed {
 
-        max-width: $apx-305 !important;
         height: $apx-64 !important;
         margin: 0 !important;
 
-        input, select {
+        input {
 
           height: 100%;
 
@@ -51,36 +50,22 @@
 
       }
 
-    }
+      &__cross_button {
 
-    &__filedsGrid {
-
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: $apx-8;
-      margin-top: $apx-12;
-
-      &__filed {
-
-        max-width: $apx-305 ;
+        width: $apx-64 !important;
         height: $apx-64 !important;
-        margin: 0 !important;
+        background-color: var(--color-accent-background) !important;
 
-      }
-
-      &__textArea {
-        height: $apx-110 !important;
-        margin: 0 !important;
       }
 
     }
 
-    &__services {
+    &__add_button {
 
+      gap: $apx-8;
+      height: $apx-56;
+      width: $apx-220;
       margin-top: $apx-12;
-      display: flex;
-      flex-direction: column;
-      gap: $apx-12;
 
     }
 

@@ -14,7 +14,7 @@ const FullName = () => {
 
     <div>
 
-      <p className = {`${ s.profile__section__title }`}>
+      <p className = {`text-20 ${ s.profile__section__title }`}>
 
         Фамилия Имя и Отчество
 
