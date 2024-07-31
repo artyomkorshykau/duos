@@ -14,7 +14,8 @@ const AccordionChildren = ({
   isDelete,
   deletePopupAction,
   title,
-  content
+  content,
+  changeStatus
 
 }) => {
   const [ open, setOpen ] = useState( true );
@@ -38,7 +39,10 @@ const AccordionChildren = ({
 
       <div 
         className = {`${ s.services__parent } ${ cssIf( el.status === 'Filled', s.services__parent__green ) }`}
-        onClick = {() => setOpen( !open )}
+        onClick={() => {
+          changeStatus && changeStatus(categoryIndex, i)
+          setOpen(!open)
+        }}
       >
 
         <div className = {`${ s.services__parent__wrapper }`}>

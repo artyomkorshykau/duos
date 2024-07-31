@@ -3,6 +3,7 @@ import useGlobal from '@/store';
 import NotiseSuccess from '@/react/components/icons/notise.success';
 import QuizSteps from '@/constants/quiz.steps';
 import cssIf from '@/scripts/helpers/css.if'
+import Progress from '../progress';
 
 const Categories = ( props ) => {
 
@@ -18,7 +19,7 @@ const Categories = ( props ) => {
 
     <div className = {`${ s.progressBar__steps }`}>
 
-      { QuizSteps.map(category => {
+      { QuizSteps.map((category, i) => {
 
         return (
 
@@ -35,11 +36,13 @@ const Categories = ( props ) => {
               <NotiseSuccess
 
                 fill = { activeStep === category.title ? '#E1EBF9' : 'white' }
-                check={ activeStep === category.title }
+                check = { activeStep === category.title }
 
               />
 
             </div>
+
+            <Progress i = { i } check = { activeStep === category.title }/>
 
           </div>
 

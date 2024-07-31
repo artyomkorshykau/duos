@@ -3,7 +3,6 @@ import AccordionParent from '@/react/widgets/accordion.parent'
 import ChoiceDirection from '../choice.direction/ui';
 import Education from '../education/ui';
 import { useEffect, useState } from 'react';
-import AccordionChildren from '@/react/widgets/accordion.children';
 import AccordionServiceChildren from '../accordion.service.children';
 
 const AccordionService = ({
@@ -30,6 +29,12 @@ const AccordionService = ({
     educationDuration,
     educationCompletionDate,
   } = service.category?.[index]
+
+  const changeStatus = (index) => {
+    if (category.status === "New") {
+      globalActions.service.setChangeStatusCategory("NotFinished", index)
+    }
+  }
 
   useEffect(() => {
     const direction = service.category?.[index]?.direction
@@ -107,7 +112,9 @@ const AccordionService = ({
       deletePopupAction = {() => globalActions.service.setDeleteCategory(index)}
       addService = {(categoryIndex) =>
         globalActions.service.setNewServices(categoryIndex)
-      }>
+      }
+      changeStatus = { (index) =>  changeStatus(index) }
+    >
       {category.services.map((el, i) => (
         <AccordionServiceChildren
           key = { i }
