@@ -1,7 +1,7 @@
 import useGlobal from "@/store";
 import Quiz from "@/react/widgets/quiz/ui";
 import {useQuiz} from "@/react/widgets/quiz/model";
-import Carcas from '@/react/components/containers/carcas';
+import Carcas from '@/react/components/containers/carcas'; 
 
 export default function QuizPage() {
 
@@ -35,7 +35,7 @@ export default function QuizPage() {
         />
 
       </Carcas>
-
+      
     </main>
 
   );
