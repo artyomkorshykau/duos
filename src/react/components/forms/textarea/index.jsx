@@ -4,12 +4,8 @@ import cssIf from '@/scripts/helpers/css.if';
 import s from './textarea.module.scss';
 import { useEffect, useState, useRef } from 'react';
 
-const TEXTAREA_SIZE = {
+const MIN_HEIGHT = 110;
 
-  height: 110
-
-}
-  
 const Textarea = ( props ) => {
 
   const { 
@@ -33,7 +29,7 @@ const Textarea = ( props ) => {
 
   } = props;
 
-  const [height, setHeight] = useState(TEXTAREA_SIZE.height); 
+  const [height, setHeight] = useState(MIN_HEIGHT); 
   const [isResizing, setIsResizing] = useState(false);
   const [startY, setStartY] = useState(0);
   const textfieldDivRef = useRef(null);
@@ -53,7 +49,7 @@ const Textarea = ( props ) => {
 
       setHeight(newHeight);
       setStartY(e.clientY);
-
+      
     }
 
   };
