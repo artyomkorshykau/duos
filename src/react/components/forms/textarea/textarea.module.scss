@@ -3,6 +3,10 @@
 .textfield {
 
   width: 100%;
+  max-width: 100%;
+  min-width: 4%;
+  min-height: 34px;
+  position: relative;
 
   & + .textfield { margin-top: $apx-16; }
 
@@ -34,7 +38,7 @@
     background: var(--color-accent-background);
     border: $apx-1 solid var(--color-accent-blue-200);
     border-radius: $apx-28;
-    resize: both; 
+    resize: both;  
 
     &::placeholder {
     
@@ -52,7 +56,7 @@
   
     &::-webkit-scrollbar {
 
-      width: $apx-20;
+      width: $apx-26;
 
     }
   
@@ -75,6 +79,82 @@
     
     }
 
+    &::-webkit-resizer {
+
+      background-color: var(--color-accent-background);
+      border-bottom-right-radius: $apx-28;
+       
+    }
+    
+    &::-moz-resizer {
+  
+      background-color: var(--color-accent-background);
+      border-bottom-right-radius: $apx-28;
+      visibility: hidden;
+  
+    }
+
   }
 
 }
+
+.resizer {
+
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+
+  &:active {
+
+    &:before {
+
+      border-color: var(--color-accent-blue-700);
+  
+    }
+
+  }
+
+
+  &:before {
+
+    content:"";
+    border-top: $apx-3 solid var(--color-accent-black-500);
+    width: $apx-22;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    z-index: 1;
+    background: transparent;
+    position: absolute;
+    right: $apx-7;
+    bottom: $apx-16;
+    pointer-events: none;
+    border-radius: 25%;
+
+  }
+
+  &:after { 
+
+    content:"";
+    border-top: $apx-3 solid var(--color-accent-black-500);
+    width: $apx-12;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    z-index: 1;
+    background: transparent;
+    position: absolute;
+    right: $apx-8;
+    bottom: $apx-12;
+    pointer-events: none;
+    border-radius: 25%;
+
+  }
+
+}
+
+
+ 
+
