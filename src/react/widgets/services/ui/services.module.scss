@@ -1,4 +1,5 @@
 @import "@/styles/apx.scss";
+
 .service {
 
   width: $apx-1000;
@@ -15,6 +16,9 @@
 
       font-weight: 700;
       color: var(--color-accent-blue-700);
+      font-size: $apx-20;
+      line-height: $apx-26;
+
 
     }
 
@@ -71,6 +75,21 @@
       flex-direction: column;
       gap: $apx-12;
 
+      &__button {
+
+        display: flex;
+        gap: 8px;
+
+        p {
+
+          font-size: $apx-14;
+          font-weight: 600;
+          line-height: $apx-15;
+
+        }
+
+      }
+
     }
 
   }
@@ -83,7 +102,6 @@
   display: flex;
   flex-direction: column;
   gap: $apx-32;
-  overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 

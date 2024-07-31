@@ -25,8 +25,8 @@ const General = ({
           
           className = {`${ s.service__section__filedsGrid__filed } col-span-2 max-w-full`}
           placeholder = {'Название услуги'}
-          value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.serviceName }
-          onChange = {(e) => globalActions.service.setServiceName( e.target.value, categoryIndex, i )}
+          value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.title }
+          onChange = {(e) => globalActions.service.setTitle( e.target.value, categoryIndex, i )}
           
         />
 

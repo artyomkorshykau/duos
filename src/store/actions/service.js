@@ -1,14 +1,6 @@
 
 const serviceActions = {
 
-  setEmail: (store, email) => {
-
-    const service = JSON.parse(localStorage.getItem('service'))
-
-    localStorage.setItem('service', JSON.stringify({ ...service, email }))
-    store.setState({ service: { ...store.state.service, email } })
-
-  },
   setDirection: (store, direction, i) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
@@ -126,7 +118,7 @@ const serviceActions = {
     store.setState({ service })
 
   },
-  setServiceName: (store, serviceName, categoryIndex, i) => {
+  setTitle: (store, title, categoryIndex, i) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -143,7 +135,7 @@ const serviceActions = {
 
     service.category[categoryIndex].services[i] = {
       ...service.category[categoryIndex].services[i],
-      serviceName,
+      title,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
@@ -282,6 +274,255 @@ const serviceActions = {
     service.category[categoryIndex].services[i] = {
       ...service.category[categoryIndex].services[i],
       files,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setPaymentFormat: (store, paymentFormat, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      paymentFormat,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setPrice: (store, price, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      price,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setFrom: (store, from, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      from,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setBefore: (store, before, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      before,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setDayWeekMonthYearList: (store, dayWeekMonthYearList, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      dayWeekMonthYearList,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setNewServices: (store, categoryIndex) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    const length = category[categoryIndex].services.length
+
+    service.category[categoryIndex].services[length] = {
+      title: `Услуга №${length + 1}`,
+      status: "New",
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setNewDirection: (store) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+
+    const length = service.category.length
+
+    service.category[length] = {
+      title: `Направление №${length + 1}`,
+      description:
+        "Выберите направление ниже или предложите свое, затем заполните услуги в рамках конкретно этого направления",
+      services: [{ title: `Услуга №1`, status: "New" }],
+      status: "New",
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setDeleteServices: (store, categoryIndex, i) => {
+
+    function removeObjectByIndex(arr, index) {
+      if (index >= 0 && index < arr.length) {
+        arr.splice(index, 1)
+      }
+      return arr
+    }
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    let updatedService = removeObjectByIndex(
+      service.category[categoryIndex].services,
+      i
+    )
+    service.category[categoryIndex].services = updatedService
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setDeleteCategory: (store, i) => {
+
+    function removeObjectByIndex(arr, index) {
+      if (index >= 0 && index < arr.length) {
+        arr.splice(index, 1)
+      }
+      return arr
+    }
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+
+    let updatedCategory = removeObjectByIndex(service.category, i)
+    service.category = updatedCategory
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setChangeStatusCategory: (store, status, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+
+    service.category[i] = { ...service.category[i], status }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setChangeStatusServices: (store, status, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      status,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
