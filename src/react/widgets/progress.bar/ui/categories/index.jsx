@@ -4,6 +4,7 @@ import NotiseSuccess from '@/react/components/icons/notise.success';
 import QuizSteps from '@/constants/quiz.steps';
 import cssIf from '@/scripts/helpers/css.if'
 import Progress from '../progress';
+import { useEffect, useState } from 'react';
 
 const Categories = ( props ) => {
 
@@ -14,6 +15,15 @@ const Categories = ( props ) => {
   } = props
 
   const [ globalState ] = useGlobal()
+  const [activeId, setActiveId] = useState()
+
+  useEffect(() => {
+
+    const active = QuizSteps.find((el) => el.title === activeStep)
+    
+    setActiveId(active.id)
+
+  }, [activeStep])
 
   return (
 
@@ -35,14 +45,17 @@ const Categories = ( props ) => {
 
               <NotiseSuccess
 
-                fill = { activeStep === category.title ? '#E1EBF9' : 'white' }
+                fill = { activeStep === category.title ? '#E1EBF9' :
+                  category.id < activeId ? '#18009E' : 'white' }
                 check = { activeStep === category.title }
+                stroke = { category.id < activeId ? '#FFFFFF' : '#18009E' }
+                checkStroke = { category.id < activeId }
 
               />
 
             </div>
 
-            <Progress i = { i } check = { activeStep === category.title }/>
+            <Progress id = { category.id } check = { activeStep === category.title } activeId = {activeId}/>
 
           </div>
 

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { memo } from "react"
-const SvgComponent = ({fill = 'white', check = true, width = 19, height = 19, ...rest}) => (
+const SvgComponent = ({fill = 'white', check = true, width = 19, height = 19, checkStroke, stroke, ...rest}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={20}
@@ -10,9 +10,9 @@ const SvgComponent = ({fill = 'white', check = true, width = 19, height = 19, ..
   >
     <rect width={width} height={height} x={0.5} y={0.5} stroke="#E1EBF9" rx={9.5} />
 
-    {check && <g clipPath="url(#a)">
+    {(check || checkStroke) && <g clipPath="url(#a)">
       <path
-        stroke="blue"
+        stroke={stroke}
         strokeLinecap="round"
         strokeWidth={1.7}
         d="m6 10 3 3 5-6"
