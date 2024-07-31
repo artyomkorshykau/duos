@@ -7,6 +7,7 @@ import Location from '@/react/widgets/profile/ui/location/ui';
 import Contacts from '@/react/widgets/profile/ui/contacts/ui';
 import CompletedDirections from '../../completed.directions';
 import AddDirection from '../../add.direction';
+import Accordion from '../../accordion';
 
 const service_category = [
 

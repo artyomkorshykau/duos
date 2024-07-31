@@ -3,9 +3,7 @@
 .textfield {
 
   width: 100%;
-  max-width: 100%;
-  min-width: 4%;
-  min-height: 34px;
+  min-height: 110px;
   position: relative;
 
   & + .textfield { margin-top: $apx-16; }

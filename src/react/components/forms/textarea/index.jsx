@@ -6,7 +6,6 @@ import { useEffect, useState, useRef } from 'react';
 
 const TEXTAREA_SIZE = {
 
-  width: 944,
   height: 110
 
 }
@@ -34,17 +33,14 @@ const Textarea = ( props ) => {
 
   } = props;
 
-  const [width, setWidth] = useState(TEXTAREA_SIZE.width); 
   const [height, setHeight] = useState(TEXTAREA_SIZE.height); 
   const [isResizing, setIsResizing] = useState(false);
-  const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
   const textfieldDivRef = useRef(null);
 
   const handleMouseDown = (e) => {
 
     setIsResizing(true);
-    setStartX(e.clientX);
     setStartY(e.clientY);
 
   };
@@ -53,12 +49,9 @@ const Textarea = ( props ) => {
 
     if (isResizing) {
 
-      const newWidth = width + (e.clientX - startX);
       const newHeight = height + (e.clientY - startY);
 
-      setWidth(newWidth);
       setHeight(newHeight);
-      setStartX(e.clientX);
       setStartY(e.clientY);
 
     }
@@ -74,7 +67,6 @@ const Textarea = ( props ) => {
   const handleTouchStart = (e) => {
     
     setIsResizing(true);
-    setStartX(e.touches[0].clientX);
     setStartY(e.touches[0].clientY);
 
   };
@@ -83,11 +75,8 @@ const Textarea = ( props ) => {
 
     if (isResizing) {
 
-      const newWidth = width + (e.touches[0].clientX - startX);
       const newHeight = height + (e.touches[0].clientY - startY);
-      setWidth(newWidth);
       setHeight(newHeight);
-      setStartX(e.touches[0].clientX);
       setStartY(e.touches[0].clientY);
 
     }
@@ -101,14 +90,6 @@ const Textarea = ( props ) => {
   };
 
   useEffect(() => {
-
-    const elementWidth = textfieldDivRef.current.offsetWidth;
-    
-    if (width > elementWidth) {
-
-      setWidth(elementWidth);
-
-    }
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleMouseUp);
@@ -124,7 +105,7 @@ const Textarea = ( props ) => {
   
     };
 
-  }, [isResizing, width, height]);
+  }, [isResizing, height]);
 
   return (
     
@@ -132,7 +113,7 @@ const Textarea = ( props ) => {
 
       className = { `${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }` }
       ref={ textfieldDivRef }
-      style={ { width: `${width}px`, height: `${height}px` } }
+      style={ { height: `${height}px` } }
       
       >
 
