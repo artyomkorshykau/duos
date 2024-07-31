@@ -11,6 +11,9 @@
   flex-direction: column;
   align-items: center;
   gap: $apx-8;
+  top: -$apx-50;
+  position: sticky;
+  z-index: 2;
 
   &__breadcrumbs {
 
@@ -72,6 +75,27 @@
 
     }
 
+  }
+
+  &__bar {
+
+    height: 2px;
+    position: absolute;
+    top: $apx-52;
+    background: #F4F6F9;
+
+    &__check {
+
+      background: #18009E;
+
+    }
+
+    &__first {
+
+      width: $apx-56 !important;
+      left: $apx-32;
+
+    }
   }
 
 }

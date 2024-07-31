@@ -1,26 +1,24 @@
-import Status from '@/react/components/status';
-import s from './services.list.module.scss';
 import { useState } from 'react';
+import s from './accordion.children.module.scss';
+import cssIf from '@/scripts/helpers/css.if';
+import Status from '@/react/components/status';
 import DefaultButton from '@/react/components/buttons/default.button';
 import Arrow from '@/react/components/icons/arrow';
-import cssIf from '@/scripts/helpers/css.if';
-import Attachment from '@/react/components/attachment';
-import useGlobal from '@/store';
 import DeletePopup from '@/react/popups/delete.popup';
-import General from '../../services/ui/general/ui';
-import WorkClients from '../../services/ui/work.clients/ui';
-import ServiceDescription from '../../services/ui/service.description/ui';
 
-const ServicesList = ({
+const AccordionChildren = ({
   
   el,
   categoryIndex,
-  i
+  i,
+  isDelete,
+  deletePopupAction,
+  title,
+  content,
+  changeStatus
 
 }) => {
-
-  const [ globalState, globalActions ] = useGlobal()
-  const [ open, setOpen ] = useState( false );
+  const [ open, setOpen ] = useState( true );
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
   
   const closePopups = () => {
@@ -41,12 +39,15 @@ const ServicesList = ({
 
       <div 
         className = {`${ s.services__parent } ${ cssIf( el.status === 'Filled', s.services__parent__green ) }`}
-        onClick = {() => setOpen( !open )}
+        onClick={() => {
+          changeStatus && changeStatus(categoryIndex, i)
+          setOpen(!open)
+        }}
       >
 
         <div className = {`${ s.services__parent__wrapper }`}>
           
-          <h3 className = {`${ s.services__parent__wrapper__title }`}>{ el.title }</h3>
+          <h3 className = {`${ s.services__parent__wrapper__title }`}>{ title }</h3>
           
           <p className = {`${ s.services__parent__wrapper__description }`}>{ el.description }</p>
 
@@ -56,7 +57,7 @@ const ServicesList = ({
 
           <Status status = { el.status } />
           
-          {el.isDelete && (
+          {isDelete && (
 
             <DefaultButton
 
@@ -84,28 +85,7 @@ const ServicesList = ({
 
       {open && (
 
-        <div className = {`${ s.services__children }`}>
-        
-          <div className = {`${ s.services__children__left }`}>
-            
-            <Attachment
-              accept = ".png, .jpg, .tiff"
-              files = { globalState.service.category?.[categoryIndex]?.services?.[i]?.files }
-              onChange = { (files) => globalActions.service.setServiceFiles(files, categoryIndex, i) }
-              
-            />
-
-          </div>
-
-          <div className = {`${ s.services__children__right }`}>
-
-            <General categoryIndex = { categoryIndex } i = { i }/>
-            <WorkClients categoryIndex = { categoryIndex } i = { i }/>
-            <ServiceDescription categoryIndex = { categoryIndex } i = { i }/>
-
-          </div>
-        
-        </div>
+        content( i, categoryIndex, setOpen )
         
       )}
 
@@ -117,6 +97,10 @@ const ServicesList = ({
         signUp = { () => signUp( true ) }
         title = { el.title }
         type = "Услугу"
+        action = {() => {
+          closePopups()
+          deletePopupAction(categoryIndex, i)
+        }}
 
       />
 
@@ -126,4 +110,4 @@ const ServicesList = ({
 
 }
 
-export default ServicesList
+export default AccordionChildren

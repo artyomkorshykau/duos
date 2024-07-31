@@ -20,6 +20,7 @@ const WhiteBox = ({
       onMouseOut = { onMouseOut }
       onMouseOver = { onMouseOver }
       className = {`${ s.whitebox } ${ withBorder && s['whitebox--bordered'] } ${ className } relative`}
+      onClick = { (e) => e.stopPropagation() }
       
     >
       

@@ -1,27 +1,33 @@
 import Status from '@/react/components/status';
-import s from './accordion.module.scss';
+import s from './accordion.parent.module.scss';
 import { useState } from 'react';
 import DefaultButton from '@/react/components/buttons/default.button';
 import Arrow from '@/react/components/icons/arrow';
 import cssIf from '@/scripts/helpers/css.if';
 import DeletePopup from '@/react/popups/delete.popup';
-import ChoiceDirection from '../services/ui/choice.direction/ui';
-import Education from '../services/ui/education/ui';
-import Services from '../services/ui/services/ui';
+import Plus from '@/react/components/icons/plus';
 
-const Accordion = ({
+const AccordionParent = ({
   
   category,
-  i
+  i,
+  isDelete,
+  content,
+  title,
+  type,
+  deletePopupAction,
+  children,
+  addService,
+  changeStatus
 
 }) => {
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
-  const [ open, setOpen ] = useState( false );
+  const [open, setOpen] = useState(true);
   
   const closePopups = () => {
 
-    setShowSignInPopup( false );
-
+    setShowSignInPopup(false)
+    
   }
 
   return (
@@ -31,7 +37,7 @@ const Accordion = ({
         
         <div className = {`${ s.accordion__parent__wrapper }`}>
           
-          <h3 className = {`${ s.accordion__parent__wrapper__title }`}>{ category.title }</h3>
+          <h3 className = {`${ s.accordion__parent__wrapper__title }`}>{ title }</h3>
           
           <p className = {`${ s.accordion__parent__wrapper__description }`}>{ category.description }</p>
           
@@ -41,7 +47,7 @@ const Accordion = ({
           
           <Status status = { category.status } />
           
-          {category.isDelete && (
+          {isDelete && (
 
             <DefaultButton
               
@@ -56,7 +62,9 @@ const Accordion = ({
 
           <DefaultButton
             
-            action = {() => setOpen( !open )}
+            action = {() => {
+              changeStatus && changeStatus(i)
+              setOpen( !open )}}
             name = ''
             className = {`${ s.accordion__parent__buttons__arrow } ${ cssIf( open, s.accordion__parent__buttons__rotated ) }`}
             icon = { <Arrow direction = { 'left' } fill = { '#9ba1a1' } /> }
@@ -72,11 +80,34 @@ const Accordion = ({
 
         <div className = {`${ s.accordion__children }`}>
           
-          <ChoiceDirection i = { i }/>
+          { content( i ) }
+          
+          <div>
 
-          <Education i = { i }/>
+            <p className = {`${ s.accordion__children__title }`}>Услуги в рамках направления</p>
 
-          <Services services = { category.services } categoryIndex = { i }/>
+            <div className = {`${ s.accordion__children__services }`}>
+
+              { children }
+
+              <div className="flex items-center justify-center">
+
+                <DefaultButton
+
+                  gray
+                  name = "Добавить услугу"
+                  className = {`${ s.accordion__children__services__button }`}
+                  icon = { <Plus fill = { '#18009E' }/> }
+                  positionIcon = 'right'
+                  action = {() => addService( i ) }
+
+                />
+
+              </div>
+              
+            </div>
+            
+          </div>
           
         </div>
         
@@ -89,8 +120,14 @@ const Accordion = ({
         logIn = { () => logIn() }
         signUp = { () => signUp( true ) }
         title = { category.title }
-        type = "Направление"
+        type = { type }
+        action = {() => {
+          
+          closePopups()
+          deletePopupAction( i )
 
+        }}
+        
       />
       
     </div>
@@ -99,4 +136,4 @@ const Accordion = ({
 
 }
 
-export default Accordion
+export default AccordionParent

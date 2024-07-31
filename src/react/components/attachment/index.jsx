@@ -80,7 +80,7 @@ const Attachment = ({
       
       <div className = {`${ s.attachment__block }`}>
         
-        {files ? (
+        {files &&  !multiple ? (
 
           <div className = {`${ s.attachment__block__imagePreview }`}>
 
