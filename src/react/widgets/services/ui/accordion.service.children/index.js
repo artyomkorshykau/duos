@@ -67,7 +67,22 @@ const AccordionServiceChildren = ({
     duration,
     minuteHoursDays,
     meaningService,
+    files
   } = service.category?.[categoryIndex]?.services?.[i]
+
+  const changeStatus = (categoryIndex, i) => {
+
+    if (el.status === "New") {
+
+      globalActions.service.setChangeStatusServices(
+        "NotFinished",
+        categoryIndex,
+        i
+      )
+
+    }
+
+  }
 
   useEffect(() => {
     if (el.status === "New") {
@@ -93,6 +108,7 @@ const AccordionServiceChildren = ({
       duration && 
       minuteHoursDays &&
       meaningService &&
+      files &&
       el.status !== "New"
     ) {
       globalActions.service.setChangeStatusServices("Filled", categoryIndex, i)
@@ -110,7 +126,8 @@ const AccordionServiceChildren = ({
     deliveryFormat,
     duration,
     minuteHoursDays,
-    meaningService
+    meaningService,
+    files
   ])
 
   return (
@@ -124,11 +141,12 @@ const AccordionServiceChildren = ({
         globalActions.service.setDeleteServices(categoryIndex, i)
       }
       title = {
-        service.category?.[categoryIndex]?.services?.[i]?.title || el.title
+        service.category?.[categoryIndex]?.services?.[i]?.title
       }
       content = {(i, categoryIndex, setOpen) =>
         content(i, categoryIndex, setOpen)
       }
+      changeStatus = { (categoryIndex, i) =>  changeStatus(categoryIndex, i) }
     />
   )
 

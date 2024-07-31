@@ -17,7 +17,8 @@ const AccordionParent = ({
   type,
   deletePopupAction,
   children,
-  addService
+  addService,
+  changeStatus
 
 }) => {
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
@@ -61,7 +62,9 @@ const AccordionParent = ({
 
           <DefaultButton
             
-            action = {() => setOpen( !open )}
+            action = {() => {
+              changeStatus && changeStatus(i)
+              setOpen( !open )}}
             name = ''
             className = {`${ s.accordion__parent__buttons__arrow } ${ cssIf( open, s.accordion__parent__buttons__rotated ) }`}
             icon = { <Arrow direction = { 'left' } fill = { '#9ba1a1' } /> }
