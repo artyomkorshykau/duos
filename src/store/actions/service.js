@@ -528,6 +528,16 @@ const serviceActions = {
     store.setState({ service })
 
   },
+  setChangeProgress: (store, progress) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    service.progress = progress
+
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
 
 }
 
