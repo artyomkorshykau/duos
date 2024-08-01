@@ -121,7 +121,7 @@ const Textarea = ( props ) => {
         onMouseDown={ handleMouseDown }
         onTouchStart={ handleTouchStart }
 
-        ></div>
+      ></div>
       
       <textarea 
 
