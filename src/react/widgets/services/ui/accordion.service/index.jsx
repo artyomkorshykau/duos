@@ -18,6 +18,8 @@ const AccordionService = ({
 
   const [title, setTitle] = useState(category.title)
 
+  const [filled, setFilled] = useState(false)
+
   const {
     directionWorkExperience,
     direction,
@@ -28,7 +30,8 @@ const AccordionService = ({
     educationCourseAuthor,
     educationDuration,
     educationCompletionDate,
-  } = service.category?.[index]
+    services,
+  } = globalState.service.category?.[index]
 
   const changeStatus = (index) => {
     if (category.status === "New") {
@@ -68,11 +71,12 @@ const AccordionService = ({
       educationCourseAuthor &&
       educationDuration &&
       educationCompletionDate &&
+      services.every((item) => item.status === "Filled") &&
       category.status !== "New"
     ) {
-      globalActions.service.setChangeStatusCategory("Filled", index)
+      setFilled(true)
     } else if (category.status !== "New") {
-      globalActions.service.setChangeStatusCategory("NotFinished", index)
+      setFilled(false)
     }
   }, [
     directionWorkExperience,
@@ -84,7 +88,16 @@ const AccordionService = ({
     educationCourseAuthor,
     educationDuration,
     educationCompletionDate,
+    services,
   ])
+  
+  useEffect(() => {
+    if (filled) {
+      globalActions.service.setChangeStatusCategory("Filled", index)
+    } else {
+      globalActions.service.setChangeStatusCategory("NotFinished", index)
+    }
+  }, [filled])
 
   const content = (i) => {
 
@@ -115,7 +128,7 @@ const AccordionService = ({
       }
       changeStatus = { (index) =>  changeStatus(index) }
     >
-      {category.services.map((el, i) => (
+      {category?.services?.map((el, i) => (
         <AccordionServiceChildren
           key = { i }
           el = { el }

@@ -17,6 +17,8 @@ const Categories = ( props ) => {
   const [ globalState ] = useGlobal()
   const [activeId, setActiveId] = useState()
 
+  const { service } = globalState
+
   useEffect(() => {
 
     const active = QuizSteps.find((el) => el.title === activeStep)
@@ -31,6 +33,9 @@ const Categories = ( props ) => {
 
       { QuizSteps.map((category, i) => {
 
+        const serviceActive = activeStep === "Услуги" && service.progress === 1
+        let fill = (activeStep === category.title && serviceActive) || (category.id < activeId) ? '#18009E' : activeStep === category.title ? '#E1EBF9' : '#FFFFFF'
+        let stroke = (activeStep === category.title && serviceActive) || (category.id < activeId) ? '#FFFFFF' : activeStep === category.title ? '#18009E' : '#FFFFFF'
         return (
 
           <div className = {`relative ${ s.progressBar__steps__item }`} key = {category.id}>
@@ -45,11 +50,8 @@ const Categories = ( props ) => {
 
               <NotiseSuccess
 
-                fill = { activeStep === category.title ? '#E1EBF9' :
-                  category.id < activeId ? '#18009E' : 'white' }
-                check = { activeStep === category.title }
-                stroke = { category.id < activeId ? '#FFFFFF' : '#18009E' }
-                checkStroke = { category.id < activeId }
+                fill = { fill }
+                stroke = { stroke }
 
               />
 

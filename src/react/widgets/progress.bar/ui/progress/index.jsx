@@ -1,7 +1,7 @@
-import s from '../progress.bar.module.scss'
+import cssIf from '@/scripts/helpers/css.if';
 import useGlobal from '@/store';
-import cssIf from '@/scripts/helpers/css.if'
 import { useEffect, useState } from 'react';
+import s from '../progress.bar.module.scss';
 
 const calculateProgress = (statuses) => {
 
@@ -28,34 +28,42 @@ const Progress = ({
 
  }) => {
 
-  const [ globalState ] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal()
   
   const { service } = globalState
+
+  const { category } = service
   
-  const [ style, setStyle ] = useState({})
+  const [ progress, setProgress ] = useState(1)
 
   useEffect(() => {
 
-    if (activeId === 2 && activeId === id) {
+    if ( activeId === 2 && activeId === id ) {
 
-      const statuses = service.category.map(item => item.status);
+      const statuses = category.map( item => item.status );
 
-      const progress = calculateProgress(statuses);
+      const progress = calculateProgress( statuses );
 
-      setStyle({ width: `calc(9.531189vw * ${progress})` })  
-
+      setProgress(progress)
+        
     } else if (activeId === 3 && activeId === id) {
 
-      setStyle({ width: `calc(9.531189vw * 0.5)` })  
+      setProgress(0.2) 
 
     }
 
-  }, [activeId, service.category])
+  }, [ activeId, id, category ])
+
+  useEffect(() => {
+
+    globalActions.service.setChangeProgress(progress)
+
+  }, [ progress ])
 
   return (
 
     <div
-      style = { style }
+      style = { { width: `calc(10.520766vw * ${progress})` } }
       className = {`${ s.progressBar__bar } ${ cssIf(check || id < activeId, s.progressBar__bar__check) } ${cssIf( id === 1, s.progressBar__bar__first ) } ${ cssIf(id === activeId, s.progressBar__bar__gradient) }`}
     />
   )
