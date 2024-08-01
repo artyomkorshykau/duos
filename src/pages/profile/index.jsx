@@ -89,7 +89,7 @@ export default function ProfilePage() {
           />
           { content }
           <Autosave />
-          <Pagination nextStep = { nextStep }/>
+          <Pagination nextStep = { nextStep } activeStep = { step }/>
 
         </div>
 

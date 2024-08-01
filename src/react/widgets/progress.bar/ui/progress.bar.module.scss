@@ -70,6 +70,7 @@
 
         position: absolute;
         top: $apx-43;
+        z-index: 1;
 
       }
 
@@ -82,20 +83,30 @@
     height: 2px;
     position: absolute;
     top: $apx-52;
-    background: #F4F6F9;
+    background: var(--color-accent-background);
+    transition: width 0.5s ease;
 
     &__check {
 
-      background: #18009E;
+      background: var(--color-accent-blue-700);
+      width: $apx-202;
+      left: 0;
 
     }
 
     &__first {
 
-      width: $apx-56 !important;
+      width: $apx-170;
       left: $apx-32;
 
     }
+
+    &__gradient {
+
+      background: radial-gradient(100% 191.56% at 0% 100%, #18009E 0%, #1A97E2 80%, #11E3E3 100%);
+
+    }
+
   }
 
 }
