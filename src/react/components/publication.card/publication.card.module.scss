@@ -1,0 +1,124 @@
+@import "@/styles/apx.scss";
+
+.card {
+
+  width: $apx-280;
+  height: $apx-400;
+  background-color: var(--color-accent-blue-230);
+  border-radius: $apx-32;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  overflow: hidden;
+
+  img {
+
+    max-width: 100%;
+    height: auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -115%) scale(1.2);
+    z-index: 0;
+
+  }
+
+  &__placeholder {
+
+    position: absolute;
+    left: $apx-100;
+    top: $apx-60;
+
+  }
+
+  &__content {
+
+    background-color: var(--color-bw-white);
+    border-radius: $apx-32;
+    padding: $apx-24;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: $apx-12;
+    z-index: 1;
+
+    &__status {
+
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: $apx-8;
+
+      &__button {
+
+        background: transparent;
+        padding: $apx-4;
+
+        p {
+
+          color: var(--color-accent-black-500);
+          font-size: $apx-14;
+          font-weight: 600;
+          line-height: $apx-16;
+
+        }
+
+        &:hover,
+        &:active {
+
+          animation: none;
+
+          p {
+
+            color: var(--color-accent-blue-700);
+
+          }
+
+        }
+
+        &:active {
+
+          p {
+            opacity: 0.8;
+          }
+
+        }
+
+      }
+
+    }
+
+    &__title {
+
+      font-weight: 700;
+      color: var(--color-accent-black-900)
+
+    }
+
+    &__description {
+
+      height: $apx-38;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 600;
+      color: var(--color-accent-black-500);
+
+    }
+
+    &__button {
+
+      width: 100%;
+      height: $apx-32
+
+    }
+
+  }
+
+}
