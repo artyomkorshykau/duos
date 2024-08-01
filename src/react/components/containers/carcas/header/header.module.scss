@@ -143,7 +143,6 @@
   &--appear { animation: fadeInSlow 2s; }
   &--disappear { animation: fadeOutSlow 2s; }
 
-  &__green_circle,
   &__blue_circle {
 
     filter: blur($apx-55);
@@ -161,8 +160,14 @@
 
   &__green_circle {
 
-    box-shadow: 0 0 $apx-360 $apx-280 var(--color-accent-green);
-  
+    position: absolute;    
+    top: $apx-130;
+    left: $apx-60;    
+    width: 0;
+    height: 0;      
+    animation: greenShadowMoveAround 9s linear infinite;
+    box-shadow: -$apx-30 0px $apx-80 $apx-35 rgba(0, 242, 128, 0.9);
+     
   }
 
   &__blue_circle {
@@ -170,8 +175,8 @@
     top: $apx-400;
     left: $apx-450;
     width: $apx-350;
-    box-shadow: 0 0 $apx-360 $apx-280 #008cc5;
   
   }
 
 }
+

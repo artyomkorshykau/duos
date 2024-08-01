@@ -35,6 +35,7 @@ const Header = ({
       <div className = {`flex items-center justify-center ${ s['auth-back'] } ${ isSignUIopened && s['auth-back--opened'] } ${ s.circles_container } ${ isSignUIopened ? s['circles_container--appear'] : s['circles_container--disappear'] } absolute`}>
         
         <div className = {`${ s.circles_container__blue_circle } absolute`}/>
+
         <div className = {`${ s.circles_container__green_circle } absolute`}/>
 
       </div>
