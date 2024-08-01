@@ -92,11 +92,17 @@ const AccordionService = ({
   ])
   
   useEffect(() => {
-    if (filled) {
-      globalActions.service.setChangeStatusCategory("Filled", index)
-    } else {
-      globalActions.service.setChangeStatusCategory("NotFinished", index)
+    
+    if (category.status !== "New") {
+
+      if (filled) {
+        globalActions.service.setChangeStatusCategory("Filled", index)
+      } else {
+        globalActions.service.setChangeStatusCategory("NotFinished", index)
+      } 
+
     }
+    
   }, [filled])
 
   const content = (i) => {
