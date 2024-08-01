@@ -4,6 +4,7 @@ import NotiseSuccess from '@/react/components/icons/notise.success';
 import QuizSteps from '@/constants/quiz.steps';
 import cssIf from '@/scripts/helpers/css.if'
 import Progress from '../progress';
+import { useEffect, useState } from 'react';
 
 const Categories = ( props ) => {
 
@@ -14,6 +15,17 @@ const Categories = ( props ) => {
   } = props
 
   const [ globalState ] = useGlobal()
+  const [activeId, setActiveId] = useState()
+
+  const { service } = globalState
+
+  useEffect(() => {
+
+    const active = QuizSteps.find((el) => el.title === activeStep)
+    
+    setActiveId(active.id)
+
+  }, [activeStep])
 
   return (
 
@@ -21,6 +33,9 @@ const Categories = ( props ) => {
 
       { QuizSteps.map((category, i) => {
 
+        const serviceActive = activeStep === "Услуги" && service.progress === 1
+        let fill = (activeStep === category.title && serviceActive) || (category.id < activeId) ? '#18009E' : activeStep === category.title ? '#E1EBF9' : '#FFFFFF'
+        let stroke = (activeStep === category.title && serviceActive) || (category.id < activeId) ? '#FFFFFF' : activeStep === category.title ? '#18009E' : '#FFFFFF'
         return (
 
           <div className = {`relative ${ s.progressBar__steps__item }`} key = {category.id}>
@@ -35,14 +50,14 @@ const Categories = ( props ) => {
 
               <NotiseSuccess
 
-                fill = { activeStep === category.title ? '#E1EBF9' : 'white' }
-                check = { activeStep === category.title }
+                fill = { fill }
+                stroke = { stroke }
 
               />
 
             </div>
 
-            <Progress i = { i } check = { activeStep === category.title }/>
+            <Progress id = { category.id } check = { activeStep === category.title } activeId = {activeId}/>
 
           </div>
 
