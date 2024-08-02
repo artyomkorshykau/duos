@@ -24,7 +24,8 @@ const AccordionParent = ({
   titleChildren,
   descriptionChildren,
   status,
-  isBottomContent = true
+  isBottomContent = true,
+  marginTop
 
 }) => {
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
@@ -84,7 +85,7 @@ const AccordionParent = ({
 
       {open && (
 
-        <div className = {`${ s.accordion__children }`}>
+        <div className = {`${ s.accordion__children } ${ cssIf( marginTop, marginTop)}`}>
           
           { content( index ) }
           
