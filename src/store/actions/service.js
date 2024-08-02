@@ -414,6 +414,7 @@ const serviceActions = {
     service.category[categoryIndex].services[length] = {
       title: `Услуга №${length + 1}`,
       status: "New",
+      documentStatus: "New",
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
@@ -431,10 +432,9 @@ const serviceActions = {
 
     service.category[length] = {
       title: `Направление №${length + 1}`,
-      description:
-        "Выберите направление ниже или предложите свое, затем заполните услуги в рамках конкретно этого направления",
-      services: [{ title: `Услуга №1`, status: "New" }],
+      services: [{ title: `Услуга №1`, status: "New", documentStatus: "New" }],
       status: "New",
+      documentStatus: "New",
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
@@ -535,6 +535,165 @@ const serviceActions = {
     service.progress = progress
 
     localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setChangeStatusPassport: (store, status) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    service.passport.status = status
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setClientFullName: (store, clientFullName, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      clientFullName,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setCommunication: (store, communication, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      communication,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setPhone: (store, phone, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      phone,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setChangeDocumentStatusCategory: (store, documentStatus, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+
+    service.category[i] = { ...service.category[i], documentStatus }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setChangeDocumentStatusServices: (store, documentStatus, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      documentStatus,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setServiceReviewsFiles: (store, reviewsFiles, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      reviewsFiles,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setChangeFilesPassport: (store, files) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    service.passport.files = files
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setCertificatesFiles: (store, certificatesFiles, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = [];
+    }
+
+    service.category[i] = { ...service.category[i], certificatesFiles }
+    localStorage.setItem('service', JSON.stringify(service));
     store.setState({ service })
 
   },

@@ -10,7 +10,7 @@ const ChoiceDirection = ({
 
 }) => {
 
-  const [globalState, globalActions] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -25,7 +25,7 @@ const ChoiceDirection = ({
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Выбрать направление'}
           value = { globalState.service.category?.[i]?.direction }
-          onChange = { (e) => globalActions.service.setDirection( e.target.value, i )}
+          onChange = { (e) => globalActions.service.setDirection( e.target.value, i ) }
           options = { directionList }
 
         />

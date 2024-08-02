@@ -6,6 +6,7 @@ import Autosave from '@/react/widgets/autosave/ui';
 import Carcas from '@/react/components/containers/carcas';
 import Services from '@/react/widgets/services/ui';
 import School from '@/react/widgets/school/ui'
+import Document from '@/react/widgets/document/ui';
 
 export default function ProfilePage() {
 
@@ -29,6 +30,14 @@ export default function ProfilePage() {
       setStep( 'Школа' )
       setTitle('Школа')
       setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
+
+    }
+
+    if( step === 'Школа' ) {
+
+      setStep( 'Документы' )
+      setTitle('Документы')
+      setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
 
     }
 
@@ -61,6 +70,16 @@ export default function ProfilePage() {
       return (
 
         <School/>
+
+      )
+
+    }
+
+    if ( step === 'Документы' ) {
+
+      return (
+
+        <Document />
 
       )
 

@@ -5,15 +5,15 @@ const serviceState = {
     {
 
       title: "Направление №1",
-      description:
-        "Выберите направление ниже или предложите свое, затем заполните услуги в рамках конкретно этого направления",
       status: "NotFinished",
+      documentStatus: "New",
       services: [
       
         {
 
           title: "Услуга №1",
           status: "New",
+          documentStatus: "New",
 
         }
 
@@ -23,21 +23,22 @@ const serviceState = {
     {
 
       title: "Психология",
-      description:
-        "Выберите направление ниже или предложите свое, затем заполните услуги в рамках конкретно этого направления",
       status: "NotFinished",
+      documentStatus: "New",
       services: [
       
         {
 
           title: "Оказание психологической помощи",
           status: "NotFinished",
+          documentStatus: "New",
 
         },
         {
 
           title: "Прием у психотерапевта",
           status: "NotFinished",
+          documentStatus: "New",
 
         }
         
@@ -46,6 +47,11 @@ const serviceState = {
     },
 
   ],
+  passport: {
+
+    status: "New"
+    
+  }
 
 }
 

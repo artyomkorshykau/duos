@@ -15,6 +15,8 @@ const Attachment = ({
   onChange,
   typeFiles = [ 'image/png', 'image/tiff', 'image/jpeg' ],
   maxSize = 10,
+  description,
+  size = 'small',
   ...rest
 
 }) => {
@@ -65,6 +67,50 @@ const Attachment = ({
     
     }
 
+    if (files.length > 0 && multiple) {
+
+      if (files) {
+        const filesArr = Array.from(files);
+        filesArr.map((file) => {
+
+          if ( file.size > maxSize * 1024 * 1024 ) {
+        
+            setError('size');
+            return;
+
+          }
+
+          if ( !typeFiles.includes(file.type) ) {
+
+            setError('type');
+            return;
+
+          }
+
+        })
+
+        const readers = filesArr.map((file) => {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+            reader.readAsDataURL(file);
+          });
+        });
+
+        Promise.all(readers)
+          .then((base64Strings) => {
+            onChange(base64Strings);
+          })
+          .catch((error) => {
+            console.error("Error reading files", error);
+            setError('file-read');
+          });
+        
+      }
+
+    }
+
   };
 
   const deleteFile = (e) => {
@@ -78,9 +124,9 @@ const Attachment = ({
 
     <div className = {`${ s.attachment }`}>
       
-      <div className = {`${ s.attachment__block }`}>
+      <div className = {`${ s.attachment__block } ${ cssIf(size === 'big', s.attachment__big ) } ${ cssIf(size === 'small', s.attachment__small ) }`}>
         
-        {files &&  !multiple ? (
+        {(files &&  !multiple) ? (
 
           <div className = {`${ s.attachment__block__imagePreview }`}>
 
@@ -95,6 +141,23 @@ const Attachment = ({
 
           </div>
             
+        ) : (files && multiple) ? (
+            <div className = {`${ s.attachment__block__multiple }`}>
+              { files.map((file, i) => (
+                <div key = {i} className = {`${ s.attachment__block__multiple__preview }`}>
+
+                  <img src = { file } alt = "Preview" className = {`${ s.image }`} />
+
+                  <CloseInCircle
+                    
+                    onClick = { deleteFile }
+                    className = {`${ s.icon } pointer`}
+                  
+                  />
+
+                </div>
+              ))}
+            </div>
         ) : (
             
           <label htmlFor = "input-file" className = {`${ s.attachment__block__label }`}>
@@ -148,7 +211,7 @@ const Attachment = ({
 
       </div>
             
-      <p className = {`${ s.attachment__text }`}>Загрузите картинку к услуге, она будет отображаться в качестве обложки услуги</p>
+      { description && <p className = {`${ s.attachment__text }`}>{ description }</p> }
       
     </div>
 
