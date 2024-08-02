@@ -45,33 +45,37 @@ const Document = () => {
 
     if ( files?.length && status !== "New" ) {
       
-      setFilled( true )
+      globalActions.service.setChangeStatusPassport("Filled")
 
     } else if ( status !== "New" ) {
 
-      setFilled( false )
+      globalActions.service.setChangeStatusPassport("NotFinished")
 
     }
 
   }, [ status, files ])
   
-  useEffect(() => {
+  /*useEffect(() => {
     
     if (status !== "New") {
+
+      console.log(filled)
 
       if (filled) {
 
         globalActions.service.setChangeStatusPassport("Filled")
+        console.log('+')
 
       } else {
 
         globalActions.service.setChangeStatusPassport("NotFinished")
+        console.log('++')
 
       } 
 
     }
     
-  }, [filled])
+  }, [filled, status])*/
 
   const content = (index) => {
 
@@ -81,7 +85,6 @@ const Document = () => {
           accept = ".png, .jpg, .tiff"
           files = { files }
           onChange = {(files) => globalActions.service.setChangeFilesPassport(files)}
-          multiple
         />
       
     )

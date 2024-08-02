@@ -1,11 +1,13 @@
 import * as React from 'react'
 import { memo } from 'react'
 
-const SvgComponent = ( { fill, stroke, direction, ...rest } ) => (
+const SvgComponent = ( { className, fill, stroke, direction, ...rest } ) => (
   <svg
+    className = { className }
     xmlns="http://www.w3.org/2000/svg"
-    width={ 7 }
-    height={ 12 }
+    width="7"
+    height="12"
+    viewBox="0 0 7 12"
     fill={ fill }
     { ...rest }
   >

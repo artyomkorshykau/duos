@@ -37,6 +37,7 @@ const Reviews = ({
             globalActions.service.setServiceReviewsFiles(files, categoryIndex, index)
           }
           multiple
+          deleteMultipleFile = {(indexFile) => globalActions.service.setServiceDeleteReviewsFiles( categoryIndex, index, indexFile)}
         /> 
 
       </div>

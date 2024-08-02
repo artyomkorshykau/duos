@@ -30,7 +30,6 @@ const Certificate = ({
           accept = ".png, .jpg, .tiff"
           files = { globalState.service.category?.[index]?.certificatesFiles }
           onChange={ (files) => globalActions.service.setCertificatesFiles( files, index ) }
-          multiple
         /> 
 
       </div>

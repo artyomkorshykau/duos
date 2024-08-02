@@ -666,11 +666,14 @@ const serviceActions = {
     if (!category?.[categoryIndex]?.services) {
       category[categoryIndex].services = []
     }
-
-    service.category[categoryIndex].services[index] = {
-      ...service.category[categoryIndex].services[index],
-      reviewsFiles,
+    if (!service.category[categoryIndex].services[index].reviewsFiles) {
+      service.category[categoryIndex].services[index].reviewsFiles = []
     }
+    
+    service.category[categoryIndex].services[index].reviewsFiles = [
+      ...service.category[categoryIndex].services[index].reviewsFiles,
+      ...reviewsFiles,
+    ]
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
@@ -695,6 +698,47 @@ const serviceActions = {
     service.category[index] = { ...service.category[index], certificatesFiles }
     localStorage.setItem('service', JSON.stringify(service));
     store.setState({ service })
+
+  },
+  setServiceDeleteReviewsFiles: (store, categoryIndex, index, indexFile) => {
+
+    function removeObjectByIndex(arr, index) {
+      if (index >= 0 && index < arr.length) {
+        arr.splice(index, 1)
+      }
+      return arr
+    }
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    let updatedReviewsFiles = removeObjectByIndex(
+      service.category[categoryIndex].services[index].reviewsFiles,
+      indexFile
+    )
+    service.category[categoryIndex].services[index].reviewsFiles =
+      updatedReviewsFiles
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+    /*
+    
+    service.category[categoryIndex].services[index].reviewsFiles = [
+      ...service.category[categoryIndex].services[index].reviewsFiles,
+      ...reviewsFiles,
+    ]
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })*/
 
   },
 

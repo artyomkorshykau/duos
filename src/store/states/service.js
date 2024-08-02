@@ -49,7 +49,7 @@ const serviceState = {
   ],
   passport: {
 
-    status: "New"
+    status: "NotFinished"
     
   }
 
