@@ -18,7 +18,13 @@ const AccordionParent = ({
   deletePopupAction,
   children,
   addService,
-  changeStatus
+  changeStatus,
+  addNewServices = true,
+  description,
+  titleChildren,
+  descriptionChildren,
+  status,
+  isBottomContent = true
 
 }) => {
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
@@ -39,13 +45,13 @@ const AccordionParent = ({
           
           <h3 className = {`${ s.accordion__parent__wrapper__title }`}>{ title }</h3>
           
-          <p className = {`${ s.accordion__parent__wrapper__description }`}>{ category.description }</p>
+          <p className = {`${ s.accordion__parent__wrapper__description }`}>{ description }</p>
           
         </div>
 
         <div className = {`${ s.accordion__parent__buttons }`}>
           
-          <Status status = { category.status } />
+          <Status status = { status } />
           
           {isDelete && (
 
@@ -82,53 +88,65 @@ const AccordionParent = ({
           
           { content( i ) }
           
-          <div>
+          {isBottomContent && (
 
-            <p className = {`${ s.accordion__children__title }`}>Услуги в рамках направления</p>
+            <div>
 
-            <div className = {`${ s.accordion__children__services }`}>
+              <p className = {`${ s.accordion__children__title }`}>{ titleChildren }</p>
+              
+              <p className = {`${ s.accordion__children__description }`}>{ descriptionChildren }</p>
 
-              { children }
+              <div className = {`${ s.accordion__children__services }`}>
 
-              <div className="flex items-center justify-center">
+                { children }
 
-                <DefaultButton
+                {addNewServices && (
+                  <div className = "flex items-center justify-center">
 
-                  gray
-                  name = "Добавить услугу"
-                  className = {`${ s.accordion__children__services__button }`}
-                  icon = { <Plus fill = { '#18009E' }/> }
-                  positionIcon = 'right'
-                  action = {() => addService( i ) }
+                    <DefaultButton
 
-                />
+                      gray
+                      name = "Добавить услугу"
+                      className = {`${ s.accordion__children__services__button }`}
+                      icon = { <Plus fill = { '#18009E' }/> }
+                      positionIcon = 'right'
+                      action = {() => addService( i ) }
 
+                    />
+
+                  </div>
+                )}
+                
               </div>
               
             </div>
-            
-          </div>
+
+          )}
           
         </div>
         
       )}
 
-      <DeletePopup
+      {isDelete && (
 
-        isOpened = { showSignInPopup }
-        closePopup = { () => closePopups() }
-        logIn = { () => logIn() }
-        signUp = { () => signUp( true ) }
-        title = { category.title }
-        type = { type }
-        action = {() => {
+        <DeletePopup
+
+          isOpened = { showSignInPopup }
+          closePopup = { () => closePopups() }
+          logIn = { () => logIn() }
+          signUp = { () => signUp( true ) }
+          title = { category.title }
+          type = { type }
+          action = {() => {
+            
+            closePopups()
+            deletePopupAction( i )
+
+          }}
           
-          closePopups()
-          deletePopupAction( i )
+        />
 
-        }}
-        
-      />
+      )}
       
     </div>
 

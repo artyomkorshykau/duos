@@ -32,13 +32,16 @@ const Progress = ({
   
   const { service } = globalState
 
-  const { category } = service
+  const { category, passport } = service
   
-  const [ progress, setProgress ] = useState(1)
+  const [ progress, setProgress ] = useState(0)
 
   useEffect(() => {
+    if (activeId === 1 && activeId === id) {
 
-    if ( activeId === 2 && activeId === id ) {
+      setProgress(1) 
+
+    } else if ( activeId === 2 && activeId === id ) {
 
       const statuses = category.map( item => item.status );
 
@@ -48,7 +51,15 @@ const Progress = ({
         
     } else if (activeId === 3 && activeId === id) {
 
-      setProgress(0.2) 
+      setProgress(1) 
+
+    } else if (activeId === 4 && activeId === id) {
+
+      const passportStatus = passport.status
+      const statuses = category.map( item => item.documentStatus );
+      const progress = calculateProgress( [...statuses, passportStatus] );
+
+      setProgress(progress)
 
     }
 
@@ -56,7 +67,7 @@ const Progress = ({
 
   useEffect(() => {
 
-    if (activeId === 2 && activeId === id) {
+    if ((activeId === 2 || activeId === 4) && activeId === id) {
       
       globalActions.service.setChangeProgress(progress)
       

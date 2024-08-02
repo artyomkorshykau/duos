@@ -11,7 +11,7 @@ const General = ({
 
 }) => {
 
-  const [globalState, globalActions] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -19,7 +19,7 @@ const General = ({
 
       <p className = {`${ s.service__section__title }`}> Общее </p>
 
-      <form className={`${s.service__section__filedsGrid}`}>
+      <form className = {`${ s.service__section__filedsGrid }`}>
 
         <Textfield
           

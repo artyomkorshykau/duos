@@ -1,0 +1,100 @@
+@import "@/styles/apx.scss";
+
+.document {
+
+  width: $apx-1000;
+  background-color: var(--color-bw-white);
+  border-radius: $apx-32;
+  padding: $apx-32;
+  display: flex;
+  flex-direction: column;
+  gap: $apx-32;
+
+  &__section {
+
+    &__title {
+
+      font-weight: 700;
+      color: var(--color-accent-blue-700);
+      font-size: $apx-20;
+      line-height: $apx-26;
+
+
+    }
+
+    &__description {
+
+      font-weight: 500;
+      color: var(--color-accent-black-900);
+      font-size: $apx-16;
+      line-height: $apx-21;
+
+    }
+
+    &__attachmentWrapper {
+
+      margin-top: $apx-16;
+      
+    }
+
+    &__filedsGrid5 {
+
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: $apx-8;
+      margin-top: $apx-12;
+
+      &__filed {
+
+        max-width: 100% ;
+        height: $apx-64 !important;
+        margin: 0 !important;
+
+      }
+
+    }
+
+    &__services {
+
+      margin-top: $apx-12;
+      display: flex;
+      flex-direction: column;
+      gap: $apx-12;
+
+      &__button {
+
+        display: flex;
+        gap: 8px;
+
+        p {
+
+          font-size: $apx-14;
+          font-weight: 600;
+          line-height: $apx-15;
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.wrapper{
+
+  width: $apx-1000;
+  display: flex;
+  flex-direction: column;
+  gap: $apx-32;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+
+    display: none;
+
+  }
+
+}

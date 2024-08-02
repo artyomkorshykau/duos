@@ -130,6 +130,16 @@
 
     }
 
+    &__description {
+
+      margin-top: $apx-4;
+      font-size: $apx-16;
+      font-weight: 500;
+      line-height: $apx-21;
+      color: var(--color-accent-black-900);
+
+    }
+
     &__services {
 
       margin-top: $apx-12;

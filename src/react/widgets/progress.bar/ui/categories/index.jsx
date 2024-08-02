@@ -33,7 +33,7 @@ const Categories = ( props ) => {
 
       { QuizSteps.map((category, i) => {
 
-        const serviceActive = activeStep === "Услуги" && service.progress === 1
+        const serviceActive = (activeStep === "Услуги" || activeStep === "Документы") && service.progress === 1
         let fill = (activeStep === category.title && serviceActive) || (category.id < activeId) ? '#18009E' : activeStep === category.title ? '#E1EBF9' : '#FFFFFF'
         let stroke = (activeStep === category.title && serviceActive) || (category.id < activeId) ? '#FFFFFF' : activeStep === category.title ? '#18009E' : '#FFFFFF'
         return (
