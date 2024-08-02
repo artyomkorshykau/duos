@@ -1,6 +1,5 @@
 'use client'
-
-import cssIf from '@/scripts/helpers/css.if';
+ 
 import s from './textarea.module.scss';
 import { useEffect, useState, useRef } from 'react';
 
@@ -47,8 +46,8 @@ const Textarea = ( props ) => {
 
       const newHeight = height + (e.clientY - startY);
 
-      setHeight(newHeight);
       setStartY(e.clientY);
+      setHeight(newHeight);
       
     }
 
@@ -107,9 +106,9 @@ const Textarea = ( props ) => {
     
     <div  
 
-      className = { `${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }` }
+      className = { `${ s.textfield }  ${ className } ` }
       ref={ textfieldDivRef }
-      style={ { height: `${height}px` } }
+      style={ { height: `${ height }px` } } 
       
       >
 
