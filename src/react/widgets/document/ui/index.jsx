@@ -73,7 +73,7 @@ const Document = () => {
     
   }, [filled])
 
-  const content = (i) => {
+  const content = (index) => {
 
     return (
         
@@ -93,7 +93,7 @@ const Document = () => {
     <div className = {`${ s.wrapper }`}>
       
       <AccordionParent
-        i = { 0 }
+        index = { 0 }
         isDelete = { false }
         content = { () => content(0) }
         title = "Паспорт"
@@ -105,9 +105,9 @@ const Document = () => {
         changeStatus = { (index) =>  changeStatus(index) }
       />
 
-      {service.category.map(( category, i ) => (
+      {service.category.map(( category, index ) => (
 
-        <AccordionDocument category = { category } key={ i } index = { i } />
+        <AccordionDocument category = { category } key={ index } index = { index } />
            
       ))}
 

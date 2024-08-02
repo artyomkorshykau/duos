@@ -8,7 +8,7 @@ import { communicationList } from '@/constants/services';
 
 const Recommendation = ({
   categoryIndex,
-  i 
+  index 
 }) => {
 
   const [ globalState, globalActions ] = useGlobal()
@@ -31,16 +31,16 @@ const Recommendation = ({
 
           className = {`${ s.document__section__filedsGrid5__filed } col-span-5`}
           placeholder = {'ФИО клиента'}
-          value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.clientFullName }
-          onChange = { (e) => globalActions.service.setClientFullName( e.target.value, categoryIndex, i ) }
+          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.clientFullName }
+          onChange = { (e) => globalActions.service.setClientFullName( e.target.value, categoryIndex, index ) }
 
         />
         <Selectfield
 
           className = {`${ s.document__section__filedsGrid5__filed } col-span-2`}
           placeholder = {'Способ связи'}
-          value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.communication  }
-          onChange = { (e) => globalActions.service.setCommunication( e.target.value, categoryIndex, i ) }
+          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.communication  }
+          onChange = { (e) => globalActions.service.setCommunication( e.target.value, categoryIndex, index ) }
           options = { communicationList }
 
         />
@@ -48,8 +48,8 @@ const Recommendation = ({
 
           className = {`${ s.document__section__filedsGrid5__filed } col-span-2`}
           placeholder = {'Номер'}
-          value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.phone }
-          onChange = { (e) => globalActions.service.setPhone( e.target.value, categoryIndex, i ) }
+          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.phone }
+          onChange = { (e) => globalActions.service.setPhone( e.target.value, categoryIndex, index ) }
 
         />
 

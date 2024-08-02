@@ -6,7 +6,7 @@ import Selectfield from '@/react/components/forms/selectfield';
 
 const ChoiceDirection = ({
 
-  i
+  index
 
 }) => {
 
@@ -24,19 +24,19 @@ const ChoiceDirection = ({
 
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Выбрать направление'}
-          value = { globalState.service.category?.[i]?.direction }
-          onChange = { (e) => globalActions.service.setDirection( e.target.value, i ) }
+          value = { globalState.service.category?.[index]?.direction }
+          onChange = { (e) => globalActions.service.setDirection( e.target.value, index ) }
           options = { directionList }
 
         />
-        {(globalState.service.category?.[i]?.direction === 'Other') && 
+        {(globalState.service.category?.[index]?.direction === 'Other') && 
           
           <Textfield
 
             className = {`${ s.service__section__filedsWrapper__filed }`}
             placeholder = {'Название направления'}
-            value = { globalState.service.category?.[i]?.directionName }
-            onChange = { (e) => globalActions.service.setDirectionName( e.target.value, i )}
+            value = { globalState.service.category?.[index]?.directionName }
+            onChange = { (e) => globalActions.service.setDirectionName( e.target.value, index )}
 
           />
           
@@ -46,8 +46,8 @@ const ChoiceDirection = ({
 
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Стаж работы по направлению, лет'}
-          value = { globalState.service.category?.[i]?.directionWorkExperience }
-          onChange = { (e) => globalActions.service.setDirectionWorkExperience( e.target.value, i )}
+          value = { globalState.service.category?.[index]?.directionWorkExperience }
+          onChange = { (e) => globalActions.service.setDirectionWorkExperience( e.target.value, index )}
 
         />
 

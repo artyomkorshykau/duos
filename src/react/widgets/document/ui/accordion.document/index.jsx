@@ -73,13 +73,13 @@ const AccordionDocument = ({
     
   }, [filled])
 
-  const content = (i) => {
+  const content = (index) => {
 
     return (
 
       <>
         
-        <Certificate i = { i }/>
+        <Certificate index = { index }/>
         
       </>
       
@@ -90,7 +90,7 @@ const AccordionDocument = ({
   return (
     <AccordionParent
       category = { category }
-      i = { index }
+      index = { index }
       isDelete = { false }
       content = { () => content(index) }
       title = { category.title }
@@ -102,12 +102,12 @@ const AccordionDocument = ({
       status = { category.documentStatus }
       changeStatus = { (index) =>  changeStatus(index) }
     >
-      {category?.services?.map((el, i) => (
+      {category?.services?.map((el, indexServices) => (
         <AccordionDocumentChildren
-          key = { i }
+          key = { index }
           el = { el }
           categoryIndex = { index }
-          i = { i }
+          index = { indexServices }
           isDelete = { false }
         />
       ))}

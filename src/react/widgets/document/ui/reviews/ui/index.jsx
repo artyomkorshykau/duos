@@ -8,7 +8,7 @@ import useGlobal from '@/store';
 const Reviews = ({
 
   categoryIndex,
-  i,
+  index,
 
 }) => {
 
@@ -32,9 +32,9 @@ const Reviews = ({
 
         <Attachment
           accept = ".png, .jpg, .tiff"
-          files = { service.category?.[categoryIndex]?.services?.[i]?.reviewsFiles }
+          files = { service.category?.[categoryIndex]?.services?.[index]?.reviewsFiles }
           onChange = {(files) =>
-            globalActions.service.setServiceReviewsFiles(files, categoryIndex, i)
+            globalActions.service.setServiceReviewsFiles(files, categoryIndex, index)
           }
           multiple
         /> 

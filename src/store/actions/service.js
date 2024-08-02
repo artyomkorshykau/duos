@@ -1,7 +1,7 @@
 
 const serviceActions = {
 
-  setDirection: (store, direction, i) => {
+  setDirection: (store, direction, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -9,12 +9,12 @@ const serviceActions = {
       service.category = [];
     }
 
-    service.category[i] = {...service.category[i], direction}
+    service.category[index] = {...service.category[index], direction}
     localStorage.setItem('service', JSON.stringify(service));
     store.setState({ service })
 
   },
-  setDirectionName: (store, directionName, i) => {
+  setDirectionName: (store, directionName, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -22,12 +22,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = {...service.category[i], directionName}
+    service.category[index] = {...service.category[index], directionName}
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setDirectionWorkExperience: (store, directionWorkExperience, i) => {
+  setDirectionWorkExperience: (store, directionWorkExperience, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -35,12 +35,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], directionWorkExperience }
+    service.category[index] = { ...service.category[index], directionWorkExperience }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setEducation: (store, education, i) => {
+  setEducation: (store, education, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -48,12 +48,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], education }
+    service.category[index] = { ...service.category[index], education }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setEducationCourseAuthor: (store, educationCourseAuthor, i) => {
+  setEducationCourseAuthor: (store, educationCourseAuthor, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -61,12 +61,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], educationCourseAuthor }
+    service.category[index] = { ...service.category[index], educationCourseAuthor }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setEducationOrganizationName: (store, educationOrganizationName, i) => {
+  setEducationOrganizationName: (store, educationOrganizationName, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -74,12 +74,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], educationOrganizationName }
+    service.category[index] = { ...service.category[index], educationOrganizationName }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setEducationDuration: (store, educationDuration, i) => {
+  setEducationDuration: (store, educationDuration, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -87,12 +87,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], educationDuration }
+    service.category[index] = { ...service.category[index], educationDuration }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setEducationCourseName: (store, educationCourseName, i) => {
+  setEducationCourseName: (store, educationCourseName, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -100,12 +100,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], educationCourseName }
+    service.category[index] = { ...service.category[index], educationCourseName }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setEducationCompletionDate: (store, educationCompletionDate, i) => {
+  setEducationCompletionDate: (store, educationCompletionDate, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -113,12 +113,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], educationCompletionDate }
+    service.category[index] = { ...service.category[index], educationCompletionDate }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setTitle: (store, title, categoryIndex, i) => {
+  setTitle: (store, title, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -133,15 +133,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       title,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setServiceType: (store, serviceType, categoryIndex, i) => {
+  setServiceType: (store, serviceType, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -156,15 +156,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       serviceType,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setDeliveryFormat: (store, deliveryFormat, categoryIndex, i) => {
+  setDeliveryFormat: (store, deliveryFormat, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -179,15 +179,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       deliveryFormat,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setDuration: (store, duration, categoryIndex, i) => {
+  setDuration: (store, duration, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -202,15 +202,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       duration,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setMinuteHoursDays: (store, minuteHoursDays, categoryIndex, i) => {
+  setMinuteHoursDays: (store, minuteHoursDays, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -225,15 +225,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       minuteHoursDays,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setMeaningService: (store, meaningService, categoryIndex, i) => {
+  setMeaningService: (store, meaningService, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -248,15 +248,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       meaningService,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setServiceFiles: (store, files, categoryIndex, i) => {
+  setServiceFiles: (store, files, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -271,15 +271,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       files,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setPaymentFormat: (store, paymentFormat, categoryIndex, i) => {
+  setPaymentFormat: (store, paymentFormat, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -294,15 +294,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       paymentFormat,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setPrice: (store, price, categoryIndex, i) => {
+  setPrice: (store, price, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -317,15 +317,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       price,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setFrom: (store, from, categoryIndex, i) => {
+  setFrom: (store, from, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -340,15 +340,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       from,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setBefore: (store, before, categoryIndex, i) => {
+  setBefore: (store, before, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -363,15 +363,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       before,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setDayWeekMonthYearList: (store, dayWeekMonthYearList, categoryIndex, i) => {
+  setDayWeekMonthYearList: (store, dayWeekMonthYearList, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -386,8 +386,8 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       dayWeekMonthYearList,
     }
     localStorage.setItem("service", JSON.stringify(service))
@@ -440,7 +440,7 @@ const serviceActions = {
     store.setState({ service })
 
   },
-  setDeleteServices: (store, categoryIndex, i) => {
+  setDeleteServices: (store, categoryIndex, index) => {
 
     function removeObjectByIndex(arr, index) {
       if (index >= 0 && index < arr.length) {
@@ -464,14 +464,14 @@ const serviceActions = {
 
     let updatedService = removeObjectByIndex(
       service.category[categoryIndex].services,
-      i
+      index
     )
     service.category[categoryIndex].services = updatedService
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setDeleteCategory: (store, i) => {
+  setDeleteCategory: (store, index) => {
 
     function removeObjectByIndex(arr, index) {
       if (index >= 0 && index < arr.length) {
@@ -486,13 +486,13 @@ const serviceActions = {
       service.category = []
     }
 
-    let updatedCategory = removeObjectByIndex(service.category, i)
+    let updatedCategory = removeObjectByIndex(service.category, index)
     service.category = updatedCategory
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setChangeStatusCategory: (store, status, i) => {
+  setChangeStatusCategory: (store, status, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -500,12 +500,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], status }
+    service.category[index] = { ...service.category[index], status }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setChangeStatusServices: (store, status, categoryIndex, i) => {
+  setChangeStatusServices: (store, status, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -520,8 +520,8 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       status,
     }
     localStorage.setItem("service", JSON.stringify(service))
@@ -547,7 +547,7 @@ const serviceActions = {
     store.setState({ service })
 
   },
-  setClientFullName: (store, clientFullName, categoryIndex, i) => {
+  setClientFullName: (store, clientFullName, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -562,15 +562,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       clientFullName,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setCommunication: (store, communication, categoryIndex, i) => {
+  setCommunication: (store, communication, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -585,15 +585,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       communication,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setPhone: (store, phone, categoryIndex, i) => {
+  setPhone: (store, phone, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -608,15 +608,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       phone,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setChangeDocumentStatusCategory: (store, documentStatus, i) => {
+  setChangeDocumentStatusCategory: (store, documentStatus, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -624,12 +624,12 @@ const serviceActions = {
       service.category = []
     }
 
-    service.category[i] = { ...service.category[i], documentStatus }
+    service.category[index] = { ...service.category[index], documentStatus }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setChangeDocumentStatusServices: (store, documentStatus, categoryIndex, i) => {
+  setChangeDocumentStatusServices: (store, documentStatus, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -644,15 +644,15 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       documentStatus,
     }
     localStorage.setItem("service", JSON.stringify(service))
     store.setState({ service })
 
   },
-  setServiceReviewsFiles: (store, reviewsFiles, categoryIndex, i) => {
+  setServiceReviewsFiles: (store, reviewsFiles, categoryIndex, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -667,8 +667,8 @@ const serviceActions = {
       category[categoryIndex].services = []
     }
 
-    service.category[categoryIndex].services[i] = {
-      ...service.category[categoryIndex].services[i],
+    service.category[categoryIndex].services[index] = {
+      ...service.category[categoryIndex].services[index],
       reviewsFiles,
     }
     localStorage.setItem("service", JSON.stringify(service))
@@ -684,7 +684,7 @@ const serviceActions = {
     store.setState({ service })
 
   },
-  setCertificatesFiles: (store, certificatesFiles, i) => {
+  setCertificatesFiles: (store, certificatesFiles, index) => {
 
     const service = JSON.parse(localStorage.getItem("service")) || {}
 
@@ -692,7 +692,7 @@ const serviceActions = {
       service.category = [];
     }
 
-    service.category[i] = { ...service.category[i], certificatesFiles }
+    service.category[index] = { ...service.category[index], certificatesFiles }
     localStorage.setItem('service', JSON.stringify(service));
     store.setState({ service })
 

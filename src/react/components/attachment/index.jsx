@@ -143,8 +143,8 @@ const Attachment = ({
             
         ) : (files && multiple) ? (
             <div className = {`${ s.attachment__block__multiple }`}>
-              { files.map((file, i) => (
-                <div key = {i} className = {`${ s.attachment__block__multiple__preview }`}>
+              { files.map((file, index) => (
+                <div key = {index} className = {`${ s.attachment__block__multiple__preview }`}>
 
                   <img src = { file } alt = "Preview" className = {`${ s.image }`} />
 
