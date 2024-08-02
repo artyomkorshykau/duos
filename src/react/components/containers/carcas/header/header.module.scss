@@ -128,55 +128,16 @@
 
 }
 
-.circles_container {
-
-  z-index: 115;
-  top: -50%;
-  transform: translateY(100%);
-  top: $apx-260;
-  left: $apx-24;
-  right: 0;
-  margin: auto;
-  width: $apx-128;
-  height: $apx-65;
-  transform: scale(10);
-  overflow: hidden !important;
-  border-bottom-left-radius: $apx-1900;
-  border-bottom-right-radius: $apx-1900;
-
-  &--appear { animation: fadeInSlow 2s; }
-  &--disappear { animation: fadeOutSlow 2s; }
-
-}
-
-.green_circle,
-.blue_circle {
-
-  transform: scale(1) !important;
-  filter: blur($apx-55);
-  opacity: 0.75;
-  top: $apx-350;
-  left: $apx-300;
-  border-radius: 100%;
-  transform: rotate(0deg);
-  animation: rotate 9s 30 linear;
-  transform-origin: $apx-200 $apx-200;
-  position: absolute !important;
-
-}
-
 .green_circle {
 
-  box-shadow: 0 0 $apx-236 $apx-228 var(--color-accent-green);border: 1px solid red;
-
-}
-
-.blue_circle {
-
-  top: $apx-400;
-  left: $apx-450;
-  box-shadow: 0 0 $apx-236 $apx-228 #008cc5;
-
+  position: absolute;    
+  top: 105%;
+  left: 50%;    
+  width: 0;
+  height: 0;      
+  animation: greenShadowMoveAround 9s linear infinite;
+  box-shadow: -$apx-30 0px $apx-80 $apx-35 rgba(0, 242, 128, 1);
+   
 }
 
 .auth {
@@ -203,6 +164,7 @@
   &-back {
 
     display: none !important;
+    overflow: hidden;
 
     &--opened {
 

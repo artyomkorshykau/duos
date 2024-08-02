@@ -95,18 +95,11 @@ const Header = ({
 
       <div className = {`${ s['auth-back'] } ${ isAuthBackOpened && s['auth-back--opened'] } ${ s.white_blur } absolute`}/>
 
-      <div className = {`flex items-center justify-center ${ s['auth-back'] } ${ showSignInPopup && s['auth-back--opened'] } ${ s.circles_container } ${ showSignInPopup ? s['circles_container--appear'] : s['circles_container--disappear'] } absolute`}>
-        
-        <div className = {`${ s.circles_container__blue_circle } absolute`}/>
+      <div className = {`${ s['auth-back'] } ${ isAuthBackOpened && s['auth-back--opened'] } ${ s.logocircle } absolute`} >  
 
-        <div className = {`${ s.circles_container__green_circle } absolute`}/>
-
-        <div className = {`${ s.blue_circle } absolute`}/>
         <div className = {`${ s.green_circle } absolute`}/>
 
       </div>
-
-      <div className = {`${ s['auth-back'] } ${ isAuthBackOpened && s['auth-back--opened'] } ${ s.logocircle } absolute`}/>
 
       { isAuthBackOpened
       
