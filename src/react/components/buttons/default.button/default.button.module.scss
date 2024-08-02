@@ -8,22 +8,107 @@
   border: unset;
   border-radius: $apx-40;
   padding: $apx-12 $apx-18;
-  background: var(--color-gradient-blue-main);
   white-space: nowrap;
-  animation: returnButtonBackground 0.25s forwards;
-
-  &:hover,
-  &:focus {
-  
-    animation: changeButtonBackground 0.15s forwards;
-  
-  }
+  p { opacity: 1; }
 
   &__name {
   
     font-weight: 600;
     color: var(--color-bw-white);
   
+  }
+
+  &__gray {
+  
+    animation: none !important;
+    background: var(--color-accent-blue-100) !important;
+    .button__name { color: var(--color-accent-blue-700) !important; }
+    p { opacity: 1; }
+    &:hover,
+    &:focus {
+    
+      background: var(--color-accent-blue-200) !important;
+    
+    }
+    &:active {
+
+      p { opacity: 0.8; }
+
+    }
+    &:disabled {
+
+      background: var(--color-accent-background) !important;
+      cursor: default;
+
+      p {
+
+        color: var(--color-accent-black-500) !important;   
+
+      }
+
+    }
+  
+  }
+
+  &__small {
+  
+    height: $apx-31 !important;
+
+    .button__name {
+
+      font-size: $apx-14 !important;
+      line-height: $apx-18 !important;
+      p { opacity: 1; }
+      &:active {
+
+        p { opacity: 0.8; }
+  
+      }
+
+    }
+    
+  }
+
+  &__default {
+
+    background: var(--color-gradient-blue-main);
+    animation: returnButtonBackground 0.25s forwards;
+
+    &:hover,
+    &:focus {
+    
+      animation: changeButtonBackground 0.15s forwards;
+    
+    }
+
+    &:not(&:hover) { animation: none; }
+
+    &:active {
+
+      p { opacity: 0.8; }
+
+    }
+
+    &:disabled {
+
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+            radial-gradient(100% 191.56% at 0% 100%, #18009E 0%, #1A97E2 80%, #11E3E3 100%) !important;
+      cursor: default;
+
+    }
+
+  }
+
+  &__delete {
+
+    background-color: var(--color-notice-error-500) !important;
+
+  }
+
+  &__full {
+
+    width: 100%;
+    
   }
 
 }

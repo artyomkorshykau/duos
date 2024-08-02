@@ -9,11 +9,12 @@ const HeaderSignPanel = ({
   authorized = false,
   quizHadCompleted = false,
   signIn = () => {},
-  signUp = () => {}
+  signUp = () => {},
+  status
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal();
+  const [ globalState, globalActions ] = useGlobal()
 
   function sendQuiz() { alert('закончить анкету') }
 
@@ -59,7 +60,7 @@ const HeaderSignPanel = ({
               <DefaultButton
 
                 name = "Закончить анкету"
-                className = {`${ s.button } ${ s.button__quiz } ${ globalState.user_role === "expert" && s['button__quiz--opened'] }`}
+                className = {`${ s.button } ${ s.button__quiz } ${ globalState.user.userRole === "expert" && s['button__quiz--opened'] }`}
                 action = { () => sendQuiz() }
 
               />
@@ -69,6 +70,7 @@ const HeaderSignPanel = ({
             <HeaderAuthPanel
 
               quizHadCompleted = { quizHadCompleted }
+              status = { status }
 
             />
 

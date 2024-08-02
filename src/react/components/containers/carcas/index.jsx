@@ -5,10 +5,11 @@ import s from "./carcas.module.scss";
 const Carcas = ({
 
   authorized = false,
+  children
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal();
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -17,9 +18,11 @@ const Carcas = ({
       <Header
 
         authorized = { authorized }
-        userData = { globalState.userData }
+        userData = { globalState.user }
 
       />
+
+      { children }
 
     </div>
 

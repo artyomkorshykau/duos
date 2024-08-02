@@ -1,0 +1,170 @@
+@import "@/styles/apx.scss";
+
+.attachment {
+
+  display: flex;
+  flex-direction: column;
+  gap: $apx-32;
+
+  &__block {
+
+    position: relative;
+    overflow: hidden;
+
+    &__label {
+
+      height: 100%;
+      width: 100%;
+      display: block;
+      border: 2px dashed #D1E3F7;
+      border-radius: $apx-28;
+
+      &__wrapper {
+
+        display: flex;
+        flex-direction: column;
+        gap: $apx-12;
+        height: 100%;
+        align-items: center;
+        justify-content: center;  
+        padding: $apx-24;
+        position: relative;
+
+        &__input {
+
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+
+        }
+
+        &__info {
+
+          display: flex;
+          flex-direction: column;
+          gap: $apx-4;
+          font-size: $apx-13;
+          font-weight: 600;
+          line-height: $apx-17;
+          color: var(--color-accent-black-500);
+          text-align: center;
+
+          &__format {
+
+            opacity: 0.5;
+
+          }
+
+
+        }
+
+        .attachment__button{
+
+          gap: $apx-8;
+          z-index: 0;
+
+        }
+
+      }
+
+    }
+
+    &__imagePreview {
+
+      height: 100%;
+
+      .image {
+
+        border-radius: $apx-28;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+
+      }
+
+      .icon {
+
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: $apx-16;
+        height: $apx-56;
+        width: $apx-56;
+          
+      }
+      
+    }
+
+    &__multiple {
+
+      display: flex;
+      gap: 20px;
+
+      &__preview {
+
+        width: $apx-180;
+        height: $apx-180;
+        position: relative;
+
+        .image {
+
+          border-radius: $apx-28;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+
+        }
+
+        .icon {
+
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          margin: $apx-16;
+          height: $apx-56;
+          width: $apx-56;
+            
+        }
+
+      }
+    } 
+
+  }
+
+  &__big {
+
+    height: $apx-280;
+
+  }
+
+  &__small {
+
+    height: $apx-180;
+    
+  }
+
+  &__text {
+        
+    color: var(--color-accent-black-500);
+    font-size: $apx-13;
+    font-weight: 600;
+    line-height: $apx-17;
+    text-align: center;
+
+  }
+
+}
+
+.error {
+
+  color: var(--color-notice-error-500);
+  font-size: $apx-13;
+  font-weight: 600;
+  line-height: $apx-17;
+  text-align: center;
+  opacity: 1;
+
+}

@@ -1,0 +1,89 @@
+@import "@/styles/apx.scss";
+
+.profile {
+
+  width: $apx-1000;
+  background-color: var(--color-bw-white);
+  border-radius: $apx-32;
+  padding: $apx-32;
+  display: flex;
+  flex-direction: column;
+  gap: $apx-32;
+
+  &__section {
+
+    display: flex;
+    flex-direction: column;
+    gap: $apx-4;
+
+    &__title {
+
+      font-weight: 700;
+      color: var(--color-accent-blue-700);
+
+    }
+
+    &__description {
+
+      font-weight: 500;
+      color: var(--color-accent-black-900)
+
+    }
+
+    &__filedsWrapper {
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: $apx-8;
+      margin-top: $apx-12;
+
+      &__filed {
+
+        max-width: $apx-305 !important;
+        height: $apx-64 !important;
+        margin: 0 !important;
+
+        input, select {
+
+          height: 100%;
+
+        }
+
+      }
+
+    }
+
+    &__filedsGrid {
+
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: $apx-8;
+      margin-top: $apx-12;
+
+      &__filed {
+
+        max-width: $apx-305 ;
+        height: $apx-64 !important;
+        margin: 0 !important;
+
+      }
+
+      &__textArea {
+        height: $apx-110 !important;
+        margin: 0 !important;
+      }
+
+    }
+
+    &__services {
+
+      margin-top: $apx-12;
+      display: flex;
+      flex-direction: column;
+      gap: $apx-12;
+
+    }
+
+  }
+
+}
