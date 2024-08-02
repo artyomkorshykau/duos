@@ -1,0 +1,33 @@
+@import "@/styles/apx.scss";
+
+.publicationsWrapper {
+
+  display: flex;
+  flex-direction: column;
+  gap: $apx-32;
+  top: 0;
+  max-width: $apx-1008;
+
+  &__title {
+
+    font-weight: 700;
+    color: var(--color-accent-blue-700);
+    margin-bottom: $apx-4;
+
+  }
+
+  &__description {
+
+    font-weight: 500;
+    color: var(--color-accent-black-900);
+    margin-bottom: $apx-12;
+
+  }
+
+  textarea {
+
+    min-height: $apx-110;
+
+  }
+
+}
