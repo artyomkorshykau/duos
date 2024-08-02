@@ -6,11 +6,13 @@ import quizState from "@/store/states/quiz"
 import quizActions from "@/store/actions/quiz"
 import getInitialServiceState from "./states/service"
 import serviceActions from "./actions/service"
+import publicationsState from "@/store/states/publications";
 
 const initialState = {
   profile: getInitialProfileState(),
   service: getInitialServiceState(),
   quiz: quizState,
+  publications: publicationsState,
   user,
 }
 
