@@ -1,5 +1,6 @@
 'use client'
  
+import cssIf from '@/scripts/helpers/css.if';
 import s from './textarea.module.scss';
 import { useEffect, useState, useRef } from 'react';
 
@@ -106,7 +107,7 @@ const Textarea = ( props ) => {
     
     <div  
 
-      className = { `${ s.textfield }  ${ className } ` }
+      className = {`${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}
       ref={ textfieldDivRef }
       style={ { height: `${ height }px` } } 
       
