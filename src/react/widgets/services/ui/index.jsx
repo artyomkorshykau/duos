@@ -16,9 +16,9 @@ const Services = () => {
           
       <CompletedDirections />
 
-        {service.category.map(( category, i ) => (
+        {service.category.map(( category, index ) => (
 
-          <AccordionService category = { category } key={ i } index = { i } />
+          <AccordionService category = { category } key={ index } index = { index } />
            
         ))}
 

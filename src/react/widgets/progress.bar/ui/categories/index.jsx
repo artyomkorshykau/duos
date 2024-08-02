@@ -31,7 +31,7 @@ const Categories = ( props ) => {
 
     <div className = {`${ s.progressBar__steps }`}>
 
-      { QuizSteps.map((category, i) => {
+      { QuizSteps.map((category) => {
 
         const serviceActive = (activeStep === "Услуги" || activeStep === "Документы") && service.progress === 1
         let fill = (activeStep === category.title && serviceActive) || (category.id < activeId) ? '#18009E' : activeStep === category.title ? '#E1EBF9' : '#FFFFFF'

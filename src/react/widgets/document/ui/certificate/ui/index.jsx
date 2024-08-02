@@ -6,7 +6,7 @@ import useGlobal from '@/store';
 
 const Certificate = ({
 
-  i
+  index
   
 }) => {
 
@@ -28,8 +28,8 @@ const Certificate = ({
 
         <Attachment
           accept = ".png, .jpg, .tiff"
-          files = { globalState.service.category?.[i]?.certificatesFiles }
-          onChange={ (files) => globalActions.service.setCertificatesFiles( files, i ) }
+          files = { globalState.service.category?.[index]?.certificatesFiles }
+          onChange={ (files) => globalActions.service.setCertificatesFiles( files, index ) }
           multiple
         /> 
 

@@ -6,7 +6,7 @@ import useGlobal from '@/store';
 
 const Education = ({
 
-  i
+  index
 
 }) => {
 
@@ -24,8 +24,8 @@ const Education = ({
           
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Образование по направлению'}
-          value = { globalState.service.category?.[i]?.education }
-          onChange={(e) => globalActions.service.setEducation(e.target.value, i)}
+          value = { globalState.service.category?.[index]?.education }
+          onChange={(e) => globalActions.service.setEducation(e.target.value, index)}
           
         />
 
@@ -33,8 +33,8 @@ const Education = ({
           
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Название организации, проводившей обучение'}
-          value = { globalState.service.category?.[i]?.educationOrganizationName }
-          onChange={(e) => globalActions.service.setEducationOrganizationName(e.target.value, i)}
+          value = { globalState.service.category?.[index]?.educationOrganizationName }
+          onChange={(e) => globalActions.service.setEducationOrganizationName(e.target.value, index)}
           
         />
         
@@ -42,8 +42,8 @@ const Education = ({
           
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Название курса'}
-          value = { globalState.service.category?.[i]?.educationCourseName }
-          onChange = { (e) => globalActions.service.setEducationCourseName( e.target.value, i )}
+          value = { globalState.service.category?.[index]?.educationCourseName }
+          onChange = { (e) => globalActions.service.setEducationCourseName( e.target.value, index )}
 
         />
 
@@ -51,8 +51,8 @@ const Education = ({
           
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'ФИО автора курса'}
-          value = { globalState.service.category?.[i]?.educationCourseAuthor }
-          onChange={(e) => globalActions.service.setEducationCourseAuthor(e.target.value, i)}
+          value = { globalState.service.category?.[index]?.educationCourseAuthor }
+          onChange={(e) => globalActions.service.setEducationCourseAuthor(e.target.value, index)}
           
         />
 
@@ -60,8 +60,8 @@ const Education = ({
           
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Длительность обучения, дней'}
-          value = { globalState.service.category?.[i]?.educationDuration }
-          onChange={(e) => globalActions.service.setEducationDuration(e.target.value, i)}
+          value = { globalState.service.category?.[index]?.educationDuration }
+          onChange={(e) => globalActions.service.setEducationDuration(e.target.value, index)}
           
         />
 
@@ -70,8 +70,8 @@ const Education = ({
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Дата окончания обучения'}
           type = { 'date' }
-          value = { globalState.service.category?.[i]?.educationCompletionDate }
-          onChange={(e) => globalActions.service.setEducationCompletionDate(e.target.value, i)}
+          value = { globalState.service.category?.[index]?.educationCompletionDate }
+          onChange={(e) => globalActions.service.setEducationCompletionDate(e.target.value, index)}
           
         />
 

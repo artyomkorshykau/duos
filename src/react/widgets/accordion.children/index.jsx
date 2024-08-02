@@ -10,7 +10,7 @@ const AccordionChildren = ({
   
   el,
   categoryIndex,
-  i,
+  index,
   isDelete,
   deletePopupAction,
   title,
@@ -41,7 +41,7 @@ const AccordionChildren = ({
       <div 
         className = {`${ s.services__parent } ${ cssIf( status === 'Filled', s.services__parent__green ) }`}
         onClick={() => {
-          changeStatus && changeStatus(categoryIndex, i)
+          changeStatus && changeStatus(categoryIndex, index)
           setOpen(!open)
         }}
       >
@@ -86,7 +86,7 @@ const AccordionChildren = ({
 
       {open && (
 
-        content( i, categoryIndex, setOpen )
+        content( index, categoryIndex, setOpen )
         
       )}
 
@@ -100,7 +100,7 @@ const AccordionChildren = ({
         type = "Услугу"
         action = {() => {
           closePopups()
-          deletePopupAction(categoryIndex, i)
+          deletePopupAction(categoryIndex, index)
         }}
 
       />
