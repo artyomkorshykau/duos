@@ -56,14 +56,18 @@ const Progress = ({
 
   useEffect(() => {
 
-    globalActions.service.setChangeProgress(progress)
+    if (activeId === 2 && activeId === id) {
+      
+      globalActions.service.setChangeProgress(progress)
+      
+    }
 
   }, [ progress ])
 
   return (
 
     <div
-      style = { { width: `calc(10.520766vw * ${progress})` } }
+      style = { { width: `calc(${ id === 1 ? '8.85411vw' : '10.520766vw'} * ${progress})` } }
       className = {`${ s.progressBar__bar } ${ cssIf(check || id < activeId, s.progressBar__bar__check) } ${cssIf( id === 1, s.progressBar__bar__first ) } ${ cssIf(id === activeId, s.progressBar__bar__gradient) }`}
     />
   )
