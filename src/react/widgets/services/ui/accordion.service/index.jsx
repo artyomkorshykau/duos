@@ -127,12 +127,15 @@ const AccordionService = ({
       isDelete = { service.category.length > 1 }
       content = { () => content(index) }
       title = { title }
+      description = "Выберите направление ниже или предложите свое, затем заполните услуги в рамках конкретно этого направления"
       type = "Направление"
       deletePopupAction = {() => globalActions.service.setDeleteCategory(index)}
       addService = {(categoryIndex) =>
         globalActions.service.setNewServices(categoryIndex)
       }
       changeStatus = { (index) =>  changeStatus(index) }
+      titleChildren = 'Услуги в рамках направления'
+      status = { category.status }
     >
       {category?.services?.map((el, i) => (
         <AccordionServiceChildren

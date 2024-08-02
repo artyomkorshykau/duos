@@ -148,3 +148,29 @@ export const directionList = [
   },
 
 ]
+
+export const communicationList = [
+
+  {
+
+    id: 0,
+    value: "Telegram",
+    label: "Telegram",
+
+  },
+  {
+
+    id: 1,
+    value: "WhatsApp",
+    label: "WhatsApp",
+
+  },
+  {
+
+    id: 2,
+    value: "По номеру",
+    label: "По номеру",
+    
+  }
+
+]

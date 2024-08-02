@@ -31,6 +31,7 @@ const AccordionServiceChildren = ({
             onChange = {(files) =>
               globalActions.service.setServiceFiles(files, categoryIndex, i)
             }
+            description = "Загрузите картинку к услуге, она будет отображаться в качестве обложки услуги"
           />
 
           {el.status !== "Filled" && (
@@ -147,6 +148,7 @@ const AccordionServiceChildren = ({
         content(i, categoryIndex, setOpen)
       }
       changeStatus = { (categoryIndex, i) =>  changeStatus(categoryIndex, i) }
+      status = { el.status }
     />
   )
 

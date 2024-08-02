@@ -10,7 +10,7 @@ const ChoiceDirection = ({
 
 }) => {
 
-  const [globalState, globalActions] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 

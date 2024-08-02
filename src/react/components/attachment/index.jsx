@@ -15,6 +15,7 @@ const Attachment = ({
   onChange,
   typeFiles = [ 'image/png', 'image/tiff', 'image/jpeg' ],
   maxSize = 10,
+  description,
   ...rest
 
 }) => {
@@ -148,7 +149,7 @@ const Attachment = ({
 
       </div>
             
-      <p className = {`${ s.attachment__text }`}>Загрузите картинку к услуге, она будет отображаться в качестве обложки услуги</p>
+      { description && <p className = {`${ s.attachment__text }`}>{ description }</p> }
       
     </div>
 
