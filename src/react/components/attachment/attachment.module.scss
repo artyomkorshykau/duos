@@ -8,9 +8,6 @@
 
   &__block {
 
-    border: 2px dashed #D1E3F7;
-    height: $apx-280;
-    border-radius: $apx-28;
     position: relative;
     overflow: hidden;
 
@@ -19,6 +16,8 @@
       height: 100%;
       width: 100%;
       display: block;
+      border: 2px dashed #D1E3F7;
+      border-radius: $apx-28;
 
       &__wrapper {
 
@@ -91,12 +90,60 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        margin: 16px;
+        margin: $apx-16;
+        height: $apx-56;
+        width: $apx-56;
           
       }
       
     }
 
+    &__multiple {
+
+      display: flex;
+      gap: 20px;
+
+      &__preview {
+
+        width: $apx-180;
+        height: $apx-180;
+        position: relative;
+
+        .image {
+
+          border-radius: $apx-28;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+
+        }
+
+        .icon {
+
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          margin: $apx-16;
+          height: $apx-56;
+          width: $apx-56;
+            
+        }
+
+      }
+    } 
+
+  }
+
+  &__big {
+
+    height: $apx-280;
+
+  }
+
+  &__small {
+
+    height: $apx-180;
+    
   }
 
   &__text {

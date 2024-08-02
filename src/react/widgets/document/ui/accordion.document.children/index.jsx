@@ -1,5 +1,5 @@
 import useGlobal from '@/store'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AccordionChildren from '@/react/widgets/accordion.children';
 import Recommendation from '../recommendation/ui';
 import s from './accordion.document.children.module.scss'
@@ -14,6 +14,9 @@ const AccordionDocumentChildren = ({
 
 }) => {
   const [ globalState, globalActions ] = useGlobal()
+  
+  const [ filled, setFilled ] = useState( false )
+
   const { service } = globalState
 
   const content = (i, categoryIndex ) => {
@@ -22,7 +25,7 @@ const AccordionDocumentChildren = ({
 
         <Recommendation  categoryIndex = { categoryIndex } i = { i }/>
         
-        <Reviews />
+        <Reviews categoryIndex = { categoryIndex } i = { i }/>
         
       </div>
     )
@@ -58,12 +61,34 @@ const AccordionDocumentChildren = ({
   }, [ el.documentStatus ])
 
   useEffect(() => {
-    if ( phone &&  clientFullName && communication && reviewsFiles?.length > 3 && el.documentStatus !== "New" ) {
-      globalActions.service.setChangeDocumentStatusServices("Filled", categoryIndex, i)
-    } else if(el.documentStatus !== "New") {
-      globalActions.service.setChangeDocumentStatusServices("NotFinished", categoryIndex, i)
+    if ( phone &&  clientFullName && communication && reviewsFiles?.length > 2 && el.documentStatus !== "New" ) {
+      
+      setFilled(true)
+
+    } else if ( el.documentStatus !== "New" ) {
+      
+      setFilled(false)
+
     }
   }, [ phone, clientFullName, communication, reviewsFiles ])
+  
+  useEffect(() => {
+    
+    if (el.documentStatus !== "New") {
+
+      if (filled) {
+
+        globalActions.service.setChangeDocumentStatusServices("Filled", categoryIndex, i)
+
+      } else {
+
+        globalActions.service.setChangeDocumentStatusServices("NotFinished", categoryIndex, i)
+
+      } 
+
+    }
+    
+  }, [filled])
 
   return (
     <AccordionChildren

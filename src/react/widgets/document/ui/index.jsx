@@ -79,8 +79,8 @@ const Document = () => {
         
         <Attachment
           accept = ".png, .jpg, .tiff"
-          files = { [] }
-          onChange = {() => { }}
+          files = { files }
+          onChange = {(files) => globalActions.service.setChangeFilesPassport(files)}
           multiple
         />
       

@@ -79,7 +79,7 @@ const AccordionDocument = ({
 
       <>
         
-        <Certificate />
+        <Certificate i = { i }/>
         
       </>
       

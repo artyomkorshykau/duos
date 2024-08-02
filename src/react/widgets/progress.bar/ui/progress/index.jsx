@@ -32,7 +32,7 @@ const Progress = ({
   
   const { service } = globalState
 
-  const { category } = service
+  const { category, passport } = service
   
   const [ progress, setProgress ] = useState(0)
 
@@ -55,9 +55,9 @@ const Progress = ({
 
     } else if (activeId === 4 && activeId === id) {
 
+      const passportStatus = passport.status
       const statuses = category.map( item => item.documentStatus );
-
-      const progress = calculateProgress( statuses );
+      const progress = calculateProgress( [...statuses, passportStatus] );
 
       setProgress(progress)
 

@@ -32,6 +32,7 @@ const AccordionServiceChildren = ({
               globalActions.service.setServiceFiles(files, categoryIndex, i)
             }
             description = "Загрузите картинку к услуге, она будет отображаться в качестве обложки услуги"
+            size = "big"
           />
 
           {el.status !== "Filled" && (

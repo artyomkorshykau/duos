@@ -652,6 +652,51 @@ const serviceActions = {
     store.setState({ service })
 
   },
+  setServiceReviewsFiles: (store, reviewsFiles, categoryIndex, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = []
+    }
+    const category = service.category
+    if (!category?.[categoryIndex]) {
+      category[categoryIndex] = {}
+    }
+    if (!category?.[categoryIndex]?.services) {
+      category[categoryIndex].services = []
+    }
+
+    service.category[categoryIndex].services[i] = {
+      ...service.category[categoryIndex].services[i],
+      reviewsFiles,
+    }
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setChangeFilesPassport: (store, files) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    service.passport.files = files
+    localStorage.setItem("service", JSON.stringify(service))
+    store.setState({ service })
+
+  },
+  setCertificatesFiles: (store, certificatesFiles, i) => {
+
+    const service = JSON.parse(localStorage.getItem("service")) || {}
+
+    if (!service?.category) {
+      service.category = [];
+    }
+
+    service.category[i] = { ...service.category[i], certificatesFiles }
+    localStorage.setItem('service', JSON.stringify(service));
+    store.setState({ service })
+
+  },
 
 }
 

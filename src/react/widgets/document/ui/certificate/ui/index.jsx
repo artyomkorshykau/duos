@@ -2,11 +2,12 @@
 
 import Attachment from '@/react/components/attachment';
 import s from '../../document.module.scss'
-import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
 
 const Certificate = ({
 
+  i
+  
 }) => {
 
   const [ globalState, globalActions ] = useGlobal()
@@ -27,8 +28,8 @@ const Certificate = ({
 
         <Attachment
           accept = ".png, .jpg, .tiff"
-          files = { [] }
-          onChange={() => { }}
+          files = { globalState.service.category?.[i]?.certificatesFiles }
+          onChange={ (files) => globalActions.service.setCertificatesFiles( files, i ) }
           multiple
         /> 
 

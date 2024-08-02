@@ -74,9 +74,13 @@ const AccordionService = ({
       services.every((item) => item.status === "Filled") &&
       category.status !== "New"
     ) {
+
       setFilled(true)
-    } else if (category.status !== "New") {
+
+    } else if ( category.status !== "New" ) {
+
       setFilled(false)
+
     }
   }, [
     directionWorkExperience,
