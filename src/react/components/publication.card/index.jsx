@@ -11,7 +11,9 @@ const PublicationCard = ( props ) => {
     photo,
     status,
     title,
-    description
+    description,
+    action,
+    addNewPublication
 
   } = props
 
@@ -65,6 +67,7 @@ const PublicationCard = ( props ) => {
             name = { 'Открыть' }
             gray
             className = { `${ s.card__content__button  }` }
+            action = { action }
 
           />
 
@@ -87,6 +90,7 @@ const PublicationCard = ( props ) => {
         className = { `${ s.create_card__add_button }` }
         icon = { <Cross fill = { '#18009E' } /> }
         positionIcon = "right"
+        action = { addNewPublication }
 
       />
 
