@@ -16,6 +16,8 @@ const AboutYourselfContent = ( props ) => {
 
   const [textareas, setTextareas] = useState( [] );
 
+  console.log(photos)
+
   useEffect(() => {
 
     const initialTextareas = publications.categories[index].profileInfo.map(section => section.text || '');
@@ -75,7 +77,7 @@ const AboutYourselfContent = ( props ) => {
 
       }
 
-      { isShowProgressBar &&
+      { isShowProgressBar || photos &&
 
         <ProgressBar
 

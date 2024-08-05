@@ -11,7 +11,7 @@ const calculateProgress = (statuses) => {
     'Filled': 1,
     'NotFinished': 0.1,
     'New': 0,
-    'Не заполнено': 0
+    'NotFilled': 0
   };
 
   const totalWeight = statuses.length
@@ -30,10 +30,11 @@ const Progress = ({
 
   const [ globalState, globalActions ] = useGlobal()
   
-  const { service } = globalState
+  const { service, publications } = globalState
 
   const { category, passport } = service
-  
+  const { categories } = publications
+
   const [ progress, setProgress ] = useState(0)
 
   useEffect(() => {
@@ -58,6 +59,14 @@ const Progress = ({
       const passportStatus = passport.status
       const statuses = category.map( item => item.documentStatus );
       const progress = calculateProgress([...statuses, passportStatus]);
+
+      setProgress(progress)
+
+    } else if ( activeId === 5 && activeId === id ) {
+
+      const statuses = categories.map( item => item.documentStatus );
+
+      const progress = calculateProgress( statuses );
 
       setProgress(progress)
 

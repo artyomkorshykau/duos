@@ -2,11 +2,9 @@ const publicationsActions = {
 
   setProfilePhoto: (store, files) => {
 
-    debugger
-
     const publications = JSON.parse(localStorage.getItem("publications")) || {}
 
-    publications.categories[0].photos = files
+    publications.categories[0].photos = [...publications.categories[0].photos, ...files]
     localStorage.setItem("publications", JSON.stringify(publications))
     store.setState({ publications })
 

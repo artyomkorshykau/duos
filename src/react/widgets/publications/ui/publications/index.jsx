@@ -7,8 +7,9 @@ import { v1 } from "uuid";
 
 const PublicationsContent = () => {
 
-  const [ globalState, globalStore ] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal()
   const { publications } = globalState;
+  const { publications:  publicationsAction} = globalActions
 
   return (
 
@@ -18,7 +19,7 @@ const PublicationsContent = () => {
 
         <PublicationCard
 
-          addNewPublication={ () => globalStore.publications.addNewPublication(
+          addNewPublication={ () => publicationsAction.addNewPublication(
 
             {
 
