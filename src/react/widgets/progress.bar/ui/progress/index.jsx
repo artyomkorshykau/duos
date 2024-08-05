@@ -11,7 +11,7 @@ const calculateProgress = (statuses) => {
     'Filled': 1,
     'NotFinished': 0.1,
     'New': 0,
-    'Не заполнено': 0
+    'NotFilled': 0
   };
 
   const totalWeight = statuses.length

@@ -21,7 +21,8 @@ const Attachment = ({
   maxSize = 10,
   description,
   size = 'small',
-  deleteMultipleFile
+  deleteMultipleFile,
+  maxLength = 5
 
 }) => {
   
@@ -84,9 +85,9 @@ const Attachment = ({
 
     const totalLength = (files?.length || 0) + filesArr.length;
     
-    if (totalLength > 5) {
+    if (totalLength > maxLength) {
 
-      const excessLength = totalLength - 5;
+      const excessLength = totalLength - maxLength;
       filesArr = filesArr.slice(0, -excessLength);
 
     }
@@ -191,7 +192,7 @@ const Attachment = ({
                 }}
                 
               >
-                {files.length < 5 && (
+                {files.length < maxLength && (
 
                   <SwiperSlide className = {`${ s.attachment__block__multiple__swiper__preview }`}>
 
