@@ -9,20 +9,20 @@ import PublicationsContent from "@/react/widgets/publications/ui/publications";
 
 const Publications = () => {
 
-  const {globalState } = usePublications()
+  const { globalState } = usePublications()
 
-  const content = (index) => {
+  const content = ( index ) => {
 
-    if( index === 0 ) return <AboutYourselfContent index = { index }/>
-    if( index === 1 ) return <PublicationsContent/>
+    if ( index === 0 ) return <AboutYourselfContent index={ index }/>
+    if ( index === 1 ) return <PublicationsContent/>
 
   }
 
   return (
 
-    <div className = {`${ s.publicationsWrapper }`}>
+    <div className={ `${ s.publicationsWrapper }` }>
 
-      { globalState.publications.categories.map( (category, index) => {
+      { globalState.publications.categories.map( ( category, index ) => {
 
         return (
 
@@ -44,7 +44,7 @@ const Publications = () => {
 
         )
 
-        })
+      } )
 
       }
 

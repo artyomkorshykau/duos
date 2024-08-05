@@ -1,17 +1,14 @@
 import useGlobal from "@/store";
-import AboutYourselfContent
-  from "@/react/widgets/publications/ui/about.yourself";
-import PublicationsContent from "@/react/widgets/publications/ui/publications";
 import { useEffect, useState } from "react";
 
 export const usePublications = () => {
 
   const [ globalState, globalActions ] = useGlobal()
   const { publications } = globalState
-  const [ filed, setFiled ] = useState(false)
-  const { photos } = publications.categories[0]
+  const [ filed, setFiled ] = useState( false )
+  const { photos } = publications.categories[ 0 ]
 
-  useEffect(() => {
+  useEffect( () => {
 
     if ( !!photos && photos.length > 0 ) {
 
@@ -23,17 +20,17 @@ export const usePublications = () => {
 
 
     }
-  }, [ photos ])
+  }, [ photos ] )
 
   useEffect( () => {
 
     if ( filed ) {
 
-      globalActions.publications.toggleDocumentStatus( 0,"Filled" )
+      globalActions.publications.toggleDocumentStatus( 0, "Filled" )
 
     } else {
 
-      globalActions.publications.toggleDocumentStatus( 0,"NotFilled" )
+      globalActions.publications.toggleDocumentStatus( 0, "NotFilled" )
     }
 
   }, [ filed ] )
