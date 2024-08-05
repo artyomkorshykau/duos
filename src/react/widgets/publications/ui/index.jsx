@@ -3,10 +3,20 @@
 import AccordionParent from "@/react/widgets/accordion.parent";
 import s from './publications.module.scss'
 import { usePublications } from "@/react/widgets/publications/model";
+import AboutYourselfContent
+  from "@/react/widgets/publications/ui/about.yourself";
+import PublicationsContent from "@/react/widgets/publications/ui/publications";
 
 const Publications = () => {
 
-  const {globalState, content} = usePublications()
+  const {globalState } = usePublications()
+
+  const content = (index) => {
+
+    if( index === 0 ) return <AboutYourselfContent index = { index }/>
+    if( index === 1 ) return <PublicationsContent/>
+
+  }
 
   return (
 

@@ -11,13 +11,6 @@ export const usePublications = () => {
   const [ filed, setFiled ] = useState(false)
   const { photos } = publications.categories[0]
 
-  const content = (index) => {
-
-    if( index === 0 ) return <AboutYourselfContent index = { index }/>
-    if( index === 1 ) return <PublicationsContent/>
-
-  }
-
   useEffect(() => {
 
     if ( !!photos && photos.length > 0 ) {
@@ -45,6 +38,6 @@ export const usePublications = () => {
 
   }, [ filed ] )
 
-  return { globalState, content }
+  return { globalState }
 
 }
