@@ -167,6 +167,8 @@ a:visited {
 .items-start { align-items: flex-start; }
 .items-center { align-items: center; }
 .self-center { place-self: center; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-24 { gap: $apx-24}
 
 //grid-стили
 .col-span-5 { grid-column: span 5 / span 5; }

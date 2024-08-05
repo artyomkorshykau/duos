@@ -130,7 +130,7 @@ const Attachment = ({
           })
           .catch((error) => {
             console.error("Error reading files", error);
-            setError('file-read');
+            setError('size');
           });  
         
       }

@@ -7,6 +7,7 @@ import Carcas from '@/react/components/containers/carcas';
 import Services from '@/react/widgets/services/ui';
 import School from '@/react/widgets/school/ui'
 import Document from '@/react/widgets/document/ui';
+import Publications from "@/react/widgets/publications/ui";
 
 export default function ProfilePage() {
 
@@ -37,6 +38,14 @@ export default function ProfilePage() {
 
       setStep( 'Документы' )
       setTitle('Документы')
+      setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
+
+    }
+
+    if( step === 'Документы' ) {
+
+      setStep( 'Публикации' )
+      setTitle('Публикации')
       setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
 
     }
@@ -80,6 +89,16 @@ export default function ProfilePage() {
       return (
 
         <Document />
+
+      )
+
+    }
+
+    if ( step === 'Публикации' ) {
+
+      return (
+
+        <Publications />
 
       )
 
