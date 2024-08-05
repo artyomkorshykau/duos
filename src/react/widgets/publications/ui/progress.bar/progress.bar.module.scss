@@ -14,7 +14,7 @@
     height: 100%;
     width: 0;
     background: var(--color-gradient-blue-main);
-    border-radius: $apx-40;
+    border-radius: $apx-40 0  0 $apx-40;
     transition: width 0.3s;
 
   }

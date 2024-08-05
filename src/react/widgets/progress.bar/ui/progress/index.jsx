@@ -2,6 +2,7 @@ import cssIf from '@/scripts/helpers/css.if';
 import useGlobal from '@/store';
 import { useEffect, useState } from 'react';
 import s from '../progress.bar.module.scss';
+import { log } from "next/dist/server/typescript/utils";
 
 const calculateProgress = (statuses) => {
 
@@ -72,7 +73,7 @@ const Progress = ({
 
     }
 
-  }, [ activeId, id, category ])
+  }, [ activeId, id, category, categories])
 
   useEffect(() => {
 
@@ -88,7 +89,7 @@ const Progress = ({
 
     <div
       
-      style = { { width: `calc(${ id === 1 ? '8.85411vw' : '10.520766vw'} * ${progress})` } }
+      style = { { width: `calc(${( id === 1 || id === 5) ? '8.85411vw' : '10.520766vw'} * ${progress})` } }
       className = {`${ s.progressBar__bar } ${ cssIf(check || id < activeId, s.progressBar__bar__check) } ${cssIf( id === 1, s.progressBar__bar__first ) } ${ cssIf(id === activeId, s.progressBar__bar__gradient) }`}
       
     />

@@ -11,7 +11,7 @@ import Publications from "@/react/widgets/publications/ui";
 
 export default function ProfilePage() {
 
-  const [ step, setStep ] = useState( 'Публикации' )
+  const [ step, setStep ] = useState( 'Профиль' )
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
 

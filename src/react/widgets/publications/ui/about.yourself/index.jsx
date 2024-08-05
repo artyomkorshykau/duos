@@ -16,8 +16,6 @@ const AboutYourselfContent = ( props ) => {
 
   const [textareas, setTextareas] = useState( [] );
 
-  console.log(photos)
-
   useEffect(() => {
 
     const initialTextareas = publications.categories[index].profileInfo.map(section => section.text || '');
@@ -35,6 +33,7 @@ const AboutYourselfContent = ( props ) => {
   };
 
   const isShowProgressBar = textareas.some( ( str ) => str !== '' )
+  const hasPhotos = photos && photos.length > 0;
 
   return (
 
@@ -63,7 +62,9 @@ const AboutYourselfContent = ( props ) => {
                 accept = ".png, .jpg, .tiff"
                 files = { photos }
                 onChange = {( files ) => globalActions.publications.setProfilePhoto( files )}
+                deleteMultipleFile = { ( indexPhoto ) => globalActions.publications.deleteProfilePhoto( indexPhoto ) }
                 multiple
+                maxLength = { 5 }
 
               />
 
@@ -77,11 +78,11 @@ const AboutYourselfContent = ( props ) => {
 
       }
 
-      { isShowProgressBar || photos &&
+      { (isShowProgressBar || hasPhotos) &&
 
         <ProgressBar
 
-        photos={ [ photos ] }
+        photos={ photos }
         textareas={ textareas }
         type="aboutYourselfContent"
 
