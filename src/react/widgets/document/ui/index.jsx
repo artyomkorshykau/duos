@@ -3,13 +3,11 @@ import useGlobal from '@/store'
 import AccordionDocument from './accordion.document'
 import AccordionParent from '../../accordion.parent'
 import Attachment from '@/react/components/attachment'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 const Document = () => {
 
   const [ globalState, globalActions ] = useGlobal()
-  
-  const [ filled, setFilled ] = useState( false  )
   
   const { service } = globalState;
 
@@ -45,33 +43,15 @@ const Document = () => {
 
     if ( files?.length && status !== "New" ) {
       
-      setFilled( true )
+      globalActions.service.setChangeStatusPassport("Filled")
 
     } else if ( status !== "New" ) {
 
-      setFilled( false )
+      globalActions.service.setChangeStatusPassport("NotFinished")
 
     }
 
   }, [ status, files ])
-  
-  useEffect(() => {
-    
-    if (status !== "New") {
-
-      if (filled) {
-
-        globalActions.service.setChangeStatusPassport("Filled")
-
-      } else {
-
-        globalActions.service.setChangeStatusPassport("NotFinished")
-
-      } 
-
-    }
-    
-  }, [filled])
 
   const content = (index) => {
 
@@ -81,7 +61,6 @@ const Document = () => {
           accept = ".png, .jpg, .tiff"
           files = { files }
           onChange = {(files) => globalActions.service.setChangeFilesPassport(files)}
-          multiple
         />
       
     )

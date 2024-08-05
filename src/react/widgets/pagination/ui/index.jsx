@@ -23,6 +23,10 @@ const Pagination = ({
 
       setDisabled( true )
 
+    } else if ( activeStep === "Документы" && service.progress !== 1 ) {
+
+      setDisabled( true )
+
     } else {
 
       setDisabled( false )
