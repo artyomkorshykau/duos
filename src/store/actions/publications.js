@@ -11,17 +11,6 @@ const publicationsActions = {
     }
 
     publications.categories[0].photos = [...publications.categories[0].photos, ...files]
-
-    if ( publications.categories[0].photos.length > 0 ) {
-
-      publications.categories[0].documentStatus = "Filled"
-
-    } else {
-
-      publications.categories[0].documentStatus = "NotFilled"
-
-    }
-
     localStorage.setItem("publications", JSON.stringify(publications))
     store.setState({ publications })
 
@@ -70,6 +59,17 @@ const publicationsActions = {
       publications.categories[1].documentStatus = "Filled"
 
     }
+
+    localStorage.setItem("publications", JSON.stringify(publications))
+    store.setState({ publications })
+
+  },
+
+  toggleDocumentStatus: (store, index, newStatus) => {
+
+    const publications = JSON.parse(localStorage.getItem("publications")) || {}
+
+    publications.categories[ index ].documentStatus = newStatus
 
     localStorage.setItem("publications", JSON.stringify(publications))
     store.setState({ publications })

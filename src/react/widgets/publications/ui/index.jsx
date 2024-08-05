@@ -2,21 +2,11 @@
 
 import AccordionParent from "@/react/widgets/accordion.parent";
 import s from './publications.module.scss'
-import PublicationsContent from "@/react/widgets/publications/ui/publications";
-import AboutYourselfContent
-  from "@/react/widgets/publications/ui/about.yourself";
-import useGlobal from "@/store";
+import { usePublications } from "@/react/widgets/publications/model";
 
 const Publications = () => {
 
-  const [ globalState ] = useGlobal()
-
-  const content = (index) => {
-
-    if( index === 0 ) return <AboutYourselfContent index = { index }/>
-    if( index === 1 ) return <PublicationsContent/>
-
-  }
+  const {globalState, content} = usePublications()
 
   return (
 
