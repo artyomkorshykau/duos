@@ -1,0 +1,40 @@
+@import "@/styles/apx.scss";
+
+.progressContainer {
+
+  width: 100%;
+  height: $apx-8;
+  background-color: var(--color-accent-blue-230);
+  border-radius: $apx-40;
+  margin-bottom: $apx-16;
+  position: relative;
+
+  &__progressBar {
+
+    height: 100%;
+    width: 0;
+    background: var(--color-gradient-blue-main);
+    border-radius: $apx-40;
+    transition: width 0.3s;
+
+  }
+
+  &__progressIndicator {
+
+    position: absolute;
+    top: -10px;
+    left: 0;
+    transition: left 0.3s;
+
+  }
+
+}
+
+.message {
+
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-accent-black-500);
+  opacity: 50%;
+
+}
