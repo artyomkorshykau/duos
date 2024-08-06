@@ -216,7 +216,7 @@ const Attachment = ({
 
               <Swiper
 
-					      modules = { [ Mousewheel, FreeMode, Controller, Navigation ] }
+				modules = { [ Mousewheel, FreeMode, Controller, Navigation ] }
                 slidesPerView = {'auto'}
                 spaceBetween = { 16 }
                 className = {`${ s.attachment__block__multiple__swiper }`}
@@ -240,6 +240,7 @@ const Attachment = ({
                       error = { error }
                       handleClick = { handleClick }
                       handleFileChange = { handleMultipleFileChange }
+                      handleDrop = { handleDrop }
                       className = {`${ s.attachment__block__multiple__label }`}
                       isButton = { false }
 
