@@ -210,7 +210,7 @@ const Attachment = ({
 
     e.preventDefault();
 
-    setError('');
+    setError( '' );
 
     const files = Array.from( e.dataTransfer.files ).filter( file => (
         file.type === 'image/png' ||
@@ -218,16 +218,17 @@ const Attachment = ({
         file.type === 'image/tiff'
     ) );
 
-    if (files.length === 0) {
+    console.log( files )
 
-      setError( 'type' );
-
-
-    } else {
-
-      multiple ? addFiles( files ) : addFile( files );
-
-    }
+    // if (files.length === 0) {
+    //
+    //   setError( 'type' );
+    //
+    // } else {
+    //
+    //   multiple ? addFiles( files ) : addFile( files );
+    //
+    // }
   }
 
   return (

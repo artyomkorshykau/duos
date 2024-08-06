@@ -37,11 +37,11 @@ const AttachmentLabel = ({
 
           <div
             className = {`${ s.attachment__block__label__wrapper }`}
-            onDrop = { handleDrop }
+            onDrop = { (e) => handleDrop(e, multiple) }
             onDragOver={ e => e.preventDefault()}
           >
 
-            <div className={`${s.attachment__block__label__wrapper__info}`}>
+            <div className={`${ s.attachment__block__label__wrapper__info }`}>
 
               <p className={`${s.attachment__block__label__wrapper__info__text}`}>
 
@@ -50,7 +50,7 @@ const AttachmentLabel = ({
               </p>
 
 
-              <p className={`${cssIf(error === 'type', s.error)} ${s.attachment__block__label__wrapper__info__format}`}>
+              <p className={`${ cssIf(error === 'type', s.error) } ${ s.attachment__block__label__wrapper__info__format }`}>
 
                 Поддерживаемые форматы: PNG, TIFF, JPG
 
