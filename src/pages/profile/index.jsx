@@ -17,7 +17,7 @@ export default function ProfilePage() {
 
   return (
 
-    <main id={``} className={``}>
+    <main id={ `` } className={ `` }>
 
       <Carcas
 
@@ -25,7 +25,7 @@ export default function ProfilePage() {
 
       >
 
-        <div className = {`flex flex-column h-[85dvh]`}>
+        <div className = { `flex flex-column h-[85dvh]` }>
 
           <ProgressBar />
           <Profile step = { step }/>

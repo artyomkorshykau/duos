@@ -8,12 +8,31 @@
 
   &__block {
 
-    border: 2px solid #D1E3F7;
+    border: 2px dashed #D1E3F7;
     width: $apx-220;
     height: $apx-280;
     border-radius: $apx-28;
     position: relative;
     overflow: hidden;
+
+    &__withImage {
+
+      border: none;
+
+    }
+
+    &__input {
+
+      display: none;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+
+    }
 
     &__label {
 
@@ -32,18 +51,6 @@
         padding: $apx-24;
         position: relative;
 
-        &__input {
-
-          opacity: 0;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          cursor: pointer;
-
-        }
-
         &__info {
 
           display: flex;
@@ -54,14 +61,13 @@
           line-height: $apx-17;
           color: var(--color-accent-black-500);
           text-align: center;
-          cursor: pointer;
+          pointer-events: none;
 
           &__format {
 
             opacity: 0.5;
 
           }
-
 
         }
 
@@ -117,5 +123,11 @@
   line-height: $apx-17;
   text-align: center;
   opacity: 1;
+
+}
+
+.withImage {
+
+  border: none;
 
 }

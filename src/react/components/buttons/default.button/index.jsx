@@ -9,7 +9,9 @@ const DefaultButton = ({
   name = "Ок",
   className = "",
   action = () => {},
-  icon
+  icon,
+  onDragOver,
+  onDrop,
 
 }) => {
 
@@ -18,6 +20,8 @@ const DefaultButton = ({
     <button
     
       onClick = { action }
+      onDragOver = { onDragOver }
+      onDrop = { onDrop }
       className = {`flex items-center justify-center ${ s.button } ${ cssIf( gray, s.button__gray ) } ${ cssIf( small, s.button__small ) } ${ className } pointer`}
       
     >

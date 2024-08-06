@@ -18,7 +18,7 @@ const Attachment = ({
   ...rest
 
 }) => {
-  const [error, setError] = useState('');
+  const [ error, setError ] = useState( '' );
 
   const fileInputRef = useRef( null );
 
@@ -28,9 +28,9 @@ const Attachment = ({
 
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = ( e ) => {
 
-    setError('')
+    setError( '' );
 
     const files = e.target.files;
 
@@ -41,13 +41,15 @@ const Attachment = ({
       if ( file.size > maxSize * 1024 * 1024 ) {
         
         setError('size');
+
         return;
 
       }
 
-      if ( !typeFiles.includes(file.type) ) {
+      if ( !typeFiles.includes( file.type ) ) {
 
-        setError('type');
+        setError( 'type' );
+
         return;
 
       }
@@ -57,7 +59,7 @@ const Attachment = ({
       reader.onloadend = () => {
 
         const base64String = reader.result;
-        onChange(base64String)
+        onChange(base64String);
 
       };
 
@@ -67,20 +69,88 @@ const Attachment = ({
 
   };
 
+  const onDragOverHandler = ( e ) => {
+
+    e.preventDefault();
+
+  };
+
+
+  const onDropHandler = ( e ) => {
+
+    e.preventDefault();
+
+    setError( '' );
+
+    const files = Array.from( e.dataTransfer.files ).filter( file => (
+
+        file.type === 'image/png' ||
+        file.type === 'image/jpeg' ||
+        file.type === 'image/tiff'
+
+    ) );
+
+    if (files.length === 0) {
+
+      setError( 'type' );
+      return;
+
+    }
+
+    if ( files.length > 0 && !multiple ) {
+
+      const file = files[ 0 ];
+
+      if ( file.size > maxSize * 1024 * 1024 ) {
+
+        setError( 'size' );
+        return;
+
+      }
+
+      if ( !typeFiles.includes( file.type ) ) {
+
+        setError( 'type' );
+        return;
+
+      }
+
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+
+        const base64String = reader.result;
+        onChange( base64String )
+
+      };
+
+      reader.readAsDataURL( file );
+
+    }
+
+  }
+
   const deleteFile = (e) => {
 
-    e.stopPropagation()
-    onChange(null)
+    e.stopPropagation();
+
+    onChange(null);
 
   }
 
   return (
 
-    <div className = {`${ s.attachment }`}>
+    <div className = { `${ s.attachment }` }>
       
-      <div className = {`${ s.attachment__block }`}>
+      <div
+
+          className = { `${ s.attachment__block } ${ cssIf( !!files, s.withImage ) }` }
+          onDragOver = { onDragOverHandler }
+          onDrop = { files && onDropHandler }
+
+      >
         
-        {files ? (
+        { files ? (
 
           <div className = {`${ s.attachment__block__imagePreview }`}>
 
@@ -89,67 +159,91 @@ const Attachment = ({
             <CloseInCircle
               
               onClick = { deleteFile }
-              className = {`${ s.icon } pointer`}
+              className = { `${ s.icon } pointer` }
             
             />
 
           </div>
             
         ) : (
-            
-          <label htmlFor = "input-file" className = {`${ s.attachment__block__label }`}>
-              
-            <div className = {`${ s.attachment__block__label__wrapper }`}>
-          
-              <input
-                
-                id = "input-file"
-                onChange = { (e) => handleFileChange(e) }
-                multiple = { multiple }
-                className = {`${ s.attachment__block__label__wrapper__input }`}
-                accept = { accept }
-                type = "file"
-                ref = { fileInputRef }
-                { ...rest }
-                  
-              />
-                
-                <div className = {`${ s.attachment__block__label__wrapper__info }`}>
-                  
-                  <p className = {`${ s.attachment__block__label__wrapper__info__text }`}>Перетащите файлы сюда или нажмите на кнопку</p>
-                  
-                  <p className = {`${ cssIf(error === 'type', s.error ) } ${ s.attachment__block__label__wrapper__info__format }`}>
-                    Поддерживаемые форматы: PNG, TIFF, JPG</p>
-                  
+
+          <>
+
+            <input
+
+              id = "input-file"
+              onChange = { (e) => handleFileChange(e) }
+              multiple = { multiple }
+              className = { `${ s.attachment__block__input }` }
+              accept = { accept }
+              type = "file"
+              ref = { fileInputRef }
+              { ...rest }
+
+            />
+
+            <label htmlFor = "input-file" className = { `${ s.attachment__block__label }` }>
+
+              <div
+
+                  className = { `${ s.attachment__block__label__wrapper }` }
+                  onDragOver = { onDragOverHandler }
+                  onDrop = { onDropHandler }
+
+              >
+
+                <div className = { `${ s.attachment__block__label__wrapper__info }` }>
+
+                  <p className = { `${ s.attachment__block__label__wrapper__info__text }` }>
+
+                    Перетащите файлы сюда или нажмите на кнопку
+
+                  </p>
+
+                  <p className = { `${ cssIf( error === 'type', s.error ) } ${ s.attachment__block__label__wrapper__info__format }` }>
+
+                    Поддерживаемые форматы: PNG, TIFF, JPG
+
+                  </p>
+
                 </div>
-                
+
                 <DefaultButton
-                
+
                   gray
                   name = "Загрузить"
-                  icon = { <Attach fill = {'#18009E'} /> }
-                  className = {`${ s.attachment__button }`}
+                  icon = { <Attach fill={'#18009E'}/> }
+                  className = { `${ s.attachment__button }` }
                   action = { handleClick }
-                  
-                /> 
+                  onDragOver = { onDragOverHandler }
+                  onDrop = { onDropHandler }
+
+                />
 
                 {error === 'size' && (
-                    
-                  <p className = {`${ s.error }`}>Максимальный размер файла - 10 Mb</p>
-                    
+
+                  <p className={ `${ s.error }` }>Максимальный размер файла - 10 Mb</p>
+
                 )}
-            
+
               </div>
 
             </label>
-          )
+
+          </>
+
+        )
 
         }
 
       </div>
-            
-      <p className = {`${ s.attachment__text }`}>Загрузите картинку к услуге, она будет отображаться в качестве обложки услуги</p>
-      
+
+      <p className = { `${ s.attachment__text }` }>
+
+        Загрузите картинку к услуге, она будет отображаться в качестве обложки услуги
+
+      </p>
+
     </div>
 
   )
