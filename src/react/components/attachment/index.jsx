@@ -38,18 +38,18 @@ const Attachment = ({
 
   const addFile = ( files ) => {
 
-    const file = files[0];
+    const file = files[ 0 ];
 
     if ( file.size > maxSize * 1024 * 1024 ) {
 
-      setError('size');
+      setError( 'size' );
       return;
 
     }
 
-    if ( !typeFiles.includes(file.type) ) {
+    if ( !typeFiles.includes( file.type ) ) {
 
-      setError('type');
+      setError( 'type' );
       return;
 
     }
@@ -59,7 +59,7 @@ const Attachment = ({
     reader.onloadend = () => {
 
       const base64String = reader.result;
-      onChange(base64String)
+      onChange( base64String );
 
     };
 
@@ -67,15 +67,60 @@ const Attachment = ({
 
   };
 
-  const handleFileChange = (e) => {
+  const addFiles = ( files ) => {
 
-    setError('')
+    if (files) {
+
+      for (const file of files) {
+
+        if (file.size > maxSize * 1024 * 1024) {
+
+          setError('size');
+          return;
+
+        }
+
+        if (!typeFiles.includes(file.type)) {
+
+          setError('type');
+          return;
+
+        }
+      }
+
+      const readers = files.map((file) => {
+        return new Promise((resolve, reject) => {
+
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = (error) => reject(error);
+          reader.readAsDataURL(file);
+
+        });
+      });
+
+      Promise.all(readers)
+        .then((base64Strings) => {
+          onChange(base64Strings);
+        })
+        .catch((error) => {
+          console.error("Error reading files", error);
+          setError('size');
+        });
+
+    }
+
+  };
+
+  const handleFileChange = ( e ) => {
+
+    setError( '' )
 
     const files = e.target.files;
 
     if (files.length > 0) {
 
-      addFile(files);
+      addFile( files );
 
     }
 
@@ -83,13 +128,13 @@ const Attachment = ({
 
   const handleMultipleFileChange = (e) => {
 
-    setError('');
+    setError( '' );
 
     const filesMultiple = e.target.files;
 
-    let filesArr = Array.from(filesMultiple);
+    let filesArr = Array.from( filesMultiple );
 
-    const totalLength = (files?.length || 0) + filesArr.length;
+    const totalLength = ( files?.length || 0 ) + filesArr.length;
 
     if (totalLength > maxLength) {
 
@@ -100,46 +145,48 @@ const Attachment = ({
 
     if (filesArr.length > 0) {
 
-      if (filesArr) {
+      // if (filesArr) {
+      //
+      //   for (const file of filesArr) {
+      //
+      //     if (file.size > maxSize * 1024 * 1024) {
+      //
+      //       setError('size');
+      //       return;
+      //
+      //     }
+      //
+      //     if (!typeFiles.includes(file.type)) {
+      //
+      //       setError('type');
+      //       return;
+      //
+      //     }
+      //   }
+      //
+      //   const readers = filesArr.map((file) => {
+      //     return new Promise((resolve, reject) => {
+      //
+      //       const reader = new FileReader();
+      //       reader.onloadend = () => resolve(reader.result);
+      //       reader.onerror = (error) => reject(error);
+      //       reader.readAsDataURL(file);
+      //
+      //     });
+      //   });
+      //
+      //   Promise.all(readers)
+      //     .then((base64Strings) => {
+      //       onChange(base64Strings);
+      //     })
+      //     .catch((error) => {
+      //       console.error("Error reading files", error);
+      //       setError('size');
+      //     });
+      //
+      // }
 
-        for (const file of filesArr) {
-
-          if (file.size > maxSize * 1024 * 1024) {
-
-            setError('size');
-            return;
-
-          }
-
-          if (!typeFiles.includes(file.type)) {
-
-            setError('type');
-            return;
-
-          }
-        }
-
-        const readers = filesArr.map((file) => {
-          return new Promise((resolve, reject) => {
-
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
-            reader.readAsDataURL(file);
-
-          });
-        });
-
-        Promise.all(readers)
-          .then((base64Strings) => {
-            onChange(base64Strings);
-          })
-          .catch((error) => {
-            console.error("Error reading files", error);
-            setError('size');
-          });
-
-      }
+      addFiles( filesArr );
 
     }
 
@@ -159,26 +206,26 @@ const Attachment = ({
 
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = ( e, multiple ) => {
 
     e.preventDefault();
 
     setError('');
 
-    const files = Array.from(event.dataTransfer.files).filter(file => (
+    const files = Array.from( e.dataTransfer.files ).filter( file => (
         file.type === 'image/png' ||
         file.type === 'image/jpeg' ||
         file.type === 'image/tiff'
-    ));
+    ) );
 
     if (files.length === 0) {
 
-      setError('type');
+      setError( 'type' );
 
 
     } else {
 
-      addFile(files);
+      multiple ? addFiles( files ) : addFile( files );
 
     }
   }
@@ -234,7 +281,7 @@ const Attachment = ({
 
                     <AttachmentLabel
 
-                      multiple = {multiple}
+                      multiple = { multiple }
                       accept = { accept }
                       fileInputRef = { fileInputRef }
                       error = { error }
