@@ -36,6 +36,37 @@ const Attachment = ({
 
   };
 
+  const addFile = ( files ) => {
+
+    const file = files[0];
+
+    if ( file.size > maxSize * 1024 * 1024 ) {
+
+      setError('size');
+      return;
+
+    }
+
+    if ( !typeFiles.includes(file.type) ) {
+
+      setError('type');
+      return;
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+
+      const base64String = reader.result;
+      onChange(base64String)
+
+    };
+
+    reader.readAsDataURL( file );
+
+  };
+
   const handleFileChange = (e) => {
 
     setError('')
@@ -44,32 +75,7 @@ const Attachment = ({
 
     if (files.length > 0) {
 
-      const file = files[0];
-      
-      if ( file.size > maxSize * 1024 * 1024 ) {
-        
-        setError('size');
-        return;
-
-      }
-
-      if ( !typeFiles.includes(file.type) ) {
-
-        setError('type');
-        return;
-
-      }
-
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-
-        const base64String = reader.result;
-        onChange(base64String)
-
-      };
-
-      reader.readAsDataURL( file );
+      addFile(files);
 
     }
 
@@ -77,7 +83,7 @@ const Attachment = ({
 
   const handleMultipleFileChange = (e) => {
 
-    setError('')
+    setError('');
 
     const filesMultiple = e.target.files;
 
@@ -141,23 +147,53 @@ const Attachment = ({
 
   const deleteFile = (e) => {
 
-    e.stopPropagation()
-    onChange(null)
+    e.stopPropagation();
+    onChange(null);
 
-  }
+  };
 
   const deleteMultipleFiles = (e, index) => {
 
-    e.stopPropagation()
-    deleteMultipleFile(index)
+    e.stopPropagation();
+    deleteMultipleFile(index);
 
+  };
+
+  const handleDrop = (e) => {
+
+    e.preventDefault();
+
+    setError('');
+
+    const files = Array.from(event.dataTransfer.files).filter(file => (
+        file.type === 'image/png' ||
+        file.type === 'image/jpeg' ||
+        file.type === 'image/tiff'
+    ));
+
+    if (files.length === 0) {
+
+      setError('type');
+
+
+    } else {
+
+      addFile(files);
+
+    }
   }
 
   return (
 
     <div className = {`${ s.attachment }`}>
       
-      <div className = {`${ s.attachment__block } ${ cssIf(size === 'big', s.attachment__big ) } ${ cssIf(size === 'small', s.attachment__small ) }`}>
+      <div className = {`
+          ${ s.attachment__block }
+          ${ cssIf(size === 'big', s.attachment__big ) }
+          ${ cssIf(size === 'small', s.attachment__small ) }
+          ${ cssIf(!!files, s.withImage ) }
+        `}
+      >
         
         {(files && files.length &&  !multiple) ? (
 
@@ -258,12 +294,15 @@ const Attachment = ({
           ) : (
 
               <AttachmentLabel
-                multiple = {multiple}
+
+                multiple = { multiple }
                 accept = { accept }
                 fileInputRef = { fileInputRef }
                 error = { error }
                 handleClick = { handleClick }
                 handleFileChange = { multiple ? handleMultipleFileChange : handleFileChange }
+                handleDrop = { handleDrop }
+
               />
 
           )

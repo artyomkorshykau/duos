@@ -1,5 +1,18 @@
 @import "@/styles/apx.scss";
 
+.input {
+
+  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+}
+
 .attachment {
 
   display: flex;
@@ -14,25 +27,6 @@
     border-radius: $apx-28;
     position: relative;
     overflow: hidden;
-
-    &__withImage {
-
-      border: none;
-
-    }
-
-    &__input {
-
-      display: none;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-
-    }
 
     &__label {
 
