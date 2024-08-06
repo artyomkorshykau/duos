@@ -10,8 +10,11 @@ const DefaultButton = ({
   className = "",
   action = () => {},
   icon,
-  onDragOver,
-  onDrop,
+  positionIcon = 'left',
+  type = 'default',
+  buttonType,
+  width,
+  disabled
 
 }) => {
 
@@ -20,15 +23,17 @@ const DefaultButton = ({
     <button
     
       onClick = { action }
-      onDragOver = { onDragOver }
-      onDrop = { onDrop }
-      className = {`flex items-center justify-center ${ s.button } ${ cssIf( gray, s.button__gray ) } ${ cssIf( small, s.button__small ) } ${ className } pointer`}
+      className = {`flex items-center justify-center ${ s.button } ${ cssIf( type === 'default' && !gray, s.button__default ) } ${ cssIf( type === 'delete', s.button__delete ) } ${ cssIf( gray, s.button__gray ) } ${ cssIf( small, s.button__small ) } ${ cssIf( width === 'full', s.button__full ) } ${ className } pointer`}
+      disabled = { disabled }
+      type = { buttonType }
       
     >
 
-      { icon }
+      { positionIcon === 'left' && icon }
 
       <p className = {`text-16 ${ s.button__name }`}>{ name }</p>
+
+      { positionIcon === 'right' && icon }
 
       { children }
 

@@ -3,6 +3,8 @@
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
+import Selectfield from '@/react/components/forms/selectfield'
+import { genderList } from '@/constants/profile'
 
 const FullName = () => {
 
@@ -12,7 +14,7 @@ const FullName = () => {
 
     <div>
 
-      <p className = {`${ s.profile__section__title }`}>
+      <p className = {`text-20 ${ s.profile__section__title }`}>
 
         Фамилия Имя и Отчество
 
@@ -54,12 +56,13 @@ const FullName = () => {
             onChange = { (e) => globalActions.profile.setBirthDate(e.target.value)}
 
           />
-          <Textfield
+          <Selectfield
 
             className = {`${ s.profile__section__filedsWrapper__filed }`}
-            placeholder = {'Пол'}
             value = { globalState.profile.gender }
+            placeholder = { 'Пол' }
             onChange = { (e) => globalActions.profile.setGender(e.target.value)}
+            options= { genderList }
 
           />
 

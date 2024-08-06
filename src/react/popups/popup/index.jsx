@@ -16,18 +16,23 @@ const Popup = ({
   subtitle = "",
   subtitleMargin = false,
   contentOnly = false,
-  doubletitle = false
+  doubletitle = false,
+  background,
+  closeBackground,
+  titleLeft
 
 }) => {
 
   return (
 
-      <div className = {`
+    <div className = {`
         
-        flex fixed ${ s.popup__container }
-        ${ cssIf( isOpened, s['popup__container--opened']) } ${ boxClassName }
-      
-      `}>
+      flex fixed ${ s.popup__container }
+      ${ cssIf( isOpened, s['popup__container--opened']) } ${ cssIf( background && isOpened, s['popup__container--opened__background']) } ${ boxClassName }
+    
+    `}
+      onClick = { closeBackground ? () => closePopup() : null }
+    >
 
         { !contentOnly ?
 
@@ -42,7 +47,10 @@ const Popup = ({
 
             >
 
-              <div className = {`flex items-center justify-end ${ s.popup__close_icon__container } ${ cssIf( doubletitle, s.popup__close_icon__container__doubletitle ) }`}>
+              <div className = {`flex items-center ${ cssIf(title, 'justify-end') } ${ cssIf(titleLeft, 'justify-between') } ${ s.popup__close_icon__container } ${ cssIf( doubletitle, s.popup__close_icon__container__doubletitle ) }`}
+              >
+                
+                { titleLeft && <p className = {`font-bold text-18 ${ s.popup__titleLeft }`}>{`${ titleLeft }`}</p> }
 
                 <CloseInCircle
                 

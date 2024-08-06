@@ -1,6 +1,7 @@
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield';
 import useGlobal from '@/store';
+import Phonefield from '@/react/components/forms/phonefield'
 
 const Contacts = () => {
 
@@ -10,7 +11,7 @@ const Contacts = () => {
 
     <div>
 
-      <p className = {`${ s.profile__section__title }`}>
+      <p className = {`text-20 ${ s.profile__section__title }`}>
 
         Контакты
 
@@ -18,7 +19,7 @@ const Contacts = () => {
 
       <form className = {`${ s.profile__section__filedsWrapper }`}>
 
-        <Textfield
+        <Phonefield
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Номер'}

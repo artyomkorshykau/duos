@@ -1,6 +1,7 @@
 import s from '../../profile.module.scss'
-import Textfield from '@/react/components/forms/textfield';
 import useGlobal from '@/store';
+import Selectfield from '@/react/components/forms/selectfield'
+import { cityList, countryList } from '@/constants/profile'
 
 const Location = () => {
 
@@ -10,7 +11,7 @@ const Location = () => {
 
     <div className = {`${ s.profile__section }`}>
 
-      <p className = {`${ s.profile__section__title }`}>
+      <p className = {`text-20 ${ s.profile__section__title }`}>
 
         Местоположение
 
@@ -24,20 +25,22 @@ const Location = () => {
 
       <form className = {`${ s.profile__section__filedsWrapper }`}>
 
-        <Textfield
+        <Selectfield
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Страна'}
           value = { globalState.profile.country }
           onChange = { (e) => globalActions.profile.setCountry(e.target.value)}
+          options = { countryList }
 
         />
-        <Textfield
+        <Selectfield
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Город'}
           value = { globalState.profile.city }
           onChange = { (e) => globalActions.profile.setCity(e.target.value)}
+          options = { cityList }
 
         />
 
