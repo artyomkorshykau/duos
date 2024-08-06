@@ -1,18 +1,5 @@
 @import "@/styles/apx.scss";
 
-.input {
-
-  display: none;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-
-}
-
 .attachment {
 
   display: flex;
@@ -21,18 +8,28 @@
 
   &__block {
 
-    border: 2px dashed #D1E3F7;
-    width: $apx-220;
-    height: $apx-280;
-    border-radius: $apx-28;
     position: relative;
-    overflow: hidden;
+
+    &__input {
+
+      display: none;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+    }
 
     &__label {
 
       height: 100%;
       width: 100%;
       display: block;
+      border: 2px dashed #D1E3F7;
+      border-radius: $apx-28;
 
       &__wrapper {
 
@@ -41,9 +38,21 @@
         gap: $apx-12;
         height: 100%;
         align-items: center;
-        justify-content: center;  
+        justify-content: center;
         padding: $apx-24;
         position: relative;
+
+        //&__input {
+        //
+        //  opacity: 0;
+        //  position: absolute;
+        //  top: 0;
+        //  left: 0;
+        //  width: 100%;
+        //  height: 100%;
+        //  z-index: 1;
+        //
+        //}
 
         &__info {
 
@@ -55,13 +64,14 @@
           line-height: $apx-17;
           color: var(--color-accent-black-500);
           text-align: center;
-          pointer-events: none;
+          z-index: 0;
 
           &__format {
 
             opacity: 0.5;
 
           }
+
 
         }
 
@@ -76,11 +86,23 @@
 
     }
 
+    &__small {
+
+      width: $apx-180;
+      position: relative;
+
+    }
+
     &__imagePreview {
+
+      height: 100%;
 
       .image {
 
         border-radius: $apx-28;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
 
       }
 
@@ -89,16 +111,117 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        margin: 16px;
-          
+        margin: $apx-16;
+        height: $apx-56;
+        width: $apx-56;
+
       }
-      
+
+    }
+
+    &__multiple {
+
+      height: 100%;
+
+      &__swiper {
+
+        height: 100%;
+        z-index: 0 !important;
+
+        &__preview {
+
+          width: $apx-180 !important;
+          height: $apx-180;
+          position: relative;
+
+          .image {
+
+            border-radius: $apx-28;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+
+          }
+
+          .icon {
+
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: $apx-16;
+            height: $apx-56;
+            width: $apx-56;
+
+          }
+
+        }
+      }
+
+      &__label {
+
+        width: $apx-180;
+        height: $apx-180;
+
+      }
+
+      &__button {
+
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        height: $apx-32;
+        width: $apx-32;
+        padding: $apx-8;
+        top: 50%;
+        border: 1px solid #EAF3FF;
+
+        &__left {
+
+          left: 0;
+          transform: translate(-50%, -50%);
+
+        }
+
+        &__right {
+
+          right: 0;
+          transform: translate(50%, -50%);
+
+        }
+
+        &__icon {
+
+          width: $apx-16;
+          height: $apx-16;
+
+        }
+
+        &__hidden {
+
+          opacity: 0;
+
+        }
+
+      }
+
     }
 
   }
 
+  &__big {
+
+    height: $apx-280;
+
+  }
+
+  &__small {
+
+    height: $apx-180;
+
+  }
+
   &__text {
-        
+
     color: var(--color-accent-black-500);
     font-size: $apx-13;
     font-weight: 600;
