@@ -26,7 +26,7 @@ const Attachment = ({
 
 }) => {
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState( '' );
 
   const fileInputRef = useRef( null );
 
@@ -69,44 +69,49 @@ const Attachment = ({
 
   const addFiles = ( files ) => {
 
-    if (files) {
+    if ( files ) {
 
-      for (const file of files) {
+      for ( const file of files ) {
 
-        if (file.size > maxSize * 1024 * 1024) {
+        if ( file.size > maxSize * 1024 * 1024 ) {
 
-          setError('size');
+          setError( 'size' );
           return;
 
         }
 
-        if (!typeFiles.includes(file.type)) {
+        if ( !typeFiles.includes( file.type ) ) {
 
-          setError('type');
+          setError( 'type' );
           return;
 
         }
       }
 
-      const readers = files.map((file) => {
-        return new Promise((resolve, reject) => {
+      const readers = files.map( ( file ) => {
+        return new Promise( ( resolve, reject ) => {
 
           const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
-          reader.onerror = (error) => reject(error);
-          reader.readAsDataURL(file);
+          reader.onloadend = () => resolve( reader.result );
+          reader.onerror = ( error ) => reject( error );
+          reader.readAsDataURL( file );
 
-        });
-      });
+        } );
+      } );
 
-      Promise.all(readers)
-        .then((base64Strings) => {
-          onChange(base64Strings);
-        })
-        .catch((error) => {
-          console.error("Error reading files", error);
-          setError('size');
-        });
+      Promise.all( readers )
+        .then( ( base64Strings ) => {
+
+          onChange( base64Strings );
+
+        } )
+        .catch( ( error ) => {
+
+          console.error( "Error reading files", error );
+
+          setError( 'size' );
+
+        } );
 
     }
 
@@ -145,47 +150,6 @@ const Attachment = ({
 
     if (filesArr.length > 0) {
 
-      // if (filesArr) {
-      //
-      //   for (const file of filesArr) {
-      //
-      //     if (file.size > maxSize * 1024 * 1024) {
-      //
-      //       setError('size');
-      //       return;
-      //
-      //     }
-      //
-      //     if (!typeFiles.includes(file.type)) {
-      //
-      //       setError('type');
-      //       return;
-      //
-      //     }
-      //   }
-      //
-      //   const readers = filesArr.map((file) => {
-      //     return new Promise((resolve, reject) => {
-      //
-      //       const reader = new FileReader();
-      //       reader.onloadend = () => resolve(reader.result);
-      //       reader.onerror = (error) => reject(error);
-      //       reader.readAsDataURL(file);
-      //
-      //     });
-      //   });
-      //
-      //   Promise.all(readers)
-      //     .then((base64Strings) => {
-      //       onChange(base64Strings);
-      //     })
-      //     .catch((error) => {
-      //       console.error("Error reading files", error);
-      //       setError('size');
-      //     });
-      //
-      // }
-
       addFiles( filesArr );
 
     }
@@ -212,23 +176,23 @@ const Attachment = ({
 
     setError( '' );
 
-    const files = Array.from( e.dataTransfer.files ).filter( file => (
-        file.type === 'image/png' ||
-        file.type === 'image/jpeg' ||
-        file.type === 'image/tiff'
-    ) );
+    let filesArr = Array.from( e.dataTransfer.files );
 
-    console.log( files )
+    const totalLength = ( files?.length || 0 ) + filesArr.length;
 
-    // if (files.length === 0) {
-    //
-    //   setError( 'type' );
-    //
-    // } else {
-    //
-    //   multiple ? addFiles( files ) : addFile( files );
-    //
-    // }
+    if (multiple && totalLength > maxLength) {
+
+      const excessLength = totalLength - maxLength;
+      filesArr = filesArr.slice(0, -excessLength);
+
+    }
+
+    if (filesArr.length > 0) {
+
+      multiple ? addFiles( filesArr ) : addFile( filesArr );
+
+    }
+
   }
 
   return (
@@ -237,13 +201,12 @@ const Attachment = ({
       
       <div className = {`
           ${ s.attachment__block }
-          ${ cssIf(size === 'big', s.attachment__big ) }
-          ${ cssIf(size === 'small', s.attachment__small ) }
-          ${ cssIf(!!files, s.withImage ) }
+          ${ cssIf( size === 'big', s.attachment__big ) }
+          ${ cssIf( size === 'small', s.attachment__small ) }
         `}
       >
         
-        {(files && files.length &&  !multiple) ? (
+        { (files && files.length && !multiple) ? (
 
           <div className = {`${ s.attachment__block__imagePreview } ${ cssIf(size === 'small', s.attachment__block__small ) }`}>
 
@@ -258,25 +221,27 @@ const Attachment = ({
 
           </div>
             
-        ) : (files && files.length && multiple) ? (
+        ) : ( files && files.length && multiple ) ? (
 
             <div className = {`${ s.attachment__block__multiple }`}>
 
               <Swiper
 
-				modules = { [ Mousewheel, FreeMode, Controller, Navigation ] }
-                slidesPerView = {'auto'}
+				modules = { [ Mousewheel, FreeMode, Controller, Navigation, ] }
+                slidesPerView = 'auto'
                 spaceBetween = { 16 }
                 className = {`${ s.attachment__block__multiple__swiper }`}
-                mousewheel = { { forceToAxis: true } }
+                mousewheel = { { forceToAxis: true, } }
                 navigation = { {
-                  nextEl: `.btn_next`,
-                  prevEl: `.btn_prev`,
+
+                  nextEl: '.btn_next',
+                  prevEl: '.btn_prev',
                   disabledClass: 'disabled',
-                }}
+
+                } }
 
               >
-                {files.length < maxLength && (
+                { files.length < maxLength && (
 
                   <SwiperSlide className = {`${ s.attachment__block__multiple__swiper__preview }`}>
 
@@ -308,7 +273,7 @@ const Attachment = ({
 
                     <CloseInCircle
 
-                      onClick = { (e) => deleteMultipleFiles( e, index ) }
+                      onClick = { ( e ) => deleteMultipleFiles( e, index ) }
                       className = {`${ s.icon } pointer`}
 
                     />
@@ -322,19 +287,40 @@ const Attachment = ({
               <DefaultButton
 
                 gray
-                name = {''}
-                className = {`${ s.attachment__block__multiple__button } ${ s.attachment__block__multiple__button__left } btn_prev ${ cssIf(files.length < 3, s.attachment__block__multiple__button__hidden ) }`}
-                icon = { <Arrow direction = { 'left' } fill = { '#18009E' } className = {`${ s.attachment__block__multiple__button__icon }`}/> }
+                name = ''
+                className = {`
+                  ${ s.attachment__block__multiple__button }
+                  ${ s.attachment__block__multiple__button__left }
+                  btn_prev
+                  ${ cssIf(files.length < 3, s.attachment__block__multiple__button__hidden ) }
+                `}
+                icon = {
+                  <Arrow
+                    direction = { 'left' }
+                    fill = { '#18009E' }
+                    className = {`${ s.attachment__block__multiple__button__icon }`}
+                  />
+                }
 
               />
 
               <DefaultButton
 
                 gray
-                name = {''}
-                className = {`${ s.attachment__block__multiple__button } ${ s.attachment__block__multiple__button__right } btn_next ${ cssIf(files.length < 3, s.attachment__block__multiple__button__hidden ) }`}
-                icon={<Arrow direction={'right'} fill={'#18009E'} className={`${s.attachment__block__multiple__button__icon}`}
-                />}
+                name = ''
+                className = {`
+                  ${ s.attachment__block__multiple__button }
+                  ${ s.attachment__block__multiple__button__right }
+                  btn_next
+                  ${ cssIf(files.length < 3, s.attachment__block__multiple__button__hidden ) }
+                `}
+                icon = {
+                  <Arrow
+                    direction = 'right'
+                    fill = '#18009E'
+                    className = {`${s.attachment__block__multiple__button__icon}`}
+                  />
+                }
 
               />
 

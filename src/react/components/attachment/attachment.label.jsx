@@ -24,12 +24,12 @@ const AttachmentLabel = ({
         <input
 
             id="input-file"
-            onChange={handleFileChange}
-            multiple={multiple}
-            className={`${s.attachment__block__input}`}
-            accept={accept}
+            onChange = { handleFileChange }
+            multiple = { multiple }
+            className = {`${ s.attachment__block__input }`}
+            accept = { accept }
             type="file"
-            ref={fileInputRef}
+            ref = { fileInputRef }
 
         />
 
@@ -38,19 +38,19 @@ const AttachmentLabel = ({
           <div
             className = {`${ s.attachment__block__label__wrapper }`}
             onDrop = { (e) => handleDrop(e, multiple) }
-            onDragOver={ e => e.preventDefault()}
+            onDragOver = { e => e.preventDefault() }
           >
 
-            <div className={`${ s.attachment__block__label__wrapper__info }`}>
+            <div className = {`${ s.attachment__block__label__wrapper__info }`}>
 
-              <p className={`${s.attachment__block__label__wrapper__info__text}`}>
+              <p>
 
                 Перетащите файлы сюда или нажмите на кнопку
 
               </p>
 
 
-              <p className={`${ cssIf(error === 'type', s.error) } ${ s.attachment__block__label__wrapper__info__format }`}>
+              <p className = {`${ cssIf(error === 'type', s.error) } ${ s.attachment__block__label__wrapper__info__format }`}>
 
                 Поддерживаемые форматы: PNG, TIFF, JPG
 
@@ -63,10 +63,10 @@ const AttachmentLabel = ({
                 <DefaultButton
 
                     gray
-                    name="Загрузить"
-                    icon={<Attach fill={'#18009E'}/>}
-                    className={`${s.attachment__button}`}
-                    action={handleClick}
+                    name = "Загрузить"
+                    icon = { <Attach fill = { '#18009E' } /> }
+                    className = { `${s.attachment__button}` }
+                    action = { handleClick }
 
                 />
 
@@ -74,7 +74,7 @@ const AttachmentLabel = ({
 
             {error === 'size' && (
 
-                <p className={`${s.error}`}>Максимальный размер файла - 10 Mb</p>
+                <p className={`${ s.error }`}>Максимальный размер файла - 10 Mb</p>
 
             )}
 
