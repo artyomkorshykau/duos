@@ -1,17 +1,22 @@
+"use client"
+
 import s from './quiz.module.scss'
 import DefaultButton from "@/react/components/buttons/default.button";
 import FormLogo from "@/react/widgets/quiz/ui/form.img";
 import Titles from "@/react/widgets/quiz/ui/titles";
 import ContextNotise from "@/react/widgets/quiz/ui/context.notise";
 import Steps from "@/react/widgets/quiz/ui/steps";
+import { useQuiz } from "@/react/widgets/quiz/model";
 
-const Quiz = ({
+const Quiz = () => {
 
-  buttonTitle,
-  handleButtonAction,
-  status
+  const {
 
-}) => {
+    buttonTitle,
+    handleButtonAction,
+    status
+
+  } = useQuiz()
 
   return (
 
