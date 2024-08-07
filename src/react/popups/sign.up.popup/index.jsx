@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Popup from "../popup";
@@ -7,6 +9,9 @@ import NumberField from "@/react/components/forms/numberfield";
 import DefaultButton from "@/react/components/buttons/default.button";
 import RoleChoice from "./role.choice";
 import s from "./sign.up.module.scss";
+import { useMutation } from "@tanstack/react-query";
+import auth from "@/service/auth";
+import { phoneSchema } from "@/scripts/validators/phone.validate";
 
 const SignUpPopup = ({
 
@@ -27,6 +32,14 @@ const SignUpPopup = ({
   const [ time, setTime ] = useState( 31 );
   const [ intervalId, setIntervalId ] = useState( null );
 
+  const { mutate, data } = useMutation({
+
+    mutationKey: [ 'sign' ],
+    mutationFn: ({ phone }) => auth.register(phone),
+    onSuccess: () => { setCodeModeOpened(true) }
+
+  })
+
   const handleClosePopup = () => {
 
     closePopup();
@@ -35,20 +48,34 @@ const SignUpPopup = ({
   };
 
   const handleInputChange = (e) => {
+
     const { value } = e.target;
+
     let formattedValue = value.replace(/^(\+)?/, "");
+
     if (value.length === 1 && value === "+") {
+
       formattedValue = "";
+
     } else if (value.length === 1) {
+
       formattedValue = "+" + value;
+
     } else {
+
       formattedValue = "+" + formattedValue;
+
     }
+
     if (formattedValue.length > 12) {
+
       formattedValue = formattedValue.substring(0, 12);
       formattedValue = "+" + formattedValue.substring(1);
+
     }
+
     setUserNumber(formattedValue);
+
   };
 
   useEffect(() => {
@@ -66,9 +93,9 @@ const SignUpPopup = ({
   }, [codeModeOpened, time]);
 
   const getCode = () => {
-    if (userNumber.length >= 11 && policyAgree === true) {
-      setCodeModeOpened(true);
-    }
+
+    mutate({ phone : userNumber })
+
   };
 
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
@@ -111,6 +138,7 @@ const SignUpPopup = ({
       }
     }
   };
+
   const handleCode4Change = (e) => {
     const newValue = e.target.value;
     setCode4(newValue);
@@ -191,6 +219,14 @@ const SignUpPopup = ({
     
     />
 
+  const handleOnChange = (e) => {
+
+    const { value } = e.target;
+    const onlyNumbers = value.replace(/[^0-9+]/g, '');
+    handleInputChange({ target: { value: onlyNumbers } });
+
+  }
+
   return (
 
     <Popup
@@ -217,11 +253,7 @@ const SignUpPopup = ({
               set = { set }
               value = { userNumber }
               withTitle = { false }
-              onChange = {(e) => {
-                const { value } = e.target;
-                const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                handleInputChange({ target: { value: onlyNumbers } });
-              }}
+              onChange = { (e) => handleOnChange(e) }
               placeholder = "+7 (___) ___-__-__"
 
             />
