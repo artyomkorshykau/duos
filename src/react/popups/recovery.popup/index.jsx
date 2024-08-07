@@ -1,12 +1,11 @@
 import Popup from "../popup";
 import s from './recovery.popup.module.scss'
 import DefaultButton from "@/react/components/buttons/default.button";
+import SignInIconWhite from "@/react/components/icons/sign.in.icon.white";
 
 const RecoveryPopup = ({
 
-                       set,
                        logIn = () => {},
-                       signUp = () => {},
                        bodyClassName = "",
                        isOpened = false,
                        closePopup = () => {}
@@ -21,6 +20,7 @@ const RecoveryPopup = ({
       subtitle = "Откройте почтовый ящик"
       isOpened = { isOpened }
       bodyClassName = { bodyClassName }
+      closePopup = { closePopup }
 
     >
 
@@ -37,7 +37,7 @@ const RecoveryPopup = ({
 
           name = "Войти с новым паролем"
           action = { logIn }
-          icon = { 'lol' }
+          icon = { <SignInIconWhite /> }
           positionIcon = { 'right' }
           className = { `${ s.recovery_content__enter_button }` }
 

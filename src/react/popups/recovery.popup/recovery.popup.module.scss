@@ -23,6 +23,13 @@
   &__enter_button {
 
     width: 100%;
+    gap: $apx-8;
+
+    &__icon {
+
+      stroke: white;
+
+    }
 
   }
 

@@ -22,6 +22,7 @@ const Header = ({
   const [ isAuthBackReversed, setIsAuthBackReversed ] = useState( true );
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
   const [ showSignUpPopup, setShowSignUpPopup ] = useState( false );
+  const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
   const [ codeModeClosed, setCodeModeClosed ] = useState( false );
 
   function signIn( fast = false ) {
@@ -70,6 +71,7 @@ const Header = ({
 
     setShowSignInPopup( false );
     setShowSignUpPopup( false );
+    setShowRecoveryPopup(false);
     setIsAuthBackOpened( false );
     setIsAuthBackReversed( false );
     setCodeModeClosed( true );
@@ -173,6 +175,7 @@ const Header = ({
       <RecoveryPopup
 
         isOpened = { showSignInPopup }
+        closePopup = { () => closePopups() }
         bodyClassName = {`${ s.recovery__popup } ${ s.recovery__popup__in }`}
 
       />
