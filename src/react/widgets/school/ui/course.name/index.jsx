@@ -7,7 +7,25 @@ import Cross from '@/react/components/icons/cross'
 
 const CourseName = () => {
 
-  const [ courses, setCourses ] = useState( [ 1 ] )
+  const [ courses, setCourses ] = useState( [
+
+    { id: 1, title: '' }
+
+  ] )
+
+  const handleOnChange = ( courseID, newValue ) => {
+
+    const findCourse = courses.find( ( course ) => course.id === courseID )
+
+    setCourses(courses
+
+      .map( (course ) => course.id === findCourse.id
+        ? {...course, title: newValue}
+        : course )
+
+    )
+
+  }
 
   return (
 
@@ -42,8 +60,8 @@ const CourseName = () => {
 
                 className = { `${ s.school__section__filedsWrapper__filed }` }
                 placeholder = { 'Введите название здесь' }
-                // value={ globalState.profile.nickName }
-                // onChange={ ( e ) => globalActions.profile.setNickName( e.target.value ) }
+                value = { course.title }
+                onChange = { (e) => handleOnChange( course.id, e.target.value) }
 
               />
 
@@ -56,7 +74,7 @@ const CourseName = () => {
                   className = { `${ s.school__section__filedsWrapper__cross_button }` }
                   icon = { <Cross fill = { '#18009E' }/> }
                   positionIcon = "right"
-                  action = { () => setCourses( courses.filter( ( _, i ) => i !== index ) ) }
+                  action = { () => setCourses( courses.filter( ( el ) => el.id !== course.id ))}
                   buttonType = { 'button' }
 
                 />
@@ -80,7 +98,7 @@ const CourseName = () => {
         className = { `${ s.school__section__add_button }` }
         icon = { <Plus fill = { '#18009E' }/> }
         positionIcon = 'right'
-        action = { () => setCourses( [ ...courses, courses.length + 1 ] ) }
+        action = { () => setCourses( [ ...courses, { id: courses.length + 1, title: '' } ] ) }
 
       />
 
