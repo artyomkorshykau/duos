@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from 'react';
 import cssIf from '@/scripts/helpers/css.if';
 import s from './textarea.module.scss';
-import Save from "@/react/components/icons/save";
 
 const MIN_HEIGHT = 110;
 
