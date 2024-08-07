@@ -1,8 +1,9 @@
 'use client'
- 
+
+import { useEffect, useState, useRef } from 'react';
 import cssIf from '@/scripts/helpers/css.if';
 import s from './textarea.module.scss';
-import { useEffect, useState, useRef } from 'react';
+import Save from "@/react/components/icons/save";
 
 const MIN_HEIGHT = 110;
 
@@ -15,8 +16,7 @@ const Textarea = ( props ) => {
     value, 
     withTitle = false,
     title = "", 
-    error = "", 
-    type = "text",
+    error = "",
     placeholder = "",
     className = "",
     inputClassName = "",
@@ -24,15 +24,24 @@ const Textarea = ( props ) => {
     onClick = () => {},
     onKeyUp = () => {},
     onBlur = () => {},
-    onChange = () => {},
+    onChange = (e) => {},
+    icon,
     ...inputParams
 
   } = props;
 
-  const [height, setHeight] = useState(MIN_HEIGHT); 
+  const [text, setText] = useState(value);
+  const [height, setHeight] = useState(MIN_HEIGHT);
   const [isResizing, setIsResizing] = useState(false);
   const [startY, setStartY] = useState(0);
-  const textfieldDivRef = useRef(null);
+  const textareaDivRef = useRef(null);
+
+  const handleChange = ( e ) => {
+
+    setText( e.currentTarget.value );
+    onChange( e );
+
+  }
 
   const handleMouseDown = (e) => {
 
@@ -104,50 +113,55 @@ const Textarea = ( props ) => {
   }, [isResizing, height]);
 
   return (
-    
-    <div  
+
+    <div
 
       className = {`${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}
-      ref={ textfieldDivRef }
-      style={ { height: `${ height }px` } } 
-      
+      ref={ textareaDivRef }
+      style={ { height: `${ height }px` } }
+
       >
 
       { !!title && <p className = { s.title }>{ title }</p> }
 
-      <div 
+      <div
 
-        className={ s.resizer } 
+        className={ s.resizer }
         onMouseDown={ handleMouseDown }
         onTouchStart={ handleTouchStart }
 
-      ></div>
-      
-      <textarea 
+      />
+
+      <div className={ `${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }` }>
+
+        { icon }
+
+      </div>
+
+      <textarea
 
         id = { id }
         ref = { refDOM }
         value = { value }
-        type = { type }
         placeholder = { placeholder }
         className = { inputClassName }
-        onChange = { onChange }
+        onChange = { handleChange }
         onKeyUp = { onKeyUp }
         onBlur = { onBlur }
         { ...inputParams }
         onClick = {( e ) => {
-          
+
           onClick && onClick();
           e.stopPropagation();
 
-        }} 
-      
+        }}
+
       />
 
       { !!error && <p className = { s.error }>{ error }</p> }
 
     </div>
-    
+
   );
 
 }
