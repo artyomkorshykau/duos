@@ -10,18 +10,22 @@ import getInitialPublicationsState from "@/store/states/publications";
 import publicationsActions from "@/store/actions/publications";
 
 const initialState = {
+
   publications: getInitialPublicationsState(),
   profile: getInitialProfileState(),
   service: getInitialServiceState(),
   quiz: quizState,
   user,
+
 }
 
 const actions = {
+
   profile: profileActions,
   service: serviceActions,
   publications: publicationsActions,
   quiz: quizActions,
+
 }
 
 const useGlobal = GlobalHook(initialState, actions)
