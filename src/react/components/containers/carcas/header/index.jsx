@@ -7,6 +7,7 @@ import HeaderSignPanel from "./header.sign.panel";
 import SignInPopup from "@/react/popups/sign.in.popup";
 import SignUpPopup from "@/react/popups/sign.up.popup";
 import s from "./header.module.scss";
+import RecoveryPopup from "@/react/popups/recovery.popup";
 
 const Header = ({
 
@@ -149,7 +150,7 @@ const Header = ({
 
       <SignInPopup
 
-        isOpened = { showSignInPopup }
+        // isOpened = { showSignInPopup }
         closePopup = { () => closePopups() }
         logIn = { () => logIn() }
         signUp = { () => signUp( true ) }
@@ -166,6 +167,13 @@ const Header = ({
         signIn = { () => signIn( true ) }
         codeModeClosed = { codeModeClosed }
         bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__up }`}
+
+      />
+
+      <RecoveryPopup
+
+        isOpened = { showSignInPopup }
+        bodyClassName = {`${ s.recovery__popup } ${ s.recovery__popup__in }`}
 
       />
 

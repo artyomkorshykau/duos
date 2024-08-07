@@ -1,0 +1,29 @@
+@import "@/styles/apx.scss";
+
+.recovery_content {
+
+  display: flex;
+  flex-direction: column;
+  gap: $apx-16;
+
+  &__email {
+
+    font-weight: 500;
+    color: var(--color-accent-black-900);
+
+  }
+
+  &__description {
+
+    font-weight: 600;
+    color: var(--color-accent-black-500);
+
+  }
+
+  &__enter_button {
+
+    width: 100%;
+
+  }
+
+}
