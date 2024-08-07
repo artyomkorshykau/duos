@@ -1,10 +1,13 @@
-
 import cssIf from '@/scripts/helpers/css.if';
 import s from './textfield.module.scss';
+import Eye from "@/react/components/icons/eye.icon";
+import { useState } from "react";
 
 const Textfield = ( props ) => {
 
-  const { 
+  const [ hide, setHide ] = useState( true )
+
+  const {
 
     id = "", 
     set = () => {},
@@ -17,6 +20,7 @@ const Textfield = ( props ) => {
     className = "",
     inputClassName = "",
     refDOM = null,
+    password,
     onClick = () => {},
     onKeyUp = () => {},
     onBlur = () => {},
@@ -36,7 +40,7 @@ const Textfield = ( props ) => {
         id = { id }
         ref = { refDOM }
         value = { value }
-        type = { type }
+        type = { hide ? 'password' : type }
         placeholder = { placeholder }
         className = { inputClassName }
         onChange = { onChange }
@@ -52,10 +56,23 @@ const Textfield = ( props ) => {
       
       />
 
+      { password &&
+
+        <Eye
+
+          stroke = { '#7C92A7' }
+          hide = { hide }
+          className = { `${ s.textfield__eye }` }
+          onClick = { () => setHide( !hide ) }
+
+        />
+
+      }
+
       { !!error && <p className = { s.error }>{ error }</p> }
 
     </div>
-    
+
   );
 
 }
