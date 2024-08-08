@@ -1,0 +1,45 @@
+@import "@/styles/apx.scss";
+
+.switch {
+
+  width: $apx-46;
+  height: $apx-24;
+  border-radius: $apx-28;
+  padding: $apx-4;
+  border: 1px solid #E2EBF9;
+  background-color: var(--color-bw-white);
+  cursor: grab;
+  transition: background-color .3s ease-in-out;
+  display: flex;
+
+  &:hover {
+
+    border-color: var(--color-accent-blue-270);
+
+  }
+
+  &__on {
+
+    background-color: var(--color-accent-blue-700);
+
+
+  }
+
+  &__slider {
+
+    width: $apx-24;
+    border-radius: $apx-24;
+    background-color: #7B92A7;
+    transition: background-color .3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateX(0);
+
+    &__on {
+
+      background-color: var(--color-bw-white);
+      transform: translateX($apx-13);
+
+    }
+
+  }
+
+}
