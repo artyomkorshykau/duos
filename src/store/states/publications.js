@@ -81,17 +81,17 @@ const publicationsState = {
 
 const getInitialPublicationsState = () => {
 
-  if (typeof window !== "undefined") {
+  if ( typeof window !== "undefined" ) {
 
-    const storedPublicationsState = JSON.parse(localStorage.getItem("publications"))
+    const storedPublicationsState = JSON.parse( localStorage.getItem( "publications" ) )
 
-    if (storedPublicationsState) {
+    if ( storedPublicationsState ) {
 
       return storedPublicationsState
 
     } else {
 
-      localStorage.setItem("publications", JSON.stringify(publicationsState))
+      localStorage.setItem( "publications", JSON.stringify( publicationsState ) )
 
       return publicationsState
 
@@ -100,6 +100,7 @@ const getInitialPublicationsState = () => {
   }
 
   return publicationsState
+
 }
 
 export default getInitialPublicationsState

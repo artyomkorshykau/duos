@@ -11,29 +11,29 @@ const AboutYourselfContent = ( props ) => {
 
   const { index } = props
   const [ globalState, globalActions ] = useGlobal()
-  const { publications } = globalState;
-  const { photos } = publications.categories[0]
+  const { publications } = globalState
+  const { photos } = publications.categories[ 0 ]
 
-  const [textareas, setTextareas] = useState( [] );
-
-  useEffect(() => {
-
-    const initialTextareas = publications.categories[index].profileInfo.map(section => section.text || '');
-    setTextareas(initialTextareas);
-
-  }, [ publications, index ]);
-
-  const handleTextareaChange = (sectionId, value) => {
-
-    const updatedTextareas = [ ...textareas ];
-    updatedTextareas[ sectionId ] = value;
-    setTextareas( updatedTextareas );
-    globalActions.publications.setAboutYourselfInfo( sectionId, value );
-
-  };
+  const [ textareas, setTextareas ] = useState( [] )
 
   const isShowProgressBar = textareas.some( ( str ) => str !== '' )
-  const hasPhotos = photos && photos.length > 0;
+  const hasPhotos = photos && photos.length > 0
+
+  useEffect( () => {
+
+    const initialTextareas = publications.categories[ index ].profileInfo.map( section => section.text || '' )
+    setTextareas( initialTextareas )
+
+  }, [ publications, index ] )
+
+  const handleTextareaChange = ( sectionId, value ) => {
+
+    const updatedTextareas = [ ...textareas ]
+    updatedTextareas[ sectionId ] = value
+    setTextareas( updatedTextareas )
+    globalActions.publications.setAboutYourselfInfo( sectionId, value )
+
+  }
 
   return (
 
@@ -45,23 +45,25 @@ const AboutYourselfContent = ( props ) => {
 
           <div key = { section.id }>
 
-            <h4 className = {`text-20 ${ s.publicationsWrapper__title }`}>{ section.title }</h4>
-            <p className = {`text-16 ${ s.publicationsWrapper__description }`}>{ section.description }</p>
+            <h4
+              className = { `text-20 ${ s.publicationsWrapper__title }` }>{ section.title }</h4>
+            <p
+              className = { `text-16 ${ s.publicationsWrapper__description }` }>{ section.description }</p>
 
             { section.id
 
               ? <Textarea
 
                 placeholder = { section.placeholder }
-                value = { textareas[section.id] || '' }
-                onChange = { (e) => handleTextareaChange(section.id, e.target.value) }
+                value = { textareas[ section.id ] || '' }
+                onChange = { ( e ) => handleTextareaChange( section.id, e.target.value ) }
 
               />
               : <Attachment
 
                 accept = ".png, .jpg, .tiff"
                 files = { photos }
-                onChange = {( files ) => globalActions.publications.setProfilePhoto( files )}
+                onChange = { ( files ) => globalActions.publications.setProfilePhoto( files ) }
                 deleteMultipleFile = { ( indexPhoto ) => globalActions.publications.deleteProfilePhoto( indexPhoto ) }
                 multiple
                 maxLength = { 5 }
@@ -74,17 +76,17 @@ const AboutYourselfContent = ( props ) => {
 
         )
 
-      })
+      } )
 
       }
 
-      { (isShowProgressBar || hasPhotos) &&
+      { ( isShowProgressBar || hasPhotos ) &&
 
         <ProgressBar
 
-        photos={ photos }
-        textareas={ textareas }
-        type="aboutYourselfContent"
+          photos = { photos }
+          textareas = { textareas }
+          type = "aboutYourselfContent"
 
         />
 
