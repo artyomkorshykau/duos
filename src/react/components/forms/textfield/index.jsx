@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Textfield = ( props ) => {
 
-  const [ hide, setHide ] = useState( true )
+  const [ hide, setHide ] = useState( false )
 
   const {
 
