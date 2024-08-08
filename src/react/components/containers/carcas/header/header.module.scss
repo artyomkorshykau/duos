@@ -175,3 +175,26 @@
   }
 
 }
+
+.recovery {
+
+  &__popup {
+
+    width: $apx-360;
+    top: $apx-280 !important;
+
+    &__in {
+
+      height: $apx-355;
+
+    }
+
+    &__up {
+
+      height: $apx-510;
+
+    }
+
+  }
+
+}
