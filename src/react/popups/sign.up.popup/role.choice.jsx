@@ -28,7 +28,7 @@ const RoleChoice = ({
 
           <div className = {`absolute ${ s.rolechoice__card__textspace }`}>
 
-            <p className = {`font-bold text-20 ${ s.rolechoice__card__textspace__title }`}>Клиент</p>
+            <p className = {`font-bold text-26 ${ s.rolechoice__card__textspace__title }`}>Клиент</p>
 
             <p className = {`font-semibold text-13 ${ s.rolechoice__card__textspace__text }`}>Откройте еще больше <br />уникального контента для <br />вашего саморазвития</p>
 
@@ -53,7 +53,7 @@ const RoleChoice = ({
 
           <div className = {`absolute ${ s.rolechoice__card__textspace }`}>
 
-            <p className = {`font-bold text-20 ${ s.rolechoice__card__textspace__title }`}>Эксперт</p>
+            <p className = {`font-bold text-26 ${ s.rolechoice__card__textspace__title }`}>Эксперт</p>
 
             <p className = {`font-semibold text-13 ${ s.rolechoice__card__textspace__text }`}>Заполните анкету и получите <br />возможность делиться своими <br />знаниями и опытом с людьми</p>
 
