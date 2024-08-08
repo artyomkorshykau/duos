@@ -152,7 +152,7 @@ const Header = ({
 
       <SignInPopup
 
-        // isOpened = { showSignInPopup }
+        isOpened = { showSignInPopup }
         closePopup = { () => closePopups() }
         logIn = { () => logIn() }
         signUp = { () => signUp( true ) }
@@ -174,7 +174,7 @@ const Header = ({
 
       <RecoveryPopup
 
-        isOpened = { showSignInPopup }
+        isOpened = { showRecoveryPopup }
         closePopup = { () => closePopups() }
         bodyClassName = {`${ s.recovery__popup } ${ s.recovery__popup__in }`}
 
