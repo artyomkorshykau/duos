@@ -197,7 +197,7 @@ const SignUpPopup = ({
 
       title = { !codeModeOpened ? `Присоединяйтесь` : `Введите код` }
       titlebottom = { !codeModeOpened ? `к сообществу DUOS` : `` }
-      subtitle = { !codeModeOpened ? `Введите номер телефона` : `Мы отправили его вам в СМС` }
+      subtitle = { !codeModeOpened ? `Введите номер телефона и действующий e-mail` : `Мы отправили его вам в СМС` }
       isOpened = { isOpened }
       closePopup = { handleClosePopup }
       bodyClassName = { bodyClassName }
@@ -223,6 +223,13 @@ const SignUpPopup = ({
                 handleInputChange({ target: { value: onlyNumbers } });
               }}
               placeholder = "+7 (___) ___-__-__"
+
+            />
+
+            <Textfield
+
+              withTitle = { false }
+              placeholder = "E-mail"
 
             />
 
