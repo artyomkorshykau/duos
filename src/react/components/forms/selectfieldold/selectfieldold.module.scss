@@ -1,28 +1,18 @@
 @import "@/styles/apx.scss";
 
-.textfield {
+.selecttrigger {
 
   width: 100%;
+  position: relative;
 
-  & + .textfield { margin-top: $apx-16; }
+  select {
 
-  .title {
-
-    margin-bottom: $apx-8;
-
-  }
-
-  .error {
-
-    margin-top: $apx-8;
-    color: var(--color-notice-error-500);
-
-  }
-
-  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: none;
 
     width: 100%;
-    height: 100%;
     outline: unset;
     text-overflow: ellipsis;
     padding: $apx-16;
@@ -34,13 +24,20 @@
     border: $apx-1 solid var(--color-accent-blue-200);
     border-radius: $apx-28;
 
-    &::placeholder {
-    
-      font-weight: 400;
-      font-size: $apx-16;
-      line-height: $apx-21;
-    
+    &:hover {
+
+      cursor: pointer;
+
     }
+
+  }
+
+  &__icon {
+
+    position: absolute;
+    right: $apx-15;
+    bottom: $apx-32;
+    pointer-events: none;
 
   }
 
