@@ -3,11 +3,12 @@
 import Textarea from '@/react/components/forms/textarea';
 import s from '../../services.module.scss'
 import useGlobal from '@/store';
+import Save from "@/react/components/icons/save";
 
 const ServiceDescription = ({
 
   categoryIndex,
-  index
+  i
 
 }) => {
 
@@ -25,8 +26,9 @@ const ServiceDescription = ({
           
           className = {`${ s.service__section__filedsGrid__textArea } col-span-2 max-w-full`}
           placeholder = { 'Опишите суть услуги, методы, особенности' }
-          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.meaningService }
-          onChange = {(e) => globalActions.service.setMeaningService( e.target.value, categoryIndex, index )}
+          value = { globalState.service.category?.[ categoryIndex ]?.services?.[ i ]?.meaningService }
+          onChange = { ( e ) => globalActions.service.setMeaningService( e.target.value, categoryIndex, i ) }
+          icon = { <Save fill="#FFFFFF" /> }
           
         />
 

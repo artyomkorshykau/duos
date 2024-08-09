@@ -50,7 +50,8 @@
 
   &__title,
   &__subtitle {
-  
+
+    white-space: pre-wrap;
     margin-bottom: $apx-16;
   
   }

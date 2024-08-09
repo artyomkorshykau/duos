@@ -145,17 +145,17 @@
   &__popup {
 
     width: $apx-360;
-    top: $apx-210 !important;
+    top: $apx-180 !important;
 
     &__in {
 
-      height: $apx-486;
+      height: $apx-550;
 
     }
 
     &__up {
 
-      height: $apx-510;
+      height: $apx-600;
 
     }
 
@@ -169,6 +169,29 @@
     &--opened {
 
       display: block !important;
+
+    }
+
+  }
+
+}
+
+.recovery {
+
+  &__popup {
+
+    width: $apx-360;
+    top: $apx-280 !important;
+
+    &__in {
+
+      height: $apx-355;
+
+    }
+
+    &__up {
+
+      height: $apx-510;
 
     }
 

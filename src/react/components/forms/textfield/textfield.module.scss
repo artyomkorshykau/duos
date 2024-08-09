@@ -2,9 +2,9 @@
 
 .textfield {
 
-  width: 100%;
+  position: relative;
 
-  & + .textfield { margin-top: $apx-16; }
+  width: 100%;
 
   .title {
 
@@ -41,6 +41,16 @@
       line-height: $apx-21;
     
     }
+
+  }
+
+  &__eye {
+
+    position: absolute;
+    top: $apx-17;
+    right: $apx-20;
+
+    cursor: pointer;
 
   }
 

@@ -1,14 +1,14 @@
-import useGlobal from "@/store";
 import Carcas from "@/react/components/containers/carcas";
-import Menu from "@/react/components/menu/ui";
+import Switch from "@/react/components/switch";
+import { useState } from "react";
 
 export default function Home() {
 
-  const [ globalState, globalActions ] = useGlobal();
+  const [ toggle, setToggle] = useState(false)
 
   return (
 
-    <main id = {``} className = {`flex justify-center items-end h-dvh`}>
+    <main id = {``} className = {`flex justify-center items-center h-dvh`}>
 
       <Carcas
       
@@ -16,7 +16,7 @@ export default function Home() {
       
       >
 
-        <Menu/>
+        <Switch toggle = { toggle } setToggle = { setToggle }/>
 
       </Carcas>
 
