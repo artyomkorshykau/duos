@@ -4,11 +4,11 @@ import cssIf from "@/scripts/helpers/css.if";
 
 import ArrowSelect from "@/react/components/icons/arrow_select";
 
-import s from "./selectfield.module.scss";
+import s from "./select.module.scss";
 import {useEffect, useMemo, useRef, useState} from "react";
 import CloseIcon from "@/react/components/icons/close";
 
-const Selectfield = ( props ) => {
+const Select = ( props ) => {
 
   const {
 
@@ -186,7 +186,7 @@ const Selectfield = ( props ) => {
             `}
           >
 
-            <ArrowSelect direction = 'down' fill = { isOpen ? '#18009E' : '#7C92A7' } />
+            <ArrowSelect direction = 'down' />
 
           </div>
 
@@ -225,4 +225,4 @@ const Selectfield = ( props ) => {
 
 };
 
-export default Selectfield;
+export default Select;

@@ -1,6 +1,6 @@
 import {memo} from "react";
 
-const SvgComponent = ( { className, fill, stroke, direction, ...rest } ) => {
+const SvgComponent = ( { className, fill = '#7C92A7', stroke, direction, ...rest } ) => {
 
     return (
 
