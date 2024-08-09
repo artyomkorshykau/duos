@@ -5,7 +5,7 @@ import s from '../../document.module.scss'
 import useGlobal from '@/store';
 import Textfield from '@/react/components/forms/textfield';
 import { communicationList } from '@/constants/services';
-import {useState} from "react";
+import { useEffect, useState } from "react";
 
 const Recommendation = ({
   categoryIndex,
@@ -17,7 +17,9 @@ const Recommendation = ({
   //TODO delete this when api will ready
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
+
     setIsLoaded(true);
+
   }, []);
 
   if (!isLoaded) {
