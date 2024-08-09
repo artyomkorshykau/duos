@@ -5,16 +5,27 @@ import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
 import Selectfield from '@/react/components/forms/selectfield'
 import { genderList } from '@/constants/profile'
+import { useEffect, useState } from "react";
 
 const FullName = () => {
 
-  const [ globalState, globalActions ] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal();
+
+  //TODO delete this when api will ready
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
 
     <div>
 
-      <p className = {`${ s.profile__section__title }`}>
+      <p className = {`text-20 ${ s.profile__section__title }`}>
 
         Фамилия Имя и Отчество
 
@@ -58,11 +69,11 @@ const FullName = () => {
           />
           <Selectfield
 
-            className = {`${ s.profile__section__filedsWrapper__filed }`}
-            value = { globalState.profile.gender }
+            // className = {`${ s.profile__section__filedsWrapper__filed }`}
             placeholder = { 'Пол' }
-            onChange = { (e) => globalActions.profile.setGender(e.target.value)}
-            options= { genderList }
+            options = { genderList }
+            value = { globalState.profile.gender }
+            onChange = { value => globalActions.profile.setGender( value ) }
 
           />
 

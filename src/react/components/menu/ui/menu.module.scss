@@ -1,0 +1,65 @@
+@import "@/styles/apx.scss";
+
+.menu {
+
+  width: $apx-1328;
+  height: $apx-105;
+  padding: 0 $apx-16;
+  border-radius: $apx-32 $apx-32 0 0;
+  box-shadow: 0px $apx-4 $apx-16 0px var(--color-accent-gray);
+  background-color: var(--color-bw-white);
+  position: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: $apx-32;
+
+  margin-bottom: $apx-105;
+
+  &__item {
+
+    width: $apx-233;
+    height: $apx-90;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: $apx-16 $apx-16 0 0;
+
+    &:hover {
+
+      background-color: var(--color-accent-blue-230);
+      cursor: pointer;
+
+      .menu__title {
+
+        font-weight: 700;
+
+      }
+
+    }
+
+  }
+
+  &__title {
+
+    font-weight: 600;
+    color: var(--color-accent-black-500)
+
+  }
+
+}
+
+.active {
+
+  background-color: var(--color-accent-blue-230);
+
+  .menu__title {
+
+    font-weight: 700;
+    color: var(--color-accent-blue-700);
+
+  }
+
+}

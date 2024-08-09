@@ -1,12 +1,18 @@
 import s from '../progress.bar.module.scss'
 
-const Description = () => {
+const Description = ( props ) => {
+
+  const {
+
+    description
+
+  } = props
 
   return (
 
     <p className = {`text-14 ${ s.progressBar__description }`}>
 
-      Эти данные станут частью вашего профиля и помогут продвижению
+      { description }
 
     </p>
 
