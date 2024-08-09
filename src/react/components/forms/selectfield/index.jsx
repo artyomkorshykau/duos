@@ -1,91 +1,228 @@
 'use client'
 
-import s from './selectfield.module.scss'
-import React from 'react'
-import Arrow from '@/react/components/icons/arrow'
+import cssIf from "@/scripts/helpers/css.if";
+
+import ArrowSelect from "@/react/components/icons/arrow_select";
+
+import s from "./selectfield.module.scss";
+import {useEffect, useMemo, useRef, useState} from "react";
+import CloseIcon from "@/react/components/icons/close";
 
 const Selectfield = ( props ) => {
 
   const {
 
-    id = '',
-    set = () => {},
+    className,
+    placeholder,
+    placeholderIcon,
+    options,
     value,
-    withTitle = false,
-    title = '',
-    error = '',
-    options = [],
-    className = '',
-    inputClassName = '',
-    placeholder = '',
-    refDOM = null,
-    onClick = () => {
-    },
-    onKeyUp = () => {
-    },
-    onBlur = () => {
-    },
-    onChange = () => {
-    },
+    onChange,
+    children,
+    error,
     ...selectParams
 
-  } = props
+  } = props;
+
+  const [ selectOption, setSelectOption ] = useState( value );
+
+  const chooseOption = ( value ) => {
+
+    setSelectOption( value );
+    onChange?.( value );
+
+  };
+
+  const [ isOpen, setIsOpen ] = useState( false );
+  const [ search, setSearch ] = useState( '' );
+
+  const containerRef = useRef( null );
+
+  const inputRef = useRef( null );
+
+  const filteredOptions = useMemo( () => {
+
+    return options.filter( item => item.label.toLowerCase().includes( search.toLowerCase() ) );
+
+  }, [ search ] );
+
+  const clearSearch = ( e ) => {
+
+    e.stopPropagation();
+    setSearch( '' );
+
+  };
+
+  useEffect(() => {
+
+    const handleClickOutside = ( event ) => {
+
+      if ( containerRef.current && !containerRef.current.contains( event.target ) ) {
+
+        setIsOpen(false);
+
+      }
+
+    };
+
+    if ( isOpen ) {
+
+      document.addEventListener( 'mousedown', handleClickOutside );
+
+    } else {
+
+      document.removeEventListener( 'mousedown', handleClickOutside );
+
+    }
+
+    return () => {
+
+      document.removeEventListener('mousedown', handleClickOutside);
+
+    };
+  }, [ isOpen ]);
+
+  useEffect( () => {
+
+    if ( isOpen && inputRef.current ) {
+
+      inputRef.current.focus();
+
+    }
+
+  }, [ isOpen, search, inputRef ] );
 
   return (
 
-    <div className = { `${ s.selecttrigger } ${ className }` }>
+    <div className = {`${ s.wrapper }`} ref = { containerRef }>
 
-      { !!title && <p> { title } </p> }
-
-      <div className = { `${ s.selecttrigger__icon }` }>
-
-        <Arrow direction = { 'bottom' } width = { 16 } fill = { '#7C92A7' } />
-
-      </div>
-
-      <select
-
-        id = { id }
-        ref = { refDOM }
-        value = { value }
-        className = { inputClassName }
-        onChange = { onChange }
-        onKeyUp = { onKeyUp }
-        onBlur = { onBlur }
-        { ...selectParams }
-        onClick = { ( e ) => {
-
-          onClick && onClick()
-          e.stopPropagation()
-
-        } }
-
+      <div
+        className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ className }`}
+        onClick = { () => setIsOpen( prev => !prev ) }
       >
 
-        <option value = "" disabled selected = { value === undefined } hidden>
+        <div className = {`${ s.wrapper__container__placeholder_container }`}>
 
-          { placeholder }
+          <div className={`${s.wrapper__container__placeholder_container__placeholder}`}>
 
-        </option>
+            { placeholderIcon && (
 
-        { options.map( ( option ) => (
+              <div className = {`${ s.wrapper__container__placeholder_container__placeholder__icon }`}>
 
-          <option key = { option.id } value = { option.value }>
+                { placeholderIcon }
 
-            { option.label }
+              </div>
 
-          </option>
+            ) }
 
-        ) ) }
+            <div className={`${ s.wrapper__container__placeholder_container__placeholder__titlecontainer }`}>
 
-      </select>
+              <span className={`
+                ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__placeholder }
+                ${ cssIf( isOpen, s.placeholderactive ) }
+                ${ cssIf( selectOption, s.placeholderactive ) }
+              `}>
 
-      { !!error && <p> { error } </p> }
+                { placeholder }
+
+              </span>
+
+              { selectOption ? (
+
+                <div className = {`
+                  ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__item }
+                  ${ cssIf( selectOption, s.itemactive )}
+                `}>
+
+                  { options.find( option => option.value === selectOption ).label }
+
+                </div>
+
+              ) : (
+
+                <div
+                  className = {`
+                    ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__searchinputcontainer }
+                    ${ cssIf( isOpen, s.searchactive ) }
+                  `}
+                >
+
+                  <input
+
+                      className = {`${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__searchinputcontainer__searchinput }`}
+                      ref = { inputRef }
+                      placeholder = 'Найти'
+                      value = { search }
+                      onChange = { ( e ) => setSearch( e.target.value ) }
+                      onClick = { ( e ) => e.stopPropagation() }
+
+                  />
+
+                  { search && (
+
+                    <button
+                      className = {`${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__searchinputcontainer__closebtn }`}
+                      onClick = { clearSearch }
+                    >
+
+                      <CloseIcon/>
+
+                    </button>
+
+                  ) }
+
+                </div>
+
+              ) }
+
+            </div>
+
+          </div>
+
+          <div
+              className = {`
+              ${ s.wrapper__container__placeholder_container__icon_container }
+              ${ cssIf( isOpen, s.icon_container_open ) }
+            `}
+          >
+
+            <ArrowSelect direction = 'down' fill = { isOpen ? '#18009E' : '#7C92A7' } />
+
+          </div>
+
+        </div>
+
+        { isOpen && (
+
+          <div className = {`${ s.wrapper__container__itemscontainer }`}>
+
+            { filteredOptions.map( option => (
+
+              <div
+                className = {`${ s.wrapper__container__itemscontainer__option }`}
+                onClick = { () => chooseOption(option.value) }
+              >
+
+                { option.label }
+
+              </div>
+
+            ) ) }
+
+              <div className = {`${ s.wrapper__container__itemscontainer__strip }`}/>
+
+            </div>
+
+        ) }
+
+        { !!error && <p> { error } </p> }
+
+      </div>
 
     </div>
 
   )
 
-}
+};
 
-export default Selectfield
+export default Selectfield;

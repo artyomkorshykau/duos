@@ -6,6 +6,7 @@ import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
 import { dayWeekMonthYearList, minuteHoursDaysList, paymentFormatList } from '@/constants/services';
 import cssIf from '@/scripts/helpers/css.if';
+import {useEffect, useState} from "react";
 
 const PaymentFormat = ({
 
@@ -14,7 +15,17 @@ const PaymentFormat = ({
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal();
+
+  //TODO delete this when api will ready
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+      setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
 
@@ -28,20 +39,20 @@ const PaymentFormat = ({
           
           className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
           placeholder = {'Формат оплаты услуги'}
-          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat }
-          onChange = {(e) => globalActions.service.setPaymentFormat( e.target.value, categoryIndex, index )}
           options = { paymentFormatList }
+          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat }
+          onChange = { value => globalActions.service.setPaymentFormat( value, categoryIndex, index ) }
           
         />
 
-        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Subscription' && 
+        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Подписка' &&
           <Selectfield
             
             className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
-            placeholder = {'День/неделя/месяц/год'}
-            value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.dayWeekMonthYearList }
-            onChange = {(e) => globalActions.service.setDayWeekMonthYearList( e.target.value, categoryIndex, index )}
+            placeholder = 'День/неделя/месяц/год'
             options = { dayWeekMonthYearList }
+            value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.dayWeekMonthYearList }
+            onChange = { value => globalActions.service.setDayWeekMonthYearList( value, categoryIndex, index ) }
           
           />
         }
