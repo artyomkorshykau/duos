@@ -1,6 +1,6 @@
 'use client'
 
-import Selectfield from '@/react/components/forms/selectfield';
+import Select from '@/react/components/forms/select';
 import s from '../../document.module.scss'
 import useGlobal from '@/store';
 import Textfield from '@/react/components/forms/textfield';
@@ -16,6 +16,7 @@ const Recommendation = ({
 
   //TODO delete this when api will ready
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
 
     setIsLoaded(true);
@@ -48,7 +49,7 @@ const Recommendation = ({
           onChange = { (e) => globalActions.service.setClientFullName( e.target.value, categoryIndex, index ) }
 
         />
-        <Selectfield
+        <Select
 
           className = {`${ s.document__section__filedsGrid5__filed } col-span-2`}
           placeholder = {'Способ связи'}

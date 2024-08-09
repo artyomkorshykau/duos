@@ -1,6 +1,6 @@
 'use client'
 
-import Selectfield from '@/react/components/forms/selectfield';
+import Select from '@/react/components/forms/select';
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
@@ -34,7 +34,7 @@ const WorkClients = ({
 
       <form className={`${s.service__section__filedsGrid}`}>
 
-        <Selectfield
+        <Select
           
           // className = {`${ s.service__section__filedsGrid__filed } col-span-2`}
           className = 'col-span-2'
@@ -54,7 +54,7 @@ const WorkClients = ({
           
         />
         
-        <Selectfield
+        <Select
 
           // className = {`${ s.service__section__filedsGrid__filed }`}
           placeholder = {'Минут, часов, дней...'}

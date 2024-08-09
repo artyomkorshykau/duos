@@ -3,7 +3,7 @@
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
-import Selectfield from '@/react/components/forms/selectfield'
+import Select from '@/react/components/forms/select';
 import { genderList } from '@/constants/profile'
 import { useEffect, useState } from "react";
 
@@ -12,13 +12,18 @@ const FullName = () => {
   const [ globalState, globalActions ] = useGlobal();
 
   //TODO delete this when api will ready
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+  const [ isLoaded, setIsLoaded ] = useState( false );
 
-  if (!isLoaded) {
+  useEffect( () => {
+
+    setIsLoaded( true );
+
+  }, [] );
+
+  if ( !isLoaded ) {
+
     return <div>Loading...</div>;
+
   }
 
   return (
@@ -67,7 +72,7 @@ const FullName = () => {
             onChange = { (e) => globalActions.profile.setBirthDate(e.target.value)}
 
           />
-          <Selectfield
+          <Select
 
             // className = {`${ s.profile__section__filedsWrapper__filed }`}
             placeholder = { 'Пол' }
