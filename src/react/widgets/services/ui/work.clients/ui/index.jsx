@@ -5,6 +5,7 @@ import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
 import { deliveryFormatList, minuteHoursDaysList } from '@/constants/services';
+import {useEffect, useState} from "react";
 
 const WorkClients = ({
 
@@ -13,7 +14,17 @@ const WorkClients = ({
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal();
+
+  //TODO delete this when api will ready
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
 
@@ -25,18 +36,19 @@ const WorkClients = ({
 
         <Selectfield
           
-          className = {`${ s.service__section__filedsGrid__filed } col-span-2`}
-          placeholder = {'Формат оказания услуги'}
-          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.deliveryFormat }
-          onChange = {(e) => globalActions.service.setDeliveryFormat( e.target.value, categoryIndex, index )}
+          // className = {`${ s.service__section__filedsGrid__filed } col-span-2`}
+          className = 'col-span-2'
+          placeholder = 'Формат оказания услуги'
           options = { deliveryFormatList }
+          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.deliveryFormat }
+          onChange = { value => globalActions.service.setDeliveryFormat( value, categoryIndex, index ) }
           
         />
 
         <Textfield
           
           className = {`${ s.service__section__filedsGrid__filed }`}
-          placeholder = {'Длительность'}
+          placeholder = 'Длительность'
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.duration }
           onChange = {(e) => globalActions.service.setDuration( e.target.value, categoryIndex, index )}
           
@@ -44,11 +56,11 @@ const WorkClients = ({
         
         <Selectfield
 
-          className = {`${ s.service__section__filedsGrid__filed }`}
+          // className = {`${ s.service__section__filedsGrid__filed }`}
           placeholder = {'Минут, часов, дней...'}
-          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.minuteHoursDays }
-          onChange = {(e) => globalActions.service.setMinuteHoursDays( e.target.value, categoryIndex, index )}
           options = { minuteHoursDaysList }
+          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.minuteHoursDays }
+          onChange = { value => globalActions.service.setDuration( value, categoryIndex, index ) }
           
         />
 
