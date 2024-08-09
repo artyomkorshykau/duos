@@ -33,8 +33,6 @@ const AccordionService = ({
     services,
   } = globalState.service.category?.[index]
 
-  console.log(globalState.service.category?.[index])
-
   const changeStatus = (index) => {
     if (category.status === "New") {
       globalActions.service.setChangeStatusCategory("NotFinished", index)
