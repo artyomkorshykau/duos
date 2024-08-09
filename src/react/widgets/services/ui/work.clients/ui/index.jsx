@@ -17,13 +17,18 @@ const WorkClients = ({
   const [ globalState, globalActions ] = useGlobal();
 
   //TODO delete this when api will ready
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+  const [ isLoaded, setIsLoaded ] = useState( false );
 
-  if (!isLoaded) {
+  useEffect( () => {
+
+    setIsLoaded( true );
+
+  }, [] );
+
+  if ( !isLoaded ) {
+
     return <div>Loading...</div>;
+
   }
 
   return (
@@ -60,7 +65,7 @@ const WorkClients = ({
           placeholder = {'Минут, часов, дней...'}
           options = { minuteHoursDaysList }
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.minuteHoursDays }
-          onChange = { value => globalActions.service.setDuration( value, categoryIndex, index ) }
+          onChange = { value => globalActions.service.setMinuteHoursDays( value, categoryIndex, index ) }
           
         />
 
