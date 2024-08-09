@@ -31,7 +31,7 @@ const Textfield = ( props ) => {
 
   return (
     
-    <div className = {`${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}>
+    <div className = {`${ s.textfield } ${cssIf(value !== '', s.filled)} ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}>
 
       { !!title && <p className = { s.title }>{ title }</p> }
       

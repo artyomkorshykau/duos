@@ -1,7 +1,10 @@
 import s from '@/react/widgets/school/ui/school.module.scss'
 import Textarea from '@/react/components/forms/textarea'
+import useGlobal from "@/store";
 
 const Comment = () => {
+
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -15,7 +18,13 @@ const Comment = () => {
 
       <form className={ `${ s.school__section__filedsWrapper }` }>
 
-        <Textarea placeholder = { 'Расскажите что-то о школе' }/>
+        <Textarea
+
+          placeholder = { 'Расскажите что-то о школе' }
+          value = { globalState.school.comment }
+          onChange = { (e) => globalActions.school.setComment(e.target.value)}
+
+        />
 
       </form>
 

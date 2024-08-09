@@ -62,6 +62,15 @@ const publicationsActions = {
     localStorage.setItem( "publications", JSON.stringify( publications ) )
     store.setState( { publications } )
 
+  },
+
+  setPublicationsProgress(store, progress) {
+
+    const publications = JSON.parse(localStorage.getItem('publications'))
+
+    localStorage.setItem('publications', JSON.stringify({ ...publications, progress }))
+    store.setState({ profile: { ...store.state.publications, progress } })
+
   }
 
 }

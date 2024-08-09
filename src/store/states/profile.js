@@ -18,11 +18,21 @@ const profileState = {
 
 const getInitialProfileState = () => {
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
 
-    const storedProfileState = JSON.parse(localStorage.getItem('profile'))
+    const storedProfileState = JSON.parse(localStorage.getItem("profile"))
 
-    return storedProfileState || profileState
+    if (storedProfileState) {
+
+      return storedProfileState
+
+    } else {
+
+      localStorage.setItem("profile", JSON.stringify(profileState))
+
+      return profileState
+
+    }
 
   }
 

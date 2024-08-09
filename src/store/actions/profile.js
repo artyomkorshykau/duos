@@ -105,6 +105,14 @@ const profileActions = {
     store.setState({ profile: { ...store.state.profile, email } })
 
   },
+  setProfileProgress(store, progress) {
+
+    const profile = JSON.parse(localStorage.getItem('profile'))
+
+    localStorage.setItem('profile', JSON.stringify({ ...profile, progress }))
+    store.setState({ profile: { ...store.state.profile, progress } })
+
+  }
 
 }
 
