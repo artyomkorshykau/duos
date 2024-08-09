@@ -25,7 +25,7 @@
     .button__name { color: var(--color-accent-blue-700) !important; }
     p { opacity: 1; }
     &:hover,
-    &:focus {
+    &:focus-visible {
     
       background: var(--color-accent-blue-200) !important;
     

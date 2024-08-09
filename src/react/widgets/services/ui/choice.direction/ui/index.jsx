@@ -3,14 +3,25 @@ import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield';
 import useGlobal from '@/store';
 import Selectfield from '@/react/components/forms/selectfield';
+import {useEffect, useState} from "react";
 
 const ChoiceDirection = ({
 
-  i
+  index
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal();
+
+  //TODO delete this when api will ready
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
 
@@ -23,20 +34,21 @@ const ChoiceDirection = ({
         <Selectfield
 
           className = {`${ s.service__section__filedsWrapper__filed }`}
-          placeholder = {'Выбрать направление'}
-          value = { globalState.service.category?.[i]?.direction }
-          onChange = { (e) => globalActions.service.setDirection( e.target.value, i ) }
+          placeholder = 'Выбрать направление'
           options = { directionList }
+          value = { globalState.service.category?.[index]?.direction }
+          onChange = { ( value ) => globalActions.service.setDirection( value, index ) }
 
         />
-        {(globalState.service.category?.[i]?.direction === 'Other') && 
+
+        { globalState.service.category?.[index]?.direction === 'Other' &&
           
           <Textfield
 
             className = {`${ s.service__section__filedsWrapper__filed }`}
             placeholder = {'Название направления'}
-            value = { globalState.service.category?.[i]?.directionName }
-            onChange = { (e) => globalActions.service.setDirectionName( e.target.value, i )}
+            value = { globalState.service.category?.[index]?.directionName }
+            onChange = { (e) => globalActions.service.setDirectionName( e.target.value, index )}
 
           />
           
@@ -46,8 +58,8 @@ const ChoiceDirection = ({
 
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Стаж работы по направлению, лет'}
-          value = { globalState.service.category?.[i]?.directionWorkExperience }
-          onChange = { (e) => globalActions.service.setDirectionWorkExperience( e.target.value, i )}
+          value = { globalState.service.category?.[index]?.directionWorkExperience }
+          onChange = { (e) => globalActions.service.setDirectionWorkExperience( e.target.value, index )}
 
         />
 

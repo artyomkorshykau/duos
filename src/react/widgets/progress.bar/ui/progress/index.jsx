@@ -2,6 +2,7 @@ import cssIf from '@/scripts/helpers/css.if';
 import useGlobal from '@/store';
 import { useEffect, useState } from 'react';
 import s from '../progress.bar.module.scss';
+import { log } from "next/dist/server/typescript/utils";
 
 const calculateProgress = (statuses) => {
 
@@ -11,7 +12,7 @@ const calculateProgress = (statuses) => {
     'Filled': 1,
     'NotFinished': 0.1,
     'New': 0,
-    'Не заполнено': 0
+    'NotFilled': 0
   };
 
   const totalWeight = statuses.length
@@ -30,10 +31,11 @@ const Progress = ({
 
   const [ globalState, globalActions ] = useGlobal()
   
-  const { service } = globalState
+  const { service, publications } = globalState
 
   const { category, passport } = service
-  
+  const { categories } = publications
+
   const [ progress, setProgress ] = useState(0)
 
   useEffect(() => {
@@ -57,13 +59,21 @@ const Progress = ({
 
       const passportStatus = passport.status
       const statuses = category.map( item => item.documentStatus );
-      const progress = calculateProgress( [...statuses, passportStatus] );
+      const progress = calculateProgress([...statuses, passportStatus]);
+
+      setProgress(progress)
+
+    } else if ( activeId === 5 && activeId === id ) {
+
+      const statuses = categories.map( item => item.documentStatus );
+
+      const progress = calculateProgress( statuses );
 
       setProgress(progress)
 
     }
 
-  }, [ activeId, id, category ])
+  }, [ activeId, id, category, categories])
 
   useEffect(() => {
 
@@ -78,8 +88,10 @@ const Progress = ({
   return (
 
     <div
-      style = { { width: `calc(${ id === 1 ? '8.85411vw' : '10.520766vw'} * ${progress})` } }
+      
+      style = { { width: `calc(${( id === 1 || id === 5) ? '8.85411vw' : '10.520766vw'} * ${progress})` } }
       className = {`${ s.progressBar__bar } ${ cssIf(check || id < activeId, s.progressBar__bar__check) } ${cssIf( id === 1, s.progressBar__bar__first ) } ${ cssIf(id === activeId, s.progressBar__bar__gradient) }`}
+      
     />
   )
 

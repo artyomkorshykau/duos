@@ -109,14 +109,14 @@ const AccordionService = ({
     
   }, [filled])
 
-  const content = (i) => {
+  const content = (index) => {
 
     return (
 
       <>
-        <ChoiceDirection i = { i }/>
+        <ChoiceDirection index = { index }/>
 
-        <Education i = { i }/>
+        <Education index = { index }/>
         
       </>
       
@@ -127,7 +127,7 @@ const AccordionService = ({
   return (
     <AccordionParent
       category = { category }
-      i = { index }
+      index = { index }
       isDelete = { service.category.length > 1 }
       content = { () => content(index) }
       title = { title }
@@ -141,12 +141,12 @@ const AccordionService = ({
       titleChildren = 'Услуги в рамках направления'
       status = { category.status }
     >
-      {category?.services?.map((el, i) => (
+      {category?.services?.map((el, indexServices) => (
         <AccordionServiceChildren
-          key = { i }
+          key = { index }
           el = { el }
           categoryIndex = { index }
-          i = { i }
+          index = { indexServices }
           isDelete = { category.services.length > 1 }
         />
       ))}

@@ -32,7 +32,7 @@ const DefaultButton = ({
       { positionIcon === 'left' && icon }
 
       <p className = {`text-16 ${ s.button__name }`}>{ name }</p>
-      
+
       { positionIcon === 'right' && icon }
 
       { children }

@@ -135,3 +135,23 @@
     background: linear-gradient(to right, #18009E 0%, #1A97E2 80%, #11E3E3 100%);
   }
 }
+
+@keyframes greenShadowMoveAround {  
+
+  0% {
+    transform: rotate(360deg) ;  
+  } 
+  25% {    
+    transform: rotate(270deg) ;
+  } 
+  50% {
+    transform: rotate(180deg) ;  
+  } 
+  75% {
+    transform: rotate(90deg) ;  
+  } 
+  100% { 
+    transform: rotate(0deg) ;
+  }
+
+}

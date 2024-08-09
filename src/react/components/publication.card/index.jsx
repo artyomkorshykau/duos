@@ -2,6 +2,7 @@ import s from './publication.card.module.scss'
 import PlaceholderImage from "@/react/components/icons/img.placeholder";
 import DefaultButton from "@/react/components/buttons/default.button";
 import Status from "@/react/components/status";
+import Cross from "@/react/components/icons/cross";
 
 const PublicationCard = ( props ) => {
 
@@ -10,62 +11,94 @@ const PublicationCard = ( props ) => {
     photo,
     status,
     title,
-    description
+    description,
+    action,
+    addNewPublication
 
   } = props
 
-  return (
+  if ( title ) {
 
-    <div className = {`${ s.card }`}>
+    return (
 
-      {photo
+      <div className = { `${ s.card }` }>
 
-        ? <img src = { photo } alt = { '' }/>
-        : <div className = {`${ s.card__placeholder }`}>
+        { photo
 
-          <PlaceholderImage/>
+          ? <img src = { photo } alt={ '' }/>
+          : <div className = { `${ s.card__placeholder }` }>
 
-        </div>
+            <PlaceholderImage/>
 
-      }
+          </div>
 
-      <div className = {`${ s.card__content }`}>
+        }
 
-        <div className = {`${ s.card__content__status }`}>
+        <div className = { `${ s.card__content }` }>
 
-          <Status status = { status }/>
+          <div className = { `${ s.card__content__status }` }>
+
+            <Status status = { status }/>
+
+            <DefaultButton
+
+              name = "Удалить"
+              type = 'any'
+              className = { `${ s.card__content__status__button }` }
+
+            />
+
+          </div>
+
+          <h4 className = { `text-20 ${ s.card__content__title }` }>
+
+            { title }
+
+          </h4>
+
+          <p className = { `text-13 ${ s.card__content__description }` }>
+
+            { description }
+
+          </p>
 
           <DefaultButton
 
-            name = "Удалить"
-            type = 'any'
-            className = { `${ s.card__content__status__button }`}
+            name = { 'Открыть' }
+            gray
+            className = { `${ s.card__content__button }` }
+            action = { action }
 
           />
 
         </div>
 
-        <h4 className = {`text-20 ${ s.card__content__title }`}>
-
-          { title }
-
-        </h4>
-
-        <p className = {`text-13 ${ s.card__content__description }`}>
-
-          { description }
-
-        </p>
-
-        <DefaultButton
-
-          name = { 'Открыть' }
-          gray
-          className = { `${ s.card__content__button  }` }
-
-        />
-
       </div>
+
+    )
+
+  }
+
+  return (
+
+    <div className = { `${ s.create_card }` }>
+
+      <DefaultButton
+
+        gray
+        name = ""
+        className = { `${ s.create_card__add_button }` }
+        icon = { <Cross fill = { '#18009E' }/> }
+        positionIcon = "right"
+        action = { addNewPublication }
+
+      />
+
+      <p className = { `text-13 ${ s.create_card__title }` }>
+
+        Нажмите, чтобы создать публикацию
+
+      </p>
 
     </div>
 

@@ -9,7 +9,7 @@ const AccordionDocumentChildren = ({
 
   el,
   categoryIndex,
-  i,
+  index,
   isDelete,
 
 }) => {
@@ -19,28 +19,28 @@ const AccordionDocumentChildren = ({
 
   const { service } = globalState
 
-  const content = (i, categoryIndex ) => {
+  const content = (index, categoryIndex ) => {
     return (
       <div className = {`${ s.document__children }`}>
 
-        <Recommendation  categoryIndex = { categoryIndex } i = { i }/>
+        <Recommendation  categoryIndex = { categoryIndex } index = { index }/>
         
-        <Reviews categoryIndex = { categoryIndex } i = { i }/>
+        <Reviews categoryIndex = { categoryIndex } index = { index }/>
         
       </div>
     )
   }
   
-  const { phone, clientFullName, communication, reviewsFiles } = service.category?.[categoryIndex]?.services?.[i]
+  const { phone, clientFullName, communication, reviewsFiles } = service.category?.[categoryIndex]?.services?.[index]
 
-  const changeStatus = (categoryIndex, i) => {
+  const changeStatus = (categoryIndex, index) => {
 
     if (el.documentStatus === "New") {
 
       globalActions.service.setChangeDocumentStatusServices(
         "NotFinished",
         categoryIndex,
-        i
+        index
       )
 
     }
@@ -52,7 +52,7 @@ const AccordionDocumentChildren = ({
 
       const timer = setTimeout(() => {
 
-        globalActions.service.setChangeDocumentStatusServices("NotFinished", categoryIndex, i)
+        globalActions.service.setChangeDocumentStatusServices("NotFinished", categoryIndex, index)
 
       }, 15000);
 
@@ -78,11 +78,11 @@ const AccordionDocumentChildren = ({
 
       if (filled) {
 
-        globalActions.service.setChangeDocumentStatusServices("Filled", categoryIndex, i)
+        globalActions.service.setChangeDocumentStatusServices("Filled", categoryIndex, index)
 
       } else {
 
-        globalActions.service.setChangeDocumentStatusServices("NotFinished", categoryIndex, i)
+        globalActions.service.setChangeDocumentStatusServices("NotFinished", categoryIndex, index)
 
       } 
 
@@ -92,21 +92,21 @@ const AccordionDocumentChildren = ({
 
   return (
     <AccordionChildren
-      key = { i }
+      key = { index }
       el = { el }
       categoryIndex = { categoryIndex }
-      i = { i }
+      index = { index }
       isDelete = { isDelete }
-      deletePopupAction = { (categoryIndex, i) =>
-        globalActions.service.setDeleteServices(categoryIndex, i)
+      deletePopupAction = { (categoryIndex, index) =>
+        globalActions.service.setDeleteServices(categoryIndex, index)
       }
       title = {
-        service.category?.[categoryIndex]?.services?.[i]?.title
+        service.category?.[categoryIndex]?.services?.[index]?.title
       }
-      content = {(i, categoryIndex, setOpen) =>
-        content(i, categoryIndex, setOpen)
+      content = {(index, categoryIndex, setOpen) =>
+        content(index, categoryIndex, setOpen)
       }
-      changeStatus = { (categoryIndex, i) =>  changeStatus(categoryIndex, i) }
+      changeStatus = { (categoryIndex, index) =>  changeStatus(categoryIndex, index) }
       status = { el.documentStatus }
     />
   )

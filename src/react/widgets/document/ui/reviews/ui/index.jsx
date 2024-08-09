@@ -8,7 +8,7 @@ import useGlobal from '@/store';
 const Reviews = ({
 
   categoryIndex,
-  i,
+  index,
 
 }) => {
 
@@ -31,12 +31,13 @@ const Reviews = ({
       <div className = { s.document__section__attachmentWrapper }>
 
         <Attachment
+
           accept = ".png, .jpg, .tiff"
-          files = { service.category?.[categoryIndex]?.services?.[i]?.reviewsFiles }
-          onChange = {(files) =>
-            globalActions.service.setServiceReviewsFiles(files, categoryIndex, i)
-          }
+          files = { service.category?.[ categoryIndex ]?.services?.[ index ]?.reviewsFiles }
+          onChange = { (files) => globalActions.service.setServiceReviewsFiles(files, categoryIndex, index) }
           multiple
+          deleteMultipleFile = { (indexFile) => globalActions.service.setServiceDeleteReviewsFiles( categoryIndex, index, indexFile ) }
+
         /> 
 
       </div>

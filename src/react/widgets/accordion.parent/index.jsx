@@ -10,7 +10,7 @@ import Plus from '@/react/components/icons/plus';
 const AccordionParent = ({
   
   category,
-  i,
+  index,
   isDelete,
   content,
   title,
@@ -24,7 +24,8 @@ const AccordionParent = ({
   titleChildren,
   descriptionChildren,
   status,
-  isBottomContent = true
+  isBottomContent = true,
+  marginTop
 
 }) => {
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
@@ -69,7 +70,7 @@ const AccordionParent = ({
           <DefaultButton
             
             action = {() => {
-              changeStatus && changeStatus(i)
+              changeStatus && changeStatus(index)
               setOpen( !open )}}
             name = ''
             className = {`${ s.accordion__parent__buttons__arrow } ${ cssIf( open, s.accordion__parent__buttons__rotated ) }`}
@@ -84,9 +85,9 @@ const AccordionParent = ({
 
       {open && (
 
-        <div className = {`${ s.accordion__children }`}>
+        <div className = {`${ s.accordion__children } ${ cssIf( marginTop, marginTop)}`}>
           
-          { content( i ) }
+          { content( index ) }
           
           {isBottomContent && (
 
@@ -110,7 +111,7 @@ const AccordionParent = ({
                       className = {`${ s.accordion__children__services__button }`}
                       icon = { <Plus fill = { '#18009E' }/> }
                       positionIcon = 'right'
-                      action = {() => addService( i ) }
+                      action = {() => addService( index ) }
 
                     />
 
@@ -140,7 +141,7 @@ const AccordionParent = ({
           action = {() => {
             
             closePopups()
-            deletePopupAction( i )
+            deletePopupAction( index )
 
           }}
           

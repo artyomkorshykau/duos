@@ -14,22 +14,22 @@ const AccordionServiceChildren = ({
 
   el,
   categoryIndex,
-  i,
+  index,
   isDelete,
 
 }) => {
   const [ globalState, globalActions ] = useGlobal()
   const { service } = globalState
 
-  const content = (i, categoryIndex, setOpen ) => {
+  const content = (index, categoryIndex, setOpen ) => {
     return (
       <div className = {`${ s.services__children }`}>
         <div className = {`${ s.services__children__left }`}>
           <Attachment
             accept = ".png, .jpg, .tiff"
-            files = { service.category?.[categoryIndex]?.services?.[i]?.files }
+            files = { service.category?.[categoryIndex]?.services?.[index]?.files }
             onChange = {(files) =>
-              globalActions.service.setServiceFiles(files, categoryIndex, i)
+              globalActions.service.setServiceFiles(files, categoryIndex, index)
             }
             description = "Загрузите картинку к услуге, она будет отображаться в качестве обложки услуги"
             size = "big"
@@ -48,10 +48,10 @@ const AccordionServiceChildren = ({
         </div>
 
         <div className = {`${ s.services__children__right }`}>
-          <General categoryIndex = { categoryIndex } i = { i } />
-          <WorkClients categoryIndex = { categoryIndex } i = { i } />
-          <PaymentFormat categoryIndex = { categoryIndex } i = { i } />
-          <ServiceDescription categoryIndex = { categoryIndex } i = { i } />
+          <General categoryIndex = { categoryIndex } index = { index } />
+          <WorkClients categoryIndex = { categoryIndex } index = { index } />
+          <PaymentFormat categoryIndex = { categoryIndex } index = { index } />
+          <ServiceDescription categoryIndex = { categoryIndex } index = { index } />
         </div>
       </div>
     )
@@ -70,16 +70,16 @@ const AccordionServiceChildren = ({
     minuteHoursDays,
     meaningService,
     files
-  } = service.category?.[categoryIndex]?.services?.[i]
+  } = service.category?.[categoryIndex]?.services?.[index]
 
-  const changeStatus = (categoryIndex, i) => {
+  const changeStatus = (categoryIndex, index) => {
 
     if (el.status === "New") {
 
       globalActions.service.setChangeStatusServices(
         "NotFinished",
         categoryIndex,
-        i
+        index
       )
 
     }
@@ -91,7 +91,7 @@ const AccordionServiceChildren = ({
 
       const timer = setTimeout(() => {
 
-        globalActions.service.setChangeStatusServices("NotFinished", categoryIndex, i)
+        globalActions.service.setChangeStatusServices("NotFinished", categoryIndex, index)
 
       }, 15000);
 
@@ -113,9 +113,9 @@ const AccordionServiceChildren = ({
       files &&
       el.status !== "New"
     ) {
-      globalActions.service.setChangeStatusServices("Filled", categoryIndex, i)
+      globalActions.service.setChangeStatusServices("Filled", categoryIndex, index)
     } else if(el.status !== "New") {
-      globalActions.service.setChangeStatusServices("NotFinished", categoryIndex, i)
+      globalActions.service.setChangeStatusServices("NotFinished", categoryIndex, index)
     }
   }, [
     paymentFormat,
@@ -134,21 +134,21 @@ const AccordionServiceChildren = ({
 
   return (
     <AccordionChildren
-      key = { i }
+      key = { index }
       el = { el }
       categoryIndex = { categoryIndex }
-      i = { i }
+      index = { index }
       isDelete = { isDelete }
-      deletePopupAction = { (categoryIndex, i) =>
-        globalActions.service.setDeleteServices(categoryIndex, i)
+      deletePopupAction = { (categoryIndex, index) =>
+        globalActions.service.setDeleteServices(categoryIndex, index)
       }
       title = {
-        service.category?.[categoryIndex]?.services?.[i]?.title
+        service.category?.[categoryIndex]?.services?.[index]?.title
       }
-      content = {(i, categoryIndex, setOpen) =>
-        content(i, categoryIndex, setOpen)
+      content = {(index, categoryIndex, setOpen) =>
+        content(index, categoryIndex, setOpen)
       }
-      changeStatus = { (categoryIndex, i) =>  changeStatus(categoryIndex, i) }
+      changeStatus = { (categoryIndex, index) =>  changeStatus(categoryIndex, index) }
       status = { el.status }
     />
   )

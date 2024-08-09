@@ -7,6 +7,7 @@ import HeaderSignPanel from "./header.sign.panel";
 import SignInPopup from "@/react/popups/sign.in.popup";
 import SignUpPopup from "@/react/popups/sign.up.popup";
 import s from "./header.module.scss";
+import RecoveryPopup from "@/react/popups/recovery.popup";
 
 const Header = ({
 
@@ -21,6 +22,7 @@ const Header = ({
   const [ isAuthBackReversed, setIsAuthBackReversed ] = useState( true );
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
   const [ showSignUpPopup, setShowSignUpPopup ] = useState( false );
+  const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
   const [ codeModeClosed, setCodeModeClosed ] = useState( false );
 
   function signIn( fast = false ) {
@@ -31,9 +33,9 @@ const Header = ({
     if ( fast !== true ) {
 
       setTimeout(() => {
-        
+
         setShowSignInPopup( true );
-        
+
       }, 1100);
 
     } else {
@@ -52,9 +54,9 @@ const Header = ({
     if ( fast !== true ) {
 
       setTimeout(() => {
-        
+
         setShowSignUpPopup( true );
-        
+
       }, 1100);
 
     } else {
@@ -69,6 +71,7 @@ const Header = ({
 
     setShowSignInPopup( false );
     setShowSignUpPopup( false );
+    setShowRecoveryPopup(false);
     setIsAuthBackOpened( false );
     setIsAuthBackReversed( false );
     setCodeModeClosed( true );
@@ -76,7 +79,7 @@ const Header = ({
   }
 
   function logIn() {
-    
+
     alert( 'Войти в ИТ' );
 
     if ( authorized === false ) {
@@ -86,7 +89,7 @@ const Header = ({
       setIsAuthBackOpened( false );
 
     }
-  
+
   }
 
   return (
@@ -95,14 +98,11 @@ const Header = ({
 
       <div className = {`${ s['auth-back'] } ${ isAuthBackOpened && s['auth-back--opened'] } ${ s.white_blur } absolute`}/>
 
-      <div className = {`flex items-center justify-center ${ s['auth-back'] } ${ isAuthBackOpened && s['auth-back--opened'] } ${ s.circles_container } ${ isAuthBackOpened ? s['circles_container--appear'] : s['circles_container--disappear'] } absolute`}>
+      <div className = {`${ s['auth-back'] } ${ isAuthBackOpened && s['auth-back--opened'] } ${ s.logocircle } absolute`} >  
 
-        <div className = {`${ s.blue_circle } absolute`}/>
         <div className = {`${ s.green_circle } absolute`}/>
 
       </div>
-
-      <div className = {`${ s['auth-back'] } ${ isAuthBackOpened && s['auth-back--opened'] } ${ s.logocircle } absolute`}/>
 
       { isAuthBackOpened
       
@@ -116,7 +116,7 @@ const Header = ({
 
             <div className = {`${ s.logocircle } ${ !isAuthBackOpened && s['logocircle--closed'] } ${ setIsAuthBackReversed && s['logocircle--unanimate'] } absolute`}/>
             <LogoWord className = {`${ s.header__logoword } absolute`}/>
-          
+
           </Fragment>
 
       }
@@ -169,6 +169,14 @@ const Header = ({
         signIn = { () => signIn( true ) }
         codeModeClosed = { codeModeClosed }
         bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__up }`}
+
+      />
+
+      <RecoveryPopup
+
+        isOpened = { showRecoveryPopup }
+        closePopup = { () => closePopups() }
+        bodyClassName = {`${ s.recovery__popup } ${ s.recovery__popup__in }`}
 
       />
 

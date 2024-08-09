@@ -195,12 +195,12 @@ const SignUpPopup = ({
 
     <Popup
 
-      title = { !codeModeOpened ? `Присоединяйтесь` : `Введите код` }
+      title = { !codeModeOpened ? `Присоединяйтесь` : `Введите код из SMS` }
       titlebottom = { !codeModeOpened ? `к сообществу DUOS` : `` }
-      subtitle = { !codeModeOpened ? `Введите номер телефона` : `Мы отправили его вам в СМС` }
+      subtitle = { !codeModeOpened ? `Введите номер телефона и действующий e-mail` : `Этот код будет служить вашим паролем для входа в личный кабинет` }
       isOpened = { isOpened }
       closePopup = { handleClosePopup }
-      bodyClassName = { bodyClassName }
+      bodyClassName = { !codeModeOpened ? bodyClassName : s.signup_popup }
       subtitleMargin = { codeModeOpened ? true : false }
       contentOnly = { roleModeOpened && true }
       content = { rolechoice }
@@ -223,6 +223,14 @@ const SignUpPopup = ({
                 handleInputChange({ target: { value: onlyNumbers } });
               }}
               placeholder = "+7 (___) ___-__-__"
+
+            />
+
+            <Textfield
+
+              withTitle = { false }
+              placeholder = "E-mail"
+              className = { `${ s.email }` }
 
             />
 
@@ -261,73 +269,12 @@ const SignUpPopup = ({
 
             <div className = {`flex items-center justify-center ${ s.code__numbers }`}>
 
-              <NumberField
+              <Textfield
 
-                index = { 1 }
-                data-index = "1"
-                value = { code1 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode1Change({ target: { value: onlyNumbers } });
-                }}
-                
-              />
-
-              <NumberField
-
-                index = { 2 }
-                data-index = "2"
-                value = { code2 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode2Change({ target: { value: onlyNumbers } });
-                }}
-
-              />
-
-              <NumberField
-
-                index = { 3 }
-                data-index = "3"
-                value = { code3 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode3Change({ target: { value: onlyNumbers } });
-                }}
-
-              />
-
-              <NumberField
-
-                index = { 4 }
-                data-index = "4"
-                value = { code4 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode4Change({ target: { value: onlyNumbers } });
-                }}
-
-              />
-
-              <NumberField
-
-                index = { 5 }
-                data-index = "5"
-                value = { code5 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode5Change({ target: { value: onlyNumbers } });
-                }}
+                withTitle = { false }
+                placeholder = "Код-пароль"
+                password
+                className = {`${ s.code__numbers__password }`}
 
               />
 
@@ -352,10 +299,8 @@ const SignUpPopup = ({
                     
                   >
                       
-                    Отправить новый код
+                    Отправить новый код-пароль
 
-                    <div className = {`${ s.gettext__new_code__liner } absolute`}/>
-                  
                   </p>
 
               }

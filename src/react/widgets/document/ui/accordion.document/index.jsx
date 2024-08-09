@@ -3,6 +3,7 @@ import AccordionParent from '@/react/widgets/accordion.parent'
 import { useEffect, useState } from 'react';
 import Certificate from '../certificate/ui';
 import AccordionDocumentChildren from '../accordion.document.children';
+import s from '../document.module.scss'
 
 const AccordionDocument = ({
 
@@ -73,13 +74,13 @@ const AccordionDocument = ({
     
   }, [filled])
 
-  const content = (i) => {
+  const content = (index) => {
 
     return (
 
       <>
         
-        <Certificate i = { i }/>
+        <Certificate index = { index }/>
         
       </>
       
@@ -90,7 +91,7 @@ const AccordionDocument = ({
   return (
     <AccordionParent
       category = { category }
-      i = { index }
+      index = { index }
       isDelete = { false }
       content = { () => content(index) }
       title = { category.title }
@@ -101,13 +102,14 @@ const AccordionDocument = ({
       descriptionChildren = "Заполните контакты клиентов, которые могут дать рекомендации по тем услугам, которые вы указали ранее"
       status = { category.documentStatus }
       changeStatus = { (index) =>  changeStatus(index) }
+      marginTop = {`${ s.marginTop }`}
     >
-      {category?.services?.map((el, i) => (
+      {category?.services?.map((el, indexServices) => (
         <AccordionDocumentChildren
-          key = { i }
+          key = { index }
           el = { el }
           categoryIndex = { index }
-          i = { i }
+          index = { indexServices }
           isDelete = { false }
         />
       ))}

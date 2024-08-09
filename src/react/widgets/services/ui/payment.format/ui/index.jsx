@@ -6,15 +6,26 @@ import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
 import { dayWeekMonthYearList, minuteHoursDaysList, paymentFormatList } from '@/constants/services';
 import cssIf from '@/scripts/helpers/css.if';
+import {useEffect, useState} from "react";
 
 const PaymentFormat = ({
 
   categoryIndex,
-  i
+  index
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal();
+
+  //TODO delete this when api will ready
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+      setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
 
@@ -26,42 +37,42 @@ const PaymentFormat = ({
 
         <Selectfield
           
-          className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[i]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
+          className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
           placeholder = {'Формат оплаты услуги'}
-          value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.paymentFormat }
-          onChange = {(e) => globalActions.service.setPaymentFormat( e.target.value, categoryIndex, i )}
           options = { paymentFormatList }
+          value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat }
+          onChange = { value => globalActions.service.setPaymentFormat( value, categoryIndex, index ) }
           
         />
 
-        { globalState.service.category?.[categoryIndex]?.services?.[i]?.paymentFormat === 'Subscription' && 
+        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Подписка' &&
           <Selectfield
             
-            className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[i]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
-            placeholder = {'День/неделя/месяц/год'}
-            value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.dayWeekMonthYearList }
-            onChange = {(e) => globalActions.service.setDayWeekMonthYearList( e.target.value, categoryIndex, i )}
+            className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
+            placeholder = 'День/неделя/месяц/год'
             options = { dayWeekMonthYearList }
+            value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.dayWeekMonthYearList }
+            onChange = { value => globalActions.service.setDayWeekMonthYearList( value, categoryIndex, index ) }
           
           />
         }
 
-        { ( globalState.service.category?.[categoryIndex]?.services?.[i]?.paymentFormat === 'Fixed' || 
-          globalState.service.category?.[categoryIndex]?.services?.[i]?.paymentFormat === 'Subscription' ||
-          !globalState.service.category?.[categoryIndex]?.services?.[i]?.paymentFormat) &&
+        { ( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Fixed' || 
+          globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Subscription' ||
+          !globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat) &&
 
           <Textfield
           
             className = {`${ s.service__section__filedsGrid__filed }`}
             placeholder = {'Стоимость, руб'}
-            value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.price }
-            onChange = {(e) => globalActions.service.setPrice( e.target.value, categoryIndex, i )}
+            value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.price }
+            onChange = {(e) => globalActions.service.setPrice( e.target.value, categoryIndex, index )}
             
           />
           
         }
         
-        { globalState.service.category?.[categoryIndex]?.services?.[i]?.paymentFormat === 'Range' &&
+        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Range' &&
         
           <>
           
@@ -69,8 +80,8 @@ const PaymentFormat = ({
             
               className = {`${ s.service__section__filedsGrid__filed }`}
               placeholder = {'От, руб'}
-              value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.from }
-              onChange = {(e) => globalActions.service.setFrom( e.target.value, categoryIndex, i )}
+              value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.from }
+              onChange = {(e) => globalActions.service.setFrom( e.target.value, categoryIndex, index )}
               
             />
             
@@ -78,8 +89,8 @@ const PaymentFormat = ({
               
               className = {`${ s.service__section__filedsGrid__filed }`}
               placeholder = {'До, руб'}
-              value = { globalState.service.category?.[categoryIndex]?.services?.[i]?.before }
-              onChange = {(e) => globalActions.service.setBefore( e.target.value, categoryIndex, i )}
+              value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.before }
+              onChange = {(e) => globalActions.service.setBefore( e.target.value, categoryIndex, index )}
               
             />
 
