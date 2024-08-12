@@ -113,23 +113,37 @@
           &__searchinputcontainer {
 
             height: 0;
+            display: flex;
             position: relative;
 
             &__searchinput {
 
               height: 100%;
+              width: 100%;
               transition: height 300ms ease;
               background: var(--color-accent-background);
               color: var(--color-accent-black-900);
+              font-size: $apx-21;
+              line-height: 1;
               font-weight: 500;
 
             }
 
             &__closebtn {
 
+              height: $apx-21;
+              width: $apx-21;
+              display: flex;
               position: absolute;
-              right: -30px;
+              right: -$apx-25;
               bottom: 0;
+
+              svg {
+
+                height: 100%;
+                width: 100%;
+
+              }
 
               &:hover {
 
