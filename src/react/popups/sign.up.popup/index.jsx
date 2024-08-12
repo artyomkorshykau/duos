@@ -33,6 +33,7 @@ const SignUpPopup = ({
     setUserNumber("");
     setUserEmail("");
     setUserCode("");
+    setCodeModeOpened(false)
 
   };
 
@@ -58,13 +59,13 @@ const SignUpPopup = ({
 
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
 
-  function getNewCode() {
+  const getNewCode = () => {
 
     alert('отправить новый код');
     setShowTimer( false );
     setTime( 31 );
 
-  }
+  };
 
   useEffect(() => {
 
@@ -74,14 +75,6 @@ const SignUpPopup = ({
     }
 
   }, [ codeModeOpened ]);
-
-  const rolechoice = 
-  
-    <RoleChoice
-    
-      close = { () => closePopups }
-    
-    />
 
   return (
 
@@ -95,7 +88,7 @@ const SignUpPopup = ({
       bodyClassName = { !codeModeOpened ? bodyClassName : s.signup_popup }
       subtitleMargin = { codeModeOpened ? true : false }
       contentOnly = { roleModeOpened && true }
-      content = { rolechoice }
+      content = { <RoleChoice close = { () => closePopups }/> }
 
     >
 
@@ -173,7 +166,7 @@ const SignUpPopup = ({
 
             </div>
 
-            <div className = {`flex items-center ${ s.checkbox__container }`}>
+            <div className = {`flex items-center`}>
 
               { !showTimer ?
 
