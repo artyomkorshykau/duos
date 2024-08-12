@@ -1,8 +1,5 @@
-import FormLogoBegin from "@/react/components/icons/form.logo.begin";
-import FormLogoContinue from "@/react/components/icons/form.logo.continue";
-import FormLogoEnd from "@/react/components/icons/form.logo.end";
 import s from "@/react/widgets/quiz/ui/quiz.module.scss";
-import QuizProgress from '@/constants/quiz.progress';
+import QuizProgress from '@/constants/quiz.progress'
 
 const FormLogo = ({
 
@@ -12,11 +9,11 @@ const FormLogo = ({
 
   return (
 
-    <div className={`${ s.quiz__form_logo }`}>
+    <div className = {`${ s.quiz__form_logo }`}>
 
-      { status === QuizProgress.begin && <FormLogoBegin/> }
-      { status === QuizProgress.continue && <FormLogoContinue/> }
-      { status === QuizProgress.end && <FormLogoEnd/> }
+      { status === QuizProgress.begin && <img src="/img/questionnaire/begin.png" alt=""/> }
+      { status === QuizProgress.continue && <img src="/img/questionnaire/continue.png" alt=""/> }
+      { status === QuizProgress.end && <img src="/img/questionnaire/end.png" alt=""/> }
 
     </div>
 

@@ -42,7 +42,6 @@ const Location = () => {
 
         <Select
 
-          // className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = 'Страна'
           options = { countryList }
           value = { globalState.profile.country }
@@ -51,7 +50,6 @@ const Location = () => {
         />
         <Select
 
-          // className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Город'}
           options = { cityList }
           value = { globalState.profile.city }

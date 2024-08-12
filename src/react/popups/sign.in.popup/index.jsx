@@ -17,6 +17,7 @@ const SignInPopup = ({
 }) => {
 
   const [ userNumber, setUserNumber ] = useState("");
+  const [ userPassword, setUserPassword ] = useState("");
   const [ showToolTip, setShowToolTip ] = useState( false );
   const [ rememberUser, setRememberUser ] = useState( false );
 
@@ -41,6 +42,7 @@ const SignInPopup = ({
 
     closePopup();
     setUserNumber("");
+    setUserPassword("");
 
   };
 
@@ -57,6 +59,8 @@ const SignInPopup = ({
   const handleMouseOut = () => { setShowToolTip( false ) };
   const handleMouseOver = () => { setShowToolTip( true ) };
 
+  console.log(userNumber)
+
   return (
 
     <Popup
@@ -66,6 +70,7 @@ const SignInPopup = ({
       isOpened = { isOpened }
       closePopup = { handleClosePopup }
       bodyClassName = { bodyClassName }
+      subtitleMargin
 
     >
 
@@ -73,26 +78,23 @@ const SignInPopup = ({
 
         <Textfield
 
-        set = { set }
         value = { userNumber }
         withTitle = { false }
-        onChange = {(e) => {
-          const { value } = e.target;
-          const onlyNumbers = value.replace(/[^0-9+]/g, '');
-          handleInputChange({ target: { value: onlyNumbers } });
-        }}
-        placeholder = "+7 (___) ___-__-__"
+        onChange = { (e) => setUserNumber(e.target.value) }
+        placeholder = "Телефон"
+        type = 'phone'
 
         />
 
         <Textfield
 
+          value = { userPassword }
+          onChange = { (e) => setUserPassword(e.target.value) }
           withTitle = { false }
           placeholder = "Пароль"
           password
 
         />
-
 
         <p className = { `text-14 ${ s.signin_content__forgot }` }>Забыли
           пароль?</p>
