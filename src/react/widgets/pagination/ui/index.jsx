@@ -35,7 +35,7 @@ const Pagination = ({
 
       setDisabled( true )
 
-    } else if(activeStep === "Публикации" && publications.progress !== 1) {
+    } else if(activeStep === "Публикации" && publications.progress !== 1 ) {
 
       setDisabled( true )
 
@@ -67,7 +67,7 @@ const Pagination = ({
         action = { nextStep }
         icon = { <Arrow direction = { 'right' } fill = { '#fff' }/> }
         positionIcon = 'right'
-        disabled = {disabled}
+        disabled = { disabled }
 
       />
 

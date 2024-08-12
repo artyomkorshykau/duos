@@ -11,6 +11,7 @@ import Publications from "@/react/widgets/publications/ui";
 import Quiz from "@/react/widgets/quiz/ui";
 import { useQuiz } from "@/react/widgets/quiz/model";
 import { steps } from "@/constants/quiz.steps";
+import QuizProgress from "@/constants/quiz.progress";
 
 export default function ProfilePage() {
 
@@ -21,7 +22,8 @@ export default function ProfilePage() {
 
     buttonTitle,
     handleButtonAction,
-    status
+    status,
+    setStatus
 
   } = useQuiz( { setStep } )
 
@@ -57,6 +59,12 @@ export default function ProfilePage() {
       setStep( steps.publications )
       setTitle('Публикации')
       setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
+
+    }
+    if( step === steps.publications ) {
+
+      setStatus(QuizProgress.end)
+      setStep( steps.questionnaire )
 
     }
 

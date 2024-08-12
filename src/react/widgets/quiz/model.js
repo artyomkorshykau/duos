@@ -5,8 +5,6 @@ import QuizProgress from '@/constants/quiz.progress'
 
 export const useQuiz = ( { setStep } ) => {
 
-  const { push } = useRouter()
-
   const [ status, setStatus ] = useState( QuizProgress.begin )
 
   let buttonTitle
@@ -29,15 +27,8 @@ export const useQuiz = ( { setStep } ) => {
   const handleButtonAction = () => {
 
     if( status === QuizProgress.begin ) setStep( "Профиль" )
-    if( status === QuizProgress.continue ) setStatus( QuizProgress.end )
-    if( status === QuizProgress.end ) {
-
-      setStatus( QuizProgress.begin )
-      push( '/' )
-
-    }
 
   }
 
-  return { buttonTitle, handleButtonAction, status }
+  return { buttonTitle, handleButtonAction, status, setStatus }
 }
