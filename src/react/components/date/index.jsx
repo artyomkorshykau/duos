@@ -6,7 +6,6 @@ import {forwardRef, useState} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import CalendarIcon from "@/react/components/icons/calendar";
-import Textfield from "@/react/components/forms/textfield";
 
 const DateField = (props) => {
 
