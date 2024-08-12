@@ -1,12 +1,14 @@
 'use client'
 
+import { useEffect, useMemo, useRef, useState } from "react";
 import cssIf from "@/scripts/helpers/css.if";
 
+import Option from "./option";
+
 import ArrowSelect from "@/react/components/icons/arrow_select";
+import CloseIcon from "@/react/components/icons/close";
 
 import s from "./select.module.scss";
-import {useEffect, useMemo, useRef, useState} from "react";
-import CloseIcon from "@/react/components/icons/close";
 
 const Select = ( props ) => {
 
@@ -198,14 +200,20 @@ const Select = ( props ) => {
 
             { filteredOptions.map( option => (
 
-              <div
-                className = {`${ s.wrapper__container__itemscontainer__option }`}
-                onClick = { () => chooseOption(option.value) }
-              >
-
-                { option.label }
-
-              </div>
+              // <div
+              //   key = { option.value }
+              //   className = {`${ s.wrapper__container__itemscontainer__option }`}
+              //   onClick = { () => chooseOption(option.value) }
+              // >
+              //
+              //   { option.label }
+              //
+              // </div>
+              <Option
+                key = { option.value }
+                option = { option }
+                onClick = { () => chooseOption( option.value ) }
+              />
 
             ) ) }
 
