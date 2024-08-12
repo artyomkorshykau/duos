@@ -3,6 +3,7 @@
 .datepicker {
 
   width: $apx-305;
+  max-width: $apx-305;
 
   & > div {
     position: relative;
@@ -49,6 +50,9 @@
   height: $apx-64;
   width: $apx-305;
   position: relative;
+  background: var(--color-accent-background);
+  border: $apx-1 solid var(--color-accent-blue-200);
+  border-radius: $apx-28;
 
   &__icon {
 
@@ -62,9 +66,18 @@
 
   }
 
-  &__input {
+  &__header {
 
     height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    padding-inline: $apx-16;
+    font-weight: 400;
+    font-size: $apx-16;
+    line-height: $apx-21;
+    color: var(--color-accent-black-500);
 
   }
 
