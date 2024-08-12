@@ -5,10 +5,9 @@
   width: $apx-305;
   height: $apx-64;
   max-height: $apx-64;
-  background: var(--color-accent-background);
-  border: $apx-1 solid var(--color-accent-blue-200);
-  border-radius: $apx-28;
-  position: relative;
+  //background: var(--color-accent-background);
+  //border: $apx-1 solid var(--color-accent-blue-200);
+  //border-radius: $apx-28;
   font-weight: 500;
 
   &:hover {
@@ -282,5 +281,11 @@
 .icon_container_open {
 
   transform: rotate(180deg);
+
+}
+
+.active {
+
+  background: var(--color-bw-white);
 
 }
