@@ -94,11 +94,13 @@ const Selectfield = ( props ) => {
 
   return (
 
-    <div className = {`${ s.wrapper }`} ref = { containerRef }>
+    <div className = {`${ s.wrapper } ${ className }`} ref = { containerRef }>
 
       <div
-        className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ className }`}
+
+        className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) }`}
         onClick = { () => setIsOpen( prev => !prev ) }
+
       >
 
         <div className = {`${ s.wrapper__container__placeholder_container }`}>

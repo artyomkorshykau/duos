@@ -45,81 +45,118 @@
 
 }
 
-.container {
+.wrapper {
 
   height: $apx-64;
   width: $apx-305;
-  position: relative;
   background: var(--color-accent-background);
   border: $apx-1 solid var(--color-accent-blue-200);
   border-radius: $apx-28;
 
   &:hover {
 
-    svg {
+    div {
 
-      path {
+      svg {
 
-        fill: var(--color-accent-blue-700);
+        path {
+
+          fill: var(--color-accent-blue-700);
+
+        }
+
+        rect {
+
+          fill: var(--color-accent-blue-700);
+
+        }
 
       }
+
+
+      div {
+
+        color: var(--color-accent-blue-700);
+        font-weight: 500;
+
+      }
+
+    }
+
+  }
+
+  &__container {
+
+    width: 100%;
+    height: $apx-64;
+    background: var(--color-accent-background);
+    border: $apx-1 solid var(--color-accent-blue-200);
+    border-radius: $apx-28;
+    position: relative;
+
+    &__icon {
+
+      width: $apx-16;
+      height: $apx-16;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: $apx-16;
+      z-index: 1;
 
       rect {
 
-        fill: var(--color-accent-blue-700);
+        transition: all 300ms ease;
+
+      }
+
+      path {
+
+        transition: all 300ms ease;
 
       }
 
     }
 
+    &__activeicon {
 
-    div {
-
-      color: var(--color-accent-blue-700);
-      font-weight: 500;
+      width: auto;
+      height: auto;
 
     }
 
-  }
+    &__header {
 
-  &__icon {
-
-    width: $apx-16;
-    height: $apx-16;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: $apx-16;
-    z-index: 1;
-
-    rect {
-
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: $apx-20 $apx-16;
+      font-weight: 400;
+      font-size: $apx-16;
+      line-height: $apx-21;
+      color: var(--color-accent-black-500);
       transition: all 300ms ease;
 
     }
 
-    path {
+    &__calendar_container {
 
-      transition: all 300ms ease;
+      height: $apx-300;
+      width: 100%;
+      border-radius: $apx-28;
+      background: var(--color-bw-white);
+      position: relative;
+      z-index: 1;
 
     }
 
   }
 
-  &__header {
+}
 
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    //justify-content: center;
-    padding-inline: $apx-16;
-    font-weight: 400;
-    font-size: $apx-16;
-    line-height: $apx-21;
-    color: var(--color-accent-black-500);
-    transition: all 300ms ease;
+.open {
 
-  }
+  height: auto !important;
 
 }

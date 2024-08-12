@@ -2,10 +2,12 @@
 
 import s from './date.module.scss';
 import useGlobal from '@/store';
-import {forwardRef, useState} from 'react';
+import {forwardRef, useEffect, useRef, useState} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import CalendarIcon from "@/react/components/icons/calendar";
+import ArrowSelect from "@/react/components/icons/arrow_select";
+import cssIf from "@/scripts/helpers/css.if";
 
 const DateField = (props) => {
 
@@ -14,8 +16,12 @@ const DateField = (props) => {
     value,
   } = props;
 
-  const [ globalState, globalActions ] = useGlobal()
-  const [date, setDate] = useState(value || null);
+  const [ globalState, globalActions ] = useGlobal();
+
+  const [isOpen, setIsOpen] = useState( false );
+  const [date, setDate] = useState( value || null );
+
+  const containerRef = useRef( null );
 
   const handleChange = (date) => {
 
@@ -23,32 +29,78 @@ const DateField = (props) => {
     
   };
 
-    const customInput = <div className = {`${ s.container }`}>
+  useEffect( () => {
 
-        <CalendarIcon className = {`${ s.container__icon }`} fill = "#7C92A7" />
+    const handleClickOutside = ( event ) => {
 
-        <div className = {`${ s.container__header }`}>
+      if ( containerRef.current && !containerRef.current.contains( event.target ) ) {
 
-            { placeholder }
+        setIsOpen(false);
+
+      }
+
+    };
+
+    if ( isOpen ) {
+
+      document.addEventListener( 'mousedown', handleClickOutside );
+
+    } else {
+
+      document.removeEventListener( 'mousedown', handleClickOutside );
+
+    }
+
+    return () => {
+
+      document.removeEventListener('mousedown', handleClickOutside);
+
+    };
+  }, [ isOpen ] );
+
+  return (
+
+    <div
+
+      className = {`${ s.wrapper }`}
+      ref={containerRef}
+      onClick = { () => setIsOpen( prev => !prev ) }
+
+    >
+
+      <div className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) }`}>
+
+        { isOpen ? (
+
+          <ArrowSelect
+
+            direction = "up"
+           className = {`${ s.wrapper__container__icon } ${ cssIf( isOpen, s.wrapper__container__activeicon ) }`}
+            fill = "#7C92A7"
+
+          />
+
+        ) : (
+
+          <CalendarIcon className = {`${ s.wrapper__container__icon }`} fill = "#7C92A7"/>
+
+        ) }
+
+        <div className = {`${ s.wrapper__container__header }`}>
+
+          { placeholder }
 
         </div>
 
-    </div>;
+        { isOpen && (
 
-    return (
+          <div className = {`${ s.wrapper__container__calendar_container }`} />
 
-      <div>
-
-        <DatePicker
-
-          className = {`${ s.datepicker }`}
-          selected = { date }
-          onChange = { handleChange }
-          customInput = { customInput }
-
-        />
+        ) }
 
       </div>
+
+    </div>
 
   )
 
