@@ -53,22 +53,12 @@
   &__eye {
 
     position: absolute;
-    top: $apx-17;
+    top: $apx-18;
     right: $apx-20;
 
     cursor: pointer;
 
   }
-
-  &__controls {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: $apx-20;
-    position: absolute;
-    right: $apx-10;
-    top: $apx-8;
 
     &__cross {
 
@@ -90,7 +80,5 @@
       cursor: pointer;
 
     }
-
-  }
 
 }

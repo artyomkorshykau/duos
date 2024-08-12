@@ -36,7 +36,6 @@ const TaxStatus = () => {
 
         <Selectfield
 
-          // className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = 'Налоговый статус'
           placeholderIcon = { <WarningIcon /> }
           options = { taxStatusesList }
@@ -45,27 +44,27 @@ const TaxStatus = () => {
 
         />
 
-        { globalState.profile.taxName !== 'Individual' && globalState.profile.taxName !== 'self-employed' &&
+        { globalState.profile.taxStatus !== 'Individual' && globalState.profile.taxStatus !== 'self-employed' &&
 
           <Textfield
 
             className={ `${ s.profile__section__filedsWrapper__filed }` }
             placeholder={ 'Полное наименование' }
             value = { globalState.profile.taxName }
-            onChange={ ( value ) => globalActions.profile.setTaxName( value ) }
+            onChange = { ( e ) => globalActions.profile.setTaxName( e.target.value ) }
 
           />
 
         }
 
-        { globalState.profile.taxName !== 'Individual' &&
+        { globalState.profile.taxStatus !== 'Individual' &&
 
         <Textfield
 
-          className={ `${ s.profile__section__filedsWrapper__filed }` }
-          placeholder={ 'ИНН' }
-          value={ globalState.profile.taxIIN }
-          onChange={ ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
+          className = { `${ s.profile__section__filedsWrapper__filed }` }
+          placeholder = { 'ИНН' }
+          value = { globalState.profile.taxIIN }
+          onChange = { ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
 
         />
 

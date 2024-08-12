@@ -8,7 +8,7 @@ import Save from "@/react/components/icons/save";
 
 const Textfield = ( props ) => {
 
-  const [ hide, setHide ] = useState( false )
+  const [ hide, setHide ] = useState( true )
 
   const {
 
@@ -23,6 +23,8 @@ const Textfield = ( props ) => {
     password,
     onChange,
     onClick,
+    classNameControls,
+    clearFiled,
     ...inputParams
 
   } = props;
@@ -41,7 +43,7 @@ const Textfield = ( props ) => {
 
           mask = { '+7 (999) 999-99-99' }
           value = { value }
-          onChange={ ( e ) => onChange( e.currentTarget.value ) }
+          onChange = { onChange }
           placeholder = { placeholder }
           type = { 'tel' }
 
@@ -53,13 +55,13 @@ const Textfield = ( props ) => {
 
         : <input
 
-        value={ value }
-        type={ hide ? 'password' : type }
-        placeholder={ placeholder }
-        className={ inputClassName }
-        onChange={ ( e ) => onChange( e.currentTarget.value ) }
+        value = { value }
+        type = { hide && password ? 'password' : type }
+        placeholder = { placeholder }
+        className = { inputClassName }
+        onChange = { onChange }
         { ...inputParams }
-        onClick={ ( e ) => {
+        onClick = { ( e ) => {
 
           onClick && onClick();
           e.stopPropagation();
@@ -73,7 +75,7 @@ const Textfield = ( props ) => {
         <Eye
 
           stroke = { '#7C92A7' }
-          hide = { hide }
+          hide = { !hide }
           className = { `${ s.textfield__eye }` }
           onClick = { () => setHide( !hide ) }
 
@@ -81,22 +83,22 @@ const Textfield = ( props ) => {
 
       }
 
-      { showSaveButton(value) && !password &&
+      { showSaveButton(value) && classNameControls &&
 
-        <div className = {`${ s.textfield__controls }`}>
+        <div className = {`${ classNameControls }`}>
 
           <Cross
 
-            stroke={ '#7C92A7' }
-            onClick={ () => onChange( '' ) }
-            className = { `${s.textfield__controls__cross }`}
+            stroke = { '#7C92A7' }
+            onClick = { clearFiled }
+            className = { `${s.textfield__cross }`}
 
           />
 
           <div
 
-            className = {`${ s.textfield__controls__save }`}
-            onClick={ () => alert('Отправка на сервер') }
+            className = {`${ s.textfield__save }`}
+            onClick = { () => alert('Отправка на сервер') }
 
           >
 

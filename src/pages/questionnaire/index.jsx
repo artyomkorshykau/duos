@@ -8,43 +8,53 @@ import Services from '@/react/widgets/services/ui';
 import School from '@/react/widgets/school/ui'
 import Document from '@/react/widgets/document/ui';
 import Publications from "@/react/widgets/publications/ui";
+import Quiz from "@/react/widgets/quiz/ui";
+import { useQuiz } from "@/react/widgets/quiz/model";
+import { steps } from "@/constants/quiz.steps";
 
 export default function ProfilePage() {
 
-  const [ step, setStep ] = useState( 'Профиль' )
+  const [ step, setStep ] = useState( steps.questionnaire )
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
+  const {
+
+    buttonTitle,
+    handleButtonAction,
+    status
+
+  } = useQuiz( { setStep } )
 
   const nextStep = () => {
 
-    if( step === 'Профиль' ) {
+    if( step === steps.profile ) {
 
-      setStep( 'Услуги' )
+      setStep( steps.service )
       setTitle('Услуги')
       setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')
 
 
     }
 
-    if( step === 'Услуги' ) {
+    if( step === steps.service ) {
 
-      setStep( 'Школа' )
+      setStep( steps.school )
       setTitle('Школа')
       setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
 
     }
 
-    if( step === 'Школа' ) {
+    if( step === steps.school ) {
 
-      setStep( 'Документы' )
+      setStep( steps.documents )
       setTitle('Документы')
       setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
 
     }
 
-    if( step === 'Документы' ) {
+    if( step === steps.documents ) {
 
-      setStep( 'Публикации' )
+      setStep( steps.publications )
       setTitle('Публикации')
       setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
 
@@ -56,7 +66,7 @@ export default function ProfilePage() {
 
   const content = useMemo(() => {
 
-    if (step === 'Профиль') {
+    if ( step === steps.profile ) {
 
       return (
 
@@ -65,7 +75,7 @@ export default function ProfilePage() {
       )
 
     }
-    if (step === 'Услуги') {
+    if ( step === steps.service ) {
 
       return (
 
@@ -74,7 +84,7 @@ export default function ProfilePage() {
 
     }
 
-    if ( step === 'Школа' ) {
+    if ( step === steps.school ) {
 
       return (
 
@@ -84,7 +94,7 @@ export default function ProfilePage() {
 
     }
 
-    if ( step === 'Документы' ) {
+    if ( step === steps.documents ) {
 
       return (
 
@@ -94,7 +104,7 @@ export default function ProfilePage() {
 
     }
 
-    if ( step === 'Публикации' ) {
+    if ( step === steps.publications ) {
 
       return (
 
@@ -108,7 +118,7 @@ export default function ProfilePage() {
 
   return (
 
-    <main id = {``} className = {``}>
+    <main id = {``} className = {`${ step === steps.questionnaire && 'flex items-center h-dvh' }`}>
 
       <Carcas
 
@@ -116,20 +126,31 @@ export default function ProfilePage() {
 
       >
 
-        <div className = { `flex flex-column` }>
+        { step === steps.questionnaire
+
+        ? <Quiz
+
+          buttonTitle = { buttonTitle }
+          handleButtonAction = { handleButtonAction }
+          status = { status }
+
+          />
+        : <div className={ `flex flex-column` }>
 
           <ProgressBar
 
-            title = { title }
-            description = { description }
-            activeStep = { step }
+            title={ title }
+            description={ description }
+            activeStep={ step }
 
           />
           { content }
-          <Autosave />
-          <Pagination nextStep = { nextStep } activeStep = { step }/>
+          <Autosave/>
+          <Pagination nextStep={ nextStep } activeStep={ step }/>
 
         </div>
+
+        }
 
       </Carcas>
 

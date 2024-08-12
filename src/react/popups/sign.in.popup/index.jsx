@@ -42,6 +42,7 @@ const SignInPopup = ({
 
     closePopup();
     setUserNumber("");
+    setUserPassword("");
 
   };
 
@@ -69,6 +70,7 @@ const SignInPopup = ({
       isOpened = { isOpened }
       closePopup = { handleClosePopup }
       bodyClassName = { bodyClassName }
+      subtitleMargin
 
     >
 
@@ -78,7 +80,7 @@ const SignInPopup = ({
 
         value = { userNumber }
         withTitle = { false }
-        onChange = { setUserNumber }
+        onChange = { (e) => setUserNumber(e.target.value) }
         placeholder = "Телефон"
         type = 'phone'
 
@@ -87,7 +89,7 @@ const SignInPopup = ({
         <Textfield
 
           value = { userPassword }
-          onChange = { setUserPassword }
+          onChange = { (e) => setUserPassword(e.target.value) }
           withTitle = { false }
           placeholder = "Пароль"
           password

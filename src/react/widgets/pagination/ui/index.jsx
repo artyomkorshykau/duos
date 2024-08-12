@@ -62,7 +62,7 @@ const Pagination = ({
 
       <DefaultButton
 
-        name = { 'Далее' }
+        name = { activeStep === "Публикации" ? 'Отправить анкету' : 'Далее' }
         className = {`${ s.pagination__button_next }`}
         action = { nextStep }
         icon = { <Arrow direction = { 'right' } fill = { '#fff' }/> }

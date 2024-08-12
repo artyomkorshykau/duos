@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import QuizProgress from '@/constants/quiz.progress'
 
 
-export const useQuiz = () => {
+export const useQuiz = ( { setStep } ) => {
 
   const { push } = useRouter()
 
@@ -28,7 +28,7 @@ export const useQuiz = () => {
 
   const handleButtonAction = () => {
 
-    if( status === QuizProgress.begin ) setStatus( QuizProgress.continue )
+    if( status === QuizProgress.begin ) setStep( "Профиль" )
     if( status === QuizProgress.continue ) setStatus( QuizProgress.end )
     if( status === QuizProgress.end ) {
 

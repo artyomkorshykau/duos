@@ -7,8 +7,6 @@ const profileState = {
     gender: '',
     nickName: '',
     taxStatus: '',
-    taxName: '',
-    taxIIN: '',
     country: '',
     city: '',
     phoneNumber: '',
