@@ -5,7 +5,8 @@ import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
 import Selectfield from '@/react/components/forms/selectfield'
 import { genderList } from '@/constants/profile'
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import DateField from '@/react/components/date';
 
 const FullName = () => {
 
@@ -58,7 +59,7 @@ const FullName = () => {
             onChange = { (e) => globalActions.profile.setSurName(e.target.value)}
 
           />
-          <Textfield
+          <DateField
 
             className = {`${ s.profile__section__filedsWrapper__filed }`}
             placeholder = {'Дата рождения'}
