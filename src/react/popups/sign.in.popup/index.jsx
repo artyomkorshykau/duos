@@ -1,13 +1,12 @@
-import { useState } from "react";
 import Popup from "../popup";
 import Textfield from "@/react/components/forms/textfield";
 import SignInIconWhite from "@/react/components/icons/sign.in.icon.white";
 import DefaultButton from "@/react/components/buttons/default.button";
 import s from "./sign.in.module.scss";
+import { useLogin } from "@/react/popups/sign.in.popup/model";
 
 const SignInPopup = ({
 
-  set,
   logIn = () => {},
   signUp = () => {},
   bodyClassName = "",
@@ -16,50 +15,21 @@ const SignInPopup = ({
 
 }) => {
 
-  const [ userNumber, setUserNumber ] = useState("");
-  const [ userPassword, setUserPassword ] = useState("");
-  const [ showToolTip, setShowToolTip ] = useState( false );
-  const [ rememberUser, setRememberUser ] = useState( false );
+  const {
 
-  const handleInputChange = (e) => {
-    const { value } = e.target;
-    let formattedValue = value.replace(/^(\+)?/, "");
-    if (value.length === 1 && value === "+") {
-      formattedValue = "";
-    } else if (value.length === 1) {
-      formattedValue = "+" + value;
-    } else {
-      formattedValue = "+" + formattedValue;
-    }
-    if (formattedValue.length > 12) {
-      formattedValue = formattedValue.substring(0, 12);
-      formattedValue = "+" + formattedValue.substring(1);
-    }
-    setUserNumber(formattedValue);
-  };
+    handleClosePopup,
+    handleLog,
+    setUserNumber,
+    setUserPassword,
+    userNumber,
+    userPassword
 
-  const handleClosePopup = () => {
+  } = useLogin( {
 
-    closePopup();
-    setUserNumber("");
-    setUserPassword("");
+    closePopup,
+    logIn
 
-  };
-
-  function log() {
-
-    if ( userNumber.length >= 11 && rememberUser === true ) {
-
-      logIn();
-
-    }
-
-  };
-
-  const handleMouseOut = () => { setShowToolTip( false ) };
-  const handleMouseOver = () => { setShowToolTip( true ) };
-
-  console.log(userNumber)
+  } )
 
   return (
 
@@ -96,14 +66,22 @@ const SignInPopup = ({
 
         />
 
-        <p className = { `text-14 ${ s.signin_content__forgot }` }>Забыли
-          пароль?</p>
+        <p
+
+          className = { `text-14 ${ s.signin_content__forgot }` }
+          onClick = { () => alert('Вспоминай))))0)')}
+
+        >
+
+          Забыли пароль?
+
+        </p>
 
         <DefaultButton
 
           name = "Войти"
           className = { `${ s.button }` }
-          action = { () => log() }
+          action = { () => handleLog() }
           positionIcon = { 'right' }
           icon = { <SignInIconWhite className = { s.button__icon }/> }
 
