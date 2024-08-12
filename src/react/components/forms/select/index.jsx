@@ -1,14 +1,16 @@
 'use client'
 
+import { useEffect, useMemo, useRef, useState } from "react";
 import cssIf from "@/scripts/helpers/css.if";
 
-import ArrowSelect from "@/react/components/icons/arrow_select";
+import Option from "./option";
 
-import s from "./selectfield.module.scss";
-import {useEffect, useMemo, useRef, useState} from "react";
+import ArrowSelect from "@/react/components/icons/arrow_select";
 import CloseIcon from "@/react/components/icons/close";
 
-const Selectfield = ( props ) => {
+import s from "./select.module.scss";
+
+const Select = ( props ) => {
 
   const {
 
@@ -186,7 +188,7 @@ const Selectfield = ( props ) => {
             `}
           >
 
-            <ArrowSelect direction = 'down' fill = { isOpen ? '#18009E' : '#7C92A7' } />
+            <ArrowSelect direction = 'down' />
 
           </div>
 
@@ -198,14 +200,20 @@ const Selectfield = ( props ) => {
 
             { filteredOptions.map( option => (
 
-              <div
-                className = {`${ s.wrapper__container__itemscontainer__option }`}
-                onClick = { () => chooseOption(option.value) }
-              >
-
-                { option.label }
-
-              </div>
+              // <div
+              //   key = { option.value }
+              //   className = {`${ s.wrapper__container__itemscontainer__option }`}
+              //   onClick = { () => chooseOption(option.value) }
+              // >
+              //
+              //   { option.label }
+              //
+              // </div>
+              <Option
+                key = { option.value }
+                option = { option }
+                onClick = { () => chooseOption( option.value ) }
+              />
 
             ) ) }
 
@@ -225,4 +233,4 @@ const Selectfield = ( props ) => {
 
 };
 
-export default Selectfield;
+export default Select;

@@ -1,0 +1,19 @@
+@import "@/styles/apx.scss";
+
+.option {
+
+  padding: $apx-8;
+  border-radius: $apx-16;
+  color: var(--color-accent-black-900);
+  font-weight: 600;
+  font-size: $apx-15;
+  cursor: pointer;
+  transition: background 300ms ease;
+
+  &:hover {
+
+    background: var(--color-accent-background);
+
+  }
+
+}

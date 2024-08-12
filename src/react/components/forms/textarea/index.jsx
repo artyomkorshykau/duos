@@ -29,11 +29,11 @@ const Textarea = ( props ) => {
 
   } = props;
 
-  const [text, setText] = useState(value);
-  const [height, setHeight] = useState(MIN_HEIGHT);
-  const [isResizing, setIsResizing] = useState(false);
-  const [startY, setStartY] = useState(0);
-  const textareaDivRef = useRef(null);
+  const [ text, setText ] = useState( value );
+  const [ height, setHeight ] = useState( MIN_HEIGHT );
+  const [ isResizing, setIsResizing ] = useState( false );
+  const [ startY, setStartY ] = useState( 0 );
+  const textareaDivRef = useRef( null );
 
   const handleChange = ( e ) => {
 
@@ -42,21 +42,21 @@ const Textarea = ( props ) => {
 
   }
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = ( e ) => {
 
-    setIsResizing(true);
-    setStartY(e.clientY);
+    setIsResizing( true );
+    setStartY( e.clientY );
 
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = ( e ) => {
 
-    if (isResizing) {
+    if ( isResizing ) {
 
-      const newHeight = height + (e.clientY - startY);
+      const newHeight = height + ( e.clientY - startY );
 
-      setStartY(e.clientY);
-      setHeight(newHeight);
+      setStartY( e.clientY );
+      setHeight( newHeight );
       
     }
 
@@ -64,24 +64,24 @@ const Textarea = ( props ) => {
 
   const handleMouseUp = () => {
 
-    setIsResizing(false);
+    setIsResizing( false );
 
   };
 
-  const handleTouchStart = (e) => {
+  const handleTouchStart = ( e ) => {
     
-    setIsResizing(true);
-    setStartY(e.touches[0].clientY);
+    setIsResizing( true );
+    setStartY( e.touches[ 0 ].clientY );
 
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = ( e ) => {
 
-    if (isResizing) {
+    if ( isResizing ) {
 
-      const newHeight = height + (e.touches[0].clientY - startY);
-      setHeight(newHeight);
-      setStartY(e.touches[0].clientY);
+      const newHeight = height + ( e.touches[ 0 ].clientY - startY );
+      setHeight( newHeight);
+      setStartY( e.touches[ 0 ].clientY );
 
     }
 
@@ -89,76 +89,78 @@ const Textarea = ( props ) => {
 
   const handleTouchEnd = () => {
 
-    setIsResizing(false);
+    setIsResizing( false );
 
   };
 
-  useEffect(() => {
+  useEffect( () => {
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener( 'mousemove', handleMouseMove );
+    window.addEventListener( 'mouseup', handleMouseUp );
+    window.addEventListener( 'touchmove', handleTouchMove );
+    window.addEventListener( 'touchend', handleTouchEnd );
 
     return () => {
 
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener( 'mousemove', handleMouseMove );
+      window.removeEventListener( 'mouseup', handleMouseUp );
+      window.removeEventListener( 'touchmove', handleTouchMove );
+      window.removeEventListener( 'touchend', handleTouchEnd );
   
     };
 
-  }, [isResizing, height]);
+  }, [ isResizing, height ] );
 
   return (
 
     <div
 
-      className={ `${ s.textfield } ${ cssIf( error === "", s[ 'textfield--error' ] ) } ${ className }` }
-      ref={ textareaDivRef }
-      style={ { height: `${ height }px` } }
+      className = {`${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}
+      ref = { textareaDivRef }
+      style = { { height: `${ height }px` } }
 
-    >
+      >
 
-      { !!title && <p className={ s.title }>{ title }</p> }
+      { !!title && <p className = { s.title }>{ title }</p> }
 
       <div
 
-        className={ s.resizer }
-        onMouseDown={ handleMouseDown }
-        onTouchStart={ handleTouchStart }
+        className = { s.resizer }
+        onMouseDown = { handleMouseDown }
+        onTouchStart = { handleTouchStart }
 
       />
-      <div
-        className={ `${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }` }>
 
-        { icon }
+      { icon && (
 
-      </div>
+        <div className = {`${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }`}>
 
+          { icon }
+
+        </div>
+      ) }
 
       <textarea
 
-        id={ id }
-        ref={ refDOM }
-        value={ value }
-        placeholder={ placeholder }
-        className={ inputClassName }
-        onChange={ handleChange }
-        onKeyUp={ onKeyUp }
-        onBlur={ onBlur }
+        id = { id }
+        ref = { refDOM }
+        value = { value }
+        placeholder = { placeholder }
+        className = { inputClassName }
+        onChange = { handleChange }
+        onKeyUp = { onKeyUp }
+        onBlur = { onBlur }
         { ...inputParams }
-        onClick={ ( e ) => {
+        onClick = { ( e ) => {
 
-          onClick && onClick();
+          onClick?.();
           e.stopPropagation();
 
         } }
 
       />
 
-      { !!error && <p className={ s.error }>{ error }</p> }
+      { !!error && <p className = { s.error }>{ error }</p> }
 
     </div>
 

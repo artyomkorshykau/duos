@@ -1,6 +1,6 @@
 'use client'
 
-import Selectfield from '@/react/components/forms/selectfield';
+import Select from '@/react/components/forms/select';
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
@@ -35,7 +35,7 @@ const PaymentFormat = ({
 
       <form className = {`${ s.service__section__filedsGrid }`}>
 
-        <Selectfield
+        <Select
           
           className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
           placeholder = {'Формат оплаты услуги'}
@@ -46,7 +46,7 @@ const PaymentFormat = ({
         />
 
         { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Подписка' &&
-          <Selectfield
+          <Select
             
             className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
             placeholder = 'День/неделя/месяц/год'
