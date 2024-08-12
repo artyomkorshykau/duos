@@ -19,6 +19,12 @@
 
   }
 
+  &.filled input {
+
+    background-color: var(--color-bw-white);
+
+  }
+
   input {
 
     width: 100%;
@@ -35,11 +41,11 @@
     border-radius: $apx-28;
 
     &::placeholder {
-    
+
       font-weight: 400;
       font-size: $apx-16;
       line-height: $apx-21;
-    
+
     }
 
   }
@@ -54,13 +60,36 @@
 
   }
 
-}
+  &__controls {
 
-.filled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $apx-20;
+    position: absolute;
+    right: $apx-10;
+    top: $apx-8;
 
-  .input {
+    &__cross {
 
-    background: var(--color-bw-white);
+      cursor: pointer;
+
+    }
+
+    &__save {
+
+      width: $apx-40;
+      height: $apx-36;
+      border-radius: $apx-40;
+      padding: $apx-8 $apx-12;
+      background-color: var(--color-accent-blue-700);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+    }
 
   }
 

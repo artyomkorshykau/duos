@@ -115,13 +115,13 @@ const Textarea = ( props ) => {
 
     <div
 
-      className = {`${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}
+      className={ `${ s.textfield } ${ cssIf( error === "", s[ 'textfield--error' ] ) } ${ className }` }
       ref={ textareaDivRef }
       style={ { height: `${ height }px` } }
 
-      >
+    >
 
-      { !!title && <p className = { s.title }>{ title }</p> }
+      { !!title && <p className={ s.title }>{ title }</p> }
 
       <div
 
@@ -130,34 +130,35 @@ const Textarea = ( props ) => {
         onTouchStart={ handleTouchStart }
 
       />
-
-      <div className={ `${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }` }>
+      <div
+        className={ `${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }` }>
 
         { icon }
 
       </div>
 
+
       <textarea
 
-        id = { id }
-        ref = { refDOM }
-        value = { value }
-        placeholder = { placeholder }
-        className = { inputClassName }
-        onChange = { handleChange }
-        onKeyUp = { onKeyUp }
-        onBlur = { onBlur }
+        id={ id }
+        ref={ refDOM }
+        value={ value }
+        placeholder={ placeholder }
+        className={ inputClassName }
+        onChange={ handleChange }
+        onKeyUp={ onKeyUp }
+        onBlur={ onBlur }
         { ...inputParams }
-        onClick = {( e ) => {
+        onClick={ ( e ) => {
 
           onClick && onClick();
           e.stopPropagation();
 
-        }}
+        } }
 
       />
 
-      { !!error && <p className = { s.error }>{ error }</p> }
+      { !!error && <p className={ s.error }>{ error }</p> }
 
     </div>
 

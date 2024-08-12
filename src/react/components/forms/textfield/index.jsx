@@ -2,6 +2,9 @@ import cssIf from '@/scripts/helpers/css.if';
 import s from './textfield.module.scss';
 import Eye from "@/react/components/icons/eye.icon";
 import { useState } from "react";
+import Cross from "@/react/components/icons/cross";
+import InputMask from "react-input-mask";
+import Save from "@/react/components/icons/save";
 
 const Textfield = ( props ) => {
 
@@ -9,9 +12,7 @@ const Textfield = ( props ) => {
 
   const {
 
-    id = "", 
-    set = () => {},
-    value, 
+    value,
     withTitle = false,
     title = "", 
     error = "", 
@@ -19,42 +20,53 @@ const Textfield = ( props ) => {
     placeholder = "",
     className = "",
     inputClassName = "",
-    refDOM = null,
     password,
-    onClick = () => {},
-    onKeyUp = () => {},
-    onBlur = () => {},
-    onChange = () => {},
+    onChange,
+    onClick,
     ...inputParams
 
   } = props;
 
+  const showSaveButton = (value) => /\d.*\d/.test(value)
+
   return (
-    
-    <div className = {`${ s.textfield } ${cssIf(value !== '', s.filled)} ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}>
+
+    <div className = {`${ s.textfield } ${ cssIf( value, s.filled ) } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}>
 
       { !!title && <p className = { s.title }>{ title }</p> }
-      
-      <input 
 
-        id = { id }
-        ref = { refDOM }
-        value = { value }
-        type = { hide ? 'password' : type }
-        placeholder = { placeholder }
-        className = { inputClassName }
-        onChange = { onChange }
-        onKeyUp = { onKeyUp }
-        onBlur = { onBlur }
-        {...inputParams}
-        onClick = {( e ) => {
-          
+      { type === 'phone' ?
+
+        <InputMask
+
+          mask = { '+7 (999) 999-99-99' }
+          value = { value }
+          onChange={ ( e ) => onChange( e.currentTarget.value ) }
+          placeholder = { placeholder }
+          type = { 'tel' }
+
+        >
+
+        { ( inputProps ) => <input { ...inputProps } /> }
+
+        </InputMask>
+
+        : <input
+
+        value={ value }
+        type={ hide ? 'password' : type }
+        placeholder={ placeholder }
+        className={ inputClassName }
+        onChange={ ( e ) => onChange( e.currentTarget.value ) }
+        { ...inputParams }
+        onClick={ ( e ) => {
+
           onClick && onClick();
           e.stopPropagation();
 
-        }}
-      
-      />
+        } }
+
+      /> }
 
       { password &&
 
@@ -69,7 +81,34 @@ const Textfield = ( props ) => {
 
       }
 
-      { !!error && <p className = { s.error }>{ error }</p> }
+      { showSaveButton(value) && !password &&
+
+        <div className = {`${ s.textfield__controls }`}>
+
+          <Cross
+
+            stroke={ '#7C92A7' }
+            onClick={ () => onChange( '' ) }
+            className = { `${s.textfield__controls__cross }`}
+
+          />
+
+          <div
+
+            className = {`${ s.textfield__controls__save }`}
+            onClick={ () => alert('Отправка на сервер') }
+
+          >
+
+            <Save fill = { "#fff" }/>
+
+          </div>
+
+        </div>
+
+      }
+
+      { !!error && <p className={ s.error }>{ error }</p> }
 
     </div>
 
