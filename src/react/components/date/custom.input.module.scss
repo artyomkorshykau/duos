@@ -1,0 +1,27 @@
+@import "@/styles/apx.scss";
+
+.container {
+
+  height: $apx-64;
+  width: $apx-305;
+  position: relative;
+
+  &__icon {
+
+    width: $apx-16;
+    height: $apx-16;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: $apx-16;
+    z-index: 1;
+
+  }
+
+  &__input {
+
+    height: 100%;
+
+  }
+
+}
