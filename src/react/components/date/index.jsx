@@ -5,6 +5,7 @@ import useGlobal from '@/store';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import Textfield from "@/react/components/forms/textfield";
+import 'react-datepicker/dist/react-datepicker.css';
 
 const DateField = (props) => {
 

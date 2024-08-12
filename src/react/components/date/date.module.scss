@@ -4,14 +4,18 @@
 
   width: $apx-305;
 
-  .react-datepicker__view-calendar-icon {
+  & > div {
+    position: relative;
+    height: 100%;
 
+    svg {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       right: 0;
-
     }
+
+  }
 
 
   //&__filedsWrapper {
