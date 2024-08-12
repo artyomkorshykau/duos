@@ -18,7 +18,7 @@ const Attachment = ({
   files,
   onChange,
   typeFiles = [ 'image/png', 'image/tiff', 'image/jpeg' ],
-  maxSize = 10,
+  maxSize = 20,
   description,
   size = 'small',
   deleteMultipleFile,

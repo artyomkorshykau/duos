@@ -31,6 +31,12 @@
       border: 2px dashed #D1E3F7;
       border-radius: $apx-28;
 
+      &__error {
+
+        border-color: #C6A708;
+
+      }
+
       &__wrapper {
 
         display: flex;
@@ -234,7 +240,7 @@
 
 .error {
 
-  color: var(--color-notice-error-500);
+  color: #C6A708;
   font-size: $apx-13;
   font-weight: 600;
   line-height: $apx-17;

@@ -33,13 +33,19 @@ const AttachmentLabel = ({
 
         />
 
-        <label htmlFor = "input-file" className = {`${ s.attachment__block__label } ${ cssIf( className, className ) }`}>
+        <label htmlFor = "input-file" className = {`${ s.attachment__block__label } ${cssIf(error, s.attachment__block__label__error)} ${ cssIf( className, className ) }`}>
 
           <div
             className = {`${ s.attachment__block__label__wrapper }`}
             onDrop = { (e) => handleDrop(e, multiple) }
             onDragOver = { e => e.preventDefault() }
           >
+
+            {error === 'size' && (
+
+              <p className={`${ s.error }`}>Максимальный размер файла - 20 Mb</p>
+
+            )}
 
             <div className = {`${ s.attachment__block__label__wrapper__info }`}>
 
@@ -58,6 +64,7 @@ const AttachmentLabel = ({
 
             </div>
 
+
             {isButton && (
 
                 <DefaultButton
@@ -69,12 +76,6 @@ const AttachmentLabel = ({
                     action = { handleClick }
 
                 />
-
-            )}
-
-            {error === 'size' && (
-
-                <p className={`${ s.error }`}>Максимальный размер файла - 10 Mb</p>
 
             )}
 
