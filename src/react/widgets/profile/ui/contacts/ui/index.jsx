@@ -19,12 +19,15 @@ const Contacts = () => {
 
       <form className = {`${ s.profile__section__filedsWrapper }`}>
 
-        <Phonefield
+        <Textfield
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Номер'}
           value = { globalState.profile.phoneNumber }
-          onChange = { (e) => globalActions.profile.setPhoneNumber(e.target.value)}
+          onChange = { (e) => globalActions.profile.setPhoneNumber(e.target.value) }
+          clearFiled = { (e) => globalActions.profile.setPhoneNumber('') }
+          classNameControls = {`${ s.profile__section__filedsWrapper__controls }`}
+          type = 'phone'
 
         />
 

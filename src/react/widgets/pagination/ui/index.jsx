@@ -15,7 +15,7 @@ const Pagination = ({
 
   const [ disabled, setDisabled ] = useState( false )
 
-  const { service } = globalState
+  const { service, profile, school, publications } = globalState
 
   useEffect(() => {
 
@@ -27,13 +27,25 @@ const Pagination = ({
 
       setDisabled( true )
 
+    } else if(activeStep === "Профиль" && profile.progress !== 1) {
+
+      setDisabled( true )
+
+    } else if(activeStep === "Школа" && school.progress !== 1) {
+
+      setDisabled( true )
+
+    } else if(activeStep === "Публикации" && publications.progress !== 1 ) {
+
+      setDisabled( true )
+
     } else {
 
       setDisabled( false )
 
     }
 
-  }, [ activeStep, service.progress ])
+  }, [ activeStep, service.progress, profile, school, publications.progress ])
 
   return (
 
@@ -50,12 +62,12 @@ const Pagination = ({
 
       <DefaultButton
 
-        name = { 'Далее' }
+        name = { activeStep === "Публикации" ? 'Отправить анкету' : 'Далее' }
         className = {`${ s.pagination__button_next }`}
         action = { nextStep }
         icon = { <Arrow direction = { 'right' } fill = { '#fff' }/> }
         positionIcon = 'right'
-        disabled = {disabled}
+        disabled = { disabled }
 
       />
 

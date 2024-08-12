@@ -42,7 +42,7 @@ const publicationsActions = {
 
     publications.categories[ 1 ].publicationsCards = [ ...publications.categories[ 1 ].publicationsCards, newPublication ]
 
-    if ( publications.categories[ 1 ].publicationsCards.length >= 5 ) {
+    if ( publications.categories[ 1 ].publicationsCards.length >= 4 ) {
 
       publications.categories[ 1 ].documentStatus = "Filled"
 
@@ -61,6 +61,15 @@ const publicationsActions = {
 
     localStorage.setItem( "publications", JSON.stringify( publications ) )
     store.setState( { publications } )
+
+  },
+
+  setPublicationsProgress(store, progress) {
+
+    const publications = JSON.parse(localStorage.getItem('publications'))
+
+    localStorage.setItem('publications', JSON.stringify({ ...publications, progress }))
+    store.setState({ profile: { ...store.state.publications, progress } })
 
   }
 

@@ -3,7 +3,6 @@ import Link from "next/link";
 import Popup from "../popup";
 import Checkbox from "@/react/components/forms/checkbox";
 import Textfield from "@/react/components/forms/textfield";
-import NumberField from "@/react/components/forms/numberfield";
 import DefaultButton from "@/react/components/buttons/default.button";
 import RoleChoice from "./role.choice";
 import s from "./sign.up.module.scss";
@@ -16,39 +15,26 @@ const SignUpPopup = ({
   isOpened = false,
   closePopup = () => {},
   closePopups = () => {},
-  codeModeClosed = false
 
 }) => {
 
   const [ userNumber, setUserNumber ] = useState("");
+  const [ userEmail, setUserEmail ] = useState("");
+  const [ userCode, setUserCode ] = useState("");
   const [ policyAgree, setPolicyAgree ] = useState( false );
   const [ codeModeOpened, setCodeModeOpened ] = useState( false );
   const [ showTimer, setShowTimer ] = useState( false );
-  const [ time, setTime ] = useState( 31 );
+  const [ time, setTime ] = useState( 180 );
   const [ intervalId, setIntervalId ] = useState( null );
 
   const handleClosePopup = () => {
 
     closePopup();
     setUserNumber("");
+    setUserEmail("");
+    setUserCode("");
+    setCodeModeOpened(false)
 
-  };
-
-  const handleInputChange = (e) => {
-    const { value } = e.target;
-    let formattedValue = value.replace(/^(\+)?/, "");
-    if (value.length === 1 && value === "+") {
-      formattedValue = "";
-    } else if (value.length === 1) {
-      formattedValue = "+" + value;
-    } else {
-      formattedValue = "+" + formattedValue;
-    }
-    if (formattedValue.length > 12) {
-      formattedValue = formattedValue.substring(0, 12);
-      formattedValue = "+" + formattedValue.substring(1);
-    }
-    setUserNumber(formattedValue);
   };
 
   useEffect(() => {
@@ -73,91 +59,13 @@ const SignUpPopup = ({
 
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
 
-  const [ code1, setCode1 ] = useState('');
-  const [ code2, setCode2 ] = useState('');
-  const [ code3, setCode3 ] = useState('');
-  const [ code4, setCode4 ] = useState('');
-  const [ code5, setCode5 ] = useState('');
-
-  const handleCode1Change = (e) => {
-    const newValue = e.target.value;
-    setCode1(newValue);
-    if (newValue!== '-' && newValue.length === 1) {
-      const nextInput = document.querySelector(`[data-index="2"]`);
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-
-  const handleCode2Change = (e) => {
-    const newValue = e.target.value;
-    setCode2(newValue);
-    if (newValue!== '-' && newValue.length === 1) {
-      const nextInput = document.querySelector(`[data-index="3"]`);
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-
-  const handleCode3Change = (e) => {
-    const newValue = e.target.value;
-    setCode3(newValue);
-    if (newValue!== '-' && newValue.length === 1) {
-      const nextInput = document.querySelector(`[data-index="4"]`);
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-  const handleCode4Change = (e) => {
-    const newValue = e.target.value;
-    setCode4(newValue);
-    if (newValue!== '-' && newValue.length === 1) {
-      const nextInput = document.querySelector(`[data-index="5"]`);
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-
-  const handleCode5Change = (e) => {
-    const newValue = e.target.value;
-    setCode5(newValue);
-    if (newValue !== "-" && newValue.length === 1) {
-      
-      // axios.post("/api/verify-code", {
-      //   code1,
-      //   code2,
-      //   code3,
-      //   code4,
-      //   code5
-      // })
-      // .then((response) => {
-      //   if (response.data.success) {
-        
-      //   } else {
-
-      //   }
-      // })
-      // .catch((error) => {
-      //   console.error(error);
-      // });
-
-      setRoleModeOpened( true );
-
-    }
-
-  };
-
-  function getNewCode() {
+  const getNewCode = () => {
 
     alert('отправить новый код');
     setShowTimer( false );
     setTime( 31 );
 
-  }
+  };
 
   useEffect(() => {
 
@@ -167,29 +75,6 @@ const SignUpPopup = ({
     }
 
   }, [ codeModeOpened ]);
-
-  useEffect(() => {
-
-    if ( codeModeClosed ) {
-
-      setCodeModeOpened( false );
-      setCode1('');
-      setCode2('');
-      setCode3('');
-      setCode4('');
-      setCode5('');
-
-    }
-
-  }, [ codeModeClosed ]);
-
-  const rolechoice = 
-  
-    <RoleChoice
-    
-      close = { () => closePopups }
-    
-    />
 
   return (
 
@@ -203,8 +88,7 @@ const SignUpPopup = ({
       bodyClassName = { !codeModeOpened ? bodyClassName : s.signup_popup }
       subtitleMargin = { codeModeOpened ? true : false }
       contentOnly = { roleModeOpened && true }
-      content = { rolechoice }
-      doubletitle
+      content = { <RoleChoice close = { () => closePopups }/> }
 
     >
 
@@ -217,12 +101,9 @@ const SignUpPopup = ({
               set = { set }
               value = { userNumber }
               withTitle = { false }
-              onChange = {(e) => {
-                const { value } = e.target;
-                const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                handleInputChange({ target: { value: onlyNumbers } });
-              }}
-              placeholder = "+7 (___) ___-__-__"
+              onChange = { (e) => setUserNumber(e.target.value) }
+              type = 'phone'
+              placeholder = "Телефон"
 
             />
 
@@ -231,10 +112,13 @@ const SignUpPopup = ({
               withTitle = { false }
               placeholder = "E-mail"
               className = { `${ s.email }` }
+              value = { userEmail }
+              onChange = { (e) => setUserEmail(e.target.value) }
+              type = 'text'
 
             />
 
-            <div className = {`flex items-center ${ s.checkbox__container }`}>
+            <div className = {`flex items-center`}>
 
               <Checkbox
 
@@ -275,12 +159,14 @@ const SignUpPopup = ({
                 placeholder = "Код-пароль"
                 password
                 className = {`${ s.code__numbers__password }`}
+                value = { userCode }
+                onChange = { (e) => setUserCode(e.target.value) }
 
               />
 
             </div>
 
-            <div className = {`flex items-center ${ s.checkbox__container }`}>
+            <div className = {`flex items-center`}>
 
               { !showTimer ?
 

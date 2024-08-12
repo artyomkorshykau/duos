@@ -13,7 +13,7 @@
 .signup_popup {
 
   width: $apx-360;
-  height: $apx-460;
+  height: $apx-445;
   top: $apx-250;
 
 }
@@ -66,13 +66,6 @@
   margin: $apx-16 0;
   padding-left: $apx-8;
 
-  &__container {
-
-    max-height: $apx-56;
-    margin: $apx-8 0;
-
-  }
-
 }
 
 .code__numbers {
@@ -88,7 +81,8 @@
 .button {
 
   width: 100%;
-  margin-bottom: $apx-50;
+  height: $apx-40;
+  margin-bottom: $apx-36;
 
   &__icon {
 
@@ -110,16 +104,15 @@
 .calltext {
 
   width: 100%;
-  top: -$apx-2;
-  margin: $apx-68 0 $apx-12;
   color: var(--color-accent-black-500);
+  margin-bottom: $apx-16;
 
 }
 
 .gettext {
 
   width: 100%;
-  margin: $apx-16 0 $apx-32;
+  margin: $apx-16 0 $apx-88 0;
   color: var(--color-accent-black-500);
 
   &__new_code {
@@ -202,6 +195,7 @@
       &__title {
 
         margin: $apx-5 0;
+        color: var(--color-accent-black-900);
 
       }
 

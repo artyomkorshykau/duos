@@ -1,10 +1,7 @@
 import Carcas from "@/react/components/containers/carcas";
-import Switch from "@/react/components/switch";
-import { useState } from "react";
 
 export default function Home() {
 
-  const [ toggle, setToggle] = useState(false)
 
   return (
 
@@ -16,7 +13,6 @@ export default function Home() {
       
       >
 
-        <Switch toggle = { toggle } setToggle = { setToggle }/>
 
       </Carcas>
 
