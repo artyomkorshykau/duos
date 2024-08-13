@@ -7,8 +7,7 @@ import Document from "@/react/widgets/document/ui";
 import Publications from "@/react/widgets/publications/ui";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import s from './questionnaire.module.scss'
-
+import s from '@/pages/questionnaire/questionnaire.module.scss'
 export const useQuestionnaire = () => {
 
   const [ step, setStep ] = useState( steps.questionnaire )
@@ -136,18 +135,12 @@ export const useQuestionnaire = () => {
 
     }
 
-    const scrollContainer = document.querySelector( `.${ s.content }` )
+    window.scrollTo({
 
-    if (scrollContainer) {
+      top: 0,
+      behavior: 'smooth'
 
-      scrollContainer.scrollTo({
-
-        top: 0,
-        behavior: 'smooth'
-
-      })
-
-    }
+    })
 
   }
 

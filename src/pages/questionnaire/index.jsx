@@ -4,9 +4,9 @@ import Autosave from '@/react/widgets/autosave/ui';
 import Carcas from '@/react/components/containers/carcas';
 import Quiz from "@/react/widgets/quiz/ui";
 import { steps } from "@/constants/quiz.steps";
-import { useQuestionnaire } from "@/pages/questionnaire/model";
 import { useMemo } from "react";
 import s from './questionnaire.module.scss'
+import { useQuestionnaire } from "@/react/widgets/quiz/model";
 
 export default function ProfilePage() {
 
