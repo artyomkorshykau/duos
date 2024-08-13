@@ -30,6 +30,7 @@ const Select = ( props ) => {
 
   const chooseOption = ( value ) => {
 
+    setIsOpen( false );
     setSelectOption( value );
     onChange?.( value );
 
@@ -101,11 +102,10 @@ const Select = ( props ) => {
       <div
 
         className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ cssIf( !!selectOption, s.active ) } ${ className }`}
-        onClick = { () => setIsOpen( prev => !prev ) }
 
       >
 
-        <div className = {`${ s.wrapper__container__placeholder_container }`}>
+        <div className = {`${ s.wrapper__container__placeholder_container }`} onClick = { () => setIsOpen( prev => !prev ) }>
 
           <div className={`${s.wrapper__container__placeholder_container__placeholder}`}>
 
