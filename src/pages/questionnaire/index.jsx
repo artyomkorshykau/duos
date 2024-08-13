@@ -6,7 +6,6 @@ import Quiz from "@/react/widgets/quiz/ui";
 import { steps } from "@/constants/quiz.steps";
 import { useQuestionnaire } from "@/pages/questionnaire/model";
 import { useMemo } from "react";
-import s from './questionnaire.module.scss'
 
 export default function ProfilePage() {
 
@@ -26,7 +25,7 @@ export default function ProfilePage() {
 
   const content = useMemo(() => (
 
-    <div className = { `${ s.content }`}>
+    <div>
 
       { step === steps.questionnaire
 
