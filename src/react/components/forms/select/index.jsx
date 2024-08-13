@@ -22,6 +22,7 @@ const Select = ( props ) => {
     onChange,
     children,
     error,
+    onClick,
     ...selectParams
 
   } = props;
@@ -109,7 +110,17 @@ const Select = ( props ) => {
 
             { placeholderIcon && (
 
-              <div className = {`${ s.wrapper__container__placeholder_container__placeholder__icon }`}>
+              <div
+
+                className = {`${ s.wrapper__container__placeholder_container__placeholder__icon }`}
+                onClick = { ( e ) => {
+
+                  e.stopPropagation()
+                  onClick()
+
+                }}
+
+              >
 
                 { placeholderIcon }
 

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 const TaxStatus = () => {
 
   const [ globalState, globalActions ] = useGlobal();
+  const [ showInfoPopup, setShowInfoPopup] = useState( false )
 
   //TODO delete this when api will ready
   const [ isLoaded, setIsLoaded ] = useState( false );
@@ -42,9 +43,10 @@ const TaxStatus = () => {
         <Select
 
           placeholder = 'Налоговый статус'
-          placeholderIcon = { <WarningIcon /> }
+          placeholderIcon = { <WarningIcon  /> }
           options = { taxStatusesList }
           value = { globalState.profile.taxStatus }
+          onClick = { () => setShowInfoPopup(true) }
           onChange = { value => globalActions.profile.setTaxStatus( value ) }
 
         />
