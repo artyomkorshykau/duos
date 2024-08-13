@@ -68,7 +68,54 @@ export default function ProfilePage() {
 
     }
 
-    window.scrollTo(0, 0)
+    window.scrollTo({
+
+      top: 0,
+      behavior: 'smooth'
+
+    })
+
+  }
+
+  const prevStep = () => {
+
+    if( step === steps.service ) {
+
+      setStep( steps.profile )
+      setTitle('Профиль')
+      setDescription('Эти данные станут частью вашего профиля и помогут продвижению')
+
+    }
+
+    if( step === steps.school ) {
+
+      setStep( steps.service )
+      setTitle('Услуги')
+      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')
+
+    }
+
+    if( step === steps.documents ) {
+
+      setStep( steps.school )
+      setTitle('Школа')
+      setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
+
+    }
+    if( step === steps.publications ) {
+
+      setStep( steps.documents )
+      setTitle('Документы')
+      setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
+
+    }
+
+    window.scrollTo({
+
+      top: 0,
+      behavior: 'smooth'
+
+    })
 
   }
 
@@ -144,18 +191,26 @@ export default function ProfilePage() {
           status = { status }
 
           />
-        : <div className={ `flex flex-column` }>
+        : <div className = { `flex flex-column` }>
 
           <ProgressBar
 
-            title={ title }
-            description={ description }
-            activeStep={ step }
+            title = { title }
+            description = { description }
+            activeStep = { step }
 
           />
+
           { content }
+
           <Autosave/>
-          <Pagination nextStep={ nextStep } activeStep={ step }/>
+          <Pagination
+
+            nextStep = { nextStep }
+            activeStep = { step }
+            prevStep = { prevStep }
+
+          />
 
         </div>
 
