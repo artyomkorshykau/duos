@@ -51,6 +51,18 @@
 
       }
 
+      &__controls {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $apx-20;
+        position: absolute;
+        right: $apx-10;
+        top: $apx-14;
+
+      }
+
     }
 
     &__filedsGrid {

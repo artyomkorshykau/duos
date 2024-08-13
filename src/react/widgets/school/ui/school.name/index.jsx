@@ -1,7 +1,10 @@
 import s from '../school.module.scss'
 import Textfield from '@/react/components/forms/textfield'
+import useGlobal from "@/store";
 
 const SchoolName = () => {
+
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -25,8 +28,8 @@ const SchoolName = () => {
 
           className={ ` ${ s.school__section__filedsWrapper__filed }` }
           placeholder={ 'Введите название здесь' }
-          // value={ globalState.profile.nickName }
-          // onChange={ ( e ) => globalActions.profile.setNickName( e.target.value ) }
+          value = { globalState.school.schoolName }
+          onChange = { (e) => globalActions.school.setSchoolName(e.target.value)}
 
         />
 

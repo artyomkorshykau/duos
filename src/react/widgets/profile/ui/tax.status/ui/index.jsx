@@ -3,7 +3,7 @@
 import Textfield from '@/react/components/forms/textfield';
 import useGlobal from '@/store';
 import { taxStatusesList } from '@/constants/profile';
-import Selectfield from '@/react/components/forms/selectfield';
+import Select from '@/react/components/forms/select';
 import WarningIcon from '@/react/components/icons/warning';
 import s from '../../profile.module.scss';
 import { useEffect, useState } from "react";
@@ -13,13 +13,18 @@ const TaxStatus = () => {
   const [ globalState, globalActions ] = useGlobal();
 
   //TODO delete this when api will ready
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+  const [ isLoaded, setIsLoaded ] = useState( false );
 
-  if (!isLoaded) {
+  useEffect( () => {
+
+    setIsLoaded( true );
+
+  }, [] );
+
+  if ( !isLoaded ) {
+
     return <div>Loading...</div>;
+
   }
 
   return (
@@ -34,9 +39,8 @@ const TaxStatus = () => {
 
       <form className = {`${ s.profile__section__filedsWrapper }`}>
 
-        <Selectfield
+        <Select
 
-          // className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = 'Налоговый статус'
           placeholderIcon = { <WarningIcon /> }
           options = { taxStatusesList }
@@ -45,27 +49,27 @@ const TaxStatus = () => {
 
         />
 
-        { globalState.profile.taxName !== 'Individual' && globalState.profile.taxName !== 'self-employed' &&
+        { globalState.profile.taxStatus !== 'Individual' && globalState.profile.taxStatus !== 'self-employed' &&
 
           <Textfield
 
             className={ `${ s.profile__section__filedsWrapper__filed }` }
             placeholder={ 'Полное наименование' }
             value = { globalState.profile.taxName }
-            onChange={ ( value ) => globalActions.profile.setTaxName( value ) }
+            onChange = { ( e ) => globalActions.profile.setTaxName( e.target.value ) }
 
           />
 
         }
 
-        { globalState.profile.taxName !== 'Individual' &&
+        { globalState.profile.taxStatus !== 'Individual' &&
 
         <Textfield
 
-          className={ `${ s.profile__section__filedsWrapper__filed }` }
-          placeholder={ 'ИНН' }
-          value={ globalState.profile.taxIIN }
-          onChange={ ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
+          className = { `${ s.profile__section__filedsWrapper__filed }` }
+          placeholder = { 'ИНН' }
+          value = { globalState.profile.taxIIN }
+          onChange = { ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
 
         />
 

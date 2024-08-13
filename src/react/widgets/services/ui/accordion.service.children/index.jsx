@@ -103,12 +103,11 @@ const AccordionServiceChildren = ({
     if (((paymentFormat === 'Free' && paymentFormat) ||
       (paymentFormat === 'Fixed' && price) ||
       (paymentFormat === 'Range' && from && before) ||
-      (paymentFormat === 'Subscription' && price && dayWeekMonthYearList)) &&
+      (paymentFormat === 'Subscription' && price)) &&
       title &&
       serviceType &&
       deliveryFormat &&
-      duration && 
-      minuteHoursDays &&
+      duration &&
       meaningService &&
       files &&
       el.status !== "New"

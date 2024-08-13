@@ -2,7 +2,7 @@ import s from '@/react/widgets/quiz/ui/quiz.module.scss';
 import NotiseSuccessDisabled
   from '@/react/components/icons/notise.success.disabled';
 import QuizProgress from '@/constants/quiz.progress';
-import QuizSteps from '@/constants/quiz.steps';
+import { QuizSteps } from '@/constants/quiz.steps';
 
 
 const Steps = ( {

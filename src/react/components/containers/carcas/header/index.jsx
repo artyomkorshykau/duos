@@ -176,7 +176,7 @@ const Header = ({
 
         isOpened = { showRecoveryPopup }
         closePopup = { () => closePopups() }
-        bodyClassName = {`${ s.recovery__popup } ${ s.recovery__popup__in }`}
+        bodyClassName = {`${ s.recovery__popup }`}
 
       />
 

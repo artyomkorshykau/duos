@@ -4,6 +4,7 @@ import ChoiceDirection from '../choice.direction/ui';
 import Education from '../education/ui';
 import { useEffect, useState } from 'react';
 import AccordionServiceChildren from '../accordion.service.children';
+import { log } from "next/dist/server/typescript/utils";
 
 const AccordionService = ({
 

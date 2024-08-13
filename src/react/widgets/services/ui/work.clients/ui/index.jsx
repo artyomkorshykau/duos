@@ -1,6 +1,6 @@
 'use client'
 
-import Selectfield from '@/react/components/forms/selectfield';
+import Select from '@/react/components/forms/select';
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
@@ -17,13 +17,18 @@ const WorkClients = ({
   const [ globalState, globalActions ] = useGlobal();
 
   //TODO delete this when api will ready
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+  const [ isLoaded, setIsLoaded ] = useState( false );
 
-  if (!isLoaded) {
+  useEffect( () => {
+
+    setIsLoaded( true );
+
+  }, [] );
+
+  if ( !isLoaded ) {
+
     return <div>Loading...</div>;
+
   }
 
   return (
@@ -34,7 +39,7 @@ const WorkClients = ({
 
       <form className={`${s.service__section__filedsGrid}`}>
 
-        <Selectfield
+        <Select
           
           // className = {`${ s.service__section__filedsGrid__filed } col-span-2`}
           className = 'col-span-2'
@@ -54,13 +59,13 @@ const WorkClients = ({
           
         />
         
-        <Selectfield
+        <Select
 
           // className = {`${ s.service__section__filedsGrid__filed }`}
           placeholder = {'Минут, часов, дней...'}
           options = { minuteHoursDaysList }
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.minuteHoursDays }
-          onChange = { value => globalActions.service.setDuration( value, categoryIndex, index ) }
+          onChange = { value => globalActions.service.setMinuteHoursDays( value, categoryIndex, index ) }
           
         />
 

@@ -13,7 +13,7 @@
   gap: $apx-8;
   top: -$apx-50;
   position: sticky;
-  z-index: 2;
+  z-index: 3;
 
   &__breadcrumbs {
 
@@ -70,7 +70,7 @@
 
         position: absolute;
         top: $apx-43;
-        z-index: 1;
+        z-index: 3;
 
       }
 

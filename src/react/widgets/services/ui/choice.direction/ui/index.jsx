@@ -2,7 +2,7 @@ import { directionList } from '@/constants/services';
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield';
 import useGlobal from '@/store';
-import Selectfield from '@/react/components/forms/selectfield';
+import Select from '@/react/components/forms/select';
 import {useEffect, useState} from "react";
 
 const ChoiceDirection = ({
@@ -31,7 +31,7 @@ const ChoiceDirection = ({
 
       <form className = {`${ s.service__section__filedsWrapper }`}>
 
-        <Selectfield
+        <Select
 
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = 'Выбрать направление'

@@ -1,6 +1,6 @@
 import s from '../../profile.module.scss'
 import useGlobal from '@/store';
-import Selectfield from '@/react/components/forms/selectfield'
+import Select from '@/react/components/forms/select'
 import { cityList, countryList } from '@/constants/profile'
 import {useEffect, useState} from "react";
 
@@ -9,13 +9,17 @@ const Location = () => {
   const [ globalState, globalActions ] = useGlobal();
 
   //TODO delete this when api will ready
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+  const [ isLoaded, setIsLoaded ] = useState( false );
+  useEffect( () => {
 
-  if (!isLoaded) {
+    setIsLoaded( true );
+
+  }, [] );
+
+  if ( !isLoaded ) {
+
     return <div>Loading...</div>;
+
   }
 
   return (
@@ -36,18 +40,16 @@ const Location = () => {
 
       <form className = {`${ s.profile__section__filedsWrapper }`}>
 
-        <Selectfield
+        <Select
 
-          // className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = 'Страна'
           options = { countryList }
           value = { globalState.profile.country }
           onChange = { value => globalActions.profile.setCountry( value ) }
 
         />
-        <Selectfield
+        <Select
 
-          // className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Город'}
           options = { cityList }
           value = { globalState.profile.city }

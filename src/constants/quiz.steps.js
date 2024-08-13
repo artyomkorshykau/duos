@@ -1,6 +1,6 @@
 import QuizProgress from '@/constants/quiz.progress'
 
-const QuizSteps = [
+export const QuizSteps = [
 
   {
 
@@ -45,4 +45,14 @@ const QuizSteps = [
 
 ]
 
-export default QuizSteps
+ export const steps = {
+
+  questionnaire: 'Анкетирование',
+  profile: 'Профиль',
+  service: 'Услуги',
+  school: 'Школа',
+  documents: 'Документы',
+  publications: 'Публикации',
+
+}
+

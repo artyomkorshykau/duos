@@ -5,12 +5,12 @@ import SignInIconWhite from "@/react/components/icons/sign.in.icon.white";
 
 const RecoveryPopup = ({
 
-                       logIn = () => {},
-                       bodyClassName = "",
-                       isOpened = false,
-                       closePopup = () => {}
+ logIn = () => {},
+ bodyClassName = "",
+ isOpened = false,
+ closePopup = () => {}
 
-                     }) => {
+ }) => {
 
   return (
 

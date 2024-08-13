@@ -1,7 +1,7 @@
 import s from '../progress.bar.module.scss'
 import useGlobal from '@/store';
 import NotiseSuccess from '@/react/components/icons/notise.success';
-import QuizSteps from '@/constants/quiz.steps';
+import { QuizSteps } from '@/constants/quiz.steps';
 import cssIf from '@/scripts/helpers/css.if'
 import Progress from '../progress';
 import { useEffect, useState } from 'react';
