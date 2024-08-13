@@ -17,6 +17,21 @@ const AttachmentLabel = ({
 
 }) => {
 
+  let errorTitle
+
+  switch( error ) {
+
+    case 'size':
+      errorTitle = 'Вес файла должен быть не более 20 мб'
+      break
+
+    case 'type':
+      errorTitle = 'Тип файла не поддерживается'
+      break
+
+  }
+
+
   return (
 
       <>
@@ -33,7 +48,7 @@ const AttachmentLabel = ({
 
         />
 
-        <label htmlFor = "input-file" className = {`${ s.attachment__block__label } ${ cssIf( className, className ) }`}>
+        <label htmlFor = "input-file" className = {`${ s.attachment__block__label } ${cssIf(error, s.attachment__block__label__error)} ${ cssIf( className, className ) }`}>
 
           <div
             className = {`${ s.attachment__block__label__wrapper }`}
@@ -43,20 +58,26 @@ const AttachmentLabel = ({
 
             <div className = {`${ s.attachment__block__label__wrapper__info }`}>
 
-              <p>
+              <p className = {`${ cssIf(error, s.error) }`}>
 
-                Перетащите файлы сюда или нажмите на кнопку
+                { error
+
+                  ? errorTitle
+                  : `Перетащите файлы сюда или нажмите на кнопку`
+
+                }
 
               </p>
 
 
-              <p className = {`${ cssIf(error === 'type', s.error) } ${ s.attachment__block__label__wrapper__info__format }`}>
+              <p className = {`${ s.attachment__block__label__wrapper__info__format }`}>
 
                 Поддерживаемые форматы: PNG, TIFF, JPG
 
               </p>
 
             </div>
+
 
             {isButton && (
 
@@ -69,12 +90,6 @@ const AttachmentLabel = ({
                     action = { handleClick }
 
                 />
-
-            )}
-
-            {error === 'size' && (
-
-                <p className={`${ s.error }`}>Максимальный размер файла - 10 Mb</p>
 
             )}
 
