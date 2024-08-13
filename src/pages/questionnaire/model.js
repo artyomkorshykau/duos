@@ -7,6 +7,7 @@ import Document from "@/react/widgets/document/ui";
 import Publications from "@/react/widgets/publications/ui";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import s from './questionnaire.module.scss'
 
 export const useQuestionnaire = () => {
 
@@ -87,12 +88,18 @@ export const useQuestionnaire = () => {
 
     }
 
-    window.scrollTo({
+    const scrollContainer = document.querySelector( `.${ s.content }` )
 
-      top: 0,
-      behavior: 'smooth'
+    if (scrollContainer) {
 
-    })
+      scrollContainer.scrollTo({
+
+        top: 0,
+        behavior: 'smooth'
+
+      })
+
+    }
 
   }
 
@@ -129,12 +136,18 @@ export const useQuestionnaire = () => {
 
     }
 
-    window.scrollTo({
+    const scrollContainer = document.querySelector( `.${ s.content }` )
 
-      top: 0,
-      behavior: 'smooth'
+    if (scrollContainer) {
 
-    })
+      scrollContainer.scrollTo({
+
+        top: 0,
+        behavior: 'smooth'
+
+      })
+
+    }
 
   }
 

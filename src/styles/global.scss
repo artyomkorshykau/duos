@@ -47,27 +47,6 @@ body {
 
 }
 
-::-webkit-scrollbar {
-  width: $apx-4;
-}
-
-::-webkit-scrollbar-track {
-  background: none;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #E1EBF9;
-  border-radius: $apx-4;
-
-  &:hover {
-
-    background: #A7CAFF;
-    cursor: grab;
-
-  }
-
-}
- 
 body,
 textarea,
 input,
