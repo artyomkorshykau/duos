@@ -43,11 +43,12 @@ const TaxStatus = () => {
         <Select
 
           placeholder = 'Налоговый статус'
-          placeholderIcon = { <WarningIcon  /> }
+          placeholderIcon = { <WarningIcon /> }
           options = { taxStatusesList }
           value = { globalState.profile.taxStatus }
           onChange = { value => globalActions.profile.setTaxStatus( value ) }
-          onClick = { () => globalActions.tax.showTaxInfoPopup('show') }
+          onIconClick = { () => globalActions.tax.showTaxInfoPopup('show') }
+          isFirstIconClick = { !globalState.tax.taxAgree }
 
         />
 
