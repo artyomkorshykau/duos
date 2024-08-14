@@ -7,6 +7,7 @@ import Select from '@/react/components/forms/select';
 import WarningIcon from '@/react/components/icons/warning';
 import s from '../../profile.module.scss';
 import { useEffect, useState } from "react";
+import TaxInfoPopup from "@/react/popups/tax.info.popup";
 
 const TaxStatus = () => {
 
@@ -42,10 +43,11 @@ const TaxStatus = () => {
         <Select
 
           placeholder = 'Налоговый статус'
-          placeholderIcon = { <WarningIcon /> }
+          placeholderIcon = { <WarningIcon  /> }
           options = { taxStatusesList }
           value = { globalState.profile.taxStatus }
           onChange = { value => globalActions.profile.setTaxStatus( value ) }
+          onClick = { () => globalActions.tax.showTaxInfoPopup('show') }
 
         />
 
@@ -76,6 +78,14 @@ const TaxStatus = () => {
         }
 
       </form>
+
+      <TaxInfoPopup
+
+        isOpened = { globalState.tax.isShowTaxInfoPopup }
+        closePopup = { () => globalActions.tax.showTaxInfoPopup('close')}
+        bodyClassName = { `${ s.profile__section__infoPopup }`}
+
+      />
 
     </div>
 

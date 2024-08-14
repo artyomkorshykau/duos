@@ -9,6 +9,7 @@ import ArrowSelect from "@/react/components/icons/arrow_select";
 import CloseIcon from "@/react/components/icons/close";
 
 import s from "./select.module.scss";
+import useGlobal from "@/store";
 
 const Select = ( props ) => {
 
@@ -22,15 +23,16 @@ const Select = ( props ) => {
     onChange,
     children,
     error,
+    onClick,
     ...selectParams
 
   } = props;
 
   const [ selectOption, setSelectOption ] = useState( value );
+  const [ globalState, globalActions ] = useGlobal();
 
   const chooseOption = ( value ) => {
 
-    setIsOpen( false );
     setSelectOption( value );
     onChange?.( value );
 
@@ -100,18 +102,39 @@ const Select = ( props ) => {
     <div className = {`${ s.wrapper } ${ className }`} ref = { containerRef }>
 
       <div
-
         className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ cssIf( !!selectOption, s.active ) } ${ className }`}
+        onClick = { () => {
 
+          if( globalState.tax.taxAgree ) {
+
+            setIsOpen( prev => !prev )
+
+          } else {
+
+            globalActions.tax.showTaxInfoPopup('show')
+
+          }
+
+        } }
       >
 
-        <div className = {`${ s.wrapper__container__placeholder_container }`} onClick = { () => setIsOpen( prev => !prev ) }>
+        <div className = {`${ s.wrapper__container__placeholder_container }`}>
 
           <div className={`${s.wrapper__container__placeholder_container__placeholder}`}>
 
             { placeholderIcon && (
 
-              <div className = {`${ s.wrapper__container__placeholder_container__placeholder__icon }`}>
+              <div
+
+                className = {`${ s.wrapper__container__placeholder_container__placeholder__icon }`}
+                onClick = { (e) => {
+
+                  e.stopPropagation()
+                  onClick()
+
+                }}
+
+              >
 
                 { placeholderIcon }
 

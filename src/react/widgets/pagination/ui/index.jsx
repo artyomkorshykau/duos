@@ -3,13 +3,16 @@ import DefaultButton from '@/react/components/buttons/default.button';
 import Arrow from '@/react/components/icons/arrow';
 import useGlobal from '@/store';
 import { useEffect, useState } from 'react';
+import { steps } from "@/constants/quiz.steps";
 
 const Pagination = ({
   
   nextStep,
-  activeStep
+  activeStep,
+  prevStep
 
 }) => {
+
 
   const [ globalState ] = useGlobal()
 
@@ -55,8 +58,10 @@ const Pagination = ({
 
         gray
         name = {''}
+        action = { prevStep }
         className = {`${ s.pagination__button_back }`}
         icon = { <Arrow direction = { 'left' } fill = { '#9ba1a1' }/> }
+        disabled = { activeStep === steps.profile }
 
       />
 
