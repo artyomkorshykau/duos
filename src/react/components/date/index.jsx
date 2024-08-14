@@ -2,71 +2,79 @@
 
 import s from './date.module.scss';
 import useGlobal from '@/store';
-import { useEffect, useRef, useState } from 'react';
-import DatePicker from 'react-datepicker';
+import {useCallback, useEffect, useRef, useState} from 'react';
+import DatePicker, {registerLocale} from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import CalendarIcon from "@/react/components/icons/calendar";
 import ArrowSelect from "@/react/components/icons/arrow_select";
 import cssIf from "@/scripts/helpers/css.if";
 import { months, years } from "@/react/components/forms/select/contants";
-import CloseIcon from "@/react/components/icons/close";
-import cls from "./date-picker.module.scss"
+import ru from "date-fns/locale/ru";
+import ItemSelect from "@/react/components/date/itemselect";
 
-const DateField = (props) => {
+registerLocale( "ru", ru );
+
+const DateField = ( props ) => {
 
   const {
+    className,
     placeholder,
     value,
+    onChange,
   } = props;
 
   const [ globalState, globalActions ] = useGlobal();
 
-  const [isOpen, setIsOpen] = useState( false );
-  const [date, setDate] = useState( value || null );
-  const [month, setMonth] = useState( months[ new Date().getMonth() ] );
-  const [year, setYear] = useState( String(new Date().getFullYear()) );
-  const [calendarType, setCalendarType] = useState( "days" );
+  const [ isOpen, setIsOpen ] = useState( false );
+  const [ date, setDate ] = useState( Date( value ) ?? null );
+  const [ calendarType, setCalendarType ] = useState( "days" );
+  const [ btnsContainerWidth, setBtnsContainerWidth ] = useState( 0 );
+
+  const [ startHours, setStartHours ] = useState(  "00" );
+  const [ startMinutes, setStartMinutes ] = useState(  "00" );
 
   const containerRef = useRef( null );
-  const yearsContainerRef = useRef( null );
+  const btnsContainersContainerRef = useRef( null );
 
-  useEffect( () => {
+  const handleChangeDate = ( value ) => {
 
-    if ( yearsContainerRef.current && calendarType === "years" ) {
-
-      const container = yearsContainerRef.current;
-      container.scrollTop = container.scrollHeight;
-
-    }
-
-  }, [ calendarType ]);
-
-  const chooseMonth = ( value ) => {
-
-    setMonth( value );
-    setCalendarType( "days" );
-
-  }
-
-  const chooseYear = ( value ) => {
-
-    setYear( value );
-    setCalendarType( "days" );
-
-  }
-
-  const handleChange = (date) => {
-
-    setDate(date);
+    setDate( Date( value ) );
+    onChange?.( value );
+    setIsOpen( false );
     
   };
 
-  const changeCalendarType = ( e, value ) => {
+  const onChangeStartHours = ( e ) => {
 
-    e.preventDefault();
-    setCalendarType( prev => prev === value ? "days" : value );
+    let newValue = e.target.value;
+
+    // Убедиться, что значение состоит только из цифр
+    if ( /^\d*$/.test(newValue) ) {
+      // Преобразовать в число и проверить диапазон
+      let numberValue = parseInt( newValue, 10 );
+
+      if ( numberValue > 0 && numberValue <= 23 ) {
+        setStartHours( newValue );
+      }
+    }
 
   };
+
+  const getPlaceholder = () => {
+
+    if ( value ) {
+
+      const day = String( ( new Date( value ) ).getDate() ).padStart( 2, '0') ;
+      const month = String( ( new Date( value ) ).getMonth() + 1 ).padStart( 2, '0' ); // месяцы в JavaScript начинаются с 0
+      const year = ( new Date( value ) ).getFullYear();
+
+      return `${ day }.${ month }.${ year }`;
+
+    }
+
+    return placeholder;
+
+  }
 
   useEffect( () => {
 
@@ -97,6 +105,17 @@ const DateField = (props) => {
     };
   }, [ isOpen ] );
 
+  useEffect( () => {
+
+    if ( btnsContainersContainerRef.current ) {
+
+      setBtnsContainerWidth( btnsContainersContainerRef.current.offsetWidth );
+
+    }
+
+  }, [ isOpen ] );
+
+
   return (
 
     <div
@@ -106,7 +125,7 @@ const DateField = (props) => {
 
     >
 
-      <div className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) }`}>
+      <div className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ className }`}>
 
         <div className = {`${ s.wrapper__container__header_container }`} onClick = { () => setIsOpen(prev => !prev) }>
 
@@ -144,7 +163,7 @@ const DateField = (props) => {
 
           <div className = {`${ s.wrapper__container__header_container__header } ${ cssIf( isOpen, s.header_active ) }`}>
 
-            { placeholder }
+            { getPlaceholder() }
 
           </div>
 
@@ -154,139 +173,74 @@ const DateField = (props) => {
 
           <div className = {`${ s.wrapper__container__calendar_wrapper }`}>
 
-            <div className = {`${ s.wrapper__container__calendar_wrapper__btns_container }`}>
+            <DatePicker
 
-              <button
-                className = {`${ s.wrapper__container__calendar_wrapper__btns_container__btn }`}
-                onClick = { ( e ) => changeCalendarType( e, "months" ) }
-              >
+              selected = { date }
+              onChange = { handleChangeDate }
+              dateFormat = "dd MMMM yyyy"
+              locale = "ru"
+              // showTimeSelect
+              // timeFormat = "HH:mm"
+              // timeIntervals = { 15 }
+              // timeCaption = "Время"
+              // minTime = { new Date().setHours( 0, 0 ) }
+              // maxTime = { new Date().setHours( 23, 59 ) }
+              // renderCustomHeader = { () => null }
+              renderCustomHeader = { ( { date, changeYear, changeMonth } ) => {
 
-                { month }
+                const onChangeMonth = ( month ) => {
 
-                { calendarType === "months" ? (
+                  changeMonth( month );
+                  setCalendarType( "days" );
 
-                  <CloseIcon />
+                }
 
-                ) : (
+                const onChangeYear = ( year ) => {
 
-                  <ArrowSelect direction = "down" fill = "#7C92A7" />
+                  changeYear( year );
+                  setCalendarType( "days" );
 
-                ) }
+                }
 
-              </button>
+                return (
 
-              <button
-
-                className = {`
-                  ${ s.wrapper__container__calendar_wrapper__btns_container__btn }
-                  ${ s.wrapper__container__calendar_wrapper__btns_container__year_btn }
-                `}
-                onClick = { ( e ) => changeCalendarType( e, "years" ) }
-
-              >
-
-                { year }
-
-                { calendarType === "years" ? (
-
-                  <CloseIcon/>
-
-                ) : (
-
-                  <ArrowSelect direction = "down" fill = "#7C92A7"/>
-
-                ) }
-
-              </button>
-
-            </div>
-
-            { calendarType === "days" && (
-
-              <DatePicker
-
-                selected={date || new Date()}
-                onChange={(date) => setDate(date)}
-                dateFormat="dd MMMM yyyy"
-                // showTimeSelect
-                // timeFormat = "HH:mm"
-                // timeIntervals = { 15 }
-                // timeCaption = "Время"
-                // minTime = { new Date().setHours( 0, 0 ) }
-                // maxTime = { new Date().setHours( 23, 59 ) }
-                renderCustomHeader = { () => <div className={cls.datepicker__header}></div> }
-                calendarClassName = { cls.datepicker }
-                dayClassName={(date) => {
-                  let classes = [cls.datepicker__day];
-                  // if (date.getDate() === startDate.getDate()) classes.push(cls.datepicker__day__selected);
-                  if (date.toDateString() === new Date().toDateString()) classes.push(cls.datepicker__day__today);
-                  return classes.join(' ');
-                }}
-                weekDayClassName = { ( date ) => cls.weekday }
-                // formatWeekDay = { (nameOfDay) => (
-                //     <div className={cls.datepicker__day_name}>{ nameOfDay }</div>
-                // ) }
-                inline
-
-              />
-
-            ) }
-
-            { calendarType === "months" && (
-
-              <div className = {`${ s.wrapper__container__calendar_wrapper__calendar_container }`}>
-
-                { months.map( (month, index) => (
-
-                  <button
-
-                    key = { index }
-                    className = {`${ s.wrapper__container__calendar_wrapper__calendar_container__item }`}
-                    onClick = { () => chooseMonth( month ) }
-
+                  <div
+                    className={`${s.wrapper__container__calendar_wrapper__btns_container}`}
+                    ref={btnsContainersContainerRef}
                   >
 
-                    { month }
+                    <ItemSelect
 
-                  </button>
+                      // value = { months[ date ? date.getMonth() : new Date().getMonth() ] }
+                      value = { months[ (date instanceof Date ? date : new Date()).getMonth() ] }
+                      isOpen = { calendarType === "months" }
+                      onOpen = { () => setCalendarType( "months" ) }
+                      onClose = { () => setCalendarType( "days" ) }
+                      onChange = { onChangeMonth }
+                      items = { months }
+                      isMonths
 
-                )) }
+                    />
 
-              </div>
+                    <ItemSelect
 
-            ) }
+                      // value = { date ? date.getFullYear() : new Date().getFullYear() }
+                      value = { date instanceof Date ? date.getFullYear() : new Date().getFullYear() }
+                      isOpen = { calendarType === "years" }
+                      onOpen = { () => setCalendarType( "years" ) }
+                      onClose = { () => setCalendarType( "days" ) }
+                      onChange = { onChangeYear }
+                      items = { years }
+                      containerWidth = { btnsContainerWidth }
 
-            { calendarType === "years" && (
+                    />
 
-              <div
+                  </div>
+                )
+              } }
+              inline
 
-                className = {`
-                  ${ s.wrapper__container__calendar_wrapper__calendar_container }
-                  ${ cssIf( calendarType === "years", s.years_container ) }
-                `}
-                ref = { yearsContainerRef }
-
-              >
-
-                { years.map( (year, index) => (
-
-                  <button
-
-                    key = { index }
-                    className = {`${ s.wrapper__container__calendar_wrapper__calendar_container__item }`}
-                    onClick = { () => chooseYear( year ) }
-
-                  >
-
-                    { year }
-
-                  </button>
-
-                )) }
-
-              </div>
-
-            ) }
+            />
 
             <div className = {`${ s.wrapper__container__calendar_wrapper__times_container }`}>
 

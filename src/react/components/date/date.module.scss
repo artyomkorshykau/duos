@@ -1,89 +1,9 @@
 @import "@/styles/apx.scss";
 
-.datepicker {
-
-  width: $apx-305;
-  max-width: $apx-305;
-
-  & > div {
-    position: relative;
-    height: 100% !important;
-
-    svg {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 0;
-    }
-
-  }
-
-
-  //&__filedsWrapper {
-  //
-  //  display: flex;
-  //  flex-wrap: wrap;
-  //  gap: $apx-8;
-  //  margin-top: $apx-12;
-  //  position: relative;
-  //
-  //  &__filed {
-  //
-  //    max-width: $apx-305;
-  //    height: $apx-64;
-  //    margin: 0;
-  //
-  //    input {
-  //
-  //      height: $apx-64;
-  //
-  //    }
-  //
-  //  }
-  //
-  //}
-
-}
-
 .wrapper {
 
-  height: $apx-64;
   width: $apx-305;
-  background: var(--color-accent-background);
-  border: $apx-1 solid var(--color-accent-blue-200);
-  border-radius: $apx-28;
-
-  &:hover {
-
-    div {
-
-      svg {
-
-        path {
-
-          fill: var(--color-accent-blue-700);
-
-        }
-
-        rect {
-
-          fill: var(--color-accent-blue-700);
-
-        }
-
-      }
-
-
-      div {
-
-        color: var(--color-accent-blue-700);
-        font-weight: 500;
-
-      }
-
-    }
-
-  }
+  height: $apx-64;
 
   &__container {
 
@@ -99,6 +19,33 @@
       height: $apx-62;
       width: 100%;
       position: relative;
+
+      &:hover {
+
+        div {
+
+          color: var(--color-accent-blue-700);
+          font-weight: 500;
+
+          svg {
+
+            path {
+
+              fill: var(--color-accent-blue-700);
+
+            }
+
+            rect {
+
+              fill: var(--color-accent-blue-700);
+
+            }
+
+          }
+
+        }
+
+      }
 
       &__icon_container {
 
@@ -314,6 +261,9 @@
           align-items: center;
           background: var(--color-accent-background);
           color: var(--color-accent-black-500);
+          font-size: $apx-16;
+          font-weight: 500;
+          line-height: 130%;
 
         }
 

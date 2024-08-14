@@ -37,55 +37,54 @@ const FullName = () => {
 
       </p>
 
-        <form className = {`${ s.profile__section__filedsWrapper }`}>
+      <form className = {`${ s.profile__section__filedsWrapper }`}>
 
-          <Textfield
+        <Textfield
 
-            className = {`${ s.profile__section__filedsWrapper__filed }`}
-            placeholder = {'Фамилия'}
-            value = { globalState.profile.lastName }
-            onChange = { (e) => globalActions.profile.setLastName(e.target.value)}
+          className = {`${ s.profile__section__filedsWrapper__filed }`}
+          placeholder = 'Фамилия'
+          value = { globalState.profile.lastName }
+          onChange = { ( e ) => globalActions.profile.setLastName( e.target.value ) }
 
-          />
+        />
 
-          <Textfield
+        <Textfield
 
-            className = {`${ s.profile__section__filedsWrapper__filed }`}
-            placeholder = {'Имя'}
-            value = { globalState.profile.firstName }
-            onChange = { (e) => globalActions.profile.setFirstName(e.target.value)}
+          className = {`${ s.profile__section__filedsWrapper__filed }`}
+          placeholder = 'Имя'
+          value = {globalState.profile.firstName}
+          onChange = { ( e ) => globalActions.profile.setFirstName( e.target.value ) }
 
-          />
-          <Textfield
+        />
+        <Textfield
 
-            className = {`${ s.profile__section__filedsWrapper__filed }`}
-            placeholder = {'Отчество'}
-            value = { globalState.profile.surName }
-            onChange = { (e) => globalActions.profile.setSurName(e.target.value)}
+          className = {`${ s.profile__section__filedsWrapper__filed }`}
+          placeholder = 'Отчество'
+          value = { globalState.profile.surName }
+          onChange = { ( e ) => globalActions.profile.setSurName( e.target.value ) }
 
-          />
-          <DateField
+        />
+        <DateField
 
-            className = {`${ s.profile__section__filedsWrapper__filed }`}
-            placeholder = {'Дата рождения'}
-            type = { 'date' }
-            value = { globalState.profile.birthDate }
-            onChange = { (e) => globalActions.profile.setBirthDate(e.target.value)}
+          // className = {`${ s.profile__section__filedsWrapper__filed }`}
+          placeholder='Дата рождения'
+          value ={ globalState.profile.birthDate }
+          onChange = { ( value ) => globalActions.profile.setBirthDate( value ) }
 
-          />
-          <Select
+        />
+        <Select
 
-            // className = {`${ s.profile__section__filedsWrapper__filed }`}
-            placeholder = { 'Пол' }
-            options = { genderList }
-            value = { globalState.profile.gender }
-            onChange = { value => globalActions.profile.setGender( value ) }
+          // className = {`${ s.profile__section__filedsWrapper__filed }`}
+          placeholder='Пол'
+          options = { genderList }
+          value = { globalState.profile.gender }
+          onChange = { value => globalActions.profile.setGender( value ) }
 
-          />
+        />
 
-        </form>
+      </form>
 
-      </div>
+    </div>
 
   )
 
