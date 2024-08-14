@@ -11,6 +11,7 @@ import cssIf from "@/scripts/helpers/css.if";
 import { months, years } from "@/react/components/forms/select/contants";
 import ru from "date-fns/locale/ru";
 import ItemSelect from "@/react/components/date/itemselect";
+import TimeInput from "@/react/components/date/timeinput";
 
 registerLocale( "ru", ru );
 
@@ -30,8 +31,10 @@ const DateField = ( props ) => {
   const [ calendarType, setCalendarType ] = useState( "days" );
   const [ btnsContainerWidth, setBtnsContainerWidth ] = useState( 0 );
 
-  const [ startHours, setStartHours ] = useState(  "00" );
-  const [ startMinutes, setStartMinutes ] = useState(  "00" );
+  const [ startHours, setStartHours ] = useState(  "" );
+  const [ startMinutes, setStartMinutes ] = useState(  "" );
+  const [ endHours, setEndHours ] = useState(  "" );
+  const [ endMinutes, setEndMinutes ] = useState(  "" );
 
   const containerRef = useRef( null );
   const btnsContainersContainerRef = useRef( null );
@@ -44,19 +47,27 @@ const DateField = ( props ) => {
     
   };
 
-  const onChangeStartHours = ( e ) => {
+  const onChangeStartHours = ( value ) => {
 
-    let newValue = e.target.value;
+    setStartHours( value );
 
-    // Убедиться, что значение состоит только из цифр
-    if ( /^\d*$/.test(newValue) ) {
-      // Преобразовать в число и проверить диапазон
-      let numberValue = parseInt( newValue, 10 );
+  };
 
-      if ( numberValue > 0 && numberValue <= 23 ) {
-        setStartHours( newValue );
-      }
-    }
+  const onChangeStartMinutes = ( value ) => {
+
+    setStartMinutes( value );
+
+  };
+
+  const onChangeEndHours = ( value ) => {
+
+    setEndHours( value );
+
+  };
+
+  const onChangeEndMinutes = ( value ) => {
+
+    setEndMinutes( value );
 
   };
 
@@ -245,15 +256,47 @@ const DateField = ( props ) => {
             <div className = {`${ s.wrapper__container__calendar_wrapper__times_container }`}>
 
               <div className = {`${ s.wrapper__container__calendar_wrapper__times_container__time_container }`}>
-                <span>00</span>
+                <TimeInput
+
+                  placeholder = "00"
+                  value = { startHours }
+                  onChange = { onChangeStartHours }
+                  minValue = { 0 }
+                  maxValue = { 23 }
+
+                />
                 <span>:</span>
-                <span>00</span>
+                <TimeInput
+
+                    placeholder = "00"
+                    value = { startMinutes }
+                    onChange = { onChangeStartMinutes }
+                    minValue = { 0 }
+                    maxValue = { 59 }
+
+                />
               </div>
 
               <div className = {`${ s.wrapper__container__calendar_wrapper__times_container__time_container }`}>
-                <span>23</span>
+                <TimeInput
+
+                    placeholder = "23"
+                    value = { endHours }
+                    onChange = { onChangeEndHours }
+                    minValue = { 0 }
+                    maxValue = { 23 }
+
+                />
                 <span>:</span>
-                <span>59</span>
+                <TimeInput
+
+                    placeholder = "59"
+                    value = { endMinutes }
+                    onChange = { onChangeEndMinutes }
+                    minValue = { 0 }
+                    maxValue = { 59 }
+
+                />
               </div>
 
             </div>

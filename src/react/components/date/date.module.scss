@@ -239,7 +239,8 @@
 
         }
 
-        &__year {}
+        &__year {
+        }
 
       }
 
@@ -254,16 +255,41 @@
 
           width: calc((100% - $apx-8) / 2);
           height: $apx-64;
-          padding-inline: $apx-30;
+          padding-inline: $apx-24;
           border-radius: $apx-28;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          gap: $apx-4;
           background: var(--color-accent-background);
           color: var(--color-accent-black-500);
           font-size: $apx-16;
           font-weight: 500;
           line-height: 130%;
+
+          &__input_container {
+
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            &__input {
+
+              width: calc(100% - $apx-8);
+              height: 100%;
+              background: transparent;
+
+              -moz-appearance: textfield;
+
+              &::-webkit-outer-spin-button,
+              &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+
+            }
+
+          }
 
         }
 
