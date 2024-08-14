@@ -9,7 +9,6 @@ import ArrowSelect from "@/react/components/icons/arrow_select";
 import CloseIcon from "@/react/components/icons/close";
 
 import s from "./select.module.scss";
-import useGlobal from "@/store";
 
 const Select = ( props ) => {
 
@@ -23,13 +22,14 @@ const Select = ( props ) => {
     onChange,
     children,
     error,
-    onClick,
+    onIconClick,
+    isFirstIconClick,
+    icon,
     ...selectParams
 
   } = props;
 
   const [ selectOption, setSelectOption ] = useState( value );
-  const [ globalState, globalActions ] = useGlobal();
 
   const chooseOption = ( value ) => {
 
@@ -57,6 +57,23 @@ const Select = ( props ) => {
     setSearch( '' );
 
   };
+
+  const toggleSelect = () => {
+
+    if ( !isFirstIconClick ) {
+
+      setIsOpen( prev => !prev );
+      setSearch( "" );
+
+    }
+
+    if ( isFirstIconClick && !isOpen ) {
+
+      onIconClick?.();
+
+    }
+
+  }
 
   useEffect(() => {
 
@@ -102,23 +119,12 @@ const Select = ( props ) => {
     <div className = {`${ s.wrapper }`} ref = { containerRef }>
 
       <div
+
         className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ cssIf( !!selectOption, s.active ) } ${ className }`}
-        onClick = { () => {
 
-          if( globalState.tax.taxAgree ) {
-
-            setIsOpen( prev => !prev )
-
-          } else {
-
-            globalActions.tax.showTaxInfoPopup('show')
-
-          }
-
-        } }
       >
 
-        <div className = {`${ s.wrapper__container__placeholder_container }`}>
+        <div className = {`${ s.wrapper__container__placeholder_container }`} onClick = { toggleSelect }>
 
           <div className={`${s.wrapper__container__placeholder_container__placeholder}`}>
 
@@ -129,10 +135,10 @@ const Select = ( props ) => {
                 className = {`${ s.wrapper__container__placeholder_container__placeholder__icon }`}
                 onClick = { (e) => {
 
-                  e.stopPropagation()
-                  onClick()
+                  !isOpen && e.stopPropagation();
+                  onIconClick?.();
 
-                }}
+                } }
 
               >
 
@@ -142,9 +148,14 @@ const Select = ( props ) => {
 
             ) }
 
-            <div className={`${ s.wrapper__container__placeholder_container__placeholder__titlecontainer }`}>
+            <div
 
-              <span className={`
+              className = {`
+                ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer }
+                ${ cssIf( placeholderIcon, s.hasicon ) }
+              `}>
+
+              <span className = {`
                 ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__placeholder }
                 ${ cssIf( isOpen, s.placeholderactive ) }
                 ${ cssIf( selectOption, s.placeholderactive ) }
@@ -185,7 +196,7 @@ const Select = ( props ) => {
 
                   />
 
-                  { search && (
+                  { search && isOpen && (
 
                     <button
                       className = {`${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__searchinputcontainer__closebtn }`}

@@ -5,9 +5,6 @@
   width: $apx-305;
   height: $apx-64;
   max-height: $apx-64;
-  //background: var(--color-accent-background);
-  //border: $apx-1 solid var(--color-accent-blue-200);
-  //border-radius: $apx-28;
   font-weight: 500;
 
   &:hover {
@@ -60,10 +57,11 @@
 
       height: 100%;
       min-height: $apx-64;
-      padding-inline: $apx-16;
+      padding-inline: $apx-16 $apx-32;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
 
       &__placeholder {
 
@@ -99,7 +97,7 @@
 
         &__titlecontainer {
 
-          max-width: calc(100% - 12px - $apx-40 - $apx-15);
+          max-width: calc(100% - 12px - $apx-10);
           display: flex;
           flex-direction: column;
           transition: all 300ms ease;
@@ -113,6 +111,7 @@
           &__searchinputcontainer {
 
             height: 0;
+            width: 100%;
             display: flex;
             position: relative;
 
@@ -193,7 +192,10 @@
 
       &__icon_container {
 
-        transform: rotate(0);
+        position: absolute;
+        top: 50%;
+        right: $apx-16;
+        transform: translateY(-50%) rotate(0);
         transition: all 300ms ease;
 
         svg {
@@ -281,12 +283,18 @@
 
 .icon_container_open {
 
-  transform: rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
 
 }
 
 .active {
 
   background: var(--color-bw-white);
+
+}
+
+.hasicon {
+
+  max-width: calc(100% - 12px - $apx-65) !important;
 
 }
