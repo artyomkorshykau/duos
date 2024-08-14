@@ -256,6 +256,7 @@ const DateField = ( props ) => {
             <div className = {`${ s.wrapper__container__calendar_wrapper__times_container }`}>
 
               <div className = {`${ s.wrapper__container__calendar_wrapper__times_container__time_container }`}>
+
                 <TimeInput
 
                   placeholder = "00"
@@ -265,38 +266,45 @@ const DateField = ( props ) => {
                   maxValue = { 23 }
 
                 />
+
                 <span>:</span>
+
                 <TimeInput
 
-                    placeholder = "00"
-                    value = { startMinutes }
-                    onChange = { onChangeStartMinutes }
-                    minValue = { 0 }
-                    maxValue = { 59 }
+                  placeholder = "00"
+                  value = { startMinutes }
+                  onChange = { onChangeStartMinutes }
+                  minValue = { 0 }
+                  maxValue = { 59 }
 
                 />
+
               </div>
 
               <div className = {`${ s.wrapper__container__calendar_wrapper__times_container__time_container }`}>
+
                 <TimeInput
 
-                    placeholder = "23"
-                    value = { endHours }
-                    onChange = { onChangeEndHours }
-                    minValue = { 0 }
-                    maxValue = { 23 }
+                  placeholder = "23"
+                  value = { endHours }
+                  onChange = { onChangeEndHours }
+                  minValue = { 0 }
+                  maxValue = { 23 }
 
                 />
+
                 <span>:</span>
+
                 <TimeInput
 
-                    placeholder = "59"
-                    value = { endMinutes }
-                    onChange = { onChangeEndMinutes }
-                    minValue = { 0 }
-                    maxValue = { 59 }
+                  placeholder = "59"
+                  value = { endMinutes }
+                  onChange = { onChangeEndMinutes }
+                  minValue = { 0 }
+                  maxValue = { 59 }
 
                 />
+
               </div>
 
             </div>

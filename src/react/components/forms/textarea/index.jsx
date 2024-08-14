@@ -25,6 +25,7 @@ const Textarea = ( props ) => {
     onBlur = () => {},
     onChange = (e) => {},
     icon,
+    withSaveIcon,
     ...inputParams
 
   } = props;
@@ -131,7 +132,7 @@ const Textarea = ( props ) => {
 
       />
 
-      { icon && (
+      { icon && withSaveIcon && value (
 
         <div className = {`${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }`}>
 
