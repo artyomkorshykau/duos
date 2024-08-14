@@ -9,6 +9,7 @@ import ArrowSelect from "@/react/components/icons/arrow_select";
 import CloseIcon from "@/react/components/icons/close";
 
 import s from "./select.module.scss";
+import useGlobal from "@/store";
 
 const Select = ( props ) => {
 
@@ -28,6 +29,7 @@ const Select = ( props ) => {
   } = props;
 
   const [ selectOption, setSelectOption ] = useState( value );
+  const [ globalState, globalActions ] = useGlobal();
 
   const chooseOption = ( value ) => {
 
@@ -101,7 +103,19 @@ const Select = ( props ) => {
 
       <div
         className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ cssIf( !!selectOption, s.active ) } ${ className }`}
-        onClick = { () => setIsOpen( prev => !prev ) }
+        onClick = { () => {
+
+          if( globalState.tax.taxAgree ) {
+
+            setIsOpen( prev => !prev )
+
+          } else {
+
+            globalActions.tax.showTaxInfoPopup('show')
+
+          }
+
+        } }
       >
 
         <div className = {`${ s.wrapper__container__placeholder_container }`}>
@@ -205,7 +219,7 @@ const Select = ( props ) => {
 
         </div>
 
-        { isOpen && (
+        { isOpen &&(
 
           <div className = {`${ s.wrapper__container__itemscontainer }`}>
 
