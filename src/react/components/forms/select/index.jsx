@@ -29,21 +29,23 @@ const Select = ( props ) => {
 
   } = props;
 
-  const [ selectOption, setSelectOption ] = useState( value );
 
-  const chooseOption = ( value ) => {
-
-    setSelectOption( value );
-    onChange?.( value );
-
-  };
 
   const [ isOpen, setIsOpen ] = useState( false );
   const [ search, setSearch ] = useState( '' );
+  const [ selectOption, setSelectOption ] = useState( value );
 
   const containerRef = useRef( null );
 
   const inputRef = useRef( null );
+
+  const chooseOption = ( value ) => {
+
+    setIsOpen( false );
+    setSelectOption( value );
+    onChange?.( value );
+
+  };
 
   const filteredOptions = useMemo( () => {
 
@@ -75,7 +77,7 @@ const Select = ( props ) => {
 
   }
 
-  useEffect(() => {
+  useEffect( () => {
 
     const handleClickOutside = ( event ) => {
 
@@ -102,7 +104,7 @@ const Select = ( props ) => {
       document.removeEventListener('mousedown', handleClickOutside);
 
     };
-  }, [ isOpen ]);
+  }, [ isOpen ] );
 
   useEffect( () => {
 
@@ -236,15 +238,6 @@ const Select = ( props ) => {
 
             { filteredOptions.map( option => (
 
-              // <div
-              //   key = { option.value }
-              //   className = {`${ s.wrapper__container__itemscontainer__option }`}
-              //   onClick = { () => chooseOption(option.value) }
-              // >
-              //
-              //   { option.label }
-              //
-              // </div>
               <Option
                 key = { option.value }
                 option = { option }

@@ -116,11 +116,15 @@ const Textarea = ( props ) => {
 
     <div
 
-      className = {`${ s.textfield } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}
+      className = {`
+        ${ s.textfield }
+        ${ cssIf( error === "", s['textfield--error'] ) }
+        ${ className }
+      `}
       ref = { textareaDivRef }
       style = { { height: `${ height }px` } }
 
-      >
+    >
 
       { !!title && <p className = { s.title }>{ title }</p> }
 
@@ -132,7 +136,7 @@ const Textarea = ( props ) => {
 
       />
 
-      { icon && withSaveIcon && value (
+      { icon && withSaveIcon && !!text && (
 
         <div className = {`${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }`}>
 

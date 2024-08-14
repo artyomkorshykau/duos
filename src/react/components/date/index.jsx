@@ -136,7 +136,16 @@ const DateField = ( props ) => {
 
     >
 
-      <div className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ className }`}>
+      <div
+
+        className = {`
+          ${ s.wrapper__container }
+          ${ cssIf( isOpen, s.open ) }
+          ${ cssIf( !!value, s.active ) }
+          ${ className }
+        `}
+
+      >
 
         <div className = {`${ s.wrapper__container__header_container }`} onClick = { () => setIsOpen(prev => !prev) }>
 
