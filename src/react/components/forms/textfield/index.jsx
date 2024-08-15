@@ -39,36 +39,50 @@ const Textfield = ( props ) => {
 
       { type === 'phone' ?
 
-        <InputMask
+        <>
 
-          mask = { '+7 (999) 999-99-99' }
-          value = { value }
-          onChange = { onChange }
-          placeholder = { placeholder }
-          type = { 'tel' }
+          <InputMask
 
-        >
+            mask={ '+7 (999) 999-99-99' }
+            value={ value }
+            onChange={ onChange }
+            placeholder={ '' }
+            type={ 'tel' }
 
-        { ( inputProps ) => <input { ...inputProps } /> }
+          >
 
-        </InputMask>
+            { ( inputProps ) => <input { ...inputProps } /> }
 
-        : <input
+          </InputMask>
 
-        value = { value }
-        type = { hide && password ? 'password' : type }
-        placeholder = { placeholder }
-        className = { inputClassName }
-        onChange = { onChange }
-        { ...inputParams }
-        onClick = { ( e ) => {
+          <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
 
-          onClick && onClick();
-          e.stopPropagation();
+        </>
 
-        } }
+        : <>
 
-      /> }
+          <input
+
+            value={ value }
+            type={ hide && password ? 'password' : type }
+            placeholder={''}
+            className={ inputClassName }
+            onChange={ onChange }
+            { ...inputParams }
+            onClick={ ( e ) => {
+
+              onClick && onClick();
+              e.stopPropagation();
+
+            } }
+
+          />
+
+          <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
+
+        </>
+
+      }
 
       { password &&
 
