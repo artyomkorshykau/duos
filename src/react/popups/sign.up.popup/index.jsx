@@ -121,7 +121,7 @@ const SignUpPopup = ({
 
             />
 
-            <div className = {`flex items-center`}>
+            <div className = {`flex items-center my-6`}>
 
               <Checkbox
 
