@@ -33,8 +33,9 @@
   
     $size: $apx-16;
     width: $size;
-    height: $size;   
-  
+    height: $size;
+    stroke: var(--color-accent-black-500);
+
   }
 
 }
