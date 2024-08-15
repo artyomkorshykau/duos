@@ -19,6 +19,7 @@ const ServiceDescription = ({
     <div>
 
       <p className = {`${ s.service__section__title }`}> Подробное описание услуги </p>
+      <p className = {`${ s.service__section__description }`}> Все, что нужно знать вашим клиентам, чтобы приобрести эту услугу </p>
 
       <form className = {`${ s.service__section__filedsGrid }`}>
 
