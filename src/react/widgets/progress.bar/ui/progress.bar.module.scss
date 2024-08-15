@@ -6,14 +6,14 @@
   background-color: var(--color-bw-white);
   border-radius: $apx-32;
   padding: $apx-32 0;
-  margin: $apx-120 0 $apx-41 0;
+  margin: $apx-32 0 $apx-41 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: $apx-8;
-  top: -$apx-50;
+  top: -$apx-120;
   position: sticky;
-  z-index: 2;
+  z-index: 3;
 
   &__breadcrumbs {
 
@@ -70,7 +70,7 @@
 
         position: absolute;
         top: $apx-43;
-        z-index: 1;
+        z-index: 3;
 
       }
 

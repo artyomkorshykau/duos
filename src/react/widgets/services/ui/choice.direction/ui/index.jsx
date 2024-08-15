@@ -2,7 +2,8 @@ import { directionList } from '@/constants/services';
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield';
 import useGlobal from '@/store';
-import Selectfield from '@/react/components/forms/selectfield';
+import Select from '@/react/components/forms/select';
+import {useEffect, useState} from "react";
 
 const ChoiceDirection = ({
 
@@ -10,7 +11,17 @@ const ChoiceDirection = ({
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal()
+  const [ globalState, globalActions ] = useGlobal();
+
+  //TODO delete this when api will ready
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
 
@@ -20,16 +31,17 @@ const ChoiceDirection = ({
 
       <form className = {`${ s.service__section__filedsWrapper }`}>
 
-        <Selectfield
+        <Select
 
           className = {`${ s.service__section__filedsWrapper__filed }`}
-          placeholder = {'Выбрать направление'}
-          value = { globalState.service.category?.[index]?.direction }
-          onChange = { (e) => globalActions.service.setDirection( e.target.value, index ) }
+          placeholder = 'Выбрать направление'
           options = { directionList }
+          value = { globalState.service.category?.[index]?.direction }
+          onChange = { ( value ) => globalActions.service.setDirection( value, index ) }
 
         />
-        {(globalState.service.category?.[index]?.direction === 'Other') && 
+
+        { globalState.service.category?.[index]?.direction === 'Other' &&
           
           <Textfield
 

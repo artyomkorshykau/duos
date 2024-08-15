@@ -2,7 +2,6 @@ import cssIf from '@/scripts/helpers/css.if';
 import useGlobal from '@/store';
 import { useEffect, useState } from 'react';
 import s from '../progress.bar.module.scss';
-import { log } from "next/dist/server/typescript/utils";
 
 const calculateProgress = (statuses) => {
 
@@ -30,30 +29,46 @@ const Progress = ({
  }) => {
 
   const [ globalState, globalActions ] = useGlobal()
-  
-  const { service, publications } = globalState
-
+  const { service, publications, profile, school } = globalState
   const { category, passport } = service
-  const { categories } = publications
 
   const [ progress, setProgress ] = useState(0)
 
   useEffect(() => {
+
     if (activeId === 1 && activeId === id) {
 
-      setProgress(1) 
+      const totalFields = Object.keys(profile).length
+      const filledFields = Object.values(profile).filter(value => value !== '').length
+
+      const progress = totalFields > 0 ? Math.min(filledFields / totalFields, 1) : 0
+
+      setProgress(progress)
 
     } else if ( activeId === 2 && activeId === id ) {
 
-      const statuses = category.map( item => item.status );
+      const statuses = category.map( item => item.status )
 
-      const progress = calculateProgress( statuses );
+      const progress = calculateProgress( statuses )
 
       setProgress(progress)
         
     } else if (activeId === 3 && activeId === id) {
 
-      setProgress(1) 
+      const allFieldsFilled =
+        school.schoolName !== ''
+        && school.comment !== ''
+        && school.courses.every( course => course.title !== '' )
+
+      if( allFieldsFilled ) {
+
+        setProgress(1)
+
+      } else {
+
+        setProgress(0)
+
+      }
 
     } else if (activeId === 4 && activeId === id) {
 
@@ -65,15 +80,15 @@ const Progress = ({
 
     } else if ( activeId === 5 && activeId === id ) {
 
-      const statuses = categories.map( item => item.documentStatus );
+      const statuses = publications.categories.map( item => item.documentStatus );
 
       const progress = calculateProgress( statuses );
 
-      setProgress(progress)
+        setProgress(progress)
 
     }
 
-  }, [ activeId, id, category, categories])
+  }, [ activeId, id, category, publications.categories, profile, school, publications ])
 
   useEffect(() => {
 
@@ -81,6 +96,18 @@ const Progress = ({
       
       globalActions.service.setChangeProgress(progress)
       
+    } else if(activeId === 1 && activeId === id ) {
+
+      globalActions.profile.setProfileProgress(progress)
+
+    } else if(activeId === 3 && activeId === id) {
+
+      globalActions.school.setSchoolProgress(progress)
+
+    } else if(activeId === 5 && activeId === id) {
+
+      globalActions.publications.setPublicationsProgress(progress)
+
     }
 
   }, [ progress ])

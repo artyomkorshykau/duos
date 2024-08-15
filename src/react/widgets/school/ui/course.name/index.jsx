@@ -4,22 +4,23 @@ import Plus from '@/react/components/icons/plus'
 import DefaultButton from '@/react/components/buttons/default.button'
 import { useState } from 'react'
 import Cross from '@/react/components/icons/cross'
+import useGlobal from "@/store";
 
 const CourseName = () => {
 
-  const [ courses, setCourses ] = useState([ 1 ] )
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
-    <div className={ `${ s.school__section }` }>
+    <div className = { `${ s.school__section }` }>
 
-      <p className={ `text-20 ${ s.school__section__title }` }>
+      <p className = { `text-20 ${ s.school__section__title }` }>
 
         Название курса
 
       </p>
 
-      <p className={ `text-16 ${ s.school__section__description }` }>
+      <p className = { `text-16 ${ s.school__section__description }` }>
 
         Имеется в виду курс, который вы преподаете своим клиентам или студентам
 
@@ -27,18 +28,23 @@ const CourseName = () => {
 
       <form>
 
-        { courses.map((course, index) => {
+        { globalState.school.courses.map( ( course, index ) => {
 
           return (
 
-            <div className={ `${ s.school__section__filedsWrapper }` } key = { index }>
+            <div
+
+              className = { `${ s.school__section__filedsWrapper }` }
+              key = { index }
+
+            >
 
               <Textfield
 
-                className={ `${ s.school__section__filedsWrapper__filed }` }
-                placeholder={ 'Введите название здесь' }
-                // value={ globalState.profile.nickName }
-                // onChange={ ( e ) => globalActions.profile.setNickName( e.target.value ) }
+                className = { `${ s.school__section__filedsWrapper__filed }` }
+                placeholder = { 'Введите название здесь' }
+                value = { course.title }
+                onChange = { (e) => globalActions.school.setCourseName(index, e.target.value )}
 
               />
 
@@ -46,25 +52,23 @@ const CourseName = () => {
 
                 <DefaultButton
 
-                gray
-                name=""
-                className={ `${ s.school__section__filedsWrapper__cross_button }` }
-                icon={ <Cross fill={ '#18009E' } /> }
-                positionIcon="right"
-                action={ () => setCourses( courses.filter( ( _, i ) => i !== index ) ) }
-                buttonType = { 'button' }
+                  gray
+                  name = ""
+                  className = { `${ s.school__section__filedsWrapper__cross_button }` }
+                  icon = { <Cross fill = { '#18009E' }/> }
+                  positionIcon = "right"
+                  action = { () => globalActions.school.deleteCourse(index) }
+                  buttonType = { 'button' }
 
-              />
+                />
 
               }
 
             </div>
 
-
-
           )
 
-        })
+        } )
 
         }
 
@@ -74,10 +78,10 @@ const CourseName = () => {
 
         gray
         name = "Добавить курс"
-        className={ `${ s.school__section__add_button }` }
+        className = { `${ s.school__section__add_button }` }
         icon = { <Plus fill = { '#18009E' }/> }
         positionIcon = 'right'
-        action = { () => setCourses([...courses, courses.length + 1]) }
+        action = { () => globalActions.school.addNewCourse() }
 
       />
 

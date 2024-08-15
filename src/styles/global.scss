@@ -20,6 +20,9 @@
 
 }
 
+/* КАСТОМНЫЙ СКРОЛЛБАР */
+
+
 html,
 body {
  
@@ -43,10 +46,11 @@ body {
   background: var(--color-accent-background);
 
 }
- 
+
 body,
 textarea,
 input,
+button,
 span,
 div,
 h1,
@@ -169,6 +173,7 @@ a:visited {
 .self-center { place-self: center; }
 .flex-wrap { flex-wrap: wrap; }
 .gap-24 { gap: $apx-24}
+.my-6 { margin: $apx-24 0 }
 
 //grid-стили
 .col-span-5 { grid-column: span 5 / span 5; }

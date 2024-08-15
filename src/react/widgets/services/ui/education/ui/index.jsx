@@ -32,7 +32,7 @@ const Education = ({
         <Textfield
           
           className = {`${ s.service__section__filedsWrapper__filed }`}
-          placeholder = {'Название организации, проводившей обучение'}
+          placeholder = {'Название организации'}
           value = { globalState.service.category?.[index]?.educationOrganizationName }
           onChange={(e) => globalActions.service.setEducationOrganizationName(e.target.value, index)}
           

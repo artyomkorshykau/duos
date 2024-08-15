@@ -1,3 +1,5 @@
+"use client"
+
 import useGlobal from "@/store";
 import HeaderAuthPanel from "./auth.panel";
 import SignInIcon from "@/react/components/icons/sign.in.icon";

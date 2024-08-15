@@ -1,78 +1,75 @@
 const publicationsActions = {
 
-  setProfilePhoto: (store, files) => {
+  setProfilePhoto: ( store, files ) => {
 
-    const publications = JSON.parse(localStorage.getItem("publications")) || {}
+    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
 
-    if (!publications.categories[0].photos) {
+    if ( !publications.categories[ 0 ].photos ) {
 
-      publications.categories[0].photos = []
-
-    }
-
-    publications.categories[0].photos = [...publications.categories[0].photos, ...files]
-    localStorage.setItem("publications", JSON.stringify(publications))
-    store.setState({ publications })
-
-  },
-
-  deleteProfilePhoto: (store, photoIndex) => {
-
-    const publications = JSON.parse(localStorage.getItem("publications")) || {}
-
-    if ( publications.categories[0].photos ) {
-
-      publications.categories[0].photos.splice(photoIndex, 1)
-
-      if ( publications.categories[0].photos.length === 0 ) {
-
-        publications.categories[0].documentStatus = "NotFilled"
-
-      }
-
-      localStorage.setItem("publications", JSON.stringify(publications))
-
-      store.setState({ publications })
+      publications.categories[ 0 ].photos = []
 
     }
 
-  },
-
-  setAboutYourselfInfo: (store, index, text) => {
-
-    const publications = JSON.parse(localStorage.getItem("publications")) || {}
-
-    publications.categories[0].profileInfo[index].text = text
-    localStorage.setItem("publications", JSON.stringify(publications))
-    store.setState({ publications })
+    publications.categories[ 0 ].photos = [ ...publications.categories[ 0 ].photos, ...files ]
+    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    store.setState( { publications } )
 
   },
 
-  addNewPublication: (store, newPublication ) => {
+  deleteProfilePhoto: ( store, photoIndex ) => {
 
-    const publications = JSON.parse(localStorage.getItem("publications")) || {}
+    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
 
-    publications.categories[1].publicationsCards = [...publications.categories[1].publicationsCards,  newPublication ]
+    publications.categories[ 0 ].photos.splice( photoIndex, 1 )
+    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    store.setState( { publications } )
 
-    if (publications.categories[1].publicationsCards.length >= 5) {
+  },
 
-      publications.categories[1].documentStatus = "Filled"
+  setAboutYourselfInfo: ( store, index, text ) => {
+
+    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
+
+    publications.categories[ 0 ].profileInfo[ index ].text = text
+    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    store.setState( { publications } )
+
+  },
+
+  addNewPublication: ( store, newPublication ) => {
+
+    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
+
+    publications.categories[ 1 ].publicationsCards = [ ...publications.categories[ 1 ].publicationsCards, newPublication ]
+
+    if ( publications.categories[ 1 ].publicationsCards.length >= 4 ) {
+
+      publications.categories[ 1 ].documentStatus = "Filled"
 
     }
 
-    localStorage.setItem("publications", JSON.stringify(publications))
-    store.setState({ publications })
+    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    store.setState( { publications } )
 
   },
 
-  toggleDocumentStatus: (store, index, newStatus) => {
+  toggleDocumentStatus: ( store, index, newStatus ) => {
 
-    const publications = JSON.parse(localStorage.getItem("publications")) || {}
+    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
 
     publications.categories[ index ].documentStatus = newStatus
 
-    localStorage.setItem("publications", JSON.stringify(publications))
-    store.setState({ publications })
+    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    store.setState( { publications } )
+
+  },
+
+  setPublicationsProgress(store, progress) {
+
+    const publications = JSON.parse(localStorage.getItem('publications'))
+
+    localStorage.setItem('publications', JSON.stringify({ ...publications, progress }))
+    store.setState({ profile: { ...store.state.publications, progress } })
 
   }
 

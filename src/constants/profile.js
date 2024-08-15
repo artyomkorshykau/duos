@@ -17,7 +17,7 @@ export const genderList = [
 
 ]
 
-export const taxStatuesList = [
+export const taxStatusesList = [
 
   {
 

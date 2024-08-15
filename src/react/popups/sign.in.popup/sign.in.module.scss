@@ -1,57 +1,38 @@
 @import "@/styles/apx.scss";
 
-.checkbox {
+.signin_content {
 
-  width: $apx-164;
-  margin: $apx-16 0;
-  padding-left: $apx-8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $apx-16;
 
-  &__container {
-    
-    margin: $apx-4 0;
-    max-height: $apx-56;
-  
+  &__field {
+
+    height: $apx-63;
+
   }
 
-}
+  &__forgot {
 
-.tooltip {
+    font-weight: 500;
+    color: var(--color-accent-black-500);
+    text-decoration: underline;
+    cursor: pointer;
 
-  width: $apx-42;
-  height: $apx-56;
+    &:hover {
 
-  &__container {
-    
-    width: $apx-180;
-    height: $apx-56;
-  
-  }
-
-  &__icon {
-  
-    $size: $apx-16;
-    width: $size;
-    height: $size;
-  
-  }
-
-  &__message {
-  
-    top: 0;
-    display: none;
-    padding: $apx-4 $apx-16;
-    border-radius: $apx-20;
-    position: absolute !important;
-
-    &--opened { display: block; }
-
-    &__text {
-    
-      white-space: nowrap;
       color: var(--color-accent-black-900);
-    
+
     }
-  
+
+  }
+
+  &_description {
+
+    font-weight: 600;
+    color: var(--color-accent-black-500);
+
   }
 
 }
@@ -59,8 +40,9 @@
 .button {
   
   width: 100%;
-  margin-bottom: $apx-50;
-  
+  height: $apx-40;
+  margin-bottom: $apx-20;
+
   &__icon {
 
     $size: $apx-24;
@@ -75,15 +57,5 @@
     width: 100%;
   
   }
-
-}
-
-.calltext {
-
-  top: $apx-10;
-  width: 100%;
-  text-align: start;
-  margin: $apx-26 0;
-  color: var(--color-accent-black-500);
 
 }

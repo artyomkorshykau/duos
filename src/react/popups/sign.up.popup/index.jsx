@@ -1,17 +1,13 @@
-"use client"
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Popup from "../popup";
 import Checkbox from "@/react/components/forms/checkbox";
 import Textfield from "@/react/components/forms/textfield";
-import NumberField from "@/react/components/forms/numberfield";
 import DefaultButton from "@/react/components/buttons/default.button";
 import RoleChoice from "./role.choice";
 import s from "./sign.up.module.scss";
 import { useMutation } from "@tanstack/react-query";
 import auth from "@/service/auth";
-import { phoneSchema } from "@/scripts/validators/phone.validate";
 
 const SignUpPopup = ({
 
@@ -21,16 +17,20 @@ const SignUpPopup = ({
   isOpened = false,
   closePopup = () => {},
   closePopups = () => {},
-  codeModeClosed = false
 
 }) => {
 
   const [ userNumber, setUserNumber ] = useState("");
+  const [ userEmail, setUserEmail ] = useState("");
+  const [ userCode, setUserCode ] = useState("");
   const [ policyAgree, setPolicyAgree ] = useState( false );
   const [ codeModeOpened, setCodeModeOpened ] = useState( false );
   const [ showTimer, setShowTimer ] = useState( false );
-  const [ time, setTime ] = useState( 31 );
+  const [ time, setTime ] = useState( 180 );
   const [ intervalId, setIntervalId ] = useState( null );
+
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
 
   const { mutate, data } = useMutation({
 
@@ -44,37 +44,9 @@ const SignUpPopup = ({
 
     closePopup();
     setUserNumber("");
-
-  };
-
-  const handleInputChange = (e) => {
-
-    const { value } = e.target;
-
-    let formattedValue = value.replace(/^(\+)?/, "");
-
-    if (value.length === 1 && value === "+") {
-
-      formattedValue = "";
-
-    } else if (value.length === 1) {
-
-      formattedValue = "+" + value;
-
-    } else {
-
-      formattedValue = "+" + formattedValue;
-
-    }
-
-    if (formattedValue.length > 12) {
-
-      formattedValue = formattedValue.substring(0, 12);
-      formattedValue = "+" + formattedValue.substring(1);
-
-    }
-
-    setUserNumber(formattedValue);
+    setUserEmail("");
+    setUserCode("");
+    setCodeModeOpened(false)
 
   };
 
@@ -100,92 +72,13 @@ const SignUpPopup = ({
 
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
 
-  const [ code1, setCode1 ] = useState('');
-  const [ code2, setCode2 ] = useState('');
-  const [ code3, setCode3 ] = useState('');
-  const [ code4, setCode4 ] = useState('');
-  const [ code5, setCode5 ] = useState('');
-
-  const handleCode1Change = (e) => {
-    const newValue = e.target.value;
-    setCode1(newValue);
-    if (newValue!== '-' && newValue.length === 1) {
-      const nextInput = document.querySelector(`[data-index="2"]`);
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-
-  const handleCode2Change = (e) => {
-    const newValue = e.target.value;
-    setCode2(newValue);
-    if (newValue!== '-' && newValue.length === 1) {
-      const nextInput = document.querySelector(`[data-index="3"]`);
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-
-  const handleCode3Change = (e) => {
-    const newValue = e.target.value;
-    setCode3(newValue);
-    if (newValue!== '-' && newValue.length === 1) {
-      const nextInput = document.querySelector(`[data-index="4"]`);
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-
-  const handleCode4Change = (e) => {
-    const newValue = e.target.value;
-    setCode4(newValue);
-    if (newValue!== '-' && newValue.length === 1) {
-      const nextInput = document.querySelector(`[data-index="5"]`);
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-
-  const handleCode5Change = (e) => {
-    const newValue = e.target.value;
-    setCode5(newValue);
-    if (newValue !== "-" && newValue.length === 1) {
-      
-      // axios.post("/api/verify-code", {
-      //   code1,
-      //   code2,
-      //   code3,
-      //   code4,
-      //   code5
-      // })
-      // .then((response) => {
-      //   if (response.data.success) {
-        
-      //   } else {
-
-      //   }
-      // })
-      // .catch((error) => {
-      //   console.error(error);
-      // });
-
-      setRoleModeOpened( true );
-
-    }
-
-  };
-
-  function getNewCode() {
+  const getNewCode = () => {
 
     alert('отправить новый код');
     setShowTimer( false );
     setTime( 31 );
 
-  }
+  };
 
   useEffect(() => {
 
@@ -196,51 +89,19 @@ const SignUpPopup = ({
 
   }, [ codeModeOpened ]);
 
-  useEffect(() => {
-
-    if ( codeModeClosed ) {
-
-      setCodeModeOpened( false );
-      setCode1('');
-      setCode2('');
-      setCode3('');
-      setCode4('');
-      setCode5('');
-
-    }
-
-  }, [ codeModeClosed ]);
-
-  const rolechoice = 
-  
-    <RoleChoice
-    
-      close = { () => closePopups }
-    
-    />
-
-  const handleOnChange = (e) => {
-
-    const { value } = e.target;
-    const onlyNumbers = value.replace(/[^0-9+]/g, '');
-    handleInputChange({ target: { value: onlyNumbers } });
-
-  }
-
   return (
 
     <Popup
 
-      title = { !codeModeOpened ? `Присоединяйтесь` : `Введите код` }
+      title = { !codeModeOpened ? `Присоединяйтесь` : `Введите код из SMS` }
       titlebottom = { !codeModeOpened ? `к сообществу DUOS` : `` }
-      subtitle = { !codeModeOpened ? `Введите номер телефона` : `Мы отправили его вам в СМС` }
+      subtitle = { !codeModeOpened ? `Введите номер телефона и действующий e-mail` : `Этот код будет служить вашим паролем для входа в личный кабинет` }
       isOpened = { isOpened }
       closePopup = { handleClosePopup }
-      bodyClassName = { bodyClassName }
+      bodyClassName = { !codeModeOpened ? bodyClassName : s.signup_popup }
       subtitleMargin = { codeModeOpened ? true : false }
       contentOnly = { roleModeOpened && true }
-      content = { rolechoice }
-      doubletitle
+      content = { <RoleChoice close = { () => closePopups }/> }
 
     >
 
@@ -253,12 +114,24 @@ const SignUpPopup = ({
               set = { set }
               value = { userNumber }
               withTitle = { false }
-              onChange = { (e) => handleOnChange(e) }
-              placeholder = "+7 (___) ___-__-__"
+              onChange = { (e) => setUserNumber(e.target.value) }
+              type = 'phone'
+              placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
 
             />
 
-            <div className = {`flex items-center ${ s.checkbox__container }`}>
+            <Textfield
+
+              withTitle = { false }
+              placeholder = "E-mail"
+              className = { `${ s.email }` }
+              value = { userEmail }
+              onChange = { (e) => setUserEmail(e.target.value) }
+              type = 'text'
+
+            />
+
+            <div className = {`flex items-center my-6`}>
 
               <Checkbox
 
@@ -293,85 +166,26 @@ const SignUpPopup = ({
 
             <div className = {`flex items-center justify-center ${ s.code__numbers }`}>
 
-              <NumberField
+              <Textfield
 
-                index = { 1 }
-                data-index = "1"
-                value = { code1 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode1Change({ target: { value: onlyNumbers } });
-                }}
-                
-              />
-
-              <NumberField
-
-                index = { 2 }
-                data-index = "2"
-                value = { code2 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode2Change({ target: { value: onlyNumbers } });
-                }}
-
-              />
-
-              <NumberField
-
-                index = { 3 }
-                data-index = "3"
-                value = { code3 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode3Change({ target: { value: onlyNumbers } });
-                }}
-
-              />
-
-              <NumberField
-
-                index = { 4 }
-                data-index = "4"
-                value = { code4 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode4Change({ target: { value: onlyNumbers } });
-                }}
-
-              />
-
-              <NumberField
-
-                index = { 5 }
-                data-index = "5"
-                value = { code5 }
-                placeholder = "-"
-                onChange = {(e) => {
-                  const { value } = e.target;
-                  const onlyNumbers = value.replace(/[^0-9+]/g, '');
-                  handleCode5Change({ target: { value: onlyNumbers } });
-                }}
+                withTitle = { false }
+                placeholder = "Код-пароль"
+                password
+                className = {`${ s.code__numbers__password }`}
+                value = { userCode }
+                onChange = { (e) => setUserCode(e.target.value) }
 
               />
 
             </div>
 
-            <div className = {`flex items-center ${ s.checkbox__container }`}>
+            <div className = {`flex items-center`}>
 
               { !showTimer ?
 
                   <p className = {`font-semibold text-13 ${ s.gettext }`}>
-                    
-                    Отправить код повторно можно через { time }
+
+                    Отправить код повторно можно через {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
                     
                   </p>
 
@@ -384,10 +198,8 @@ const SignUpPopup = ({
                     
                   >
                       
-                    Отправить новый код
+                    Отправить новый код-пароль
 
-                    <div className = {`${ s.gettext__new_code__liner } absolute`}/>
-                  
                   </p>
 
               }

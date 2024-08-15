@@ -1,16 +1,12 @@
-import { useState } from "react";
 import Popup from "../popup";
-import WhiteBox from "@/react/components/containers/whitebox";
-import Checkbox from "@/react/components/forms/checkbox";
 import Textfield from "@/react/components/forms/textfield";
-import ToolTipIcon from "@/react/components/icons/tooltip.icon";
 import SignInIconWhite from "@/react/components/icons/sign.in.icon.white";
 import DefaultButton from "@/react/components/buttons/default.button";
 import s from "./sign.in.module.scss";
+import { useLogin } from "@/react/popups/sign.in.popup/model";
 
 const SignInPopup = ({
 
-  set,
   logIn = () => {},
   signUp = () => {},
   bodyClassName = "",
@@ -19,137 +15,97 @@ const SignInPopup = ({
 
 }) => {
 
-  const [ userNumber, setUserNumber ] = useState("");
-  const [ showToolTip, setShowToolTip ] = useState( false );
-  const [ rememberUser, setRememberUser ] = useState( false );
+  const {
 
-  const handleInputChange = (e) => {
-    const { value } = e.target;
-    let formattedValue = value.replace(/^(\+)?/, "");
-    if (value.length === 1 && value === "+") {
-      formattedValue = "";
-    } else if (value.length === 1) {
-      formattedValue = "+" + value;
-    } else {
-      formattedValue = "+" + formattedValue;
-    }
-    if (formattedValue.length > 12) {
-      formattedValue = formattedValue.substring(0, 12);
-      formattedValue = "+" + formattedValue.substring(1);
-    }
-    setUserNumber(formattedValue);
-  };
+    handleClosePopup,
+    handleLog,
+    setUserNumber,
+    setUserPassword,
+    userNumber,
+    userPassword
 
-  const handleClosePopup = () => {
+  } = useLogin( {
 
-    closePopup();
-    setUserNumber("");
+    closePopup,
+    logIn
 
-  };
-
-  function log() {
-
-    if ( userNumber.length >= 11 && rememberUser === true ) {
-
-      logIn();
-
-    }
-
-  };
-
-  const handleMouseOut = () => { setShowToolTip( false ) };
-  const handleMouseOver = () => { setShowToolTip( true ) };
+  } )
 
   return (
 
     <Popup
 
       title = "Вход"
-      subtitle = "Введите номер телефона"
+      subtitle = "Введите номер телефона и пароль из SMS, который вы получили при регистрации"
       isOpened = { isOpened }
       closePopup = { handleClosePopup }
       bodyClassName = { bodyClassName }
+      subtitleMargin
 
     >
 
-      <Textfield
+      <div className = { `${ s.signin_content }` }>
 
-        set = { set }
+        <Textfield
+
         value = { userNumber }
         withTitle = { false }
-        onChange = {(e) => {
-          const { value } = e.target;
-          const onlyNumbers = value.replace(/[^0-9+]/g, '');
-          handleInputChange({ target: { value: onlyNumbers } });
-        }}
-        placeholder = "+7 (___) ___-__-__"
-
-      />
-
-      <div className = {`flex items-center ${ s.checkbox__container }`}>
-
-        <Checkbox
-
-          title = "Запомнить меня"
-          className = { s.checkbox }
-          isChecked = { rememberUser }
-          setIsChecked = { (value) => setRememberUser(value) }
+        onChange = { (e) => setUserNumber(e.target.value) }
+        placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
+        type = 'phone'
+        className = {`${s.signin_content__field}`}
 
         />
 
-        <div className = {`flex items-center justify-end $ ${ s.tooltip__container }`}>
+        <Textfield
 
-          <div
-          
-            onMouseOut = { handleMouseOut }
-            onMouseOver = { handleMouseOver }
-            className = {`flex items-center justify-center relative pointer ${ s.tooltip }`}
-            
-          >
+          value = { userPassword }
+          onChange = { (e) => setUserPassword(e.target.value) }
+          withTitle = { false }
+          className = {`${s.signin_content__field}`}
+          placeholder = "Пароль"
+          password
 
-            <ToolTipIcon className = { s.tooltip__icon }/>
+        />
 
-            <WhiteBox
-            
-              withPoint
-              withBorder
-              pointPosition = "center"
-              onMouseOut = { handleMouseOut }
-              onMouseOver = { handleMouseOver }
-              className = {`absolute ${ s.tooltip__message } ${ showToolTip && s['tooltip__message--opened'] }`}
+        <p
 
-            >
-              
-              <p className = {`font-semibold text-13 ${ s.tooltip__message__text }`}>Не выходить из <br />системы</p>
-              
-            </WhiteBox>
+          className = { `text-14 ${ s.signin_content__forgot }` }
+          onClick = { () => alert('Вспоминай))))0)')}
 
-          </div>
+        >
 
-        </div>
+          Забыли пароль?
+
+        </p>
+
+        <DefaultButton
+
+          name = "Войти"
+          className = { `${ s.button }` }
+          action = { () => handleLog() }
+          positionIcon = { 'right' }
+          icon = { <SignInIconWhite className = { s.button__icon }/> }
+
+        />
+
+        <p className = { `text-13 ${ s.signin_content_description }` }>
+
+          Вы все еще не часть DUOS?
+
+        </p>
+
+        <DefaultButton
+
+          gray
+          small
+          name = "Зарегистрироваться"
+          className = { s.button__gray }
+          action = { signUp }
+
+        />
 
       </div>
-
-      <DefaultButton
-
-        name = "Войти"
-        className = { s.button }
-        action = { () => log() }
-        icon = { <SignInIconWhite className = { s.button__icon }/>} 
-
-      />
-
-      <p className = {`font-semibold text-13 ${ s.calltext } relative`}>Вы все еще не часть DUOS?</p>
-
-      <DefaultButton
-
-        gray
-        small
-        name = "Зарегистрироваться"
-        className = { s.button__gray }
-        action = { signUp }
-
-      />
 
     </Popup>
 

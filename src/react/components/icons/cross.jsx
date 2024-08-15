@@ -1,6 +1,6 @@
 import * as React from "react"
 import { memo } from "react"
-const SvgComponent = ({ fill, ...rest }) => (
+const SvgComponent = ({ fill, stroke = "#18009E",  ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -9,7 +9,7 @@ const SvgComponent = ({ fill, ...rest }) => (
     {...rest}
   >
     <path
-      stroke="#18009E"
+      stroke={stroke}
       strokeLinecap="round"
       strokeWidth={1.7}
       d="m4 12 8-8m0 8L4 4"

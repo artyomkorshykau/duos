@@ -9,17 +9,17 @@ const PublicationsContent = () => {
 
   const [ globalState, globalActions ] = useGlobal()
   const { publications } = globalState;
-  const { publications:  publicationsAction} = globalActions
+  const { publications: publicationsAction } = globalActions
 
   return (
 
     <>
 
-      <div className={ `flex justify-start flex-wrap gap-24` }>
+      <div className = { `flex justify-start flex-wrap gap-24` }>
 
         <PublicationCard
 
-          addNewPublication={ () => publicationsAction.addNewPublication(
+          addNewPublication = { () => publicationsAction.addNewPublication(
 
             {
 
@@ -40,11 +40,11 @@ const PublicationsContent = () => {
 
           return <PublicationCard
 
-            key={ publication.id }
-            title={ publication.title }
-            description={ publication.description }
-            photo={ publication.photo }
-            status={ publication.status }
+            key = { publication.id }
+            title = { publication.title }
+            description = { publication.description }
+            photo = { publication.photo }
+            status = { publication.status }
 
           />
 
@@ -58,10 +58,10 @@ const PublicationsContent = () => {
 
         <ProgressBar
 
-        cardCount={ publications.categories[ 1 ].publicationsCards.length }
-        type="publications"
+          cardCount = { publications.categories[ 1 ].publicationsCards.length }
+          type = "publications"
 
-      /> }
+        /> }
 
     </>
 

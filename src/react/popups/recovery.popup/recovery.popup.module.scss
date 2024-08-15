@@ -1,0 +1,37 @@
+@import "@/styles/apx.scss";
+
+.recovery_content {
+
+  display: flex;
+  flex-direction: column;
+  gap: $apx-16;
+
+  &__email {
+
+    font-weight: 500;
+    color: var(--color-accent-black-900);
+
+  }
+
+  &__description {
+
+    font-weight: 600;
+    color: var(--color-accent-black-500);
+
+  }
+
+  &__enter_button {
+
+    width: 100%;
+    height: $apx-40;
+    gap: $apx-8;
+
+    &__icon {
+
+      stroke: white;
+
+    }
+
+  }
+
+}

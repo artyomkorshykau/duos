@@ -18,7 +18,7 @@ const Services = () => {
 
         {service.category.map(( category, index ) => (
 
-          <AccordionService category = { category } key={ index } index = { index } />
+          <AccordionService category = { category } key={ category.id } index = { index } />
            
         ))}
 

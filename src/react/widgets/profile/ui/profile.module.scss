@@ -51,6 +51,18 @@
 
       }
 
+      &__controls {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $apx-20;
+        position: absolute;
+        right: $apx-10;
+        top: $apx-14;
+
+      }
+
     }
 
     &__filedsGrid {
@@ -62,15 +74,17 @@
 
       &__filed {
 
-        max-width: $apx-305 ;
+        max-width: $apx-305;
         height: $apx-64 !important;
         margin: 0 !important;
 
       }
 
       &__textArea {
-        height: $apx-110 !important;
+
+        height: $apx-110;
         margin: 0 !important;
+
       }
 
     }
@@ -81,6 +95,20 @@
       display: flex;
       flex-direction: column;
       gap: $apx-12;
+
+    }
+
+    &__infoPopup {
+
+      width: $apx-768 !important;
+      height: $apx-420 !important;
+      background-color: white;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      border-radius: $apx-32;
+      box-shadow: 0px $apx-7 $apx-16 0px var(--color-fields-title);
+      overflow: hidden;
 
     }
 

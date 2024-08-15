@@ -1,12 +1,11 @@
 import Carcas from "@/react/components/containers/carcas";
-import Menu from "@/react/components/menu/ui";
-import { useSession } from "next-auth/react";
 
 export default function Home() {
 
+
   return (
 
-    <main id = {``} className = {`flex justify-center items-end h-dvh`}>
+    <main id = {``} className = {`flex justify-center items-center h-dvh`}>
 
       <Carcas
       
@@ -14,7 +13,6 @@ export default function Home() {
       
       >
 
-        {/*<Menu/>*/}
 
       </Carcas>
 

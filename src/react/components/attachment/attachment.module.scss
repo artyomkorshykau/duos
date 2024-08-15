@@ -10,6 +10,19 @@
 
     position: relative;
 
+    &__input {
+
+      display: none;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+    }
+
     &__label {
 
       height: 100%;
@@ -18,6 +31,12 @@
       border: 2px dashed #D1E3F7;
       border-radius: $apx-28;
 
+      &__error {
+
+        border-color: #C6A708;
+
+      }
+
       &__wrapper {
 
         display: flex;
@@ -25,21 +44,21 @@
         gap: $apx-12;
         height: 100%;
         align-items: center;
-        justify-content: center;  
+        justify-content: center;
         padding: $apx-24;
         position: relative;
 
-        &__input {
-
-          opacity: 0;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 1;
-
-        }
+        //&__input {
+        //
+        //  opacity: 0;
+        //  position: absolute;
+        //  top: 0;
+        //  left: 0;
+        //  width: 100%;
+        //  height: 100%;
+        //  z-index: 1;
+        //
+        //}
 
         &__info {
 
@@ -77,7 +96,7 @@
 
       width: $apx-180;
       position: relative;
-      
+
     }
 
     &__imagePreview {
@@ -101,9 +120,9 @@
         margin: $apx-16;
         height: $apx-56;
         width: $apx-56;
-          
+
       }
-      
+
     }
 
     &__multiple {
@@ -138,7 +157,7 @@
             margin: $apx-16;
             height: $apx-56;
             width: $apx-56;
-              
+
           }
 
         }
@@ -147,7 +166,7 @@
       &__label {
 
         width: $apx-180;
-        height: $apx-180;
+        height: 100%;
 
       }
 
@@ -191,7 +210,7 @@
 
       }
 
-    } 
+    }
 
   }
 
@@ -203,12 +222,12 @@
 
   &__small {
 
-    height: $apx-180;
-    
+    height: $apx-205;
+
   }
 
   &__text {
-        
+
     color: var(--color-accent-black-500);
     font-size: $apx-13;
     font-weight: 600;
@@ -221,7 +240,7 @@
 
 .error {
 
-  color: var(--color-notice-error-500);
+  color: #C6A708;
   font-size: $apx-13;
   font-weight: 600;
   line-height: $apx-17;

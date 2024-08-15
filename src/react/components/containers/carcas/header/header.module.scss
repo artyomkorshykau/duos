@@ -3,8 +3,8 @@
 
 .header {
 
-  z-index: 100;
-  width: 100%;
+  z-index: 1000;
+  width: 100vw;
   height: $apx-64;
   padding: $apx-16;
   border-bottom-left-radius: $apx-36;
@@ -13,6 +13,7 @@
   box-shadow: 0 0 $apx-25 $apx-5 rgba( 10, 10, 10, 0.05 );
   position: fixed !important;
   top: 0;
+  box-sizing: border-box;
 
   &__circle {
 
@@ -145,17 +146,17 @@
   &__popup {
 
     width: $apx-360;
-    top: $apx-210 !important;
+    top: $apx-180 !important;
 
     &__in {
 
-      height: $apx-486;
+      height: $apx-539;
 
     }
 
     &__up {
 
-      height: $apx-510;
+      height: $apx-610;
 
     }
 
@@ -171,6 +172,18 @@
       display: block !important;
 
     }
+
+  }
+
+}
+
+.recovery {
+
+  &__popup {
+
+    width: $apx-360;
+    top: $apx-280 !important;
+    height: $apx-352;
 
   }
 

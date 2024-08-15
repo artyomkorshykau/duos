@@ -3,19 +3,22 @@ import DefaultButton from '@/react/components/buttons/default.button';
 import Arrow from '@/react/components/icons/arrow';
 import useGlobal from '@/store';
 import { useEffect, useState } from 'react';
+import { steps } from "@/constants/quiz.steps";
 
 const Pagination = ({
   
   nextStep,
-  activeStep
+  activeStep,
+  prevStep
 
 }) => {
+
 
   const [ globalState ] = useGlobal()
 
   const [ disabled, setDisabled ] = useState( false )
 
-  const { service } = globalState
+  const { service, profile, school, publications } = globalState
 
   useEffect(() => {
 
@@ -27,13 +30,25 @@ const Pagination = ({
 
       setDisabled( true )
 
+    } else if(activeStep === "Профиль" && profile.progress !== 1) {
+
+      setDisabled( true )
+
+    } else if(activeStep === "Школа" && school.progress !== 1) {
+
+      setDisabled( true )
+
+    } else if(activeStep === "Публикации" && publications.progress !== 1 ) {
+
+      setDisabled( true )
+
     } else {
 
       setDisabled( false )
 
     }
 
-  }, [ activeStep, service.progress ])
+  }, [ activeStep, service.progress, profile, school, publications.progress ])
 
   return (
 
@@ -43,19 +58,21 @@ const Pagination = ({
 
         gray
         name = {''}
+        action = { prevStep }
         className = {`${ s.pagination__button_back }`}
         icon = { <Arrow direction = { 'left' } fill = { '#9ba1a1' }/> }
+        disabled = { activeStep === steps.profile }
 
       />
 
       <DefaultButton
 
-        name = { 'Далее' }
+        name = { activeStep === "Публикации" ? 'Отправить анкету' : 'Далее' }
         className = {`${ s.pagination__button_next }`}
         action = { nextStep }
         icon = { <Arrow direction = { 'right' } fill = { '#fff' }/> }
         positionIcon = 'right'
-        disabled = {disabled}
+        disabled = { disabled }
 
       />
 
