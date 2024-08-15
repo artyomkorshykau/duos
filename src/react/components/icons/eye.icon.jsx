@@ -8,8 +8,8 @@ const SvgComponent = ( { stroke = 'gray', hide, ...rest } ) => {
 
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={ 17 }
-        height={ 17 }
+        width={ 19 }
+        height={ 19 }
         viewBox="0 0 16 16"
         fill="none"
         { ...rest }
@@ -50,8 +50,8 @@ const SvgComponent = ( { stroke = 'gray', hide, ...rest } ) => {
 
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={ 17 }
-      height={ 17 }
+      width={ 19 }
+      height={ 19 }
       viewBox="0 0 16 16"
       fill="none"
       { ...rest }

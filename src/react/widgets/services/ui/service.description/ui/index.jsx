@@ -29,9 +29,7 @@ const ServiceDescription = ({
           placeholder = { 'Опишите суть услуги, методы, особенности' }
           value = { globalState.service.category?.[ categoryIndex ]?.services?.[ index ]?.meaningService }
           onChange = { ( e ) => globalActions.service.setMeaningService(e.target.value, categoryIndex, index) }
-          icon = { <Save fill="#FFFFFF" /> }
-          withSaveIcon
-          
+
         />
 
       </form>

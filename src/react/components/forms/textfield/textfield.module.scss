@@ -5,6 +5,7 @@
   position: relative;
 
   width: 100%;
+  height: $apx-63;
 
   .title {
 
@@ -52,6 +53,7 @@
     border-radius: $apx-28;
     position: relative;
 
+
     &:focus + .placeholderLabel,
     &:not(:placeholder-shown) + .placeholderLabel {
 
@@ -66,12 +68,10 @@
 
   }
 
-
-
   &__eye {
 
     position: absolute;
-    top: $apx-18;
+    top: $apx-22;
     right: $apx-20;
 
     cursor: pointer;

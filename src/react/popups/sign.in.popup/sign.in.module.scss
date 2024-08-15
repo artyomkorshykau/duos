@@ -7,6 +7,12 @@
   align-items: center;
   gap: $apx-16;
 
+  &__field {
+
+    height: $apx-63;
+
+  }
+
   &__forgot {
 
     font-weight: 500;
