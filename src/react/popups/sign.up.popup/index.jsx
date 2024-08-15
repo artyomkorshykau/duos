@@ -27,6 +27,9 @@ const SignUpPopup = ({
   const [ time, setTime ] = useState( 180 );
   const [ intervalId, setIntervalId ] = useState( null );
 
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
   const handleClosePopup = () => {
 
     closePopup();
@@ -171,8 +174,8 @@ const SignUpPopup = ({
               { !showTimer ?
 
                   <p className = {`font-semibold text-13 ${ s.gettext }`}>
-                    
-                    Отправить код повторно можно через { time }
+
+                    Отправить код повторно можно через {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
                     
                   </p>
 
