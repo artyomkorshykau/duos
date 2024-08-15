@@ -51,7 +51,7 @@ const SignInPopup = ({
         value = { userNumber }
         withTitle = { false }
         onChange = { (e) => setUserNumber(e.target.value) }
-        placeholder = "+7 (___) ___ - __ - __"
+        placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
         type = 'phone'
         className = {`${s.signin_content__field}`}
 
