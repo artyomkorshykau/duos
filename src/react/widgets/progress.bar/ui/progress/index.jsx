@@ -38,17 +38,11 @@ const Progress = ({
 
     if (activeId === 1 && activeId === id) {
 
-      const allFieldsFilled = Object.values(profile).every(value => value !== '');
+      const increment = 0.075
+      const filledFields = Object.values(profile).filter(value => value !== '').length
+      const progress = Math.min(filledFields * increment, 1)
 
-      if(allFieldsFilled) {
-
-        setProgress(1)
-
-      } else {
-
-        setProgress(0)
-
-      }
+      setProgress(progress)
 
     } else if ( activeId === 2 && activeId === id ) {
 
