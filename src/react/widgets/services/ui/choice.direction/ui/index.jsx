@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { directionList } from '@/constants/services';
-import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield';
-import useGlobal from '@/store';
+import WarningIcon from '@/react/components/icons/warning';
 import Select from '@/react/components/forms/select';
-import {useEffect, useState} from "react";
+import InfoPopup from "@/react/popups/info.popup";
+import useGlobal from '@/store';
+import s from '../../services.module.scss'
 
 const ChoiceDirection = ({
 
@@ -21,6 +23,16 @@ const ChoiceDirection = ({
 
   if (!isLoaded) {
     return <div>Loading...</div>;
+  }
+
+  const handleExperienceClick = () => {
+    
+    if (!globalState.info.firstIconClick) {
+
+      globalActions.info.setShowInfoPopup(true)
+      globalActions.info.setFirstIconClick()
+
+    }
   }
 
   return (
@@ -56,14 +68,25 @@ const ChoiceDirection = ({
         
         <Textfield
 
+          onClick = { handleExperienceClick }
+          onIconClick = { () => globalActions.info.setShowInfoPopup(true) }
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Стаж работы по направлению, лет'}
+          placeholderIcon = { <WarningIcon /> }
           value = { globalState.service.category?.[index]?.directionWorkExperience }
-          onChange = { (e) => globalActions.service.setDirectionWorkExperience( e.target.value, index )}
+          onChange = { (e) => globalActions.service.setDirectionWorkExperience( e.target.value, index ) }
 
         />
 
       </form>
+
+      <InfoPopup
+
+        isOpened = { globalState.info.showInfoPopup }
+        closePopup = { () => globalActions.info.setShowInfoPopup(false)}
+        bodyClassName = { `${ s.service__section__infoPopup }`}
+
+      />
 
     </div>
 

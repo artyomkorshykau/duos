@@ -48,6 +48,60 @@
 
     }
 
+    &.hasicon {
+
+      position: relative;
+      padding: $apx-12;
+      padding-left: $apx-68;
+
+      &::placeholder {
+
+        white-space: pre-line;
+        top: $apx-12;
+        position: absolute;
+        padding-right: $apx-12;  
+  
+      }
+
+    }
+
+  }
+
+  &__icon {
+
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    left: $apx-16;
+    transform: translateY(-50%);
+    background-color: var(--color-accent-blue-230);
+    width: $apx-40;
+    height: $apx-40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $apx-40;
+
+    cursor: pointer;
+
+    svg {
+
+      $size: $apx-16;
+      width: $size;
+      height: $size;
+
+      &:hover {
+
+        path {
+
+          fill: var(--color-accent-blue-700)
+
+        }
+
+      }
+
+    }
+
   }
 
   &__eye {

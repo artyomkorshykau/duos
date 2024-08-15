@@ -1,10 +1,10 @@
-import cssIf from '@/scripts/helpers/css.if';
-import s from './textfield.module.scss';
-import Eye from "@/react/components/icons/eye.icon";
 import { useState } from "react";
+import Eye from "@/react/components/icons/eye.icon";
 import Cross from "@/react/components/icons/cross";
 import InputMask from "react-input-mask";
 import Save from "@/react/components/icons/save";
+import cssIf from '@/scripts/helpers/css.if';
+import s from './textfield.module.scss';
 
 const Textfield = ( props ) => {
 
@@ -18,11 +18,13 @@ const Textfield = ( props ) => {
     error = "", 
     type = "text",
     placeholder = "",
+    placeholderIcon = null,
     className = "",
     inputClassName = "",
     password,
     onChange,
     onClick,
+    onIconClick,
     classNameControls,
     clearFiled,
     ...inputParams
@@ -53,22 +55,35 @@ const Textfield = ( props ) => {
 
         </InputMask>
 
-        : <input
+        : 
+        
+        <>
+          { placeholderIcon && 
 
-        value = { value }
-        type = { hide && password ? 'password' : type }
-        placeholder = { placeholder }
-        className = { inputClassName }
-        onChange = { onChange }
-        { ...inputParams }
-        onClick = { ( e ) => {
+            <div className={s.textfield__icon} onClick={onIconClick}> {placeholderIcon} </div> 
+            
+          }
 
-          onClick && onClick();
-          e.stopPropagation();
+          <input
 
-        } }
+            value = { value }
+            type = { hide && password ? 'password' : type }
+            placeholder = { placeholder }
+            className = { `${ inputClassName } ${ cssIf( placeholderIcon, s.hasicon ) }` }
+            onChange = { onChange }
+            { ...inputParams }
+            onClick = { ( e ) => {
 
-      /> }
+              onClick && onClick();
+              e.stopPropagation();
+
+            } }
+
+          />
+
+        </>
+
+      }
 
       { password &&
 
