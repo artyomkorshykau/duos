@@ -45,7 +45,7 @@ const PaymentFormat = ({
           
         />
 
-        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Подписка' &&
+        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Subscription' &&
           <Select
             
             className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
