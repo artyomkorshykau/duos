@@ -43,7 +43,7 @@ const Recommendation = ({
 
         <Textfield
 
-          className = {`${ s.document__section__filedsGrid5__filed } col-span-5`}
+          className = {`${ s.document__section__filedsGrid5__filed }`}
           placeholder = {'ФИО клиента'}
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.clientFullName }
           onChange = { (e) => globalActions.service.setClientFullName( e.target.value, categoryIndex, index ) }
@@ -51,7 +51,7 @@ const Recommendation = ({
         />
         <Select
 
-          className = {`${ s.document__section__filedsGrid5__filed } col-span-2`}
+          className = {`${ s.document__section__filedsGrid5__filed } `}
           placeholder = {'Способ связи'}
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.communication }
           onChange = { value => globalActions.service.setCommunication( value, categoryIndex, index ) }
@@ -60,7 +60,7 @@ const Recommendation = ({
         />
         <Textfield
 
-          className = {`${ s.document__section__filedsGrid5__filed } col-span-2`}
+          className = {`${ s.document__section__filedsGrid5__filed } `}
           placeholder = {'Номер'}
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.phone }
           onChange = { ( e ) => globalActions.service.setPhone( e.target.value, categoryIndex, index ) }
