@@ -51,7 +51,7 @@ const SignInPopup = ({
         value = { userNumber }
         withTitle = { false }
         onChange = { (e) => setUserNumber(e.target.value) }
-        placeholder = "Телефон"
+        placeholder = "+7 (___) ___ - __ - __"
         type = 'phone'
 
         />

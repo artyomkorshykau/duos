@@ -106,7 +106,7 @@ const SignUpPopup = ({
               withTitle = { false }
               onChange = { (e) => setUserNumber(e.target.value) }
               type = 'phone'
-              placeholder = "Телефон"
+              placeholder = "+7 (___) ___ - __ - __"
 
             />
 
