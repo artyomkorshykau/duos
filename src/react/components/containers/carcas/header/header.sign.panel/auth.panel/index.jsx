@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import useGlobal from "@/store";
 import AuthMenu from "./auth.menu";

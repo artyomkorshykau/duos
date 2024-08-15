@@ -1,3 +1,4 @@
+import { v1 } from "uuid";
 
 const serviceActions = {
 
@@ -412,6 +413,7 @@ const serviceActions = {
     const length = category[categoryIndex].services.length
 
     service.category[categoryIndex].services[length] = {
+      id: v1(),
       title: `Услуга №${length + 1}`,
       status: "New",
       documentStatus: "New",
@@ -431,8 +433,9 @@ const serviceActions = {
     const length = service.category.length
 
     service.category[length] = {
+      id: v1(),
       title: `Направление №${length + 1}`,
-      services: [{ title: `Услуга №1`, status: "New", documentStatus: "New" }],
+      services: [{id: v1(), title: `Услуга №1`, status: "New", documentStatus: "New" }],
       status: "New",
       documentStatus: "New",
     }
