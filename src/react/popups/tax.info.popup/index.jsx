@@ -23,7 +23,7 @@ const TaxInfoPopup = ( props ) => {
 
       <>
 
-        <img src='/img/questionnaire/tax.info.png' alt="tax info"/>
+        <img src='/img/questionnaire/tax.info.png' alt="tax info" className = { `${ s.image }` }/>
         <div className = {`${ s.tax_description }`}>
 
           <h3 className = {`text-26 ${ s.tax_description__title }`}>Просим вас учитывать, что...</h3>
@@ -73,14 +73,16 @@ const TaxInfoPopup = ( props ) => {
 
     <Popup
 
-      isOpened={ isOpened }
-      boxClassName={ bodyClassName }
+      isOpened = { isOpened }
       closePopup = { closePopup }
-      contentOnly
+      bodyClassName = {`${ bodyClassName }`}
       background
-      content = { content }
+      contentOnly
+      closeBackground
 
     >
+
+      { content }
 
     </Popup>
 

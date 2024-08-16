@@ -28,13 +28,12 @@ const Popup = ({
     <div className = {`
         
       flex fixed ${ s.popup__container }
-      ${ cssIf( isOpened, s['popup__container--opened']) } ${ cssIf( background && isOpened, s['popup__container--opened__background']) } ${ boxClassName }
+      ${ cssIf( isOpened, s['popup__container--opened']) } 
+      ${ cssIf( background && isOpened, s['popup__container--opened__background']) } ${ boxClassName }
     
     `}
       onClick = { closeBackground ? () => closePopup() : null }
     >
-
-        { !contentOnly ?
 
             <WhiteBox
 
@@ -47,33 +46,37 @@ const Popup = ({
 
             >
 
-              <div className = {`flex items-center ${ cssIf(title, 'justify-end') } ${ cssIf(titleLeft, 'justify-between') } ${ s.popup__close_icon__container } ${ cssIf( doubletitle, s.popup__close_icon__container__doubletitle ) }`}
-              >
-                
-                { titleLeft && <p className = {`font-bold text-18 ${ s.popup__titleLeft }`}>{`${ titleLeft }`}</p> }
+              { !contentOnly && <div className={ `flex items-center 
+              ${ cssIf( title, 'justify-end' ) } 
+              ${ cssIf( titleLeft, 'justify-between' ) } 
+              ${ s.popup__close_icon__container } ${ cssIf( doubletitle, s.popup__close_icon__container__doubletitle ) }` }>
+
+                { titleLeft && <p
+                  className={ `font-bold text-18 ${ s.popup__titleLeft }` }>{ `${ titleLeft }` }</p> }
 
                 <CloseInCircle
-                
-                  onClick = { () => closePopup() }
-                  className = {`${ s.popup__close_icon } pointer`}
+
+                  onClick={ () => closePopup() }
+                  className={ `${ s.popup__close_icon } pointer` }
 
                 />
 
-              </div>
+              </div> }
 
-              <p className = {`font-bold text-24 ${ s.popup__title }`}>{`${ title }`}</p>
-              <p className = {`font-bold text-24 ${ s.popup__title_bottom }`}>{`${ titlebottom }`}</p>
-              <p className = {`font-semibold text-13 ${ s.popup__subtitle } ${ doubletitle && s.popup__subtitle__double } ${ subtitleMargin && s['popup__subtitle--margined'] }`}>{ subtitle }</p>
+              { !contentOnly && <>
+                <p
+                  className={ `font-bold text-24 ${ s.popup__title }` }>{ `${ title }` }</p>
+                <p
+                  className={ `font-bold text-24 ${ s.popup__title_bottom }` }>{ `${ titlebottom }` }</p>
+                <p className={ `font-semibold text-13 
+              ${ s.popup__subtitle } 
+              ${ doubletitle && s.popup__subtitle__double }
+              ${ subtitleMargin && s[ 'popup__subtitle--margined' ] }` }>{ subtitle }</p>
+              </> }
 
               { children }
 
             </WhiteBox>
-
-          :
-
-          content
-
-        }
 
       </div>
 

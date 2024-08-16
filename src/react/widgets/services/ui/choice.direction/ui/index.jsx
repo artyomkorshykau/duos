@@ -73,7 +73,7 @@ const ChoiceDirection = ({
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Стаж работы по направлению, лет'}
           placeholderIcon = { <WarningIcon /> }
-          placeholderClassName = {`${!globalState.service.category?.[index]?.directionWorkExperience.length && 
+          placeholderClassName = {`${!globalState.service.category?.[index]?.directionWorkExperience?.length && 
             s.service__section__filedsWrapper__filed_experince_placeholder  }`}
           value = { globalState.service.category?.[index]?.directionWorkExperience }
           onChange = { (e) => globalActions.service.setDirectionWorkExperience( e.target.value, index ) }

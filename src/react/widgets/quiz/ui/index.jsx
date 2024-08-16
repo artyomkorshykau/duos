@@ -8,7 +8,7 @@ import ContextNotise from "@/react/widgets/quiz/ui/context.notise";
 import Steps from "@/react/widgets/quiz/ui/steps";
 import { useQuestionnaire, useQuiz } from "@/react/widgets/quiz/model";
 
-const Quiz = () => {
+const Quiz = ( props ) => {
 
   const {
 
@@ -16,7 +16,7 @@ const Quiz = () => {
     handleButtonAction,
     status
 
-  } = useQuestionnaire()
+  } = props
 
   return (
 

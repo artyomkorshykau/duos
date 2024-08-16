@@ -8,6 +8,7 @@ import WarningIcon from '@/react/components/icons/warning';
 import s from '../../profile.module.scss';
 import { useEffect, useState } from "react";
 import TaxInfoPopup from "@/react/popups/tax.info.popup";
+import DeletePopup from "@/react/popups/delete.popup";
 
 const TaxStatus = () => {
 
