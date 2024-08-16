@@ -5,6 +5,7 @@ import { useState } from "react";
 import Cross from "@/react/components/icons/cross";
 import InputMask from "react-input-mask";
 import Save from "@/react/components/icons/save";
+import NotiseError from "@/react/components/icons/notise_error";
 
 const Textfield = ( props ) => {
 
@@ -33,7 +34,12 @@ const Textfield = ( props ) => {
 
   return (
 
-    <div className = {`${ s.textfield } ${ cssIf( value, s.filled ) } ${ cssIf( error === "", s['textfield--error'] ) } ${ className }`}>
+    <div className = {`
+    ${ s.textfield } 
+    ${ cssIf( value, s.filled ) } 
+    ${ cssIf( error, s.textfield__error ) } 
+    ${ className }`}
+    >
 
       { !!title && <p className = { s.title }>{ title }</p> }
 
@@ -80,6 +86,18 @@ const Textfield = ( props ) => {
 
           <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
 
+          { !!error &&
+
+          <div className = { `flex items-center ${s.textfield__error__text}` }>
+
+            <NotiseError/>
+
+            <p>{ error }</p>
+
+          </div>
+
+          }
+
         </>
 
       }
@@ -123,8 +141,6 @@ const Textfield = ( props ) => {
         </div>
 
       }
-
-      { !!error && <p className={ s.error }>{ error }</p> }
 
     </div>
 

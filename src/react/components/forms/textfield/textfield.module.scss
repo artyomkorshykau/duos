@@ -13,10 +13,25 @@
 
   }
 
-  .error {
+  &__error {
 
-    margin-top: $apx-8;
-    color: var(--color-notice-error-500);
+    input {
+
+      border-color: var(--color-notice-error-500) !important;
+
+    }
+
+    &__text {
+
+      color: var(--color-notice-error-500);
+      font-weight: 600;
+      font-size: $apx-13;
+      position: absolute;
+      bottom: -$apx-25;
+      left: $apx-17;
+      gap: $apx-3;
+
+    }
 
   }
 

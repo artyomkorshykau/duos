@@ -13,7 +13,7 @@
 .signup_popup {
 
   width: $apx-360;
-  height: $apx-455;
+  height: $apx-465;
   top: $apx-250;
 
 }
@@ -106,6 +106,12 @@
   width: 100%;
   color: var(--color-accent-black-500);
   margin-bottom: $apx-16;
+
+}
+
+.code_message {
+
+  margin-top: $apx-10;
 
 }
 

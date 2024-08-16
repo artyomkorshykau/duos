@@ -77,6 +77,7 @@ const TaxInfoPopup = ( props ) => {
       boxClassName={ bodyClassName }
       closePopup = { closePopup }
       contentOnly
+      background
       content = { content }
 
     >

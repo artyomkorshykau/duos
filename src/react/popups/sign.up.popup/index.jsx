@@ -28,17 +28,29 @@ const SignUpPopup = ({
   const [ showTimer, setShowTimer ] = useState( false );
   const [ time, setTime ] = useState( 180 );
   const [ intervalId, setIntervalId ] = useState( null );
+  const [ error, setError ] = useState( false )
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
   const { mutate, data } = useMutation({
 
-    mutationKey: [ 'sign' ],
-    mutationFn: ({ phone }) => auth.register(phone),
-    onSuccess: () => { setCodeModeOpened(true) }
+    mutationKey: [ 'sign-up' ],
+    mutationFn: ({ phone, email, code }) => auth.register(phone, email, code ),
 
   })
+
+  useEffect(()=> {
+
+    if( data?.success ) {
+
+      setCodeModeOpened(true)
+
+    }
+
+  },[ data?.success ])
+
+  console.log(data)
 
   const handleClosePopup = () => {
 
@@ -66,7 +78,7 @@ const SignUpPopup = ({
 
   const getCode = () => {
 
-    mutate({ phone : userNumber })
+    mutate({ phone : userNumber, email: userEmail })
 
   };
 
@@ -77,6 +89,7 @@ const SignUpPopup = ({
     alert('отправить новый код');
     setShowTimer( false );
     setTime( 31 );
+    setError(false)
 
   };
 
@@ -88,6 +101,19 @@ const SignUpPopup = ({
     }
 
   }, [ codeModeOpened ]);
+
+
+  useEffect(()=> {
+
+    if( userCode.length === 5 ){
+
+      mutate({ phone : userNumber, email: userEmail, code: userCode })
+
+    }
+
+    if( userCode.length < 5 ) setError(false)
+
+  }, [ userCode ])
 
   return (
 
@@ -173,13 +199,15 @@ const SignUpPopup = ({
                 password
                 className = {`${ s.code__numbers__password }`}
                 value = { userCode }
+                maxLength = { 5 }
+                error = { data?.error ? data?.error : data?.errors[0] }
                 onChange = { (e) => setUserCode(e.target.value) }
 
               />
 
             </div>
 
-            <div className = {`flex items-center`}>
+            <div className = {`flex items-center ${s.code_message}`}>
 
               { !showTimer ?
 

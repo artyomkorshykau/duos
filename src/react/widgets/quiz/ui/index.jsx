@@ -6,7 +6,7 @@ import FormLogo from "@/react/widgets/quiz/ui/form.img";
 import Titles from "@/react/widgets/quiz/ui/titles";
 import ContextNotise from "@/react/widgets/quiz/ui/context.notise";
 import Steps from "@/react/widgets/quiz/ui/steps";
-import { useQuiz } from "@/react/widgets/quiz/model";
+import { useQuestionnaire, useQuiz } from "@/react/widgets/quiz/model";
 
 const Quiz = () => {
 
@@ -16,7 +16,7 @@ const Quiz = () => {
     handleButtonAction,
     status
 
-  } = useQuiz()
+  } = useQuestionnaire()
 
   return (
 
