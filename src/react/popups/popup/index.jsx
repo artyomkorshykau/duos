@@ -17,6 +17,7 @@ const Popup = ({
   subtitleMargin = false,
   contentOnly = false,
   doubletitle = false,
+  boxRef = null,
   background,
   closeBackground,
   titleLeft
@@ -32,6 +33,7 @@ const Popup = ({
     
     `}
       onClick = { closeBackground ? () => closePopup() : null }
+      ref = { boxRef }
     >
 
         { !contentOnly ?
