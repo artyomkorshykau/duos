@@ -19,6 +19,7 @@ const Textfield = ( props ) => {
     type = "text",
     placeholder = "",
     placeholderIcon = null,
+    placeholderClassName = "",
     className = "",
     inputClassName = "",
     password,
@@ -59,13 +60,14 @@ const Textfield = ( props ) => {
 
           <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
 
-</>
+        </>
+        
         : 
         
         <>
           { placeholderIcon && 
 
-            <div className={s.textfield__icon} onClick={onIconClick}> {placeholderIcon} </div> 
+            <div className={ s.textfield__icon } onClick={ onIconClick }> { placeholderIcon } </div> 
             
           }
 
@@ -86,7 +88,11 @@ const Textfield = ( props ) => {
 
           />
 
-          <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
+          <span className = {`${ s.placeholderLabel } ${ cssIf( placeholderIcon, s.hasicon ) } ${placeholderClassName}`}>
+            
+            { placeholder }
+          
+          </span>
 
         </>
 

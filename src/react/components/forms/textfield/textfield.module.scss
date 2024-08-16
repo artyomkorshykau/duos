@@ -69,17 +69,7 @@
     &.hasicon {
 
       position: relative;
-      padding: $apx-12;
       padding-left: $apx-68;
-
-      &::placeholder {
-
-        white-space: pre-line;
-        top: $apx-12;
-        position: absolute;
-        padding-right: $apx-12;  
-  
-      }
 
     }
 
@@ -166,5 +156,16 @@
   pointer-events: none;
   transition: all 0.2s ease;
   opacity: 0.5;
+
+  &.hasicon {
+
+    white-space: pre-line;
+    top: $apx-12;
+    position: absolute;
+    padding-right: $apx-12;  
+    padding-left: $apx-52;
+    font-size: $apx-16;
+
+  }
 
 }
