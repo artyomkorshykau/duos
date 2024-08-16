@@ -1,5 +1,6 @@
 import "@/styles/global.scss";
 import "@/styles/fonts.scss";
+import "@/styles/datepicker.scss";
 import { Providers } from "@/react/components/providers";
 
 
