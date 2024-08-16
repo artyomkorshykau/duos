@@ -66,6 +66,18 @@ const Textfield = ( props ) => {
 
           <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
 
+          { !!error &&
+
+            <div className = { `flex items-center ${s.textfield__error__text}` }>
+
+              <NotiseError/>
+
+              <p>{ error }</p>
+
+            </div>
+
+          }
+
         </>
 
         :

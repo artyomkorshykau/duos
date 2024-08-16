@@ -3,6 +3,7 @@
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
+import DateField from "@/react/components/date";
 
 const Education = ({
 
@@ -61,18 +62,18 @@ const Education = ({
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Длительность обучения, дней'}
           value = { globalState.service.category?.[index]?.educationDuration }
-          onChange={(e) => globalActions.service.setEducationDuration(e.target.value, index)}
+          onChange = {(e) => globalActions.service.setEducationDuration(e.target.value, index)}
           
         />
 
-        <Textfield
-          
+        <DateField
+
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Дата окончания обучения'}
-          type = { 'date' }
           value = { globalState.service.category?.[index]?.educationCompletionDate }
-          onChange={(e) => globalActions.service.setEducationCompletionDate(e.target.value, index)}
-          
+          onChange = { (value) => globalActions.service.setEducationCompletionDate(value, index ) }
+
+
         />
 
       </form>

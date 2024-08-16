@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Popup from "../popup";
 import Checkbox from "@/react/components/forms/checkbox";
@@ -6,8 +5,7 @@ import Textfield from "@/react/components/forms/textfield";
 import DefaultButton from "@/react/components/buttons/default.button";
 import RoleChoice from "./role.choice";
 import s from "./sign.up.module.scss";
-import { useMutation } from "@tanstack/react-query";
-import auth from "@/service/auth";
+import { useSignup } from "@/react/popups/sign.up.popup/model";
 
 const SignUpPopup = ({
 
@@ -20,118 +18,45 @@ const SignUpPopup = ({
 
 }) => {
 
-  const [ userNumber, setUserNumber ] = useState("");
-  const [ userEmail, setUserEmail ] = useState("");
-  const [ userCode, setUserCode ] = useState("");
-  const [ policyAgree, setPolicyAgree ] = useState( false );
-  const [ codeModeOpened, setCodeModeOpened ] = useState( false );
-  const [ showTimer, setShowTimer ] = useState( false );
-  const [ time, setTime ] = useState( 180 );
-  const [ intervalId, setIntervalId ] = useState( null );
-  const [ error, setError ] = useState( false )
+  const {
 
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+    codeModeOpened,
+    handleClosePopup,
+    roleModeOpened,
+    userNumber,
+    setUserNumber,
+    userEmail,
+    setUserEmail,
+    policyAgree,
+    setPolicyAgree,
+    getCode,
+    userCode,
+    setUserCode,
+    showTimer,
+    minutes,
+    seconds,
+    getNewCode,
+    data
 
-  const { mutate, data } = useMutation({
+  } = useSignup()
 
-    mutationKey: [ 'sign-up' ],
-    mutationFn: ({ phone, email, code }) => auth.register(phone, email, code ),
+    return (
 
-  })
+      <Popup
 
-  useEffect(()=> {
+        title = { !codeModeOpened ? `Присоединяйтесь` : `Введите код из SMS` }
+        titlebottom = { !codeModeOpened ? `к сообществу DUOS` : `` }
+        subtitle = { !codeModeOpened ? `Введите номер телефона и действующий e-mail` : `Этот код будет служить вашим паролем для входа в личный кабинет` }
+        isOpened = { isOpened }
+        closePopup = { handleClosePopup }
+        bodyClassName = { !codeModeOpened ? bodyClassName : s.signup_popup }
+        subtitleMargin = { codeModeOpened }
+        contentOnly = { roleModeOpened }
+        content = { roleModeOpened && <RoleChoice close = { () => closePopups }/> }
 
-    if( data?.success ) {
+      >
 
-      setCodeModeOpened(true)
-
-    }
-
-  },[ data?.success ])
-
-  console.log(data)
-
-  const handleClosePopup = () => {
-
-    closePopup();
-    setUserNumber("");
-    setUserEmail("");
-    setUserCode("");
-    setCodeModeOpened(false)
-
-  };
-
-  useEffect(() => {
-    if (codeModeOpened) {
-      const id = setInterval(() => {
-        if (time > 0) {
-          setTime(time - 1);
-        } else {
-          setShowTimer(true);
-        }
-      }, 1000);
-      setIntervalId(id);
-      return () => clearInterval(id);
-    }
-  }, [codeModeOpened, time]);
-
-  const getCode = () => {
-
-    mutate({ phone : userNumber, email: userEmail })
-
-  };
-
-  const [ roleModeOpened, setRoleModeOpened ] = useState( false );
-
-  const getNewCode = () => {
-
-    alert('отправить новый код');
-    setShowTimer( false );
-    setTime( 31 );
-    setError(false)
-
-  };
-
-  useEffect(() => {
-
-    const nextInput = document.querySelector(`[data-index="1"]`);
-    if (nextInput) {
-      nextInput.focus();
-    }
-
-  }, [ codeModeOpened ]);
-
-
-  useEffect(()=> {
-
-    if( userCode.length === 5 ){
-
-      mutate({ phone : userNumber, email: userEmail, code: userCode })
-
-    }
-
-    if( userCode.length < 5 ) setError(false)
-
-  }, [ userCode ])
-
-  return (
-
-    <Popup
-
-      title = { !codeModeOpened ? `Присоединяйтесь` : `Введите код из SMS` }
-      titlebottom = { !codeModeOpened ? `к сообществу DUOS` : `` }
-      subtitle = { !codeModeOpened ? `Введите номер телефона и действующий e-mail` : `Этот код будет служить вашим паролем для входа в личный кабинет` }
-      isOpened = { isOpened }
-      closePopup = { handleClosePopup }
-      bodyClassName = { !codeModeOpened ? bodyClassName : s.signup_popup }
-      subtitleMargin = { codeModeOpened ? true : false }
-      contentOnly = { roleModeOpened && true }
-      content = { <RoleChoice close = { () => closePopups }/> }
-
-    >
-
-      { !codeModeOpened ?
+        { !codeModeOpened ?
 
           <div className = { roleModeOpened && s.hidden }>
 
@@ -141,6 +66,7 @@ const SignUpPopup = ({
               value = { userNumber }
               withTitle = { false }
               onChange = { (e) => setUserNumber(e.target.value) }
+              error = {  data?.error ? data?.error : data?.errors?.phone?.[0] }
               type = 'phone'
               placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
 
@@ -151,6 +77,7 @@ const SignUpPopup = ({
               withTitle = { false }
               placeholder = "E-mail"
               className = { `${ s.email }` }
+              error = {  data?.error ? data?.error : data?.errors?.email?.[0] }
               value = { userEmail }
               onChange = { (e) => setUserEmail(e.target.value) }
               type = 'text'
@@ -168,9 +95,9 @@ const SignUpPopup = ({
               />
 
               <p className = {`font-semibold text-13 ${ s.argeetext } relative`}>
-                
+
                 Согласен <Link href = "/#policy"><span className = {`${ s.argeetext__link }`}>с политикой обработки <br />персональных данных</span></Link>
-                
+
               </p>
 
             </div>
@@ -186,7 +113,7 @@ const SignUpPopup = ({
 
           </div>
 
-        :
+          :
 
           <div className = { roleModeOpened && s.hidden }>
 
@@ -200,7 +127,7 @@ const SignUpPopup = ({
                 className = {`${ s.code__numbers__password }`}
                 value = { userCode }
                 maxLength = { 5 }
-                error = { data?.error ? data?.error : data?.errors[0] }
+                error = {  data?.error ? data?.error : data?.errors?.[0] }
                 onChange = { (e) => setUserCode(e.target.value) }
 
               />
@@ -211,49 +138,49 @@ const SignUpPopup = ({
 
               { !showTimer ?
 
-                  <p className = {`font-semibold text-13 ${ s.gettext }`}>
+                <p className = {`font-semibold text-13 ${ s.gettext }`}>
 
-                    Отправить код повторно можно через {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
-                    
-                  </p>
+                  Отправить код повторно можно через {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
+
+                </p>
 
                 :
-                
-                  <p
-                  
-                    onClick = { () => getNewCode() }
-                    className = {`font-semibold text-15 ${ s.gettext } ${ s.gettext__new_code } relative pointer`}
-                    
-                  >
-                      
-                    Отправить новый код-пароль
 
-                  </p>
+                <p
+
+                  onClick = { () => getNewCode() }
+                  className = {`font-semibold text-15 ${ s.gettext } ${ s.gettext__new_code } relative pointer`}
+
+                >
+
+                  Отправить новый код-пароль
+
+                </p>
 
               }
-              
+
             </div>
 
           </div>
 
         }
 
-      <p className = {`font-semibold text-13 ${ s.calltext } relative`}>У вас уже есть личный кабинет?</p>
+        <p className = {`font-semibold text-13 ${ s.calltext } relative`}>У вас уже есть личный кабинет?</p>
 
-      <DefaultButton
+        <DefaultButton
 
-        gray
-        small
-        name = "Войти"
-        action = { logIn }
-        className = { s.button__gray }
+          gray
+          small
+          name = "Войти"
+          action = { logIn }
+          className = { s.button__gray }
 
-      />
+        />
 
-    </Popup>
+      </Popup>
 
-  )
+    )
 
-}
+  }
 
 export default SignUpPopup;

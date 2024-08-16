@@ -18,7 +18,7 @@ const Popup = ({
   contentOnly = false,
   doubletitle = false,
   boxRef = null,
-  background,
+  background = false,
   closeBackground,
   titleLeft
 
@@ -37,48 +37,53 @@ const Popup = ({
       ref = { boxRef }
     >
 
-            <WhiteBox
+      { !content
 
-              className = {
+        ? <WhiteBox
 
-                `absolute flex flex-column justify-center text-center
+        className = {
+
+          `absolute flex flex-column justify-center text-center
                 ${ s.popup } ${ bodyClassName }
 
-              `}
+              ` }
 
-            >
+      >
 
-              { !contentOnly && <div className={ `flex items-center 
+        { !contentOnly && <div className = { `flex items-center 
               ${ cssIf( title, 'justify-end' ) } 
               ${ cssIf( titleLeft, 'justify-between' ) } 
               ${ s.popup__close_icon__container } ${ cssIf( doubletitle, s.popup__close_icon__container__doubletitle ) }` }>
 
-                { titleLeft && <p
-                  className={ `font-bold text-18 ${ s.popup__titleLeft }` }>{ `${ titleLeft }` }</p> }
+          { titleLeft && <p
+            className = { `font-bold text-18 ${ s.popup__titleLeft }` }>{ `${ titleLeft }` }</p> }
 
-                <CloseInCircle
+          <CloseInCircle
 
-                  onClick={ () => closePopup() }
-                  className={ `${ s.popup__close_icon } pointer` }
+            onClick = { () => closePopup() }
+            className = { `${ s.popup__close_icon } pointer` }
 
-                />
+          />
 
-              </div> }
+        </div> }
 
-              { !contentOnly && <>
-                <p
-                  className={ `font-bold text-24 ${ s.popup__title }` }>{ `${ title }` }</p>
-                <p
-                  className={ `font-bold text-24 ${ s.popup__title_bottom }` }>{ `${ titlebottom }` }</p>
-                <p className={ `font-semibold text-13 
+        { !contentOnly && <>
+          <p
+            className = { `font-bold text-24 ${ s.popup__title }` }>{ `${ title }` }</p>
+          <p
+            className = { `font-bold text-24 ${ s.popup__title_bottom }` }>{ `${ titlebottom }` }</p>
+          <p className = { `font-semibold text-13 
               ${ s.popup__subtitle } 
               ${ doubletitle && s.popup__subtitle__double }
               ${ subtitleMargin && s[ 'popup__subtitle--margined' ] }` }>{ subtitle }</p>
-              </> }
+        </> }
 
-              { children }
+        { children }
 
-            </WhiteBox>
+      </WhiteBox>
+
+        : content
+      }
 
       </div>
 

@@ -77,10 +77,10 @@ const ItemSelect = ( props) => {
 
         <button
 
-            className = {`${ s.itemselect_wrapper__container__btn }`}
-            onClick = { onToggle }
-            type = "button"
-            ref = { btnRef }
+          className = {`${ s.itemselect_wrapper__container__btn }`}
+          onClick = { onToggle }
+          type = "button"
+          ref = { btnRef }
 
         >
 

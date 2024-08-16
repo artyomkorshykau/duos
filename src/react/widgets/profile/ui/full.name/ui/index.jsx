@@ -66,16 +66,14 @@ const FullName = () => {
         />
         <DateField
 
-          // className = {`${ s.profile__section__filedsWrapper__filed }`}
-          placeholder='Дата рождения'
-          value ={ globalState.profile.birthDate }
+          placeholder = 'Дата рождения'
+          value = { globalState.profile.birthDate }
           onChange = { ( value ) => globalActions.profile.setBirthDate( value ) }
 
         />
         <Select
 
-          // className = {`${ s.profile__section__filedsWrapper__filed }`}
-          placeholder='Пол'
+          placeholder = 'Пол'
           options = { genderList }
           value = { globalState.profile.gender }
           onChange = { value => globalActions.profile.setGender( value ) }

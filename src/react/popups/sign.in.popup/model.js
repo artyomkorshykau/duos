@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import auth from "@/service/auth";
 import { useRouter } from "next/navigation";
@@ -17,16 +17,10 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
   };
 
-  const { mutate } = useMutation({
+  const { mutate, data } = useMutation({
 
     mutationKey: [ 'sign-in' ],
     mutationFn: ({ phone, password }) => auth.login(phone, password),
-    onSuccess: () => {
-
-      alert('Вход выполнен!')
-      refresh()
-
-    }
 
   })
 
@@ -40,6 +34,17 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
   }
 
+  useEffect(()=> {
+
+    if( data?.success ) {
+
+      alert("Вход выполнен!")
+
+    }
+
+
+  }, [ data ])
+
   return {
 
     handleClosePopup,
@@ -48,6 +53,7 @@ export const useLogin = ( { closePopup, logIn } ) => {
     setUserNumber,
     userPassword,
     setUserPassword,
+    data
 
   }
 
