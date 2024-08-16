@@ -4,7 +4,7 @@ import Select from '@/react/components/forms/select';
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store';
-import { dayWeekMonthYearList, minuteHoursDaysList, paymentFormatList } from '@/constants/services';
+import { dayWeekMonthYearList, paymentFormatList } from '@/constants/services';
 import cssIf from '@/scripts/helpers/css.if';
 import {useEffect, useState} from "react";
 
@@ -33,7 +33,7 @@ const PaymentFormat = ({
 
       <p className = {`${ s.service__section__title }`}>Формат оплаты работы</p>
 
-      <form className = {`${ s.service__section__filedsGrid }`}>
+      <form className = {`${ s.service__section__paymentFormat }`}>
 
         <Select
           
@@ -45,7 +45,7 @@ const PaymentFormat = ({
           
         />
 
-        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Подписка' &&
+        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Subscription' &&
           <Select
             
             className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}

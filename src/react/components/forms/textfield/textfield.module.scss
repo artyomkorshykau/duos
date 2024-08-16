@@ -5,6 +5,7 @@
   position: relative;
 
   width: 100%;
+  height: $apx-63;
 
   .title {
 
@@ -22,6 +23,17 @@
   &.filled input {
 
     background-color: var(--color-bw-white);
+    color: var(--color-accent-black-900);
+  }
+
+  &.filled .placeholderLabel {
+
+    top: -$apx-12;
+    left: $apx-12;
+    font-weight: 600;
+    font-size: $apx-13;
+    color: var(--color-accent-black-500);
+    opacity: 1;
 
   }
 
@@ -31,7 +43,7 @@
     height: 100%;
     outline: unset;
     text-overflow: ellipsis;
-    padding: $apx-16;
+    padding: $apx-16 $apx-16 0 $apx-16;
     font-weight: 500;
     font-size: $apx-16;
     line-height: $apx-21;
@@ -39,12 +51,18 @@
     background: var(--color-accent-background);
     border: $apx-1 solid var(--color-accent-blue-200);
     border-radius: $apx-28;
+    position: relative;
 
-    &::placeholder {
 
-      font-weight: 400;
-      font-size: $apx-16;
-      line-height: $apx-21;
+    &:focus + .placeholderLabel,
+    &:not(:placeholder-shown) + .placeholderLabel {
+
+      top: $apx-10;
+      left: $apx-16;
+      font-weight: 600;
+      font-size: $apx-13;
+      color: var(--color-accent-black-500);
+      opacity: 1;
 
     }
 
@@ -107,7 +125,7 @@
   &__eye {
 
     position: absolute;
-    top: $apx-18;
+    top: $apx-22;
     right: $apx-20;
 
     cursor: pointer;
@@ -134,5 +152,19 @@
       cursor: pointer;
 
     }
+
+}
+
+.placeholderLabel {
+
+  position: absolute;
+  top: $apx-21;
+  left: $apx-16;
+  font-weight: 500;
+  font-size: $apx-16;
+  color: var(--color-accent-black-500);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  opacity: 0.5;
 
 }

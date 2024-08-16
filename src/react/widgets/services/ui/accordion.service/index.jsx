@@ -144,7 +144,7 @@ const AccordionService = ({
     >
       {category?.services?.map((el, indexServices) => (
         <AccordionServiceChildren
-          key = { index }
+          key = { el.id }
           el = { el }
           categoryIndex = { index }
           index = { indexServices }

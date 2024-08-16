@@ -39,15 +39,27 @@
 
     &__filedsGrid5 {
 
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: $apx-8;
       margin-top: $apx-12;
 
+      & > :nth-child(2) {
+
+        width: $apx-312;
+
+      }
+      & > :nth-child(3) {
+
+        width: $apx-312;
+
+      }
+
       &__filed {
 
-        max-width: 100% ;
-        height: $apx-64 !important;
+        width: 100%;
+        max-width: 100%;
+        height: $apx-64;
         margin: 0 !important;
 
       }

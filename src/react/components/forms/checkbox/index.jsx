@@ -34,7 +34,7 @@ const Checkbox = ( props ) => {
 
       <div className = {`flex items-center justify-center ${ s.checkmark } ${ cssIf( isChecked, s['checkmark--checked'] ) } pointer`}>
 
-        { isChecked && <CheckMarkIcon className = { s.chekmark__icon }/> }
+        <CheckMarkIcon className = { s.checkmark__icon }/>
 
       </div>
 

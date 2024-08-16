@@ -27,6 +27,9 @@ const SignUpPopup = ({
   const [ time, setTime ] = useState( 180 );
   const [ intervalId, setIntervalId ] = useState( null );
 
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
   const handleClosePopup = () => {
 
     closePopup();
@@ -103,7 +106,7 @@ const SignUpPopup = ({
               withTitle = { false }
               onChange = { (e) => setUserNumber(e.target.value) }
               type = 'phone'
-              placeholder = "Телефон"
+              placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
 
             />
 
@@ -118,7 +121,7 @@ const SignUpPopup = ({
 
             />
 
-            <div className = {`flex items-center`}>
+            <div className = {`flex items-center my-6`}>
 
               <Checkbox
 
@@ -171,8 +174,8 @@ const SignUpPopup = ({
               { !showTimer ?
 
                   <p className = {`font-semibold text-13 ${ s.gettext }`}>
-                    
-                    Отправить код повторно можно через { time }
+
+                    Отправить код повторно можно через {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
                     
                   </p>
 

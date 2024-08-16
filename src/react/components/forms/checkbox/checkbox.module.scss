@@ -6,8 +6,6 @@
   line-height: $apx-16;
   color: var(--color-gray-500);
 
-  &:focus { div { border: $apx-1 solid var(--color-accent-blue-270); } }
-
   &__title {
   
     color: var(--color-accent-black-900);
@@ -24,17 +22,28 @@
   border-radius: $apx-8;
   margin-right: $apx-8;
   background: var(--color-accent-background);
+  transition: background 0.3s ease, border 0.3s ease;
   
-  &:hover,
   &:focus,
-  &--checked  { border: $apx-1 solid var(--color-accent-blue-270); }
+  &--checked  {
+
+    border: $apx-1 solid var(--color-accent-blue-700);
+
+  }
+
+  &--checked {
+
+    background: var(--color-accent-blue-700);
+
+  }
 
   &__icon {
   
     $size: $apx-16;
     width: $size;
-    height: $size;   
-  
+    height: $size;
+    stroke: var(--color-accent-blue-270);
+
   }
 
 }

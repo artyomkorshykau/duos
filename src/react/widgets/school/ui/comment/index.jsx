@@ -24,7 +24,6 @@ const Comment = () => {
           placeholder = { 'Расскажите что-то о школе' }
           value = { globalState.school.comment }
           onChange = { (e) => globalActions.school.setComment(e.target.value)}
-          icon = { <Save fill="#FFFFFF" /> }
 
         />
 

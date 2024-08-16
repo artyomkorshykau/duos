@@ -25,7 +25,9 @@
     &__description {
 
       font-weight: 500;
-      color: var(--color-accent-black-900)
+      color: var(--color-accent-black-900);
+      font-size: $apx-16;
+      line-height: 130%;
 
     }
 
@@ -53,6 +55,12 @@
       gap: $apx-8;
       margin-top: $apx-12;
 
+      & > :first-child {
+
+        grid-column: span 2;
+
+      }
+
       &__filed {
 
         max-width: $apx-305 ;
@@ -66,6 +74,30 @@
         height: $apx-110;
         margin: 0 !important;
       
+      }
+
+    }
+
+    &__paymentFormat {
+
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: $apx-8;
+      margin-top: $apx-12;
+
+      &__filed {
+
+        max-width: $apx-305 ;
+        height: $apx-64 !important;
+        margin: 0 !important;
+
+      }
+
+      &__textArea {
+
+        height: $apx-110;
+        margin: 0 !important;
+
       }
 
     }

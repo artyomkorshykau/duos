@@ -41,20 +41,25 @@ const Textfield = ( props ) => {
 
       { type === 'phone' ?
 
-        <InputMask
+        <>
 
-          mask = { '+7 (999) 999-99-99' }
-          value = { value }
-          onChange = { onChange }
-          placeholder = { placeholder }
-          type = { 'tel' }
+          <InputMask
 
-        >
+            mask={ '+7 (999) 999-99-99' }
+            value={ value }
+            onChange={ onChange }
+            placeholder={ '' }
+            type={ 'tel' }
 
-        { ( inputProps ) => <input { ...inputProps } /> }
+          >
 
-        </InputMask>
+            { ( inputProps ) => <input { ...inputProps } /> }
 
+          </InputMask>
+
+          <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
+
+</>
         : 
         
         <>
@@ -66,13 +71,13 @@ const Textfield = ( props ) => {
 
           <input
 
-            value = { value }
-            type = { hide && password ? 'password' : type }
-            placeholder = { placeholder }
-            className = { `${ inputClassName } ${ cssIf( placeholderIcon, s.hasicon ) }` }
-            onChange = { onChange }
-            { ...inputParams }
-            onClick = { ( e ) => {
+                value={ value }
+                type={ hide && password ? 'password' : type }
+                placeholder={''}
+                className={ `${ inputClassName } ${ cssIf( placeholderIcon, s.hasicon ) }` }
+                onChange={ onChange }
+                { ...inputParams }
+                onClick={ ( e ) => {
 
               onClick && onClick();
               e.stopPropagation();
@@ -80,6 +85,8 @@ const Textfield = ( props ) => {
             } }
 
           />
+
+          <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
 
         </>
 

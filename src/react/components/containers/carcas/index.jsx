@@ -1,3 +1,5 @@
+"use client"
+
 import Header from "./header";
 import useGlobal from "@/store";
 import s from "./carcas.module.scss";

@@ -1,9 +1,12 @@
+import { v1 } from "uuid";
+
 const serviceState = {
 
   category: [
   
     {
 
+      id: v1(),
       title: "Направление №1",
       status: "NotFinished",
       documentStatus: "New",
@@ -11,6 +14,7 @@ const serviceState = {
       
         {
 
+          id: v1(),
           title: "Услуга №1",
           status: "New",
           documentStatus: "New",
@@ -22,6 +26,7 @@ const serviceState = {
     },
     {
 
+      id: v1(),
       title: "Психология",
       status: "NotFinished",
       documentStatus: "New",
@@ -29,6 +34,7 @@ const serviceState = {
       
         {
 
+          id: v1(),
           title: "Оказание психологической помощи",
           status: "NotFinished",
           documentStatus: "New",
@@ -36,6 +42,7 @@ const serviceState = {
         },
         {
 
+          id: v1(),
           title: "Прием у психотерапевта",
           status: "NotFinished",
           documentStatus: "New",
