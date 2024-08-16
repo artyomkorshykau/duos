@@ -93,7 +93,7 @@
   &__icon {
 
     position: absolute;
-    z-index: 5;
+    z-index: 1;
     top: 50%;
     left: $apx-16;
     transform: translateY(-50%);
@@ -107,21 +107,21 @@
 
     cursor: pointer;
 
+    &:hover {
+
+      svg path {
+
+        fill: var(--color-accent-blue-700)
+
+      }
+
+    }
+
     svg {
 
       $size: $apx-16;
       width: $size;
       height: $size;
-
-      &:hover {
-
-        path {
-
-          fill: var(--color-accent-blue-700)
-
-        }
-
-      }
 
     }
 

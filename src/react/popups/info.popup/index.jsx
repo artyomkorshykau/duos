@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Popup from "@/react/popups/popup";
 import CloseInCircle from "@/react/components/icons/close.in.circle";
 import DefaultButton from "@/react/components/buttons/default.button";
@@ -12,6 +12,8 @@ const InfoPopup = ({
 
 }) => {
 
+  const popupRef = useRef(null);
+
   useEffect(() => {
 
     const handleKeyDown = (event) => {
@@ -22,59 +24,76 @@ const InfoPopup = ({
 
     };
 
+    const handleClickOutside = (event) => {
+
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        closePopup();
+      }
+
+    };
+
     if (isOpened) {
+
       document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('mousedown', handleClickOutside);
+
     }
 
     return () => {
+
       document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+
     };
-    
+
   }, [isOpened, closePopup]);
 
   const content = 
+  
       <>
+
         <img src='/img/questionnaire/info.png' alt="publications"/>
 
-            <div className = {`${ s.info_description }`}>
+        <div className = {`${ s.info_description }`}>
 
-              <div className = "flex items-center justify-between w-full">
+          <div className = "flex items-center justify-between w-full">
 
-                <h3 className = {`text-26 ${ s.info_description__title }`}>А вы знали, что...</h3>
+            <h3 className = {`text-26 ${ s.info_description__title }`}>А вы знали, что...</h3>
 
-                <CloseInCircle
+            <CloseInCircle
                 
-                onClick = { () => closePopup() }
-                className = {`${ s.info_description__close_icon } pointer`}
+              onClick = { () => closePopup() }
+              className = {`${ s.info_description__close_icon } pointer`}
 
-                />
+            />
 
-              </div>
+          </div>
 
-              <p className = {`text-16 ${ s.info_description__description }`}>
+          <p className = {`text-16 ${ s.info_description__description }`}>
 
-                Чтобы лучше раскрыть свои профессиональные 
-                достижения, рекомендуем указывать количество часов 
-                практики, количество проведенных консультаций,
-                разобранных кейсов и т.д. на 5м шаге анкеты
-                (Публикации), в разделе «О себе».
+            Чтобы лучше раскрыть свои профессиональные 
+            достижения, рекомендуем указывать количество часов 
+            практики, количество проведенных консультаций,
+            разобранных кейсов и т.д. на 5м шаге анкеты
+            (Публикации), в разделе «О себе».
 
-              </p>
+          </p>
 
-              <div className = {`${ s.info_description__agree }`}>
+          <div className = {`${ s.info_description__agree }`}>
 
-                <DefaultButton
+            <DefaultButton
 
-                  name = { 'Понятно' }
-                  className = {`${ s.info_description__agree__close_button }`}
-                  action = { closePopup }
+              name = { 'Понятно' }
+              className = {`${ s.info_description__agree__close_button }`}
+              action = { closePopup }
 
-                />
+            />
 
-              </div>
+          </div>
 
-            </div>
-        </>
+        </div>
+
+      </>
 
   return (
 
@@ -86,6 +105,7 @@ const InfoPopup = ({
       contentOnly
       content = { content }
       closeBackground
+      boxRef={ popupRef }
 
     >
 
