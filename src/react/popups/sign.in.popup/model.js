@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import auth from "@/service/auth";
 import { useRouter } from "next/navigation";
+import { extractNumbers } from "@/scripts/helpers/extract.numbers";
 
 export const useLogin = ( { closePopup, logIn } ) => {
 
   const [ userNumber, setUserNumber ] = useState("");
   const [ userPassword, setUserPassword ] = useState("");
+  const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
   const { refresh } = useRouter()
 
   const handleClosePopup = () => {
@@ -17,10 +19,17 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
   };
 
-  const { mutate, data } = useMutation({
+  const { mutate: login, data: loginData } = useMutation({
 
     mutationKey: [ 'sign-in' ],
     mutationFn: ({ phone, password }) => auth.login(phone, password),
+
+  })
+
+  const { mutate: recovery, data: recoveryData } = useMutation({
+
+    mutationKey: [ 'recovery' ],
+    mutationFn: ({ phone }) => auth.recovery(phone ),
 
   })
 
@@ -28,7 +37,17 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
     if ( userNumber.length >= 11 && userPassword !== '' ) {
 
-      mutate({ phone : userNumber, password: userPassword })
+      login({ phone : userNumber, password: userPassword })
+
+    }
+
+  }
+
+  const handleRecovery = () => {
+
+    if( extractNumbers(userNumber).length === 11 ) {
+
+      recovery({ phone: userNumber })
 
     }
 
@@ -36,14 +55,20 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
   useEffect(()=> {
 
-    if( data?.success ) {
+    if( loginData?.success ) {
 
       alert("Вход выполнен!")
 
     }
 
+    if( !recoveryData?.success ){
 
-  }, [ data ])
+      setShowRecoveryPopup(true)
+
+    }
+
+
+  }, [ loginData, recoveryData ])
 
   return {
 
@@ -53,7 +78,11 @@ export const useLogin = ( { closePopup, logIn } ) => {
     setUserNumber,
     userPassword,
     setUserPassword,
-    data
+    handleRecovery,
+    showRecoveryPopup,
+    recoveryData,
+    setShowRecoveryPopup,
+    loginData
 
   }
 

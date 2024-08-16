@@ -4,6 +4,9 @@ import SignInIconWhite from "@/react/components/icons/sign.in.icon.white";
 import DefaultButton from "@/react/components/buttons/default.button";
 import s from "./sign.in.module.scss";
 import { useLogin } from "@/react/popups/sign.in.popup/model";
+import cssIf from "@/scripts/helpers/css.if";
+import { extractNumbers } from "@/scripts/helpers/extract.numbers";
+import RecoveryPopup from "@/react/popups/recovery.popup";
 
 const SignInPopup = ({
 
@@ -23,7 +26,11 @@ const SignInPopup = ({
     setUserPassword,
     userNumber,
     userPassword,
-    data
+    handleRecovery,
+    showRecoveryPopup,
+    setShowRecoveryPopup,
+    recoveryData,
+    loginData
 
   } = useLogin( {
 
@@ -32,88 +39,112 @@ const SignInPopup = ({
 
   } )
 
-  return (
+  console.log(showRecoveryPopup)
 
-    <Popup
+  if( showRecoveryPopup ) {
 
-      title = "Вход"
-      subtitle = "Введите номер телефона и пароль из SMS, который вы получили при регистрации"
-      isOpened = { isOpened }
-      closePopup = { handleClosePopup }
-      bodyClassName = { bodyClassName }
-      subtitleMargin
+    return (
 
-    >
+      <RecoveryPopup
 
-      <div className = { `${ s.signin_content }` }>
+        isOpened = { showRecoveryPopup }
+        closePopup = { () => closePopups() }
+        bodyClassName = {`${ s.recovery__popup }`}
+        email = { recoveryData?.email }
+        logIn = { () =>  setShowRecoveryPopup(true) }
 
-        <Textfield
+      />
 
-        value = { userNumber }
-        withTitle = { false }
-        onChange = { (e) => setUserNumber(e.target.value) }
-        placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
-        error = {  data?.error && data?.error }
-        type = 'phone'
-        className = {`${s.signin_content__field}`}
+    )
 
-        />
+  } else {
 
-        <Textfield
+    return (
 
-          value = { userPassword }
-          onChange = { (e) => setUserPassword(e.target.value) }
-          withTitle = { false }
-          className = {`${s.signin_content__field}`}
-          error = {  data?.error && data?.errors?.code?.[0] }
-          placeholder = "Пароль"
-          maxLength = { 5 }
-          password
+      <Popup
 
-        />
+        title = "Вход"
+        subtitle = "Введите номер телефона и пароль из SMS, который вы получили при регистрации"
+        isOpened = { isOpened }
+        closePopup = { handleClosePopup }
+        bodyClassName = { bodyClassName }
+        subtitleMargin
 
-        <p
+      >
 
-          className = { `text-14 ${ s.signin_content__forgot }` }
-          onClick = { () => alert('Вспоминай))))0)')}
+        <div className = { `${ s.signin_content }` }>
 
-        >
+          <Textfield
 
-          Забыли пароль?
+            value = { userNumber }
+            withTitle = { false }
+            onChange = { (e) => setUserNumber(e.target.value) }
+            placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
+            error = { loginData?.error }
+            type = 'phone'
+            className = {`${s.signin_content__field}`}
 
-        </p>
+          />
 
-        <DefaultButton
+          <Textfield
 
-          name = "Войти"
-          className = { `${ s.button }` }
-          action = { () => handleLog() }
-          positionIcon = { 'right' }
-          icon = { <SignInIconWhite className = { s.button__icon }/> }
+            value = { userPassword }
+            onChange = { (e) => setUserPassword(e.target.value) }
+            withTitle = { false }
+            className = {`${s.signin_content__field}`}
+            error = { loginData?.error }
+            placeholder = "Пароль"
+            maxLength = { 5 }
+            password
 
-        />
+          />
 
-        <p className = { `text-13 ${ s.signin_content_description }` }>
+          <p
 
-          Вы все еще не часть DUOS?
+            className = { `text-14 
+          ${ s.signin_content__forgot } 
+          ${ cssIf( extractNumbers(userNumber).length < 11, s.signin_content__forgot__disabled )}` }
+            onClick = { handleRecovery }
 
-        </p>
+          >
 
-        <DefaultButton
+            Забыли пароль?
 
-          gray
-          small
-          name = "Зарегистрироваться"
-          className = { s.button__gray }
-          action = { signUp }
+          </p>
 
-        />
+          <DefaultButton
 
-      </div>
+            name = "Войти"
+            className = { `${ s.button }` }
+            action = { () => handleLog() }
+            positionIcon = { 'right' }
+            icon = { <SignInIconWhite className = { s.button__icon }/> }
 
-    </Popup>
+          />
 
-  )
+          <p className = { `text-13 ${ s.signin_content_description }` }>
+
+            Вы все еще не часть DUOS?
+
+          </p>
+
+          <DefaultButton
+
+            gray
+            small
+            name = "Зарегистрироваться"
+            className = { s.button__gray }
+            action = { signUp }
+
+          />
+
+        </div>
+
+      </Popup>
+
+    )
+
+  }
 
 }
 

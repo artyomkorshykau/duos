@@ -50,7 +50,7 @@ const RoleChoice = ({
 
             <p className = {`font-semibold text-13 ${ s.rolechoice__card__textspace__text }`}>Заполните анкету и получите <br />возможность делиться своими <br />знаниями и опытом с людьми</p>
 
-            <Link href = "/#form">
+            <Link href = "/questionnaire">
 
               <div
               

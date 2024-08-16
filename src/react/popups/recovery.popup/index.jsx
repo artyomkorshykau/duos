@@ -5,10 +5,11 @@ import SignInIconWhite from "@/react/components/icons/sign.in.icon.white";
 
 const RecoveryPopup = ({
 
- logIn = () => {},
+ logIn,
  bodyClassName = "",
  isOpened = false,
- closePopup = () => {}
+ closePopup = () => {},
+ email
 
  }) => {
 
@@ -26,7 +27,7 @@ const RecoveryPopup = ({
 
       <div className = { `${ s.recovery_content }` }>
 
-        <p className = { `text-20 ${ s.recovery_content__email }` }>r*******x@gmail.com</p>
+        <p className = { `text-20 ${ s.recovery_content__email }` }>{ email }</p>
         <p className = { `text-13 ${ s.recovery_content__description }` }>
 
           там вы найдете письмо с новым паролем от вашего личного кабинета

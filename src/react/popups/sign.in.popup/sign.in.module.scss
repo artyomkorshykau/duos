@@ -26,6 +26,12 @@
 
     }
 
+    &__disabled {
+
+      cursor: not-allowed;
+
+    }
+
   }
 
   &_description {
@@ -56,6 +62,18 @@
   
     width: 100%;
   
+  }
+
+}
+
+.recovery {
+
+  &__popup {
+
+    width: $apx-360;
+    top: $apx-280 !important;
+    height: $apx-352;
+
   }
 
 }

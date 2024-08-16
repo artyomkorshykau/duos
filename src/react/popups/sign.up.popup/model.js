@@ -96,7 +96,7 @@ export const useSignup = ( { closePopup } ) => {
 
     }
 
-    if ( data?.token ) {
+    if( data?.token ) {
 
       setCodeModeOpened(false)
       setRoleModeOpened(true)
