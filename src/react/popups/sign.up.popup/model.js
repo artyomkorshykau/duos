@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import auth from "@/service/auth";
 import { useEffect, useState } from "react";
 
-export const useSignup = () => {
+export const useSignup = ( { closePopup } ) => {
 
   const [ userNumber, setUserNumber ] = useState("");
   const [ userEmail, setUserEmail ] = useState("");
@@ -26,6 +26,7 @@ export const useSignup = () => {
 
   const handleClosePopup = () => {
 
+    closePopup()
     setUserNumber("");
     setUserEmail("");
     setUserCode("");

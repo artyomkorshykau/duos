@@ -38,7 +38,7 @@ const SignUpPopup = ({
     getNewCode,
     data
 
-  } = useSignup()
+  } = useSignup( {closePopup} )
 
     return (
 

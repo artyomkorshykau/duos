@@ -32,8 +32,6 @@ const SignInPopup = ({
 
   } )
 
-  console.log(data)
-
   return (
 
     <Popup
