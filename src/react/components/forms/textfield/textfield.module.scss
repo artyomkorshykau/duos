@@ -92,21 +92,21 @@
 
     cursor: pointer;
 
+    &:hover {
+
+      svg path {
+
+        fill: var(--color-accent-blue-700)
+
+      }
+
+    }
+
     svg {
 
       $size: $apx-16;
       width: $size;
       height: $size;
-
-      &:hover {
-
-        path {
-
-          fill: var(--color-accent-blue-700)
-
-        }
-
-      }
 
     }
 
