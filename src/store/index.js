@@ -11,7 +11,9 @@ import publicationsActions from "@/store/actions/publications";
 import getInitialSchoolState from "@/store/states/school";
 import schoolActions from "@/store/actions/school";
 import tax from "@/store/states/tax";
+import info from "@/store/states/info";
 import taxAgreeActions from "@/store/actions/tax";
+import infoActions from "@/store/actions/info";
 
 const initialState = {
 
@@ -21,6 +23,7 @@ const initialState = {
   school: getInitialSchoolState(),
   quiz: quizState,
   tax: tax,
+  info: info,
   user,
 
 }
@@ -33,6 +36,7 @@ const actions = {
   school: schoolActions,
   quiz: quizActions,
   tax: taxAgreeActions,
+  info: infoActions
 
 }
 

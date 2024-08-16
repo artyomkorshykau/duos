@@ -1,11 +1,11 @@
-import cssIf from '@/scripts/helpers/css.if';
-import s from './textfield.module.scss';
-import Eye from "@/react/components/icons/eye.icon";
 import { useState } from "react";
+import Eye from "@/react/components/icons/eye.icon";
 import Cross from "@/react/components/icons/cross";
 import InputMask from "react-input-mask";
 import Save from "@/react/components/icons/save";
 import NotiseError from "@/react/components/icons/notise_error";
+import cssIf from '@/scripts/helpers/css.if';
+import s from './textfield.module.scss';
 
 const Textfield = ( props ) => {
 
@@ -19,11 +19,14 @@ const Textfield = ( props ) => {
     error = "", 
     type = "text",
     placeholder = "",
+    placeholderIcon = null,
+    placeholderClassName = "",
     className = "",
     inputClassName = "",
     password,
     onChange,
     onClick,
+    onIconClick,
     classNameControls,
     clearFiled,
     ...inputParams
@@ -65,17 +68,24 @@ const Textfield = ( props ) => {
 
         </>
 
-        : <>
+        :
+
+        <>
+          { placeholderIcon &&
+
+            <div className={ s.textfield__icon } onClick={ onIconClick }> { placeholderIcon } </div>
+
+          }
 
           <input
 
-            value={ value }
-            type={ hide && password ? 'password' : type }
-            placeholder={''}
-            className={ inputClassName }
-            onChange={ onChange }
-            { ...inputParams }
-            onClick={ ( e ) => {
+                value={ value }
+                type={ hide && password ? 'password' : type }
+                placeholder={''}
+                className={ `${ inputClassName } ${ cssIf( placeholderIcon, s.hasicon ) }` }
+                onChange={ onChange }
+                { ...inputParams }
+                onClick={ ( e ) => {
 
               onClick && onClick();
               e.stopPropagation();
@@ -84,7 +94,11 @@ const Textfield = ( props ) => {
 
           />
 
-          <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
+          <span className = {`${ s.placeholderLabel } ${ cssIf( placeholderIcon, s.hasicon ) } ${placeholderClassName}`}>
+
+            { placeholder }
+
+          </span>
 
           { !!error &&
 

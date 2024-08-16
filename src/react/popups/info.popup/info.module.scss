@@ -1,0 +1,57 @@
+@import "@/styles/apx.scss";
+
+.info_description {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: $apx-49;
+  border-radius: $apx-32;
+  padding: $apx-45 $apx-32 $apx-24;
+  width: $apx-520;
+  height: 100%;
+  background-color: var(--color-bw-white);
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  &__title {
+
+    font-weight: 700;
+    color: var(--color-accent-blue-700);
+
+  }
+
+  &__close_icon {
+  
+    $size: $apx-40;
+    width: $size;
+    height: $size;
+  
+  }
+
+  &__description {
+
+    font-weight: 500;
+    color: var(--color-accent-black-900);
+
+  }
+
+  &__agree {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+
+    &__close_button {
+
+      width: $apx-99 !important;
+      height: $apx-40 !important;
+
+    }
+
+  }
+
+}

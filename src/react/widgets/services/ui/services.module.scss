@@ -44,6 +44,12 @@
         height: $apx-64 !important;
         margin: 0 !important;
 
+        &_experince_placeholder {
+
+          line-height: $apx-20;
+
+        }
+
       }
 
     }
@@ -123,6 +129,20 @@
         }
 
       }
+
+    }
+
+    &__infoPopup {
+
+      width: $apx-768 !important;
+      height: $apx-420 !important;
+      background-color: white;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      border-radius: $apx-32;
+      box-shadow: 0px $apx-7 $apx-16 0px var(--color-fields-title);
+      overflow: hidden;
 
     }
 
