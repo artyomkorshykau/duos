@@ -23,7 +23,7 @@ status
 
           <div className = { `${ s.quiz__steps__item }` } key = { el.id }>
 
-            <p className = { `text-16 ${ s.quiz__steps__item__title } ${ disabled }` }>{ el.title }</p>
+            <p className = { `text-16 ${ s.quiz__steps__item__title }` }>{ el.title }</p>
 
             { status !== QuizProgress.end
 
@@ -31,7 +31,7 @@ status
 
               : <div className = { `flex gap-1` }>
 
-                <p className = { `text-13 ${ s.quiz__steps__item__progress } ${ disabled }` }>{ `Завершено` }</p>
+                <p className = { `text-13 ${ s.quiz__steps__item__progress }` }>{ `Завершено` }</p>
                 <NotiseSuccessDisabled fill = { '#D1E3F7' } />
 
               </div>

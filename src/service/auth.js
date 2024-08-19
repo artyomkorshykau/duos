@@ -1,60 +1,89 @@
-import { instance } from "@/service/axios";
+import { BASE_URL } from "@/constants/urls.js";
+import { headers } from "@/service/headers.js";
+import { extractNumbers } from "@/scripts/helpers/extract.numbers.js";
+import { getCookie } from "@/scripts/helpers/get.token.js";
 
-class auth {
+const auth = {
 
   async register( phone, email, code ) {
 
-    const validatePhone = phone.replace( /\D/g, '' )
-    const response = await fetch('http://194.58.94.203/v1/sign-up', {
+    const response = await fetch(`${BASE_URL}/sign-up`, {
 
       method: 'POST',
-      headers: {
-
-        Authorization: `6|bGcpuCRa9C11dVqd9qV5wxY28WrjsmTlOrPnyhekdc0cb1e5`,
-        'Content-Type': 'application/json'
-      },
-
-      body: JSON.stringify({ phone: validatePhone, email, code })
+      headers: headers,
+      body: JSON.stringify({ phone: extractNumbers(phone), email, code })
 
     })
 
-    return await response.json();
+    const data = await response.json();
 
-  }
+    if ( data.success ) {
+
+      document.cookie = `token=${data.token}; path=/; secure;`
+
+    }
+
+    return data
+
+  },
 
   async login( phone, password ) {
 
-    const validatePhone = phone.replace( /\D/g, '' );
-
-    const response = await fetch('http://194.58.94.203/v1/sign-in', {
+    const response = await fetch(`${BASE_URL}/sign-in`, {
 
       method: 'POST',
-      headers: {
+      headers: headers,
+      body: JSON.stringify({ phone: extractNumbers(phone), code: password })
 
-        Authorization: `6|bGcpuCRa9C11dVqd9qV5wxY28WrjsmTlOrPnyhekdc0cb1e5`,
-        'Content-Type': 'application/json'
-      },
+    })
 
-      body: JSON.stringify({ phone: validatePhone, code: password })
+    const data = await response.json();
+
+    if ( data.success ) {
+
+      document.cookie = `token=${data.token}; path=/; secure;`
+
+    }
+
+    return data
+
+  },
+
+  async logout( ) {
+
+    document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure";
+
+  },
+
+  async recovery( phone ) {
+
+    const response = await fetch(`${BASE_URL}/forgot`, {
+
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({ phone: extractNumbers(phone) })
 
     })
 
     return await response.json();
 
-  }
+  },
 
-  getExpertsList() {
+  async checkToken() {
 
-    return instance.get( '/admin/experts' )
+    const token = getCookie('token')
 
-  }
+    const response = await fetch(`${BASE_URL}/sign/check`, {
 
-  getUserList() {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` }
 
-    return instance.get( '/admin/user' )
+    })
+
+    return await response.json()
 
   }
 
 }
 
-export default new auth()
+export default auth

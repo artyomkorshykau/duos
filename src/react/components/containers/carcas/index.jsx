@@ -3,26 +3,22 @@
 import Header from "./header";
 import useGlobal from "@/store";
 import s from "./carcas.module.scss";
+import { useEffect, useLayoutEffect } from "react";
+import auth from "@/service/auth.js";
 
 const Carcas = ({
 
-  authorized = false,
   children
 
 }) => {
 
-  const [ globalState, globalActions ] = useGlobal()
+
 
   return (
 
     <div className = {`${ s.carcas } relative`}>
 
-      <Header
-
-        authorized = { authorized }
-        userData = { globalState.user }
-
-      />
+      <Header/>
 
       { children }
 

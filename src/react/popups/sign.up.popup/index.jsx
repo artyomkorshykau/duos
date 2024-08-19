@@ -36,7 +36,7 @@ const SignUpPopup = ({
     minutes,
     seconds,
     getNewCode,
-    data
+    data,
 
   } = useSignup( {closePopup} )
 
@@ -52,7 +52,7 @@ const SignUpPopup = ({
         bodyClassName = { !codeModeOpened ? bodyClassName : s.signup_popup }
         subtitleMargin = { codeModeOpened }
         contentOnly = { roleModeOpened }
-        content = { roleModeOpened && <RoleChoice close = { () => closePopups }/> }
+        content = { roleModeOpened && <RoleChoice close = { handleClosePopup }/> }
 
       >
 
@@ -66,7 +66,7 @@ const SignUpPopup = ({
               value = { userNumber }
               withTitle = { false }
               onChange = { (e) => setUserNumber(e.target.value) }
-              error = {  data?.error ? data?.error : data?.errors?.phone?.[0] }
+              error = { data?.error ? data?.error : data?.errors?.phone?.[0] }
               type = 'phone'
               placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
 
@@ -77,7 +77,7 @@ const SignUpPopup = ({
               withTitle = { false }
               placeholder = "E-mail"
               className = { `${ s.email }` }
-              error = {  data?.error ? data?.error : data?.errors?.email?.[0] }
+              error = { data?.error ? data?.error : data?.errors?.email?.[0] }
               value = { userEmail }
               onChange = { (e) => setUserEmail(e.target.value) }
               type = 'text'
@@ -127,7 +127,7 @@ const SignUpPopup = ({
                 className = {`${ s.code__numbers__password }`}
                 value = { userCode }
                 maxLength = { 5 }
-                error = {  data?.error ? data?.error : data?.errors?.[0] }
+                error = { data?.error || data?.errors }
                 onChange = { (e) => setUserCode(e.target.value) }
 
               />

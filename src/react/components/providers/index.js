@@ -9,10 +9,8 @@ export const Providers = ( { children } ) => {
   return (
 
     <QueryClientProvider client = { queryClient }>
-      <SessionProvider>
         { children }
         <ReactQueryDevtools initialIsOpen = { false }/>
-      </SessionProvider>
     </QueryClientProvider>
 
   )

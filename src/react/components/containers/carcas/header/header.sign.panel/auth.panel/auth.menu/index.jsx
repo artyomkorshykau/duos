@@ -2,6 +2,7 @@ import SignOutIcon from "@/react/components/icons/sign.out.icon";
 import MenuPersonIcon from "@/react/components/icons/menu.person.icon";
 import s from "../auth.panel.module.scss";
 import {useRouter} from "next/navigation";
+import auth from "@/service/auth.js";
 
 const AuthMenu = ({
 
@@ -12,10 +13,14 @@ const AuthMenu = ({
 
 }) => {
 
-  const { push } = useRouter()
+  const { push, refresh } = useRouter()
 
-  function openQuiz() { push('/quiz') }
-  function logOut() { alert('TODO: реализация выхода из системы') }
+  function openQuiz() { push('/questionnaire') }
+  function logOut() {
+
+    auth.logout()
+    refresh()
+  }
 
   return(
 

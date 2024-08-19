@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NAVBAR from "./header.navbar";
 import Link from "next/link";
@@ -11,7 +11,6 @@ import RecoveryPopup from "@/react/popups/recovery.popup";
 
 const Header = ({
 
-  authorized = false,
   status
 
 }) => {
@@ -22,7 +21,6 @@ const Header = ({
   const [ isAuthBackReversed, setIsAuthBackReversed ] = useState( true );
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
   const [ showSignUpPopup, setShowSignUpPopup ] = useState( false );
-  const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
   const [ codeModeClosed, setCodeModeClosed ] = useState( false );
 
   function signIn( fast = false ) {
@@ -71,7 +69,6 @@ const Header = ({
 
     setShowSignInPopup( false );
     setShowSignUpPopup( false );
-    setShowRecoveryPopup(false);
     setIsAuthBackOpened( false );
     setIsAuthBackReversed( false );
     setCodeModeClosed( true );
@@ -143,7 +140,6 @@ const Header = ({
 
       <HeaderSignPanel
 
-        authorized = { authorized }
         signIn = { () => signIn() }
         signUp = { () => signUp() }
         status = { status }
@@ -172,13 +168,7 @@ const Header = ({
 
       />
 
-      <RecoveryPopup
 
-        isOpened = { showRecoveryPopup }
-        closePopup = { () => closePopups() }
-        bodyClassName = {`${ s.recovery__popup }`}
-
-      />
 
     </header>
 
