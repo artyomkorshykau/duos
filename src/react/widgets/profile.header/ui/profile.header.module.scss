@@ -1,0 +1,168 @@
+@import "@/styles/apx.scss";
+
+.header {
+
+  width: $apx-1328;
+  height: $apx-328;
+  border-radius: $apx-32;
+  background-color: var(--color-bw-white);
+  transition: height 0.5s ease;
+  padding: 0 $apx-32;
+  box-shadow: 0 0 $apx-25 $apx-5 rgba(21, 0, 157, 0.05);
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+
+  &__nav {
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: $apx-35;
+
+    &__back {
+
+      display: flex;
+      align-items: center;
+      gap: $apx-13;
+      width: 10%;
+
+      &__title {
+
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--color-accent-black-500);
+
+      }
+
+    }
+
+    &__breadcrumbs {
+
+      font-weight: 600;
+      color: var(--color-accent-black-500);
+
+    }
+
+    &__notise {
+
+      width: 10%;
+      display: flex;
+      justify-content: end;
+
+      &:hover {
+
+        cursor: pointer;
+
+      }
+
+    }
+
+  }
+
+  &__title {
+
+    font-weight: 700;
+    color: var(--color-accent-blue-700);
+    margin-bottom: $apx-8;
+
+  }
+
+  &_subtitle {
+
+    font-weight: 500;
+    color: var(--color-accent-blue-700);
+    margin-bottom: $apx-34;
+
+  }
+
+  &__statictics {
+
+    display: flex;
+    justify-content: center;
+    gap: $apx-32;
+    margin-bottom: $apx-48;
+
+    &__block {
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $apx-11;
+
+      font-weight: 600;
+      color: var(--color-accent-black-500);
+
+    }
+
+  }
+
+  &__tabs {
+
+    width: $apx-532;
+    height: $apx-40;
+    border-radius: $apx-64;
+    padding: $apx-4;
+    background-color: var(--color-bw-white);
+    box-shadow: 0 0 $apx-25 $apx-5 rgba(21, 0, 157, 0.05);
+    position: absolute;
+    bottom: -$apx-20;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+    gap: $apx-8;
+    border: $apx-1 solid var(--color-accent-blue-200);
+
+    &__button {
+
+      background: var(--color-accent-blue-700);
+      display: flex;
+      gap: $apx-7;
+      padding: $apx-6;
+
+      &:hover {
+
+        background: var(--color-accent-blue-270) !important;
+
+      }
+
+      &__content {
+
+        width: $apx-35;
+        background-color: var(--color-accent-blue-270);
+        border-radius: $apx-50;
+        text-align: center;
+
+      }
+
+    }
+
+  }
+
+}
+
+.collapsed {
+
+  height: $apx-170;
+
+  .header {
+
+    &__title {
+
+      margin-bottom: $apx-35;
+
+    }
+
+    &__tabs {
+
+      width: max-content;
+
+    }
+
+  }
+
+}
