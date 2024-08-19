@@ -27,7 +27,7 @@ const RoleChoice = ({
 
             <div
             
-              onClick = { () => close }
+              onClick = { () => close() }
               className = {`flex items-center justify-center font-semibold text-14 ${ s.rolechoice__card__textspace__button } pointer`}
               
             >

@@ -5,10 +5,10 @@ import HeaderAuthPanel from "./auth.panel";
 import SignInIcon from "@/react/components/icons/sign.in.icon";
 import DefaultButton from "@/react/components/buttons/default.button";
 import s from "./header.sign.panel.module.scss";
+import { useEffect } from "react";
 
 const HeaderSignPanel = ({
 
-  authorized = false,
   quizHadCompleted = false,
   signIn = () => {},
   signUp = () => {},
@@ -18,13 +18,19 @@ const HeaderSignPanel = ({
 
   const [ globalState, globalActions ] = useGlobal()
 
+  useEffect(()=> {
+
+    globalActions.user.setUser()
+
+  }, [ globalState.user.role_id ])
+
   function sendQuiz() { alert('закончить анкету') }
 
   return (
 
-    <div className = {`flex items-center justify-between ${ s['sign-panel'] } ${ authorized ? s['sign-panel__in_auth'] : s['sign-panel__in_unauth'] } relative`}>
+    <div className = {`flex items-center justify-between ${ s['sign-panel'] } ${ globalState.user.role_id ? s['sign-panel__in_auth'] : s['sign-panel__in_unauth'] } relative`}>
 
-      { !authorized
+      { !globalState.user.role_id
 
         ?
 
@@ -62,7 +68,7 @@ const HeaderSignPanel = ({
               <DefaultButton
 
                 name = "Закончить анкету"
-                className = {`${ s.button } ${ s.button__quiz } ${ globalState.user.userRole === "expert" && s['button__quiz--opened'] }`}
+                className = {`${ s.button } ${ s.button__quiz } ${ globalState.user.user_id === 1 && s['button__quiz--opened'] }`}
                 action = { () => sendQuiz() }
 
               />

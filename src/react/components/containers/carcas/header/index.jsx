@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NAVBAR from "./header.navbar";
 import Link from "next/link";
@@ -11,7 +11,6 @@ import RecoveryPopup from "@/react/popups/recovery.popup";
 
 const Header = ({
 
-  authorized = false,
   status
 
 }) => {
@@ -141,7 +140,6 @@ const Header = ({
 
       <HeaderSignPanel
 
-        authorized = { authorized }
         signIn = { () => signIn() }
         signUp = { () => signUp() }
         status = { status }

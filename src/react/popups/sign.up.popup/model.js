@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import auth from "@/service/auth";
 import { useEffect, useState } from "react";
+import useGlobal from "@/store/index.js";
 
 export const useSignup = ( { closePopup } ) => {
 
@@ -13,6 +14,7 @@ export const useSignup = ( { closePopup } ) => {
   const [ time, setTime ] = useState( 180 );
   const [ intervalId, setIntervalId ] = useState( null );
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
+  const [ globalState, globalActions ] = useGlobal()
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -72,8 +74,11 @@ export const useSignup = ( { closePopup } ) => {
   useEffect(() => {
 
     const nextInput = document.querySelector(`[data-index="1"]`)
+
     if (nextInput) {
+
       nextInput.focus()
+
     }
 
   }, [ codeModeOpened ])
@@ -100,6 +105,7 @@ export const useSignup = ( { closePopup } ) => {
 
       setCodeModeOpened(false)
       setRoleModeOpened(true)
+      globalActions.user.setUser()
 
     }
 

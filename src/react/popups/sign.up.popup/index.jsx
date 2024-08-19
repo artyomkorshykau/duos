@@ -52,7 +52,7 @@ const SignUpPopup = ({
         bodyClassName = { !codeModeOpened ? bodyClassName : s.signup_popup }
         subtitleMargin = { codeModeOpened }
         contentOnly = { roleModeOpened }
-        content = { roleModeOpened && <RoleChoice close = { () => closePopups }/> }
+        content = { roleModeOpened && <RoleChoice close = { handleClosePopup }/> }
 
       >
 

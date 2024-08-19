@@ -3,17 +3,20 @@ import { useMutation } from "@tanstack/react-query";
 import auth from "@/service/auth";
 import { useRouter } from "next/navigation";
 import { extractNumbers } from "@/scripts/helpers/extract.numbers";
+import useGlobal from "@/store";
 
 export const useLogin = ( { closePopup, logIn } ) => {
 
   const [ userNumber, setUserNumber ] = useState("");
   const [ userPassword, setUserPassword ] = useState("");
   const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
+  const [ globalState, globalActions ] = useGlobal()
   const { refresh } = useRouter()
 
   const handleClosePopup = () => {
 
     closePopup();
+    setShowRecoveryPopup(false)
     setUserNumber("");
     setUserPassword("");
 
@@ -57,11 +60,12 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
     if( loginData?.success ) {
 
-      alert("Вход выполнен!")
+      handleClosePopup()
+      globalActions.user.setUser()
 
     }
 
-    if( !recoveryData?.success ){
+    if( recoveryData?.success ){
 
       setShowRecoveryPopup(true)
 

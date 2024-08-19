@@ -1,5 +1,3 @@
-import user from "./states/user"
-import profileActions from "./actions/profile"
 import GlobalHook from "use-global-hook"
 import getInitialProfileState from "./states/profile"
 import quizState from "@/store/states/quiz"
@@ -14,6 +12,9 @@ import tax from "@/store/states/tax";
 import info from "@/store/states/info";
 import taxAgreeActions from "@/store/actions/tax";
 import infoActions from "@/store/actions/info";
+import profileActions from "@/store/actions/profile";
+import userActions from "@/store/actions/user";
+import userData from "@/store/states/user.js";
 
 const initialState = {
 
@@ -24,7 +25,7 @@ const initialState = {
   quiz: quizState,
   tax: tax,
   info: info,
-  user,
+  user: userData,
 
 }
 
@@ -36,7 +37,8 @@ const actions = {
   school: schoolActions,
   quiz: quizActions,
   tax: taxAgreeActions,
-  info: infoActions
+  info: infoActions,
+  user: userActions
 
 }
 

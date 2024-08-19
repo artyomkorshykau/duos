@@ -14,7 +14,7 @@ const SignInPopup = ({
   signUp = () => {},
   bodyClassName = "",
   isOpened = false,
-  closePopup = () => {}
+  closePopup = () => {},
 
 }) => {
 
@@ -39,8 +39,6 @@ const SignInPopup = ({
 
   } )
 
-  console.log(showRecoveryPopup)
-
   if( showRecoveryPopup ) {
 
     return (
@@ -48,7 +46,7 @@ const SignInPopup = ({
       <RecoveryPopup
 
         isOpened = { showRecoveryPopup }
-        closePopup = { () => closePopups() }
+        closePopup = { handleClosePopup }
         bodyClassName = {`${ s.recovery__popup }`}
         email = { recoveryData?.email }
         logIn = { () =>  setShowRecoveryPopup(true) }
