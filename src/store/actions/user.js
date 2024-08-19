@@ -13,13 +13,13 @@ const userActions = {
 
       } else {
 
-        console.error( 'Ошибка проверки токена:', userData.message )
+        console.error( 'Ошибка проверки токена' )
 
       }
 
     } catch ( error ) {
 
-      console.error( 'Ошибка сети или сервера:', error )
+      console.error( 'Ошибка сети или сервера' )
 
     }
 

@@ -30,7 +30,6 @@ const Select = ( props ) => {
   } = props;
 
 
-
   const [ isOpen, setIsOpen ] = useState( false );
   const [ search, setSearch ] = useState( '' );
   const [ selectOption, setSelectOption ] = useState( value );

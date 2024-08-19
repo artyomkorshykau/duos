@@ -38,7 +38,7 @@ const actions = {
   quiz: quizActions,
   tax: taxAgreeActions,
   info: infoActions,
-  user: userActions
+  user: userActions,
 
 }
 

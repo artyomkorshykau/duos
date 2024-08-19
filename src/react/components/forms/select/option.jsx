@@ -31,7 +31,7 @@ const Option = (props) => {
 
       <Checkbox
 
-        title = { option.label }
+        title = { option.id }
         isChecked = { checked }
         setIsChecked = { handleChange }
 
@@ -46,11 +46,11 @@ const Option = (props) => {
     <div
 
       className = {`${ s.option }`}
-      onClick = { () => onClick( option.value ) }
+      onClick = { () => onClick( option.name ) }
 
     >
 
-      { option.label }
+      { option.name }
 
     </div>
 

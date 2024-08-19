@@ -1,67 +1,52 @@
 import s from '../../profile.module.scss'
 import useGlobal from '@/store';
 import Select from '@/react/components/forms/select'
-import { cityList, countryList } from '@/constants/profile'
-import {useEffect, useState} from "react";
+import { cityList } from '@/constants/profile'
 
 const Location = () => {
 
-  const [ globalState, globalActions ] = useGlobal();
+  const [ globalState, globalActions ] = useGlobal()
 
-  //TODO delete this when api will ready
-  const [ isLoaded, setIsLoaded ] = useState( false );
-  useEffect( () => {
+    return (
 
-    setIsLoaded( true );
+      <div className={ `${ s.profile__section }` }>
 
-  }, [] );
+        <p className={ `text-20 ${ s.profile__section__title }` }>
 
-  if ( !isLoaded ) {
+          Местоположение
 
-    return <div>Loading...</div>;
+        </p>
 
-  }
+        <p className={ `text-16 ${ s.profile__section__description }` }>
 
-  return (
+          В какой стране и городе вы физически находитесь или планируете
+          оказывать услуги очно
 
-    <div className = {`${ s.profile__section }`}>
+        </p>
 
-      <p className = {`text-20 ${ s.profile__section__title }`}>
+        <form className={ `${ s.profile__section__filedsWrapper }` }>
 
-        Местоположение
+          <Select
 
-      </p>
+            placeholder='Страна'
+            options={ countries }
+            value={ globalState.profile.country }
+            onChange={ value => globalActions.profile.setCountry( value ) }
 
-      <p className = {`text-16 ${ s.profile__section__description }`}>
+          />
+          <Select
 
-        В какой стране и городе вы физически находитесь или планируете оказывать услуги очно
+            placeholder={ 'Город' }
+            options={ cityList }
+            value={ globalState.profile.city }
+            onChange={ value => globalActions.profile.setCity( value ) }
 
-      </p>
+          />
 
-      <form className = {`${ s.profile__section__filedsWrapper }`}>
+        </form>
 
-        <Select
-
-          placeholder = 'Страна'
-          options = { countryList }
-          value = { globalState.profile.country }
-          onChange = { value => globalActions.profile.setCountry( value ) }
-
-        />
-        <Select
-
-          placeholder = {'Город'}
-          options = { cityList }
-          value = { globalState.profile.city }
-          onChange = { value => globalActions.profile.setCity( value ) }
-
-        />
-
-      </form>
-
-    </div>
-
-  )
+      </div>
+    )
 
 }
 
