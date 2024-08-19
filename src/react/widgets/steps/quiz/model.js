@@ -1,13 +1,12 @@
 import { steps } from "@/constants/quiz.steps";
 import QuizProgress from "@/constants/quiz.progress";
-import Profile from "@/react/widgets/profile/ui";
-import Services from "@/react/widgets/services/ui";
-import School from "@/react/widgets/school/ui";
-import Document from "@/react/widgets/document/ui";
-import Publications from "@/react/widgets/publications/ui";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import s from '@/pages/questionnaire/questionnaire.module.scss'
+import Profile from "@/react/widgets/steps/profile/ui/index.jsx";
+import Services from "@/react/widgets/steps/services/ui/index.jsx";
+import School from "@/react/widgets/steps/school/ui/index.jsx";
+import Publications from "@/react/widgets/steps/publications/ui/index.jsx";
 export const useQuestionnaire = () => {
 
   const [ step, setStep ] = useState( steps.questionnaire )
