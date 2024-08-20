@@ -29,21 +29,21 @@ export const taxStatusesList = [
   {
 
     id: 4,
-    value: 'ip',
+    value: 'individual_entrepreneur',
     label: 'ИП'
 
   },
   {
 
     id: 5,
-    value: 'self-employed',
+    value: 'self_employed',
     label: 'Самозанятый'
 
   },
   {
 
     id: 6,
-    value: 'Individual',
+    value: 'individual',
     label: 'Физическое лицо'
 
   }

@@ -53,7 +53,7 @@ const TaxStatus = () => {
 
         />
 
-        { globalState.profile.taxStatus !== 'Individual' && globalState.profile.taxStatus !== 'self-employed' &&
+        { globalState.profile.taxStatus !== 'individual' && globalState.profile.taxStatus !== 'self_employed' &&
 
           <Textfield
 
@@ -66,7 +66,7 @@ const TaxStatus = () => {
 
         }
 
-        { globalState.profile.taxStatus !== 'Individual' &&
+        { globalState.profile.taxStatus !== 'individual' &&
 
         <Textfield
 

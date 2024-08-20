@@ -1,12 +1,11 @@
 "use client"
 
+import { useEffect, useState } from "react";
 import useGlobal from "@/store";
-import HeaderAuthPanel from "./auth.panel";
 import SignInIcon from "@/react/components/icons/sign.in.icon";
 import DefaultButton from "@/react/components/buttons/default.button";
+import HeaderAuthPanel from "./auth.panel";
 import s from "./header.sign.panel.module.scss";
-import { useEffect, useState } from "react";
-import auth from "@/service/auth.js";
 
 const HeaderSignPanel = ({
 
@@ -21,15 +20,14 @@ const HeaderSignPanel = ({
   const [ logged , setLogged ] = useState(false)
   const [ loading, setLoading ] = useState(true)
 
-  useEffect(()=> {
+  useEffect(() => {
 
-    auth.checkToken().then((res) => {
+    globalActions.user.setUser().then(() => {
 
-      setLogged(res.success)
+      setLogged(true)
       setLoading(false)
 
     })
-
 
   }, [ globalState.user.role_id ])
 
