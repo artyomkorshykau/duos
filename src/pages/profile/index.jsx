@@ -1,8 +1,11 @@
 import Carcas from "@/react/components/containers/carcas/index.jsx";
 import ProfileHeader from "@/react/widgets/profile.header/ui/index.jsx";
 import Profile from "@/react/widgets/profile/index.jsx";
+import { useState } from "react";
 
 const ProfilePage = () => {
+
+  const [ activeTab , setActiveTab ] = useState('Профиль' )
 
   return (
 
@@ -16,7 +19,12 @@ const ProfilePage = () => {
 
         <div>
 
-          <ProfileHeader/>
+          <ProfileHeader
+
+            activeTab = { activeTab }
+            setActiveTab = { setActiveTab }
+
+          />
           <Profile/>
 
         </div>

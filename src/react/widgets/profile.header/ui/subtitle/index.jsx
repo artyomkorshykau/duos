@@ -4,7 +4,7 @@ const Subtitle = () => {
 
   return (
 
-    <div className={ `text-16 ${ s.header_subtitle }` }>
+    <div className={ `text-16 ${ s.header__subtitle }` }>
 
       Данные вашего профиля и настройки уведомлений
 

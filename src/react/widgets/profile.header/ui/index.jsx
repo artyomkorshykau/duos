@@ -7,24 +7,38 @@ import Statistics from "@/react/widgets/profile.header/ui/statistics/index.jsx";
 import Tabs from "@/react/widgets/profile.header/ui/tabs/index.jsx";
 import Title from "@/react/widgets/profile.header/ui/title/index.jsx";
 
-const ProfileHeader = () => {
+const ProfileHeader = ( props ) => {
 
-  const [ collapsed, setCollapsed ] = useState(false )
+  const {
+
+    activeTab,
+    setActiveTab
+
+  } = props
+
+  const [ collapsed, setCollapsed ] = useState(true )
 
   return (
 
     <div
 
-      className = {`${ s.header } ${cssIf( collapsed, s.collapsed )}`}
+      className = {`
+      ${ s.header } 
+      ${cssIf( collapsed, s.collapsed )}`}
       onClick = { () => setCollapsed(!collapsed )}
 
     >
 
-      { !collapsed && <Nav/> }
+       <Nav/>
        <Title/>
-      { !collapsed && <Subtitle/> }
-      { !collapsed && <Statistics/> }
-      <Tabs collapsed = { collapsed }/>
+       <Subtitle/>
+       <Statistics/>
+       <Tabs
+
+         activeTab = { activeTab }
+         setActiveTab = { setActiveTab }
+
+       />
 
     </div>
 
