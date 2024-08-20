@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import s from './progress.bar.module.scss';
+import { useEffect, useState } from 'react'
+import s from './progress.bar.module.scss'
 import ProgressBarIndicatorPoor
-  from "@/react/components/icons/progress.bar.indicator.poor";
+  from '@/react/components/icons/progress.bar.indicator.poor'
 import ProgressBarIndicatorInProgress
-  from "@/react/components/icons/progress.bar.indicator.in.progress";
+  from '@/react/components/icons/progress.bar.indicator.in.progress'
 
 const ProgressBar = ( {
                         photos = [],
