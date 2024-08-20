@@ -2,11 +2,11 @@ import ProgressBar from '@/react/widgets/progress.bar/ui';
 import Pagination from '@/react/widgets/pagination/ui';
 import Autosave from '@/react/widgets/autosave/ui';
 import Carcas from '@/react/components/containers/carcas';
-import Quiz from "@/react/widgets/quiz/ui";
 import { steps } from "@/constants/quiz.steps";
 import { useMemo } from "react";
 import s from './questionnaire.module.scss'
-import { useQuestionnaire } from "@/react/widgets/quiz/model";
+import { useQuestionnaire } from "@/react/widgets/steps/quiz/model.js";
+import Quiz from "@/react/widgets/steps/quiz/ui/index.jsx";
 
 export default function ProfilePage() {
 
