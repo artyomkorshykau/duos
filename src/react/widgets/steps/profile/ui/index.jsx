@@ -4,6 +4,7 @@ import Nickname from "@/react/widgets/steps/profile/ui/nickname/ui/index.jsx";
 import TaxStatus
   from "@/react/widgets/steps/profile/ui/tax.status/ui/index.jsx";
 import Contacts from "@/react/widgets/steps/profile/ui/contacts/ui/index.jsx";
+import Location from "@/react/widgets/steps/profile/ui/location/ui/index.jsx";
 
 const Profile = () => {
 

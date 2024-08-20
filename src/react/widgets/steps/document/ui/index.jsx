@@ -1,9 +1,9 @@
 import s from './document.module.scss'
 import useGlobal from '@/store'
 import AccordionDocument from './accordion.document'
-import AccordionParent from '../../accordion.parent'
 import Attachment from '@/react/components/attachment'
 import { useEffect } from 'react'
+import AccordionParent from "@/react/widgets/accordion.parent/index.jsx";
 
 const Document = () => {
 

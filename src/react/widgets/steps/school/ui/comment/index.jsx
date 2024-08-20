@@ -1,7 +1,6 @@
-import s from '@/react/widgets/school/ui/school.module.scss'
+import s from '@/react/widgets/steps/school/ui/school.module.scss'
 import Textarea from '@/react/components/forms/textarea'
 import useGlobal from "@/store";
-import Save from "@/react/components/icons/save";
 
 const Comment = () => {
 

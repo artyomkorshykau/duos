@@ -7,6 +7,7 @@ import Profile from "@/react/widgets/steps/profile/ui/index.jsx";
 import Services from "@/react/widgets/steps/services/ui/index.jsx";
 import School from "@/react/widgets/steps/school/ui/index.jsx";
 import Publications from "@/react/widgets/steps/publications/ui/index.jsx";
+import Document from "@/react/widgets/steps/document/ui/index.jsx";
 export const useQuestionnaire = () => {
 
   const [ step, setStep ] = useState( steps.questionnaire )
