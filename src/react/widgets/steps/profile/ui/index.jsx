@@ -1,9 +1,9 @@
 import s from './profile.module.scss'
-import FullName from '@/react/widgets/profile/ui/full.name/ui';
-import Nickname from '@/react/widgets/profile/ui/nickname/ui';
-import TaxStatus from '@/react/widgets/profile/ui/tax.status/ui';
-import Location from '@/react/widgets/profile/ui/location/ui';
-import Contacts from '@/react/widgets/profile/ui/contacts/ui';
+import FullName from "@/react/widgets/steps/profile/ui/full.name/ui/index.jsx";
+import Nickname from "@/react/widgets/steps/profile/ui/nickname/ui/index.jsx";
+import TaxStatus
+  from "@/react/widgets/steps/profile/ui/tax.status/ui/index.jsx";
+import Contacts from "@/react/widgets/steps/profile/ui/contacts/ui/index.jsx";
 
 const Profile = () => {
 

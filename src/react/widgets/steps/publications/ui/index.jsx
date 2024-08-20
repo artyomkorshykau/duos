@@ -2,10 +2,11 @@
 
 import AccordionParent from "@/react/widgets/accordion.parent";
 import s from './publications.module.scss'
-import { usePublications } from "@/react/widgets/publications/model";
+import { usePublications } from "@/react/widgets/steps/publications/model.js";
 import AboutYourselfContent
-  from "@/react/widgets/publications/ui/about.yourself";
-import PublicationsContent from "@/react/widgets/publications/ui/publications";
+  from "@/react/widgets/steps/publications/ui/about.yourself/index.jsx";
+import PublicationsContent
+  from "@/react/widgets/steps/publications/ui/publications/index.jsx";
 
 const Publications = () => {
 

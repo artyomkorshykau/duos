@@ -2,8 +2,9 @@
 
 import PublicationCard from "@/react/components/publication.card";
 import useGlobal from "@/store";
-import ProgressBar from "@/react/widgets/publications/ui/progress.bar";
 import { v1 } from "uuid";
+import ProgressBar
+  from "@/react/widgets/steps/publications/ui/progress.bar/index.jsx";
 
 const PublicationsContent = () => {
 

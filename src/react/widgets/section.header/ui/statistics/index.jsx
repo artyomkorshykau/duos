@@ -1,4 +1,4 @@
-import s from "@/react/widgets/profile.header/ui/profile.header.module.scss";
+import s from "@/react/widgets/section.header/ui/section.header.module.scss";
 import Eye from "@/react/components/icons/eye.icon.jsx";
 import Bookmark from "@/react/components/icons/bookmark.jsx";
 import Resends from "@/react/components/icons/resends.jsx";

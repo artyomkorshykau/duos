@@ -1,11 +1,11 @@
 "use client"
 
-import s from "@/react/widgets/publications/ui/publications.module.scss";
+import s from "@/react/widgets/steps/publications/ui/publications.module.scss";
 import Textarea from "@/react/components/forms/textarea";
 import useGlobal from "@/store";
 import { useEffect, useState } from "react";
 import Attachment from "@/react/components/attachment";
-import ProgressBar from "@/react/widgets/publications/ui/progress.bar";
+import ProgressBar from "@/react/widgets/steps/publications/ui/progress.bar";
 
 const AboutYourselfContent = ( props ) => {
 

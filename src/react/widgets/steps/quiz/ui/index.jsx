@@ -2,11 +2,11 @@
 
 import s from './quiz.module.scss'
 import DefaultButton from "@/react/components/buttons/default.button";
-import FormLogo from "@/react/widgets/quiz/ui/form.img";
-import Titles from "@/react/widgets/quiz/ui/titles";
-import ContextNotise from "@/react/widgets/quiz/ui/context.notise";
-import Steps from "@/react/widgets/quiz/ui/steps";
-import { useQuestionnaire, useQuiz } from "@/react/widgets/quiz/model";
+import ContextNotise
+  from "@/react/widgets/steps/quiz/ui/context.notise/index.jsx";
+import FormLogo from "@/react/widgets/steps/quiz/ui/form.img/index.jsx";
+import Titles from "@/react/widgets/steps/quiz/ui/titles/index.jsx";
+import Steps from "@/react/widgets/steps/quiz/ui/steps/index.jsx";
 
 const Quiz = ( props ) => {
 

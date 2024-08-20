@@ -1,8 +1,9 @@
-import CompletedDirections from '../../completed.directions'
 import s from './services.module.scss'
-import AddDirection from '../../add.direction'
 import useGlobal from '@/store'
 import AccordionService from './accordion.service'
+import CompletedDirections
+  from "@/react/widgets/completed.directions/index.jsx";
+import AddDirection from "@/react/widgets/add.direction/index.jsx";
 
 const Services = () => {
 

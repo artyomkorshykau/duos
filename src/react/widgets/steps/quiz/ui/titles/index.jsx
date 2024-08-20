@@ -1,4 +1,4 @@
-import s from "@/react/widgets/quiz/ui/quiz.module.scss";
+import s from "@/react/widgets/steps/quiz/ui/quiz.module.scss";
 import QuizProgress from '@/constants/quiz.progress';
 
 const Titles = ({

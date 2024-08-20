@@ -1,4 +1,4 @@
-import s from "@/react/widgets/profile.header/ui/profile.header.module.scss";
+import s from "@/react/widgets/section.header/ui/section.header.module.scss";
 import Arrow from "@/react/components/icons/arrow.jsx";
 import NotiseInfo from "@/react/components/icons/notise.info.jsx";
 import Link from "next/link";

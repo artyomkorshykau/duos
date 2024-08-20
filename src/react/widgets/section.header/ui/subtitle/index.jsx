@@ -1,4 +1,4 @@
-import s from "@/react/widgets/profile.header/ui/profile.header.module.scss";
+import s from "@/react/widgets/section.header/ui/section.header.module.scss";
 
 const Subtitle = () => {
 

@@ -1,6 +1,5 @@
-import s from "@/react/widgets/profile.header/ui/profile.header.module.scss";
+import s from "@/react/widgets/section.header/ui/section.header.module.scss";
 import DefaultButton from "@/react/components/buttons/default.button/index.jsx";
-import { useState } from "react";
 import cssIf from "@/scripts/helpers/css.if.js";
 
 const Tabs = ( props ) => {

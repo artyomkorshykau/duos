@@ -1,5 +1,5 @@
 import Carcas from "@/react/components/containers/carcas/index.jsx";
-import ProfileHeader from "@/react/widgets/profile.header/ui/index.jsx";
+import ProfileHeader from "@/react/widgets/section.header/ui/index.jsx";
 import Profile from "@/react/widgets/profile/index.jsx";
 import { useState } from "react";
 
