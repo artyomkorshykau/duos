@@ -16,7 +16,7 @@ const ProfileInfo = () => {
       
       <Nickname/>
       <Contacts/>
-      <AboutYourself disabled editable/>
+      <AboutYourself/>
       
       <div className = { `${ s.profile__right_side__profile_info__separator }`}></div>
       
