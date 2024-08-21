@@ -1,4 +1,5 @@
 import expert from "@/service/expert.js";
+import locations from "@/service/locations.js";
 import QuizProgress from '@/constants/quiz.progress';
 
 const profileActions = {
@@ -24,10 +25,8 @@ const profileActions = {
             taxStatus: data.profile.temp.tax_status,
             taxName: data.profile.temp.tax_name,
             taxIIN: data.profile.temp.tax_inn,
-            country: 'countryList',
-            city: 'cityList',
-            // country: data.profile.temp.country_id,
-            // city: data.profile.temp.city_id,
+            country: store.state.profile.countries.find((item) => item.id === data.profile.temp.country_id),
+            city: store.state.profile.cities.find((item) => item.id === data.profile.temp.city_id),
             phoneNumber: data.profile.temp.phone,
             email: data.profile.temp.email,
             progress: 1
@@ -164,9 +163,82 @@ const profileActions = {
 
   async sendProfile(store) {
 
-    await expert.sendExpertDataStep1(store.state.profile)
+    await expert.sendExpertDataStep1(store.state.profile).then((res) => {
+      store.setState({ profile: { ...store.state.profile, errors: res.errors } })
+    })
 
-  }
+  },
+
+  getCountries: async ( store ) => {
+
+    try {
+
+      const data = await locations.getCountries(null, null)
+
+      if ( data && data.success ) {
+
+        store.setState({
+          profile: {
+
+            ...store.state.profile,
+            countries: data.countries.map((country) => ({
+              id: country.id,
+              value: country.name,
+              label: country.name,
+            })),
+            isLoading: true
+
+          },
+        });
+
+      } else {
+
+        console.error( 'Ошибка загрузки стран', data.message )
+
+      }
+
+    } catch ( error ) {
+
+      console.error( 'Ошибка сети или сервера:', error )
+
+    }
+
+  },
+
+  getCities: async ( store ) => {
+
+    try {
+
+      const data = await locations.getCities(1, null, null)
+
+      if ( data && data.success ) {
+
+        store.setState({
+          profile: {
+
+            ...store.state.profile,
+            cities: data.cities.map((city) => ({
+              id: city.id,
+              value: city.name,
+              label: city.name,
+            })),
+          },
+
+        });
+
+      } else {
+
+        console.error( 'Ошибка загрузки стран', data.message )
+
+      }
+
+    } catch ( error ) {
+
+      console.error( 'Ошибка сети или сервера:', error )
+
+    }
+
+  },
 
 }
 

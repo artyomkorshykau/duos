@@ -26,6 +26,7 @@ const Contacts = () => {
           value = { globalState.profile.phoneNumber }
           onChange = { (e) => globalActions.profile.setPhoneNumber(e.target.value) }
           type = 'phone'
+          error = { globalState.profile.errors?.phone }
 
         />
 
@@ -35,6 +36,7 @@ const Contacts = () => {
           placeholder = {'E-mail'}
           value = { globalState.profile.email }
           onChange = { (e) => globalActions.profile.setEmail(e.target.value)}
+          error = { globalState.profile.errors?.email }
 
         />
 

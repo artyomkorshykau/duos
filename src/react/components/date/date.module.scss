@@ -14,6 +14,12 @@
     border-radius: $apx-28;
     position: relative;
 
+    &__error {
+  
+      border-color: var(--color-notice-error-500) !important;
+  
+    }
+
     &__header_container {
 
       height: $apx-62;

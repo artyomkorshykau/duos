@@ -22,6 +22,7 @@ const DateField = ( props ) => {
     placeholder,
     value,
     onChange,
+    error = ''
   } = props;
 
   const [ globalState, globalActions ] = useGlobal();
@@ -131,7 +132,7 @@ const DateField = ( props ) => {
 
     <div
 
-      className = {`${ s.wrapper }`}
+      className = {`${ s.wrapper} `}
       ref={containerRef}
 
     >
@@ -142,6 +143,7 @@ const DateField = ( props ) => {
           ${ s.wrapper__container }
           ${ cssIf( isOpen, s.open ) }
           ${ cssIf( !!value, s.active ) }
+          ${ cssIf( error, s.wrapper__container__error ) }
           ${ className }
         `}
 

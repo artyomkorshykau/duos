@@ -30,6 +30,7 @@ const Nickname = () => {
           placeholder = {'Псевдоним'}
           value = { globalState.profile.nickName }
           onChange = { (e) => globalActions.profile.setNickName(e.target.value)}
+          error = { globalState.profile.errors?.pseudonym }
 
         />
 

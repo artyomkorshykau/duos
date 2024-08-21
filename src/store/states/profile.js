@@ -13,6 +13,10 @@ const profileState = {
     phoneNumber: '',
     email: '',
     taxIIN: '',
+    countries: null,
+    cities: null,
+    isLoading: false,
+    errors: null
 }
 
 export default profileState

@@ -45,6 +45,7 @@ const FullName = () => {
           placeholder = 'Фамилия'
           value = { globalState.profile.lastName }
           onChange = { ( e ) => globalActions.profile.setLastName( e.target.value ) }
+          error = { globalState.profile.errors?.last_name }
 
         />
 
@@ -54,6 +55,7 @@ const FullName = () => {
           placeholder = 'Имя'
           value = {globalState.profile.firstName}
           onChange = { ( e ) => globalActions.profile.setFirstName( e.target.value ) }
+          error = { globalState.profile.errors?.first_name }
 
         />
         <Textfield
@@ -62,6 +64,7 @@ const FullName = () => {
           placeholder = 'Отчество'
           value = { globalState.profile.surName }
           onChange = { ( e ) => globalActions.profile.setSurName( e.target.value ) }
+          error = { globalState.profile.errors?.mid_name }
 
         />
         <DateField
@@ -69,6 +72,7 @@ const FullName = () => {
           placeholder = 'Дата рождения'
           value = { globalState.profile.birthDate }
           onChange = { ( value ) => globalActions.profile.setBirthDate( value ) }
+          error = { globalState.profile.errors?.birthday }
 
         />
         <Select

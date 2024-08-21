@@ -27,6 +27,8 @@ export default function ProfilePage() {
 
   useEffect(() => {
 
+    globalActions.profile.getCountries()
+    globalActions.profile.getCities()
     globalActions.profile.getProfile()
 
   }, [])

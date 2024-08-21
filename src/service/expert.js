@@ -28,20 +28,22 @@ const expert = {
             first_name: profile.firstName,
             mid_name: profile.surName,
             last_name: profile.lastName,
-            birthday: format(new Date(profile.birthDate), 'yyyy-MM-dd'),
+            birthday: profile.birthDate && format(new Date(profile.birthDate), 'yyyy-MM-dd'),
             gender: profile.gender,
             pseudonym: profile.nickName,
             tax_status: profile.taxStatus,
             tax_name: profile.taxName,
             tax_inn: profile.taxIIN,
-            country_id: 1,
-            city_id: 1,
+            country_id: profile.country.id || 1,
+            city_id: profile.city.id || 1,
             email: profile.email,
-            phone: profile.phoneNumber,
-            // phone: parseInt(profile.phoneNumber.replace(/\D/g, '')),
             is_temp: true
     
           };
+
+          if (profile.phoneNumber) {
+            updatedProfile.phone = parseInt(profile.phoneNumber.replace(/\D/g, ''));
+          }
   
       const response = await fetch(`${BASE_URL}/expert/step1`, {
   

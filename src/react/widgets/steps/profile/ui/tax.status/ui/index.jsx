@@ -61,6 +61,7 @@ const TaxStatus = () => {
             placeholder={ 'Полное наименование' }
             value = { globalState.profile.taxName }
             onChange = { ( e ) => globalActions.profile.setTaxName( e.target.value ) }
+            error = { globalState.profile.errors?.tax_name }
 
           />
 
@@ -74,6 +75,7 @@ const TaxStatus = () => {
           placeholder = { 'ИНН' }
           value = { globalState.profile.taxIIN }
           onChange = { ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
+          error = { globalState.profile.errors?.tax_inn }
 
         />
 

@@ -1,13 +1,30 @@
-import s from '../../profile.module.scss'
-import useGlobal from '@/store';
+import { useEffect, useState } from "react";
 import Select from '@/react/components/forms/select'
-import { cityList } from '@/constants/profile'
+import useGlobal from '@/store';
+import s from '../../profile.module.scss'
 
 const Location = () => {
 
   const [ globalState, globalActions ] = useGlobal()
 
-    return (
+  const [ isLoaded, setIsLoaded ] = useState( false );
+
+  useEffect( () => {
+
+    setIsLoaded( true );
+
+  }, [] );
+
+  if ( !isLoaded ) {
+
+    return <div>Loading...</div>;
+
+  }
+
+    return ( 
+    
+    <>
+      { globalState.profile.isLoading === true &&
 
       <div className={ `${ s.profile__section }` }>
 
@@ -29,23 +46,25 @@ const Location = () => {
           <Select
 
             placeholder='Страна'
-            options={ countries }
-            value={ globalState.profile.country }
-            onChange={ value => globalActions.profile.setCountry( value ) }
+            options={ globalState.profile.countries }
+            value={ globalState.profile.country?.value }
+            onChange={ value => globalActions.profile.setCountry( globalState.profile.countries.find((item) => item.value === value) ) }
 
           />
           <Select
 
             placeholder={ 'Город' }
-            options={ cityList }
-            value={ globalState.profile.city }
-            onChange={ value => globalActions.profile.setCity( value ) }
+            options={ globalState.profile.cities }
+            value={ globalState.profile.city?.value }
+            onChange={ value => globalActions.profile.setCity( globalState.profile.cities.find((item) => item.value === value) ) }
 
           />
 
         </form>
 
       </div>
+      }
+      </>
     )
 
 }
