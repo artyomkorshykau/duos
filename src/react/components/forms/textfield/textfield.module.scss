@@ -31,6 +31,37 @@
 
   }
 
+  &__disabled {
+
+    input {
+
+      background: var(--color-accent-background) !important;
+      cursor: pointer;
+
+    }
+
+  }
+
+  &__editable {
+
+    &:hover {
+
+      input {
+
+        border-color: #1A97E2;
+
+      }
+
+      .editable {
+
+        opacity: 1;
+
+      }
+
+    }
+
+  }
+
   &.filled input {
 
     background-color: var(--color-bw-white);
@@ -133,26 +164,26 @@
 
   }
 
-    &__cross {
+  &__cross {
 
-      cursor: pointer;
+    cursor: pointer;
 
-    }
+  }
 
-    &__save {
+  &__save {
 
-      width: $apx-40;
-      height: $apx-36;
-      border-radius: $apx-40;
-      padding: $apx-8 $apx-12;
-      background-color: var(--color-accent-blue-700);
+    width: $apx-40;
+    height: $apx-36;
+    border-radius: $apx-40;
+    padding: $apx-8 $apx-12;
+    background-color: var(--color-accent-blue-700);
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 
-    }
+  }
 
 }
 
@@ -173,10 +204,20 @@
     white-space: pre-line;
     top: $apx-12;
     position: absolute;
-    padding-right: $apx-12;  
+    padding-right: $apx-12;
     padding-left: $apx-52;
     font-size: $apx-16;
 
   }
+
+}
+
+.editable {
+
+  opacity: 0;
+  position: absolute;
+  bottom: $apx-22;
+  right: $apx-20;
+  cursor: pointer;
 
 }

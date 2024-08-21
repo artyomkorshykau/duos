@@ -20,9 +20,6 @@
 
 }
 
-/* КАСТОМНЫЙ СКРОЛЛБАР */
-
-
 html,
 body {
  
@@ -44,6 +41,7 @@ body {
   
   z-index: 1;
   background: var(--color-accent-background);
+  overflow: hidden;
 
 }
 

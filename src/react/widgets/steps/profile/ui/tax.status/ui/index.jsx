@@ -1,16 +1,15 @@
 'use client'
 
-import Textfield from '@/react/components/forms/textfield';
-import useGlobal from '@/store';
-import { taxStatusesList } from '@/constants/profile';
-import Select from '@/react/components/forms/select';
-import WarningIcon from '@/react/components/icons/warning';
-import s from '../../profile.module.scss';
-import { useEffect, useState } from "react";
-import TaxInfoPopup from "@/react/popups/tax.info.popup";
-import DeletePopup from "@/react/popups/delete.popup";
+import Textfield from '@/react/components/forms/textfield'
+import useGlobal from '@/store'
+import { taxStatusesList } from '@/constants/profile'
+import Select from '@/react/components/forms/select'
+import WarningIcon from '@/react/components/icons/warning'
+import s from '../../profile.module.scss'
+import { useEffect, useState } from 'react'
+import TaxInfoPopup from '@/react/popups/tax.info.popup'
 
-const TaxStatus = () => {
+const TaxStatus = ( { disabled }) => {
 
   const [ globalState, globalActions ] = useGlobal();
 
@@ -50,6 +49,7 @@ const TaxStatus = () => {
           onChange = { value => globalActions.profile.setTaxStatus( value ) }
           onIconClick = { () => globalActions.tax.showTaxInfoPopup('show') }
           isFirstIconClick = { !globalState.tax.taxAgree }
+          disabled = { disabled }
 
         />
 
@@ -61,6 +61,7 @@ const TaxStatus = () => {
             placeholder={ 'Полное наименование' }
             value = { globalState.profile.taxName }
             onChange = { ( e ) => globalActions.profile.setTaxName( e.target.value ) }
+            disabled = { disabled }
 
           />
 
@@ -74,6 +75,7 @@ const TaxStatus = () => {
           placeholder = { 'ИНН' }
           value = { globalState.profile.taxIIN }
           onChange = { ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
+          disabled = { disabled }
 
         />
 

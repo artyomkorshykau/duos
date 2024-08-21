@@ -1,11 +1,11 @@
-import { useState } from "react";
-import Eye from "@/react/components/icons/eye.icon";
-import Cross from "@/react/components/icons/cross";
-import InputMask from "react-input-mask";
-import Save from "@/react/components/icons/save";
-import NotiseError from "@/react/components/icons/notise_error";
-import cssIf from '@/scripts/helpers/css.if';
-import s from './textfield.module.scss';
+import { useState } from 'react'
+import Eye from '@/react/components/icons/eye.icon'
+import Cross from '@/react/components/icons/cross'
+import InputMask from 'react-input-mask'
+import Save from '@/react/components/icons/save'
+import cssIf from '@/scripts/helpers/css.if'
+import s from './textfield.module.scss'
+import Pencil from '@/react/components/icons/pencil.jsx'
 
 const Textfield = ( props ) => {
 
@@ -29,18 +29,20 @@ const Textfield = ( props ) => {
     onIconClick,
     classNameControls,
     clearFiled,
+    disabled,
+    editable,
     ...inputParams
 
   } = props;
-
-  const showSaveButton = (value) => /\d.*\d/.test(value)
 
   return (
 
     <div className = {`
     ${ s.textfield } 
     ${ cssIf( value, s.filled ) } 
-    ${ cssIf( error, s.textfield__error ) } 
+    ${ cssIf( error, s.textfield__error ) }
+    ${ cssIf( disabled, s.textfield__disabled )}
+    ${ cssIf( editable, s.textfield__editable )}
     ${ className }`}
     >
 
@@ -57,6 +59,7 @@ const Textfield = ( props ) => {
             onChange={ onChange }
             placeholder={ '' }
             type={ 'tel' }
+            disabled={disabled}
 
           >
 
@@ -94,8 +97,9 @@ const Textfield = ( props ) => {
                 value={ value }
                 type={ hide && password ? 'password' : type }
                 placeholder={''}
-                className={ `${ inputClassName } ${ cssIf( placeholderIcon, s.hasicon ) }` }
+                className = { `${ inputClassName } ${ cssIf( placeholderIcon, s.hasicon ) }` }
                 onChange={ onChange }
+                disabled = { disabled }
                 { ...inputParams }
                 onClick={ ( e ) => {
 
@@ -141,7 +145,7 @@ const Textfield = ( props ) => {
 
       }
 
-      { showSaveButton(value) && classNameControls &&
+      { classNameControls &&
 
         <div className = {`${ classNameControls }`}>
 
@@ -166,6 +170,16 @@ const Textfield = ( props ) => {
 
         </div>
 
+      }
+      
+      { editable &&
+        
+        <div className = { `${ s.editable }`}>
+          
+          <Pencil/>
+          
+        </div>
+        
       }
 
     </div>

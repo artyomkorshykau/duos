@@ -313,6 +313,12 @@
 
 }
 
+.disabled {
+
+  background: var(--color-accent-background) !important;
+
+}
+
 .header_active {
 
   font-size: $apx-13;

@@ -285,11 +285,23 @@
 
   transform: translateY(-50%) rotate(180deg);
 
+  &__disabled {
+
+    transform: none;
+
+  }
+
 }
 
 .active {
 
   background: var(--color-bw-white);
+
+}
+
+.disabled {
+
+  background: var(--color-accent-background) !important;
 
 }
 
