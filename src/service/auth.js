@@ -1,7 +1,7 @@
-import { BASE_URL } from "@/constants/urls.js";
-import { headers } from "@/service/headers.js";
-import { extractNumbers } from "@/scripts/helpers/extract.numbers.js";
-import { getCookie } from "@/scripts/helpers/get.token.js";
+import { BASE_URL } from '@/constants/urls.js'
+import { headers } from '@/service/headers.js'
+import { extractNumbers } from '@/scripts/helpers/extract.numbers.js'
+import { getCookie } from '@/scripts/helpers/get.token.js'
 
 const auth = {
 
@@ -17,7 +17,7 @@ const auth = {
 
     const data = await response.json();
 
-    if ( data.success ) {
+    if ( data.token ) {
 
       document.cookie = `token=${data.token}; path=/; secure;`
 
@@ -39,7 +39,7 @@ const auth = {
 
     const data = await response.json();
 
-    if ( data.success ) {
+    if ( data.token ) {
 
       document.cookie = `token=${data.token}; path=/; secure;`
 

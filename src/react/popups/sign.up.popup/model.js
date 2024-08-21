@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import auth from "@/service/auth";
-import { useEffect, useState } from "react";
-import useGlobal from "@/store/index.js";
+import { useMutation } from '@tanstack/react-query'
+import auth from '@/service/auth'
+import { useEffect, useState } from 'react'
+import useGlobal from '@/store/index.js'
 
 export const useSignup = ( { closePopup } ) => {
 
@@ -40,36 +40,36 @@ export const useSignup = ( { closePopup } ) => {
 
   const getNewCode = () => {
 
-    useEffect(() => {
-
-      if (codeModeOpened) {
-
-        const id = setInterval(() => {
-
-          if (time > 0) {
-
-            setTime(time - 1)
-
-          } else {
-
-            setShowTimer(true)
-
-          }
-
-        }, 1000)
-
-        setIntervalId(id)
-        return () => clearInterval(id)
-
-      }
-
-    }, [codeModeOpened, time])
-
     alert('отправить новый код')
     setShowTimer( false )
     setTime( 31 )
 
   };
+  
+  useEffect(() => {
+    
+    if (codeModeOpened) {
+      
+      const id = setInterval(() => {
+        
+        if (time > 0) {
+          
+          setTime(time - 1)
+          
+        } else {
+          
+          setShowTimer(true)
+          
+        }
+        
+      }, 1000)
+      
+      setIntervalId(id)
+      return () => clearInterval(id)
+      
+    }
+    
+  }, [codeModeOpened, time])
 
   useEffect(() => {
 
