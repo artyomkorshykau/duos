@@ -22,7 +22,6 @@ const DateField = ( props ) => {
     placeholder,
     value,
     onChange,
-    disabled,
   } = props;
 
   const [ globalState, globalActions ] = useGlobal();
@@ -143,22 +142,13 @@ const DateField = ( props ) => {
           ${ s.wrapper__container }
           ${ cssIf( isOpen, s.open ) }
           ${ cssIf( !!value, s.active ) }
-          ${ cssIf( disabled, s.disabled ) }
           ${ className }
         `}
 
       >
 
         <div className = {`${ s.wrapper__container__header_container }`}
-             onClick = { () => {
-               
-               if (!disabled) {
-                 
-                 setIsOpen((prev) => !prev)
-                 
-               }
-               
-             }}
+             onClick = { () => setIsOpen((prev) => !prev) }
         >
 
           <div

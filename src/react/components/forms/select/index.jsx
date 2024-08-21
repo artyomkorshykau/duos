@@ -25,7 +25,6 @@ const Select = ( props ) => {
     onIconClick,
     isFirstIconClick,
     icon,
-    disabled,
     ...selectParams
 
   } = props;
@@ -127,7 +126,6 @@ const Select = ( props ) => {
         ${ s.wrapper__container }
         ${ cssIf( isOpen, s.open ) }
         ${ cssIf( !!selectOption, s.active ) }
-        ${ cssIf( disabled, s.disabled ) }
         ${ className }
         `}
 
@@ -231,7 +229,6 @@ const Select = ( props ) => {
               className = {`
               ${ s.wrapper__container__placeholder_container__icon_container }
               ${ cssIf( isOpen, s.icon_container_open ) }
-              ${ cssIf( disabled, s.icon_container_open__disabled ) }
             `}
           >
 
@@ -241,7 +238,7 @@ const Select = ( props ) => {
 
         </div>
 
-        { isOpen && !disabled && (
+        { isOpen && (
 
           <div className = {`${ s.wrapper__container__itemscontainer }`}>
 
