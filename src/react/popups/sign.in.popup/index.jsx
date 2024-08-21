@@ -1,12 +1,12 @@
-import Popup from "../popup";
-import Textfield from "@/react/components/forms/textfield";
-import SignInIconWhite from "@/react/components/icons/sign.in.icon.white";
-import DefaultButton from "@/react/components/buttons/default.button";
-import s from "./sign.in.module.scss";
-import { useLogin } from "@/react/popups/sign.in.popup/model";
-import cssIf from "@/scripts/helpers/css.if";
-import { extractNumbers } from "@/scripts/helpers/extract.numbers";
-import RecoveryPopup from "@/react/popups/recovery.popup";
+import Popup from '../popup'
+import Textfield from '@/react/components/forms/textfield'
+import SignInIconWhite from '@/react/components/icons/sign.in.icon.white'
+import DefaultButton from '@/react/components/buttons/default.button'
+import s from './sign.in.module.scss'
+import { useLogin } from '@/react/popups/sign.in.popup/model'
+import cssIf from '@/scripts/helpers/css.if'
+import { extractNumbers } from '@/scripts/helpers/extract.numbers'
+import RecoveryPopup from '@/react/popups/recovery.popup'
 
 const SignInPopup = ({
 
@@ -30,7 +30,8 @@ const SignInPopup = ({
     showRecoveryPopup,
     setShowRecoveryPopup,
     recoveryData,
-    loginData
+    loginData,
+    error
 
   } = useLogin( {
 
@@ -78,7 +79,7 @@ const SignInPopup = ({
             withTitle = { false }
             onChange = { (e) => setUserNumber(e.target.value) }
             placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
-            error = { loginData?.error }
+            error = { error }
             type = 'phone'
             className = {`${s.signin_content__field}`}
 
@@ -90,7 +91,7 @@ const SignInPopup = ({
             onChange = { (e) => setUserPassword(e.target.value) }
             withTitle = { false }
             className = {`${s.signin_content__field}`}
-            error = { loginData?.error }
+            error = { error }
             placeholder = "Пароль"
             maxLength = { 5 }
             password

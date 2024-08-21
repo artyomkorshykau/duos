@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import auth from "@/service/auth";
-import { useRouter } from "next/navigation";
-import { extractNumbers } from "@/scripts/helpers/extract.numbers";
-import useGlobal from "@/store";
+import { useEffect, useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import auth from '@/service/auth'
+import { useRouter } from 'next/navigation'
+import { extractNumbers } from '@/scripts/helpers/extract.numbers'
+import useGlobal from '@/store'
 
 export const useLogin = ( { closePopup, logIn } ) => {
 
@@ -12,6 +12,7 @@ export const useLogin = ( { closePopup, logIn } ) => {
   const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
   const [ globalState, globalActions ] = useGlobal()
   const { refresh } = useRouter()
+  const [ error, setError ] = useState(false)
 
   const handleClosePopup = () => {
 
@@ -19,6 +20,7 @@ export const useLogin = ( { closePopup, logIn } ) => {
     setShowRecoveryPopup(false)
     setUserNumber("");
     setUserPassword("");
+    setError(false)
 
   };
 
@@ -26,6 +28,7 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
     mutationKey: [ 'sign-in' ],
     mutationFn: ({ phone, password }) => auth.login(phone, password),
+    onSuccess: (error) => { !error.success ? setError(true) : null }
 
   })
 
@@ -86,7 +89,8 @@ export const useLogin = ( { closePopup, logIn } ) => {
     showRecoveryPopup,
     recoveryData,
     setShowRecoveryPopup,
-    loginData
+    loginData,
+    error
 
   }
 

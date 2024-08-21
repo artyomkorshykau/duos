@@ -15,6 +15,7 @@ export const useSignup = ( { closePopup } ) => {
   const [ intervalId, setIntervalId ] = useState( null );
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
   const [ globalState, globalActions ] = useGlobal()
+  const [ error, setError ] = useState(false)
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -23,6 +24,7 @@ export const useSignup = ( { closePopup } ) => {
 
     mutationKey: [ 'sign-up' ],
     mutationFn: ({ phone, email, code }) => auth.register(phone, email, code ),
+    onSuccess: (error) => { !error.success ? setError(true) : null }
 
   })
 
@@ -33,6 +35,7 @@ export const useSignup = ( { closePopup } ) => {
     setUserEmail("");
     setUserCode("");
     setCodeModeOpened(false)
+    setError(false)
 
   };
 
@@ -94,7 +97,7 @@ export const useSignup = ( { closePopup } ) => {
   }, [ userCode ])
 
   useEffect(()=> {
-
+    
     if( data?.success ) {
 
       setCodeModeOpened(true)
@@ -129,7 +132,8 @@ export const useSignup = ( { closePopup } ) => {
     minutes,
     seconds,
     getNewCode,
-    data
+    data,
+    error
 
   }
 
