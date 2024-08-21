@@ -25,11 +25,10 @@ const Select = ( props ) => {
     onIconClick,
     isFirstIconClick,
     icon,
+    disabled,
     ...selectParams
 
   } = props;
-
-
 
   const [ isOpen, setIsOpen ] = useState( false );
   const [ search, setSearch ] = useState( '' );
@@ -61,6 +60,8 @@ const Select = ( props ) => {
   };
 
   const toggleSelect = () => {
+
+    if ( disabled ) return;
 
     if ( !isFirstIconClick ) {
 
@@ -139,8 +140,13 @@ const Select = ( props ) => {
 
               <div
 
-                className = {`${ s.wrapper__container__placeholder_container__placeholder__icon }`}
+                className = {`
+                  ${ s.wrapper__container__placeholder_container__placeholder__icon }
+                  ${ cssIf( disabled, s.placeholderIcon_disabled )}
+                `}
                 onClick = { (e) => {
+
+                  if ( disabled ) return;
 
                   !isOpen && e.stopPropagation();
                   onIconClick?.();
@@ -166,6 +172,7 @@ const Select = ( props ) => {
                 ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__placeholder }
                 ${ cssIf( isOpen, s.placeholderactive ) }
                 ${ cssIf( selectOption, s.placeholderactive ) }
+                ${ cssIf( disabled, s.placeholderdisabled ) }
               `}>
 
                 { placeholder }
@@ -177,6 +184,7 @@ const Select = ( props ) => {
                 <div className = {`
                   ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__item }
                   ${ cssIf( selectOption, s.itemactive )}
+                  ${ cssIf( disabled, s.itemactive_disabled )}
                 `}>
 
                   { options.find( option => option.value === selectOption ).label }
@@ -229,6 +237,7 @@ const Select = ( props ) => {
               className = {`
               ${ s.wrapper__container__placeholder_container__icon_container }
               ${ cssIf( isOpen, s.icon_container_open ) }
+              ${ cssIf( disabled, s.icon_disabled ) }
             `}
           >
 

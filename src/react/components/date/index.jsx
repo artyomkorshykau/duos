@@ -22,6 +22,7 @@ const DateField = ( props ) => {
     placeholder,
     value,
     onChange,
+    disabled,
   } = props;
 
   const [ globalState, globalActions ] = useGlobal();
@@ -38,6 +39,13 @@ const DateField = ( props ) => {
 
   const containerRef = useRef( null );
   const btnsContainersContainerRef = useRef( null );
+
+  const onToggleOpen = () => {
+
+    if ( disabled ) return;
+
+    setIsOpen( prev => !prev );
+  }
 
   const handleChangeDate = ( value ) => {
 
@@ -147,8 +155,8 @@ const DateField = ( props ) => {
 
       >
 
-        <div className = {`${ s.wrapper__container__header_container }`}
-             onClick = { () => setIsOpen((prev) => !prev) }
+        <div className = {`${ s.wrapper__container__header_container } ${ cssIf( disabled, s.disabled )}`}
+             onClick = { onToggleOpen }
         >
 
           <div
