@@ -1,6 +1,6 @@
 import { steps } from "@/constants/quiz.steps";
 import QuizProgress from "@/constants/quiz.progress";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import s from '@/pages/questionnaire/questionnaire.module.scss'
 import Profile from "@/react/widgets/steps/profile/ui/index.jsx";
@@ -14,6 +14,7 @@ export const useQuestionnaire = () => {
 
   const [ globalState, globalActions ] = useGlobal();
 
+  const [ stepTriggered, setStepTriggered ] = useState(false);
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
 
@@ -41,22 +42,32 @@ export const useQuestionnaire = () => {
     if ( globalState.data.profile.temp.length === 0 ) {
 
       globalActions.quiz.setStep(steps.profile);
+      setTitle('Профиль')
+      setDescription('Эти данные станут частью вашего профиля и помогут продвижению' )
 
     } else if (globalState.data.profile.temp && globalState.data.services.temp.length === 0) {
 
       globalActions.quiz.setStep(steps.service);
+      setTitle('Услуги')
+      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')  
 
     } else if (globalState.data.services.temp && globalState.data.values.temp.length === 0) {
 
       globalActions.quiz.setStep(steps.school);
+      setTitle('Школа')
+      setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
 
     } else if (globalState.data.values.temp && globalState.data.docs.temp.length === 0) {
 
       globalActions.quiz.setStep(steps.documents);
+      setTitle('Документы')
+      setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
 
     } else if (globalState.data.docs.temp && globalState.data.publications.temp.length === 0) {
 
       globalActions.quiz.setStep(steps.publications);
+      setTitle('Публикации')
+      setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
 
     } else if (globalState.data.publications.temp) {
 
@@ -66,15 +77,12 @@ export const useQuestionnaire = () => {
 
   }
 
-  const nextStep = () => {
+  const nextStep = async () => {
 
     if( globalState.quiz.step === steps.profile ) {
 
-      globalActions.profile.sendProfile()
-      globalActions.quiz.setStep( steps.service )
-      setTitle('Услуги')
-      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')
-
+      await globalActions.profile.sendProfile()
+      setStepTriggered(true)
 
     }
 
@@ -122,6 +130,33 @@ export const useQuestionnaire = () => {
     }
 
   }
+
+    useEffect(() => {
+
+    if (!globalState.profile.errors && globalState.quiz.step === steps.profile) {
+
+      globalActions.quiz.setStep( steps.service )
+      setTitle('Услуги')
+      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам') 
+
+      const scrollContainer = document.querySelector( `.${ s.content }` )
+
+      if (scrollContainer) {
+
+        scrollContainer.scrollTo({
+
+          top: 0,
+          behavior: 'smooth'
+
+        })
+
+      }
+          
+    } 
+
+    setStepTriggered(false)
+
+  }, [stepTriggered])
 
   const prevStep = () => {
 

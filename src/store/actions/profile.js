@@ -164,7 +164,9 @@ const profileActions = {
   async sendProfile(store) {
 
     await expert.sendExpertDataStep1(store.state.profile).then((res) => {
+
       store.setState({ profile: { ...store.state.profile, errors: res.errors } })
+
     })
 
   },

@@ -42,7 +42,7 @@ const expert = {
           };
 
           if (profile.phoneNumber) {
-            updatedProfile.phone = parseInt(profile.phoneNumber.replace(/\D/g, ''));
+            updatedProfile.phone = parseInt(profile.phoneNumber.toString().replace(/\D/g, ''));
           }
   
       const response = await fetch(`${BASE_URL}/expert/step1`, {
