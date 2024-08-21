@@ -1,3 +1,4 @@
+import { v1 } from 'uuid'
 
 const schoolActions = {
 
@@ -37,8 +38,8 @@ const schoolActions = {
 
     const school = JSON.parse(localStorage.getItem('school'))
 
-    localStorage.setItem('school', JSON.stringify({ ...school, courses: [...school.courses, { title: '' } ] }))
-    store.setState({ school: { ...store.state.school, courses: [...school.courses, { title: '' } ] } })
+    localStorage.setItem('school', JSON.stringify({ ...school, courses: [...school.courses, { id: v1(),  title: '' } ] }))
+    store.setState({ school: { ...store.state.school, courses: [...school.courses, { id: v1(),  title: '' } ] } })
 
   },
   deleteCourse: ( store, index ) => {

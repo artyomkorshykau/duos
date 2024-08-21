@@ -1,9 +1,11 @@
+import { v1 } from 'uuid'
+
 const schoolState = {
 
   schoolName: '',
   courses: [
 
-    { title: '' }
+    { id: v1(), title: '' }
 
   ],
 

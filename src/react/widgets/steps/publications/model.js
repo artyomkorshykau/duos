@@ -1,5 +1,5 @@
-import useGlobal from "@/store";
-import { useEffect, useState } from "react";
+import useGlobal from '@/store'
+import { useEffect, useState } from 'react'
 
 export const usePublications = () => {
 
@@ -9,8 +9,12 @@ export const usePublications = () => {
   const { photos } = publications.categories[ 0 ]
 
   useEffect( () => {
-
-    if ( !!photos && photos.length > 0 ) {
+    
+    const allFieldsFilled = publications.categories[0].profileInfo.slice(1).every(profile => profile.text.length >= 320);
+    
+    console.log(publications.categories[0].profileInfo.slice(1)[0].text.length)
+    
+    if ( !!photos && photos.length > 0 && allFieldsFilled ) {
 
       setFiled( true )
 
@@ -18,9 +22,8 @@ export const usePublications = () => {
 
       setFiled( false )
 
-
     }
-  }, [ photos ] )
+  }, [ photos, publications ] )
 
   useEffect( () => {
 

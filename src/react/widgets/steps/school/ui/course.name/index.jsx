@@ -2,9 +2,8 @@ import s from '../school.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import Plus from '@/react/components/icons/plus'
 import DefaultButton from '@/react/components/buttons/default.button'
-import { useState } from 'react'
 import Cross from '@/react/components/icons/cross'
-import useGlobal from "@/store";
+import useGlobal from '@/store'
 
 const CourseName = () => {
 
@@ -35,7 +34,7 @@ const CourseName = () => {
             <div
 
               className = { `${ s.school__section__filedsWrapper }` }
-              key = { index }
+              key = { course.id }
 
             >
 

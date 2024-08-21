@@ -1,11 +1,11 @@
-import Link from "next/link";
-import Popup from "../popup";
-import Checkbox from "@/react/components/forms/checkbox";
-import Textfield from "@/react/components/forms/textfield";
-import DefaultButton from "@/react/components/buttons/default.button";
-import RoleChoice from "./role.choice";
-import s from "./sign.up.module.scss";
-import { useSignup } from "@/react/popups/sign.up.popup/model";
+import Link from 'next/link'
+import Popup from '../popup'
+import Checkbox from '@/react/components/forms/checkbox'
+import Textfield from '@/react/components/forms/textfield'
+import DefaultButton from '@/react/components/buttons/default.button'
+import RoleChoice from './role.choice'
+import s from './sign.up.module.scss'
+import { useSignup } from '@/react/popups/sign.up.popup/model'
 
 const SignUpPopup = ({
 
@@ -14,7 +14,6 @@ const SignUpPopup = ({
   bodyClassName = "",
   isOpened = false,
   closePopup = () => {},
-  closePopups = () => {},
 
 }) => {
 
@@ -37,6 +36,7 @@ const SignUpPopup = ({
     seconds,
     getNewCode,
     data,
+    error
 
   } = useSignup( {closePopup} )
 
@@ -66,7 +66,7 @@ const SignUpPopup = ({
               value = { userNumber }
               withTitle = { false }
               onChange = { (e) => setUserNumber(e.target.value) }
-              error = { data?.error ? data?.error : data?.errors?.phone?.[0] }
+              error = { error }
               type = 'phone'
               placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
 
@@ -77,7 +77,7 @@ const SignUpPopup = ({
               withTitle = { false }
               placeholder = "E-mail"
               className = { `${ s.email }` }
-              error = { data?.error ? data?.error : data?.errors?.email?.[0] }
+              error = { error }
               value = { userEmail }
               onChange = { (e) => setUserEmail(e.target.value) }
               type = 'text'
@@ -127,7 +127,7 @@ const SignUpPopup = ({
                 className = {`${ s.code__numbers__password }`}
                 value = { userCode }
                 maxLength = { 5 }
-                error = { data?.error || data?.errors }
+                error = { error }
                 onChange = { (e) => setUserCode(e.target.value) }
 
               />
