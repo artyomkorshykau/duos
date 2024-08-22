@@ -1,17 +1,18 @@
 'use client'
 
-import s from './date.module.scss'
-import useGlobal from '@/store'
 import { useEffect, useRef, useState } from 'react'
 import DatePicker, { registerLocale } from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import ru from 'date-fns/locale/ru'
 import CalendarIcon from '@/react/components/icons/calendar'
 import ArrowSelect from '@/react/components/icons/arrow_select'
-import cssIf from '@/scripts/helpers/css.if'
 import { months, years } from '@/react/components/forms/select/contants'
-import ru from 'date-fns/locale/ru'
 import ItemSelect from '@/react/components/date/itemselect'
 import TimeInput from '@/react/components/date/timeinput'
+import NotiseError from "@/react/components/icons/notise_error";
+import cssIf from '@/scripts/helpers/css.if'
+import useGlobal from '@/store'
+import 'react-datepicker/dist/react-datepicker.css'
+import s from './date.module.scss'
 
 registerLocale( "ru", ru );
 
@@ -199,6 +200,18 @@ const DateField = ( props ) => {
             { getPlaceholder() }
 
           </div>
+
+          { !!error &&
+
+            <div className = { `flex items-center ${s.wrapper__container__header_container__error__text}` }>
+
+              <NotiseError/>
+
+              <p>{ error }</p>
+
+            </div>
+
+          }
 
         </div>
 

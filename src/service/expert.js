@@ -34,8 +34,8 @@ const expert = {
             tax_status: profile.taxStatus,
             tax_name: profile.taxName,
             tax_inn: profile.taxIIN,
-            country_id: profile.country.id || 1,
-            city_id: profile.city.id || 1,
+            country_id: profile.country?.id,
+            city_id: profile.city?.id,
             email: profile.email,
             is_temp: true
     
