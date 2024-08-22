@@ -22,7 +22,7 @@ const DateField = ( props ) => {
     placeholder,
     value,
     onChange,
-    error = ''
+    error = '',
     disabled,
   } = props;
 
