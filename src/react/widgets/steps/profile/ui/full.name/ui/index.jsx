@@ -72,8 +72,7 @@ const FullName = ( { disabled } ) => {
           placeholder = 'Дата рождения'
           value = { globalState.profile.birthDate }
           onChange = { ( value ) => globalActions.profile.setBirthDate( value ) }
-          // disabled = { disabled }
-          disabled
+          disabled = { disabled }
 
         />
         <Select
@@ -82,8 +81,7 @@ const FullName = ( { disabled } ) => {
           options = { genderList }
           value = { globalState.profile.gender }
           onChange = { value => globalActions.profile.setGender( value ) }
-          // disabled = { disabled }
-          disabled
+          disabled = { disabled }
 
         />
 
