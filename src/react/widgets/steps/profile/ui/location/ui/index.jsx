@@ -3,7 +3,7 @@ import Select from '@/react/components/forms/select'
 import useGlobal from '@/store';
 import s from '../../profile.module.scss'
 
-const Location = () => {
+const Location = ( { disabled }) => {
 
   const [ globalState, globalActions ] = useGlobal()
 
@@ -49,6 +49,7 @@ const Location = () => {
             options={ globalState.profile.countries }
             value={ globalState.profile.country?.value }
             onChange={ value => globalActions.profile.setCountry( globalState.profile.countries.find((item) => item.value === value) ) }
+          disabled = { disabled }
 
           />
           <Select
@@ -57,6 +58,7 @@ const Location = () => {
             options={ globalState.profile.cities }
             value={ globalState.profile.city?.value }
             onChange={ value => globalActions.profile.setCity( globalState.profile.cities.find((item) => item.value === value) ) }
+          disabled = { disabled }
 
           />
 

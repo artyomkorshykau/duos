@@ -2,13 +2,13 @@
 
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield'
-import useGlobal from '@/store';
-import Select from '@/react/components/forms/select';
+import useGlobal from '@/store'
+import Select from '@/react/components/forms/select'
 import { genderList } from '@/constants/profile'
-import { useEffect, useState } from 'react';
-import DateField from '@/react/components/date';
+import { useEffect, useState } from 'react'
+import DateField from '@/react/components/date'
 
-const FullName = () => {
+const FullName = ( { disabled } ) => {
 
   const [ globalState, globalActions ] = useGlobal();
 
@@ -46,6 +46,7 @@ const FullName = () => {
           value = { globalState.profile.lastName }
           onChange = { ( e ) => globalActions.profile.setLastName( e.target.value ) }
           error = { globalState.profile.errors?.last_name }
+          disabled = { disabled }
 
         />
 
@@ -56,6 +57,7 @@ const FullName = () => {
           value = {globalState.profile.firstName}
           onChange = { ( e ) => globalActions.profile.setFirstName( e.target.value ) }
           error = { globalState.profile.errors?.first_name }
+          disabled = { disabled }
 
         />
         <Textfield
@@ -65,6 +67,7 @@ const FullName = () => {
           value = { globalState.profile.surName }
           onChange = { ( e ) => globalActions.profile.setSurName( e.target.value ) }
           error = { globalState.profile.errors?.mid_name }
+          disabled = { disabled }
 
         />
         <DateField
@@ -73,6 +76,7 @@ const FullName = () => {
           value = { globalState.profile.birthDate }
           onChange = { ( value ) => globalActions.profile.setBirthDate( value ) }
           error = { globalState.profile.errors?.birthday }
+          disabled = { disabled }
 
         />
         <Select
@@ -81,6 +85,7 @@ const FullName = () => {
           options = { genderList }
           value = { globalState.profile.gender }
           onChange = { value => globalActions.profile.setGender( value ) }
+          disabled = { disabled }
 
         />
 

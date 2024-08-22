@@ -1,11 +1,11 @@
 import s from './section.header.module.scss'
-import { useState } from "react";
-import cssIf from "@/scripts/helpers/css.if.js";
-import Nav from "@/react/widgets/section.header/ui/nav/index.jsx";
-import Subtitle from "@/react/widgets/section.header/ui/subtitle/index.jsx";
-import Statistics from "@/react/widgets/section.header/ui/statistics/index.jsx";
-import Tabs from "@/react/widgets/section.header/ui/tabs/index.jsx";
-import Title from "@/react/widgets/section.header/ui/title/index.jsx";
+import { useState } from 'react'
+import cssIf from '@/scripts/helpers/css.if.js'
+import Nav from '@/react/widgets/section.header/ui/nav/index.jsx'
+import Subtitle from '@/react/widgets/section.header/ui/subtitle/index.jsx'
+import Statistics from '@/react/widgets/section.header/ui/statistics/index.jsx'
+import Tabs from '@/react/widgets/section.header/ui/tabs/index.jsx'
+import Title from '@/react/widgets/section.header/ui/title/index.jsx'
 
 const ProfileHeader = ( props ) => {
 
@@ -16,7 +16,7 @@ const ProfileHeader = ( props ) => {
 
   } = props
 
-  const [ collapsed, setCollapsed ] = useState(true )
+  const [ collapsed, setCollapsed ] = useState(false )
 
   return (
 

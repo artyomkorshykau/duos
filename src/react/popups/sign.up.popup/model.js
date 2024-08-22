@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import auth from "@/service/auth";
-import { useEffect, useState } from "react";
-import useGlobal from "@/store/index.js";
+import { useMutation } from '@tanstack/react-query'
+import auth from '@/service/auth'
+import { useEffect, useState } from 'react'
+import useGlobal from '@/store/index.js'
 
 export const useSignup = ( { closePopup } ) => {
 
@@ -15,6 +15,7 @@ export const useSignup = ( { closePopup } ) => {
   const [ intervalId, setIntervalId ] = useState( null );
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
   const [ globalState, globalActions ] = useGlobal()
+  const [ error, setError ] = useState(false)
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -23,6 +24,7 @@ export const useSignup = ( { closePopup } ) => {
 
     mutationKey: [ 'sign-up' ],
     mutationFn: ({ phone, email, code }) => auth.register(phone, email, code ),
+    onSuccess: (error) => { !error.success ? setError(true) : null }
 
   })
 
@@ -33,6 +35,7 @@ export const useSignup = ( { closePopup } ) => {
     setUserEmail("");
     setUserCode("");
     setCodeModeOpened(false)
+    setError(false)
 
   };
 
@@ -40,36 +43,36 @@ export const useSignup = ( { closePopup } ) => {
 
   const getNewCode = () => {
 
-    useEffect(() => {
-
-      if (codeModeOpened) {
-
-        const id = setInterval(() => {
-
-          if (time > 0) {
-
-            setTime(time - 1)
-
-          } else {
-
-            setShowTimer(true)
-
-          }
-
-        }, 1000)
-
-        setIntervalId(id)
-        return () => clearInterval(id)
-
-      }
-
-    }, [codeModeOpened, time])
-
     alert('отправить новый код')
     setShowTimer( false )
     setTime( 31 )
 
   };
+  
+  useEffect(() => {
+    
+    if (codeModeOpened) {
+      
+      const id = setInterval(() => {
+        
+        if (time > 0) {
+          
+          setTime(time - 1)
+          
+        } else {
+          
+          setShowTimer(true)
+          
+        }
+        
+      }, 1000)
+      
+      setIntervalId(id)
+      return () => clearInterval(id)
+      
+    }
+    
+  }, [codeModeOpened, time])
 
   useEffect(() => {
 
@@ -94,7 +97,7 @@ export const useSignup = ( { closePopup } ) => {
   }, [ userCode ])
 
   useEffect(()=> {
-
+    
     if( data?.success ) {
 
       setCodeModeOpened(true)
@@ -129,7 +132,8 @@ export const useSignup = ( { closePopup } ) => {
     minutes,
     seconds,
     getNewCode,
-    data
+    data,
+    error
 
   }
 

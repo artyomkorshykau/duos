@@ -1,7 +1,7 @@
-import cssIf from '@/scripts/helpers/css.if';
-import useGlobal from '@/store';
-import { useEffect, useState } from 'react';
-import s from '../progress.bar.module.scss';
+import cssIf from '@/scripts/helpers/css.if'
+import useGlobal from '@/store'
+import { useEffect, useState } from 'react'
+import s from '../progress.bar.module.scss'
 
 const calculateProgress = (statuses) => {
 
@@ -54,21 +54,28 @@ const Progress = ({
       setProgress(progress)
         
     } else if (activeId === 3 && activeId === id) {
-
-      const allFieldsFilled =
-        school.schoolName !== ''
-        && school.comment !== ''
-        && school.courses.every( course => course.title !== '' )
-
-      if( allFieldsFilled ) {
-
-        setProgress(1)
-
-      } else {
-
-        setProgress(0)
-
+      
+      function calculateProgress(schoolState) {
+        
+        let fieldsCount = 2
+        let filledFields = 0
+        
+        if (schoolState.schoolName !== '') filledFields++
+        if (schoolState.comment !== '') filledFields++
+        
+        fieldsCount += schoolState.courses.length
+        
+        for (const course of schoolState.courses) {
+          
+          if (course.title !== '') filledFields++
+          
+        }
+        
+        return filledFields / fieldsCount
       }
+      
+      const progress = calculateProgress(school)
+      setProgress(progress)
 
     } else if (activeId === 4 && activeId === id) {
 
@@ -77,7 +84,7 @@ const Progress = ({
       const progress = calculateProgress([...statuses, passportStatus]);
 
       setProgress(progress)
-
+      
     } else if ( activeId === 5 && activeId === id ) {
 
       const statuses = publications.categories.map( item => item.documentStatus );

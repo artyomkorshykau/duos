@@ -1,17 +1,17 @@
 'use client'
 
-import s from './date.module.scss';
-import useGlobal from '@/store';
-import {useCallback, useEffect, useRef, useState} from 'react';
-import DatePicker, {registerLocale} from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import CalendarIcon from "@/react/components/icons/calendar";
-import ArrowSelect from "@/react/components/icons/arrow_select";
-import cssIf from "@/scripts/helpers/css.if";
-import { months, years } from "@/react/components/forms/select/contants";
-import ru from "date-fns/locale/ru";
-import ItemSelect from "@/react/components/date/itemselect";
-import TimeInput from "@/react/components/date/timeinput";
+import s from './date.module.scss'
+import useGlobal from '@/store'
+import { useEffect, useRef, useState } from 'react'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import CalendarIcon from '@/react/components/icons/calendar'
+import ArrowSelect from '@/react/components/icons/arrow_select'
+import cssIf from '@/scripts/helpers/css.if'
+import { months, years } from '@/react/components/forms/select/contants'
+import ru from 'date-fns/locale/ru'
+import ItemSelect from '@/react/components/date/itemselect'
+import TimeInput from '@/react/components/date/timeinput'
 
 registerLocale( "ru", ru );
 
@@ -23,6 +23,7 @@ const DateField = ( props ) => {
     value,
     onChange,
     error = ''
+    disabled,
   } = props;
 
   const [ globalState, globalActions ] = useGlobal();
@@ -39,6 +40,13 @@ const DateField = ( props ) => {
 
   const containerRef = useRef( null );
   const btnsContainersContainerRef = useRef( null );
+
+  const onToggleOpen = () => {
+
+    if ( disabled ) return;
+
+    setIsOpen( prev => !prev );
+  }
 
   const handleChangeDate = ( value ) => {
 
@@ -144,12 +152,15 @@ const DateField = ( props ) => {
           ${ cssIf( isOpen, s.open ) }
           ${ cssIf( !!value, s.active ) }
           ${ cssIf( error, s.wrapper__container__error ) }
+          ${ cssIf( disabled, s.container_disabled ) }
           ${ className }
         `}
 
       >
 
-        <div className = {`${ s.wrapper__container__header_container }`} onClick = { () => setIsOpen(prev => !prev) }>
+        <div className = {`${ s.wrapper__container__header_container } ${ cssIf( disabled, s.disabled )}`}
+             onClick = { onToggleOpen }
+        >
 
           <div
 
