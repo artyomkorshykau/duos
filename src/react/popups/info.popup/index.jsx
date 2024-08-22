@@ -48,11 +48,17 @@ const InfoPopup = ({
 
   }, [isOpened, closePopup]);
 
+  const handleClosePopup = () => {
+
+    closePopup();
+
+  };
+
   const content = 
   
       <>
 
-        <img src='/img/questionnaire/info.png' alt="publications"/>
+        <img src='/img/questionnaire/info.png' alt="publications" className = {`${ s.image }`} />
 
         <div className = {`${ s.info_description }`}>
 
@@ -100,14 +106,16 @@ const InfoPopup = ({
     <Popup
 
       isOpened={ isOpened }
-      boxClassName={ bodyClassName }
-      closePopup = { () => {} }
+      bodyClassName={ bodyClassName }
+      closePopup = { handleClosePopup }
       contentOnly
-      content = { content }
+      background
       closeBackground
       boxRef={ popupRef }
 
     >
+
+      {content}
 
     </Popup>
 

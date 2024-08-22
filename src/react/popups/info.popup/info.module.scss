@@ -1,5 +1,14 @@
 @import "@/styles/apx.scss";
 
+.image {
+
+    position: absolute;
+    top: -$apx-10;
+    width: $apx-285;
+    height: $apx-430;
+  
+  }
+
 .info_description {
 
   display: flex;
@@ -34,7 +43,9 @@
   &__description {
 
     font-weight: 500;
+    line-height: $apx-24;
     color: var(--color-accent-black-900);
+    text-align: start;
 
   }
 
