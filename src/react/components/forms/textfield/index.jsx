@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import Eye from '@/react/components/icons/eye.icon'
-import Cross from '@/react/components/icons/cross'
 import InputMask from 'react-input-mask'
-import Save from '@/react/components/icons/save'
 import cssIf from '@/scripts/helpers/css.if'
 import s from './textfield.module.scss'
-import Pencil from '@/react/components/icons/pencil.jsx'
 
 const Textfield = ( props ) => {
 
@@ -42,7 +39,6 @@ const Textfield = ( props ) => {
     ${ cssIf( value, s.filled ) } 
     ${ cssIf( error, s.textfield__error ) }
     ${ cssIf( disabled, s.textfield__disabled )}
-    ${ cssIf( editable, s.textfield__editable )}
     ${ className }`}
     >
 
@@ -143,43 +139,6 @@ const Textfield = ( props ) => {
 
         />
 
-      }
-
-      { classNameControls &&
-
-        <div className = {`${ classNameControls }`}>
-
-          <Cross
-
-            stroke = { '#7C92A7' }
-            onClick = { clearFiled }
-            className = { `${s.textfield__cross }`}
-
-          />
-
-          <div
-
-            className = {`${ s.textfield__save }`}
-            onClick = { () => alert('Отправка на сервер') }
-
-          >
-
-            <Save fill = { "#fff" }/>
-
-          </div>
-
-        </div>
-
-      }
-      
-      { editable &&
-        
-        <div className = { `${ s.editable }`}>
-          
-          <Pencil/>
-          
-        </div>
-        
       }
 
     </div>

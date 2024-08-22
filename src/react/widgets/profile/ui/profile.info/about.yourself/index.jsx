@@ -1,7 +1,42 @@
 import Textarea from '@/react/components/forms/textarea/index.jsx'
 import s from '../../profile.module.scss'
+import useGlobal from '@/store/index.js'
+import Save from '@/react/components/icons/save.jsx'
+import { useState } from 'react'
 
 export const AboutYourself = () => {
+  
+  const [ globalState, globalActions ] = useGlobal()
+  const { text } = globalState.publications.categories[0].profileInfo[1]
+  const { setAboutYourselfInfo } = globalActions.publications
+  const [ edit, setEdit ] = useState(false)
+  
+  const handleOnChange = (e) => {
+    
+    const newValue = e.target.value
+    
+    if ( newValue !== text ) {
+      
+      setEdit(true)
+      
+    } else {
+      
+      setEdit(false)
+      
+    }
+    
+    setAboutYourselfInfo(1, newValue)
+    
+  }
+  
+  const handleOnSave = (e) => {
+    
+    e.preventDefault();
+    e.stopPropagation();
+    alert('Отправка на сервер')
+    setEdit(false)
+    
+  }
   
   return (
     
@@ -18,8 +53,15 @@ export const AboutYourself = () => {
       <Textarea
         
         placeholder = { 'О себе' }
-        value = { '' }
-        onChange = { ( e ) => {} }
+        value = { text }
+        onChange = {  handleOnChange }
+        icon = { edit &&
+          
+          <Save fill = { 'white' }/>
+      
+      }
+        withSaveIcon
+        onSave = { handleOnSave }
       
       />
     

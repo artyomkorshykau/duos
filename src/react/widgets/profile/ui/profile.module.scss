@@ -151,6 +151,135 @@
       flex-direction: column;
       gap: $apx-32;
 
+      &__nickname {
+
+        display: flex;
+        flex-direction: column;
+        gap: $apx-12;
+
+        &__title {
+
+          font-weight: 700;
+          color: var(--color-accent-blue-700);
+
+        }
+
+        &__textfield {
+
+          position: relative;
+          width: $apx-312;
+          height: $apx-64;
+
+          &__active {
+
+            input {
+
+              background-color: var(--color-bw-white) !important;
+
+            }
+
+          }
+
+          input {
+
+            width: $apx-312;
+            height: $apx-64;
+            border-radius: $apx-28;
+            background-color: var(--color-accent-background);
+            border: $apx-1 solid var(--color-accent-blue-200);
+            padding: $apx-12 $apx-16;
+            transition: all 0.3s ease;
+
+            &:hover {
+
+              border-color: #1A97E2;
+              cursor: pointer;
+
+
+            }
+
+          }
+
+          &__placeholder {
+
+            font-weight: 600;
+            color: var(--color-accent-black-500);
+            position: absolute;
+            top: 0;
+            left: 0;
+
+          }
+
+          &__controls {
+
+            display: flex;
+            align-items: center;
+            gap: $apx-20;
+            position: absolute;
+            top: $apx-14;
+            right: $apx-10;
+
+            &__cross {
+
+              cursor: pointer;
+
+              &:hover {
+
+                & > svg {
+
+                  stroke: #0F0065;
+
+                }
+
+              }
+
+            }
+
+            &__save {
+
+              width: $apx-40;
+              height: $apx-36;
+              border-radius: $apx-40;
+              padding: $apx-8 $apx-12;
+              background-color: var(--color-accent-blue-700);
+              cursor: pointer;
+
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+            }
+
+          }
+
+          &__pencil {
+
+            position: absolute;
+            top: $apx-20;
+            right: $apx-20;
+            opacity: 0;
+            transition: opacity 0.2s;
+
+          }
+
+          &:hover &__pencil {
+
+            opacity: 1;
+
+          }
+
+        }
+
+      }
+
+      &__contacts {
+
+        display: flex;
+        align-items: end;
+        gap: $apx-12;
+
+      }
+
       &__separator {
 
         width: 100%;
@@ -175,6 +304,7 @@
 
           font-weight: 500;
           color: var(--color-accent-black-900);
+          margin-bottom: $apx-8;
 
         }
 
