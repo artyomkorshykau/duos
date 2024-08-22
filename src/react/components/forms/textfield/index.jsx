@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Eye from '@/react/components/icons/eye.icon'
+import NotiseError from "@/react/components/icons/notise_error";
 import InputMask from 'react-input-mask'
 import cssIf from '@/scripts/helpers/css.if'
 import s from './textfield.module.scss'
@@ -65,17 +66,17 @@ const Textfield = ( props ) => {
 
           <span className = {`${ s.placeholderLabel }`}>{ placeholder }</span>
 
-          {/*{ !!error &&*/}
+          { !!error &&
 
-          {/*  <div className = { `flex items-center ${s.textfield__error__text}` }>*/}
+           <div className = { `flex items-center ${s.textfield__error__text}` }>
 
-          {/*    <NotiseError/>*/}
+             <NotiseError/>
 
-          {/*    <p>{ error }</p>*/}
+             <p>{ error }</p>
 
-          {/*  </div>*/}
+           </div>
 
-          {/*}*/}
+          }
 
         </>
 
@@ -112,17 +113,17 @@ const Textfield = ( props ) => {
 
           </span>
 
-          {/*{ !!error &&*/}
+          { !!error &&
 
-          {/*<div className = { `flex items-center ${s.textfield__error__text}` }>*/}
+          <div className = { `flex items-center ${s.textfield__error__text}` }>
 
-          {/*  <NotiseError/>*/}
+           <NotiseError/>
 
-          {/*  <p>{ error }</p>*/}
+           <p>{ error }</p>
 
-          {/*</div>*/}
+          </div>
 
-          {/*}*/}
+          }
 
         </>
 

@@ -45,6 +45,7 @@ const FullName = ( { disabled } ) => {
           placeholder = 'Фамилия'
           value = { globalState.profile.lastName }
           onChange = { ( e ) => globalActions.profile.setLastName( e.target.value ) }
+          error = { globalState.profile.errors?.last_name }
           disabled = { disabled }
 
         />
@@ -55,6 +56,7 @@ const FullName = ( { disabled } ) => {
           placeholder = 'Имя'
           value = {globalState.profile.firstName}
           onChange = { ( e ) => globalActions.profile.setFirstName( e.target.value ) }
+          error = { globalState.profile.errors?.first_name }
           disabled = { disabled }
 
         />
@@ -64,6 +66,7 @@ const FullName = ( { disabled } ) => {
           placeholder = 'Отчество'
           value = { globalState.profile.surName }
           onChange = { ( e ) => globalActions.profile.setSurName( e.target.value ) }
+          error = { globalState.profile.errors?.mid_name }
           disabled = { disabled }
 
         />
@@ -72,6 +75,7 @@ const FullName = ( { disabled } ) => {
           placeholder = 'Дата рождения'
           value = { globalState.profile.birthDate }
           onChange = { ( value ) => globalActions.profile.setBirthDate( value ) }
+          error = { globalState.profile.errors?.birthday }
           disabled = { disabled }
 
         />
