@@ -1,8 +1,8 @@
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield'
-import useGlobal from '@/store';
+import useGlobal from '@/store'
 
-const Nickname = () => {
+const Nickname = ( { disabled, editable } ) => {
 
   const [ globalState, globalActions ] = useGlobal()
 
@@ -30,6 +30,8 @@ const Nickname = () => {
           placeholder = {'Псевдоним'}
           value = { globalState.profile.nickName }
           onChange = { (e) => globalActions.profile.setNickName(e.target.value)}
+          disabled = { disabled }
+          editable = { editable }
 
         />
 

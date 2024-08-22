@@ -3,13 +3,14 @@
 .header {
 
   width: $apx-1328;
-  height: $apx-328;
+  height: $apx-308;
   border-radius: $apx-32;
   background-color: var(--color-bw-white);
   transition: height 0.5s ease, opacity 0.5s ease, max-height 0.5s ease;
   padding: 0 $apx-32;
   box-shadow: 0 0 $apx-25 $apx-5 rgba(21, 0, 157, 0.05);
-  position: relative;
+  position: fixed;
+  z-index: 1;
 
   display: flex;
   flex-direction: column;
@@ -222,7 +223,7 @@
 
     &__title {
 
-      margin-bottom: -$apx-45;
+      margin-bottom: -$apx-40;
 
     }
 

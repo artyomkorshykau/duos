@@ -1,14 +1,14 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import cssIf from "@/scripts/helpers/css.if";
+import { useEffect, useMemo, useRef, useState } from 'react'
+import cssIf from '@/scripts/helpers/css.if'
 
-import Option from "./option";
+import Option from './option'
 
-import ArrowSelect from "@/react/components/icons/arrow_select";
-import CloseIcon from "@/react/components/icons/close";
+import ArrowSelect from '@/react/components/icons/arrow_select'
+import CloseIcon from '@/react/components/icons/close'
 
-import s from "./select.module.scss";
+import s from './select.module.scss'
 
 const Select = ( props ) => {
 
@@ -25,11 +25,10 @@ const Select = ( props ) => {
     onIconClick,
     isFirstIconClick,
     icon,
+    disabled,
     ...selectParams
 
   } = props;
-
-
 
   const [ isOpen, setIsOpen ] = useState( false );
   const [ search, setSearch ] = useState( '' );
@@ -61,6 +60,8 @@ const Select = ( props ) => {
   };
 
   const toggleSelect = () => {
+
+    if ( disabled ) return;
 
     if ( !isFirstIconClick ) {
 
@@ -122,7 +123,12 @@ const Select = ( props ) => {
 
       <div
 
-        className = {`${ s.wrapper__container } ${ cssIf( isOpen, s.open ) } ${ cssIf( !!selectOption, s.active ) } ${ className }`}
+        className = {`
+        ${ s.wrapper__container }
+        ${ cssIf( isOpen, s.open ) }
+        ${ cssIf( !!selectOption, s.active ) }
+        ${ className }
+        `}
 
       >
 
@@ -134,8 +140,13 @@ const Select = ( props ) => {
 
               <div
 
-                className = {`${ s.wrapper__container__placeholder_container__placeholder__icon }`}
+                className = {`
+                  ${ s.wrapper__container__placeholder_container__placeholder__icon }
+                  ${ cssIf( disabled, s.placeholderIcon_disabled )}
+                `}
                 onClick = { (e) => {
+
+                  if ( disabled ) return;
 
                   !isOpen && e.stopPropagation();
                   onIconClick?.();
@@ -161,6 +172,7 @@ const Select = ( props ) => {
                 ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__placeholder }
                 ${ cssIf( isOpen, s.placeholderactive ) }
                 ${ cssIf( selectOption, s.placeholderactive ) }
+                ${ cssIf( disabled, s.placeholderdisabled ) }
               `}>
 
                 { placeholder }
@@ -172,6 +184,7 @@ const Select = ( props ) => {
                 <div className = {`
                   ${ s.wrapper__container__placeholder_container__placeholder__titlecontainer__item }
                   ${ cssIf( selectOption, s.itemactive )}
+                  ${ cssIf( disabled, s.itemactive_disabled )}
                 `}>
 
                   { options.find( option => option.value === selectOption ).label }
@@ -195,6 +208,7 @@ const Select = ( props ) => {
                       value = { search }
                       onChange = { ( e ) => setSearch( e.target.value ) }
                       onClick = { ( e ) => e.stopPropagation() }
+                      disabled = { disabled }
 
                   />
 
@@ -223,6 +237,7 @@ const Select = ( props ) => {
               className = {`
               ${ s.wrapper__container__placeholder_container__icon_container }
               ${ cssIf( isOpen, s.icon_container_open ) }
+              ${ cssIf( disabled, s.icon_disabled ) }
             `}
           >
 

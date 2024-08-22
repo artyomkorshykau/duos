@@ -90,7 +90,7 @@
         display: flex;
         align-items: center;
         padding: $apx-20 $apx-16;
-        font-weight: 400;
+        font-weight: 500;
         font-size: $apx-16;
         line-height: $apx-21;
         color: var(--color-accent-black-500);
@@ -310,6 +310,37 @@
 .active {
 
   background-color: var(--color-bw-white);
+
+}
+
+.disabled {
+
+  &:hover {
+
+    div {
+
+      color: var(--color-accent-black-500);
+      font-weight: 500;
+
+      svg {
+
+        path {
+
+          fill: var(--color-accent-black-500);
+
+        }
+
+        rect {
+
+          fill: var(--color-accent-black-500);
+
+        }
+
+      }
+
+    }
+
+  }
 
 }
 

@@ -1,10 +1,10 @@
 import s from '../../profile.module.scss'
-import useGlobal from '@/store';
+import useGlobal from '@/store'
 import Select from '@/react/components/forms/select'
 import { cityList, countryList } from '@/constants/profile'
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react'
 
-const Location = () => {
+const Location = ( { disabled }) => {
 
   const [ globalState, globalActions ] = useGlobal();
 
@@ -46,6 +46,7 @@ const Location = () => {
           options = { countryList }
           value = { globalState.profile.country }
           onChange = { value => globalActions.profile.setCountry( value ) }
+          disabled = { disabled }
 
         />
         <Select
@@ -54,6 +55,7 @@ const Location = () => {
           options = { cityList }
           value = { globalState.profile.city }
           onChange = { value => globalActions.profile.setCity( value ) }
+          disabled = { disabled }
 
         />
 

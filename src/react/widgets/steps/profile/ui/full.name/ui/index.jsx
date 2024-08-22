@@ -2,13 +2,13 @@
 
 import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield'
-import useGlobal from '@/store';
-import Select from '@/react/components/forms/select';
+import useGlobal from '@/store'
+import Select from '@/react/components/forms/select'
 import { genderList } from '@/constants/profile'
-import { useEffect, useState } from 'react';
-import DateField from '@/react/components/date';
+import { useEffect, useState } from 'react'
+import DateField from '@/react/components/date'
 
-const FullName = () => {
+const FullName = ( { disabled } ) => {
 
   const [ globalState, globalActions ] = useGlobal();
 
@@ -45,6 +45,7 @@ const FullName = () => {
           placeholder = 'Фамилия'
           value = { globalState.profile.lastName }
           onChange = { ( e ) => globalActions.profile.setLastName( e.target.value ) }
+          disabled = { disabled }
 
         />
 
@@ -54,6 +55,7 @@ const FullName = () => {
           placeholder = 'Имя'
           value = {globalState.profile.firstName}
           onChange = { ( e ) => globalActions.profile.setFirstName( e.target.value ) }
+          disabled = { disabled }
 
         />
         <Textfield
@@ -62,6 +64,7 @@ const FullName = () => {
           placeholder = 'Отчество'
           value = { globalState.profile.surName }
           onChange = { ( e ) => globalActions.profile.setSurName( e.target.value ) }
+          disabled = { disabled }
 
         />
         <DateField
@@ -69,6 +72,7 @@ const FullName = () => {
           placeholder = 'Дата рождения'
           value = { globalState.profile.birthDate }
           onChange = { ( value ) => globalActions.profile.setBirthDate( value ) }
+          disabled = { disabled }
 
         />
         <Select
@@ -77,6 +81,7 @@ const FullName = () => {
           options = { genderList }
           value = { globalState.profile.gender }
           onChange = { value => globalActions.profile.setGender( value ) }
+          disabled = { disabled }
 
         />
 

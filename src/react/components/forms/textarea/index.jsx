@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react';
-import cssIf from '@/scripts/helpers/css.if';
-import s from './textarea.module.scss';
+import { useEffect, useRef, useState } from 'react'
+import cssIf from '@/scripts/helpers/css.if'
+import s from './textarea.module.scss'
 
 const MIN_HEIGHT = 110;
 
@@ -24,6 +24,7 @@ const Textarea = ( props ) => {
     onKeyUp = () => {},
     onBlur = () => {},
     onChange = (e) => {},
+    onSave,
     icon,
     withSaveIcon,
     ...inputParams
@@ -138,7 +139,12 @@ const Textarea = ( props ) => {
 
       { icon && withSaveIcon && !!text && (
 
-        <div className = {`${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }`}>
+        <div
+          
+          className = {`${ s.textfield__icon_container } ${ cssIf( text !== "", s.visible ) }`}
+          onClick = { (e) => onSave(e) }
+        
+        >
 
           { icon }
 

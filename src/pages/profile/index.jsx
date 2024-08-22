@@ -1,40 +1,41 @@
-import Carcas from "@/react/components/containers/carcas/index.jsx";
-import ProfileHeader from "@/react/widgets/section.header/ui/index.jsx";
-import Profile from "@/react/widgets/profile/index.jsx";
-import { useState } from "react";
+import Carcas from '@/react/components/containers/carcas/index.jsx'
+import ProfileHeader from '@/react/widgets/section.header/ui/index.jsx'
+import Profile from '@/react/widgets/profile/ui/index.jsx'
+import { useState } from 'react'
+import s from './profile.page.module.scss'
 
-const ProfilePage = () => {
+export default function ProfilePage () {
 
   const [ activeTab , setActiveTab ] = useState('Профиль' )
 
   return (
-
-    <main className = {``}>
-
+    
+    <main>
+      
       <Carcas
-
-        authorized = { true }
-
+        
+        authorized={ true }
+      
       >
-
-        <div>
-
+        
+        <div className={ ` ${ s.profile_page }` }>
+          
           <ProfileHeader
-
-            activeTab = { activeTab }
-            setActiveTab = { setActiveTab }
-
+            
+            activeTab={ activeTab }
+            setActiveTab={ setActiveTab }
+          
           />
+          
           <Profile/>
-
+        
         </div>
-
+      
       </Carcas>
-
+    
     </main>
-
+  
   )
-
+  
 }
 
-export default ProfilePage
