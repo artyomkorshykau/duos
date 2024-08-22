@@ -313,6 +313,13 @@
 
 }
 
+.container_disabled {
+
+  background: var(--color-accent-background);
+  border-color: var(--color-accent-background);
+
+}
+
 .disabled {
 
   &:hover {

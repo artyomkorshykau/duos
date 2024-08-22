@@ -150,6 +150,7 @@ const DateField = ( props ) => {
           ${ s.wrapper__container }
           ${ cssIf( isOpen, s.open ) }
           ${ cssIf( !!value, s.active ) }
+          ${ cssIf( disabled, s.container_disabled ) }
           ${ className }
         `}
 

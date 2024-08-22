@@ -127,6 +127,7 @@ const Select = ( props ) => {
         ${ s.wrapper__container }
         ${ cssIf( isOpen, s.open ) }
         ${ cssIf( !!selectOption, s.active ) }
+        ${ cssIf( disabled, s.container_disabled ) }
         ${ className }
         `}
 
