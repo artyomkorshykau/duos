@@ -1,7 +1,7 @@
 const schoolState = {
 
   schoolName: '',
-  courses: [{id: 0, comment: '', name: ''}],
+  courses: [{id: 0, name: ''}],
   comment: '',
   errors: null
 

@@ -72,10 +72,9 @@ const expert = {
           if (school.courses) {
 
             const filteredCourses = school.courses
-              .filter((item) => item.name !== '')
+              .filter((item) => item.name !== '' && item.name !== undefined)
               .map((item) => ({
                 name: item.name,
-                comment: item.comment,
               }));
 
               if (filteredCourses.length > 0) {

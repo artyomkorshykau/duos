@@ -79,13 +79,12 @@ const mainActions = {
 
                       id: index,
                       name: item.name,
-                      comment: item.comment
     
                     })) 
                     
                   : 
                     
-                  [{id: 0, comment: '', name: ''}],
+                  [{id: 0, name: ''}],
 
                   comment: data.values.temp.comment,
                 },
