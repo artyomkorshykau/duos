@@ -1,7 +1,6 @@
 import GlobalHook from "use-global-hook"
 import profileState from "@/store/states/profile"
 import quizState from "@/store/states/quiz"
-import dataState from "@/store/states/data"
 import quizActions from "@/store/actions/quiz"
 import dataState from "@/store/states/data"
 import mainActions from "@/store/actions/main"

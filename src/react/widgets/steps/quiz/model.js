@@ -10,16 +10,10 @@ import Publications from "@/react/widgets/steps/publications/ui/index.jsx";
 import Document from "@/react/widgets/steps/document/ui/index.jsx";
 import useGlobal from "@/store";
 
-import useGlobal from "@/store";
-
 export const useQuestionnaire = () => {
 
-  const [ globalState, globalActions ] = useGlobal();
-
   const [ stepTriggered, setStepTriggered ] = useState(false);
   const [ globalState, globalActions ] = useGlobal();
-
-  const [ stepTriggered, setStepTriggered ] = useState(false);
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
 
@@ -27,7 +21,6 @@ export const useQuestionnaire = () => {
 
   let buttonTitle
 
-  switch( globalState.quiz.progress ) {
   switch( globalState.quiz.progress ) {
 
     case QuizProgress.begin:
@@ -84,9 +77,7 @@ export const useQuestionnaire = () => {
   }
 
   const nextStep = async () => {
-  const nextStep = async () => {
 
-    if( globalState.quiz.step === steps.profile ) {
     if( globalState.quiz.step === steps.profile ) {
 
       await globalActions.profile.sendProfile()
@@ -95,16 +86,13 @@ export const useQuestionnaire = () => {
     }
 
     if( globalState.quiz.step === steps.service ) {
-    if( globalState.quiz.step === steps.service ) {
 
-      globalActions.quiz.setStep( steps.school )
       globalActions.quiz.setStep( steps.school )
       setTitle('Школа')
       setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
 
     }
 
-    if( globalState.quiz.step === steps.school ) {
     if( globalState.quiz.step === steps.school ) {
 
       await globalActions.school.sendProfile()
@@ -113,19 +101,15 @@ export const useQuestionnaire = () => {
     }
 
     if( globalState.quiz.step === steps.documents ) {
-    if( globalState.quiz.step === steps.documents ) {
 
-      globalActions.quiz.setStep( steps.publications )
       globalActions.quiz.setStep( steps.publications )
       setTitle('Публикации')
       setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
 
     }
-    if( globalState.quiz.step === steps.publications ) {
+
     if( globalState.quiz.step === steps.publications ) {
 
-      // setStatus(QuizProgress.end)
-      globalActions.quiz.setStep( steps.questionnaire )
       // setStatus(QuizProgress.end)
       globalActions.quiz.setStep( steps.questionnaire )
 
@@ -169,12 +153,6 @@ export const useQuestionnaire = () => {
           
     } 
 
-    setStepTriggered(false)
-
-  }, [stepTriggered])
-
-    useEffect(() => {
-
     if (!globalState.profile.errors && globalState.quiz.step === steps.profile) {
 
       globalActions.quiz.setStep( steps.service )
@@ -195,6 +173,7 @@ export const useQuestionnaire = () => {
       }
           
     } 
+
 
     setStepTriggered(false)
 

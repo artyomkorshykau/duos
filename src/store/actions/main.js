@@ -12,6 +12,28 @@ const mainActions = {
           if ( data && data.success ) {
 
             store.setState({ data: data });
+
+            store.setState({
+              profile: {
+    
+                ...store.state.profile,
+                firstName: data.profile.temp.first_name,
+                lastName: data.profile.temp.last_name,
+                surName: data.profile.temp.mid_name,
+                birthDate: data.profile.temp.birthday,
+                gender: data.profile.temp.gender,
+                nickName: data.profile.temp.pseudonym,
+                taxStatus: data.profile.temp.tax_status,
+                taxName: data.profile.temp.tax_name,
+                taxIIN: data.profile.temp.tax_inn,
+                country: store.state.profile.countries.find((item) => item.id === data.profile.temp.country_id),
+                city: store.state.profile.cities.find((item) => item.id === data.profile.temp.city_id),
+                phoneNumber: data.profile.temp.phone,
+                email: data.profile.temp.email,
+                progress: 1
+              },
+    
+            });
     
             if (data.profile?.temp && data.profile.temp?.length === 0 ) {
     

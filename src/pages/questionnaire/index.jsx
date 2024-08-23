@@ -2,7 +2,6 @@ import { useMemo, useEffect } from 'react'
 import ProgressBar from '@/react/widgets/progress.bar/ui'
 import Pagination from '@/react/widgets/pagination/ui'
 import Autosave from '@/react/widgets/autosave/ui'
-import Quiz from "@/react/widgets/steps/quiz/ui";
 import Carcas from '@/react/components/containers/carcas'
 import { useQuestionnaire } from '@/react/widgets/steps/quiz/model.js'
 import Quiz from '@/react/widgets/steps/quiz/ui/index.jsx'
@@ -30,7 +29,7 @@ export default function QuestionnairePage() {
 
     globalActions.profile.getCountries()
     globalActions.profile.getCities()
-    globalActions.profile.getProfile()
+    globalActions.main.getProfile()
 
   }, [])
 
@@ -47,23 +46,23 @@ export default function QuestionnairePage() {
       
       { globalState.quiz.isLoading === true &&
       
-      ( globalState.quiz.step === steps.questionnaire
+        ( globalState.quiz.step === steps.questionnaire
 
           ? <Quiz
 
-          buttonTitle = { buttonTitle }
-          handleButtonAction = { handleButtonAction }
-          status = { globalState.quiz.progress }
+              buttonTitle = { buttonTitle }
+              handleButtonAction = { handleButtonAction }
+              status = { globalState.quiz.progress }
 
-          />
+            />
 
-        : <div className = { `${ s.content }` }>
+          : <div className = { `${ s.content }` }>
 
             <ProgressBar
 
-            title = { title }
-            description = { description }
-            activeStep = { globalState.quiz.step }
+              title = { title }
+              description = { description }
+              activeStep = { globalState.quiz.step }
 
             />
 
@@ -81,27 +80,24 @@ export default function QuestionnairePage() {
 
             <Pagination
 
-          nextStep = { nextStep }
-          activeStep = { globalState.quiz.step }
-          prevStep = { prevStep }
+              nextStep = { nextStep }
+              activeStep = { globalState.quiz.step }
+              prevStep = { prevStep }
 
             />
 
-          </div>
-          </div>
+            </div>
 
-      )
+        )
 
       }
 
     </>
 
   ), [ globalState.quiz ] )
-  ), [ globalState.quiz ] )
 
   return (
 
-    <main id = {``} className = {`${ globalState.quiz.step === steps.questionnaire && 'flex items-center h-dvh' }`}>
     <main id = {``} className = {`${ globalState.quiz.step === steps.questionnaire && 'flex items-center h-dvh' }`}>
 
       <Carcas
