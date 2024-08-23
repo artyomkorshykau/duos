@@ -2,6 +2,8 @@ import GlobalHook from "use-global-hook"
 import getInitialProfileState from "./states/profile"
 import quizState from "@/store/states/quiz"
 import quizActions from "@/store/actions/quiz"
+import dataState from "@/store/states/data"
+import mainActions from "@/store/actions/main"
 import getInitialServiceState from "./states/service"
 import serviceActions from "./actions/service"
 import getInitialPublicationsState from "@/store/states/publications";
@@ -26,6 +28,7 @@ const initialState = {
   tax: tax,
   info: info,
   user: userData,
+  data: dataState
 
 }
 
@@ -38,7 +41,8 @@ const actions = {
   quiz: quizActions,
   tax: taxAgreeActions,
   info: infoActions,
-  user: userActions
+  user: userActions,
+  main: mainActions
 
 }
 

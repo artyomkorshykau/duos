@@ -18,6 +18,12 @@ const quizActions = {
 
     }
 
+  },
+
+  setStep: (store, step) => {
+
+    store.setState({ quiz: { ...store.state.quiz, step }});
+    
   }
 
 }

@@ -1,74 +1,94 @@
+import { useMemo, useEffect } from 'react'
 import ProgressBar from '@/react/widgets/progress.bar/ui'
 import Pagination from '@/react/widgets/pagination/ui'
 import Autosave from '@/react/widgets/autosave/ui'
 import Carcas from '@/react/components/containers/carcas'
-import { steps } from '@/constants/quiz.steps'
-import { useMemo } from 'react'
-import s from './questionnaire.module.scss'
 import { useQuestionnaire } from '@/react/widgets/steps/quiz/model.js'
 import Quiz from '@/react/widgets/steps/quiz/ui/index.jsx'
+import { steps } from '@/constants/quiz.steps'
+import useGlobal from '@/store'
+import s from './questionnaire.module.scss'
 
 export default function QuestionnairePage() {
 
+  const [ globalState, globalActions ] = useGlobal();
+
   const {
 
-    status,
     prevStep,
     nextStep,
     buttonTitle,
     quizContent,
     handleButtonAction,
-    step,
     title,
     description
 
   } = useQuestionnaire()
 
+
+  useEffect(() => {
+
+    globalActions.main.getProfile()
+
+  }, [])
+
   const content = useMemo(() => (
 
     <>
-
-      { step === steps.questionnaire
+      
+      { globalState.quiz.isLoading === true &&
+      
+      ( globalState.quiz.step === steps.questionnaire
 
         ? <Quiz
 
           buttonTitle = { buttonTitle }
           handleButtonAction = { handleButtonAction }
-          status = { status }
+          status = { globalState.quiz.progress }
 
-        />
+          />
+
         : <div className = { `${ s.content }` }>
 
           <ProgressBar
 
             title = { title }
             description = { description }
-            activeStep = { step }
+            activeStep = { globalState.quiz.step }
 
           />
 
           { quizContent }
 
-          <Autosave/>
-          <Pagination
-
-            nextStep = { nextStep }
-            activeStep = { step }
-            prevStep = { prevStep }
+          <Autosave 
+          
+            {...(globalState.quiz.step === 'Школа' && {
+              onClickHandler: () => globalActions.school.sendProfile(),
+            })}
 
           />
 
-        </div>
+          <Pagination
+
+          nextStep = { nextStep }
+          activeStep = { globalState.quiz.step }
+          prevStep = { prevStep }
+
+          />
+
+          </div>
+
+      )
 
       }
 
     </>
 
-  ), [ step ] )
+  ), [ globalState.quiz ] )
 
   return (
 
-    <main id = {``} className = {`${ step === steps.questionnaire && 'flex items-center h-dvh' }`}>
+    <main id = {``} className = {`${ globalState.quiz.step === steps.questionnaire && 'flex items-center h-dvh' }`}>
 
       <Carcas
 
