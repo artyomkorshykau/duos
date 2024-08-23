@@ -61,13 +61,13 @@ const Progress = ({
         let filledFields = 0
         
         if (schoolState.schoolName !== '') filledFields++
-        if (schoolState.comment !== '') filledFields++
+        if (schoolState.comment !== '') filledFields++ 
         
         fieldsCount += schoolState.courses.length
         
         for (const course of schoolState.courses) {
           
-          if (course.title !== '') filledFields++
+          if (course.name !== '') filledFields++
           
         }
         

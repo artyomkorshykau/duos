@@ -27,7 +27,7 @@ const CourseName = () => {
 
       <form>
 
-        { globalState.school.courses.map( ( course, index ) => {
+        { globalState.school.courses && globalState.school.courses.map( ( course, index ) => {
 
           return (
 
@@ -42,7 +42,7 @@ const CourseName = () => {
 
                 className = { `${ s.school__section__filedsWrapper__filed }` }
                 placeholder = { 'Введите название здесь' }
-                value = { course.title }
+                value = { course.name }
                 onChange = { (e) => globalActions.school.setCourseName(index, e.target.value )}
 
               />
