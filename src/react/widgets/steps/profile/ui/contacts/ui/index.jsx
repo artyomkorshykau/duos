@@ -25,6 +25,7 @@ const Contacts = ( { disabled } ) => {
           value = { globalState.profile.phoneNumber }
           onChange = { (e) => globalActions.profile.setPhoneNumber(e.target.value) }
           type = 'phone'
+          error = { globalState.profile.errors?.phone }
           disabled = { disabled }
 
         />
@@ -35,6 +36,7 @@ const Contacts = ( { disabled } ) => {
           placeholder = {'E-mail'}
           value = { globalState.profile.email }
           onChange = { (e) => globalActions.profile.setEmail(e.target.value)}
+          error = { globalState.profile.errors?.email }
           disabled = { disabled }
 
         />

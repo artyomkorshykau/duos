@@ -14,22 +14,34 @@ const ChoiceDirection = ({
 }) => {
 
   const [ globalState, globalActions ] = useGlobal();
+  const [ showInfoPopup, setShowInfoPopup ] = useState( false );
 
   //TODO delete this when api will ready
   const [isLoaded, setIsLoaded] = useState(false);
+  
+  const closePopups = () => {
+
+    setShowInfoPopup( false );
+
+  }
+
   useEffect(() => {
+
     setIsLoaded(true);
+
   }, []);
 
   if (!isLoaded) {
+
     return <div>Loading...</div>;
+
   }
 
   const handleExperienceClick = () => {
     
     if (!globalState.info.firstIconClick) {
 
-      globalActions.info.setShowInfoPopup(true)
+      setShowInfoPopup(true)
       globalActions.info.setFirstIconClick()
 
     }
@@ -69,7 +81,7 @@ const ChoiceDirection = ({
         <Textfield
 
           onClick = { handleExperienceClick }
-          onIconClick = { () => globalActions.info.setShowInfoPopup(true) }
+          onIconClick = { () => setShowInfoPopup(true) }
           className = {`${ s.service__section__filedsWrapper__filed }`}
           placeholder = {'Стаж работы по направлению, лет'}
           placeholderIcon = { <WarningIcon /> }
@@ -82,10 +94,10 @@ const ChoiceDirection = ({
 
       </form>
 
-      <InfoPopup
-
-        isOpened = { globalState.info.showInfoPopup }
-        closePopup = { () => globalActions.info.setShowInfoPopup(false)}
+      <InfoPopup 
+ 
+        isOpened = { showInfoPopup }
+        closePopup = { () => closePopups() }
         bodyClassName = { `${ s.service__section__infoPopup }`}
 
       />

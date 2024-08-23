@@ -1,6 +1,7 @@
 import GlobalHook from "use-global-hook"
-import getInitialProfileState from "./states/profile"
+import profileState from "@/store/states/profile"
 import quizState from "@/store/states/quiz"
+import dataState from "@/store/states/data"
 import quizActions from "@/store/actions/quiz"
 import dataState from "@/store/states/data"
 import mainActions from "@/store/actions/main"
@@ -21,7 +22,7 @@ import userData from "@/store/states/user.js";
 const initialState = {
 
   publications: getInitialPublicationsState(),
-  profile: getInitialProfileState(),
+  profile: profileState,
   service: getInitialServiceState(),
   school: getInitialSchoolState(),
   quiz: quizState,

@@ -2,6 +2,7 @@ import { useMemo, useEffect } from 'react'
 import ProgressBar from '@/react/widgets/progress.bar/ui'
 import Pagination from '@/react/widgets/pagination/ui'
 import Autosave from '@/react/widgets/autosave/ui'
+import Quiz from "@/react/widgets/steps/quiz/ui";
 import Carcas from '@/react/components/containers/carcas'
 import { useQuestionnaire } from '@/react/widgets/steps/quiz/model.js'
 import Quiz from '@/react/widgets/steps/quiz/ui/index.jsx'
@@ -25,6 +26,14 @@ export default function QuestionnairePage() {
 
   } = useQuestionnaire()
 
+  useEffect(() => {
+
+    globalActions.profile.getCountries()
+    globalActions.profile.getCities()
+    globalActions.profile.getProfile()
+
+  }, [])
+
 
   useEffect(() => {
 
@@ -40,7 +49,7 @@ export default function QuestionnairePage() {
       
       ( globalState.quiz.step === steps.questionnaire
 
-        ? <Quiz
+          ? <Quiz
 
           buttonTitle = { buttonTitle }
           handleButtonAction = { handleButtonAction }
@@ -50,32 +59,35 @@ export default function QuestionnairePage() {
 
         : <div className = { `${ s.content }` }>
 
-          <ProgressBar
+            <ProgressBar
 
             title = { title }
             description = { description }
             activeStep = { globalState.quiz.step }
 
-          />
+            />
 
-          { quizContent }
+            { quizContent }
 
-          <Autosave 
-          
-            {...(globalState.quiz.step === 'Школа' && {
-              onClickHandler: () => globalActions.school.sendProfile(),
-            })}
+            <Autosave
+              onClickHandler={
+                globalState.quiz.step === 'Профиль'
+                  ? () => globalActions.profile.sendProfile()
+                  : globalState.quiz.step === 'Школа'
+                  ? () => globalActions.school.sendProfile()
+                  : undefined
+              }
+            />
 
-          />
-
-          <Pagination
+            <Pagination
 
           nextStep = { nextStep }
           activeStep = { globalState.quiz.step }
           prevStep = { prevStep }
 
-          />
+            />
 
+          </div>
           </div>
 
       )
@@ -85,9 +97,11 @@ export default function QuestionnairePage() {
     </>
 
   ), [ globalState.quiz ] )
+  ), [ globalState.quiz ] )
 
   return (
 
+    <main id = {``} className = {`${ globalState.quiz.step === steps.questionnaire && 'flex items-center h-dvh' }`}>
     <main id = {``} className = {`${ globalState.quiz.step === steps.questionnaire && 'flex items-center h-dvh' }`}>
 
       <Carcas

@@ -1,15 +1,14 @@
-import s from '../../profile.module.scss'
-import useGlobal from '@/store'
+import { useEffect, useState } from "react";
 import Select from '@/react/components/forms/select'
-import { cityList, countryList } from '@/constants/profile'
-import { useEffect, useState } from 'react'
+import useGlobal from '@/store';
+import s from '../../profile.module.scss'
 
 const Location = ( { disabled }) => {
 
-  const [ globalState, globalActions ] = useGlobal();
+  const [ globalState, globalActions ] = useGlobal()
 
-  //TODO delete this when api will ready
   const [ isLoaded, setIsLoaded ] = useState( false );
+
   useEffect( () => {
 
     setIsLoaded( true );
@@ -22,48 +21,53 @@ const Location = ( { disabled }) => {
 
   }
 
-  return (
+    return ( 
+    
+    <>
+      { globalState.profile.isLoading === true &&
 
-    <div className = {`${ s.profile__section }`}>
+      <div className={ `${ s.profile__section }` }>
 
-      <p className = {`text-20 ${ s.profile__section__title }`}>
+        <p className={ `text-20 ${ s.profile__section__title }` }>
 
-        Местоположение
+          Местоположение
 
-      </p>
+        </p>
 
-      <p className = {`text-16 ${ s.profile__section__description }`}>
+        <p className={ `text-16 ${ s.profile__section__description }` }>
 
-        В какой стране и городе вы физически находитесь или планируете оказывать услуги очно
+          В какой стране и городе вы физически находитесь или планируете
+          оказывать услуги очно
 
-      </p>
+        </p>
 
-      <form className = {`${ s.profile__section__filedsWrapper }`}>
+        <form className={ `${ s.profile__section__filedsWrapper }` }>
 
-        <Select
+          <Select
 
-          placeholder = 'Страна'
-          options = { countryList }
-          value = { globalState.profile.country }
-          onChange = { value => globalActions.profile.setCountry( value ) }
+            placeholder='Страна'
+            options={ globalState.profile.countries }
+            value={ globalState.profile.country?.value }
+            onChange={ value => globalActions.profile.setCountry( globalState.profile.countries.find((item) => item.value === value) ) }
           disabled = { disabled }
 
-        />
-        <Select
+          />
+          <Select
 
-          placeholder = {'Город'}
-          options = { cityList }
-          value = { globalState.profile.city }
-          onChange = { value => globalActions.profile.setCity( value ) }
+            placeholder={ 'Город' }
+            options={ globalState.profile.cities }
+            value={ globalState.profile.city?.value }
+            onChange={ value => globalActions.profile.setCity( globalState.profile.cities.find((item) => item.value === value) ) }
           disabled = { disabled }
 
-        />
+          />
 
-      </form>
+        </form>
 
-    </div>
-
-  )
+      </div>
+      }
+      </>
+    )
 
 }
 

@@ -53,7 +53,7 @@ const TaxStatus = ( { disabled }) => {
 
         />
 
-        { globalState.profile.taxStatus !== 'Individual' && globalState.profile.taxStatus !== 'self-employed' &&
+        { globalState.profile.taxStatus !== 'individual' && globalState.profile.taxStatus !== 'self_employed' &&
 
           <Textfield
 
@@ -61,13 +61,14 @@ const TaxStatus = ( { disabled }) => {
             placeholder={ 'Полное наименование' }
             value = { globalState.profile.taxName }
             onChange = { ( e ) => globalActions.profile.setTaxName( e.target.value ) }
+            error = { globalState.profile.errors?.tax_name }
             disabled = { disabled }
 
           />
 
         }
 
-        { globalState.profile.taxStatus !== 'Individual' &&
+        { globalState.profile.taxStatus !== 'individual' &&
 
         <Textfield
 
@@ -75,6 +76,7 @@ const TaxStatus = ( { disabled }) => {
           placeholder = { 'ИНН' }
           value = { globalState.profile.taxIIN }
           onChange = { ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
+          error = { globalState.profile.errors?.tax_inn }
           disabled = { disabled }
 
         />
