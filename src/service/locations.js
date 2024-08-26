@@ -1,5 +1,5 @@
-import { BASE_URL } from "@/constants/urls.js";
-import { headers } from "@/service/headers.js";
+import { BASE_URL } from '@/constants/urls.js'
+import { getHeaders } from '@/service/headers.js'
 
 const locations = {
 
@@ -8,7 +8,7 @@ const locations = {
     const response = await fetch(`${BASE_URL}/dictionary/countries`, {
 
       method: 'GET',
-      headers: headers,
+      headers: getHeaders(),
 
     })
 
@@ -21,7 +21,7 @@ const locations = {
     const response = await fetch(`${BASE_URL}/dictionary/cities?country_id=${ countryId }`, {
 
       method: 'GET',
-      headers: headers,
+      headers: getHeaders(),
 
     })
 
