@@ -1,15 +1,17 @@
-import { useEffect, useMemo } from "react";
-import { useQuestionnaire } from "@/react/widgets/steps/quiz/model";
+import { useMemo, useEffect } from 'react'
 import ProgressBar from '@/react/widgets/progress.bar/ui'
 import Pagination from '@/react/widgets/pagination/ui'
 import Autosave from '@/react/widgets/autosave/ui'
-import Quiz from "@/react/widgets/steps/quiz/ui";
 import Carcas from '@/react/components/containers/carcas'
+import { useQuestionnaire } from '@/react/widgets/steps/quiz/model.js'
+import Quiz from '@/react/widgets/steps/quiz/ui/index.jsx'
 import { steps } from '@/constants/quiz.steps'
 import useGlobal from '@/store'
 import s from './questionnaire.module.scss'
 
 export default function QuestionnairePage() {
+
+  const [ globalState, globalActions ] = useGlobal();
 
   const {
 
@@ -23,31 +25,36 @@ export default function QuestionnairePage() {
 
   } = useQuestionnaire()
 
-  const [ globalState, globalActions ] = useGlobal();
-
   useEffect(() => {
 
     globalActions.profile.getCountries()
     globalActions.profile.getCities()
-    globalActions.profile.getProfile()
+    globalActions.main.getProfile()
+
+  }, [])
+
+
+  useEffect(() => {
+
+    globalActions.main.getProfile()
 
   }, [])
 
   const content = useMemo(() => (
 
     <>
-
+      
       { globalState.quiz.isLoading === true &&
       
         ( globalState.quiz.step === steps.questionnaire
 
           ? <Quiz
 
-            buttonTitle = { buttonTitle }
-            handleButtonAction = { handleButtonAction }
-            status = { globalState.quiz.progress }
+              buttonTitle = { buttonTitle }
+              handleButtonAction = { handleButtonAction }
+              status = { globalState.quiz.progress }
 
-          />
+            />
 
           : <div className = { `${ s.content }` }>
 
@@ -61,12 +68,14 @@ export default function QuestionnairePage() {
 
             { quizContent }
 
-            <Autosave 
-            
-              {...(globalState.quiz.step === 'Профиль' && {
-                onClickHandler: () => globalActions.profile.sendProfile(),
-              })}
-
+            <Autosave
+              onClickHandler={
+                globalState.quiz.step === 'Профиль'
+                  ? () => globalActions.profile.sendProfile()
+                  : globalState.quiz.step === 'Школа'
+                  ? () => globalActions.school.sendProfile()
+                  : undefined
+              }
             />
 
             <Pagination
@@ -77,7 +86,7 @@ export default function QuestionnairePage() {
 
             />
 
-          </div>
+            </div>
 
         )
 

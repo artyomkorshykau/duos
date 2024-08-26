@@ -52,6 +52,42 @@ const expert = {
     return await response.json()
     
   },
+
+    async sendExpertDataStep3(school) {
+       
+        const updatedProfile = {
+
+            name: school.schoolName,
+            comment: school.comment,
+            is_temp: 1,
+
+          }
+
+          if (school.courses) {
+
+            const filteredCourses = school.courses
+              .filter((item) => item.name !== '' && item.name !== undefined)
+              .map((item) => ({
+                name: item.name,
+              }));
+
+              if (filteredCourses.length > 0) {
+                updatedProfile.expert_course = filteredCourses;
+              }
+
+          }
+  
+      const response = await fetch(`${BASE_URL}/expert/step3`, {
+  
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(updatedProfile)
+  
+      })
+  
+    return await response.json()
+  
+    },
   
   async sendExpertDataStep5( isTemp ) {
     

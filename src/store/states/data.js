@@ -1,3 +1,3 @@
 const dataState = { }
   
-  export default dataState
+export default dataState
