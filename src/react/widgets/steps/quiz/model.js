@@ -1,14 +1,16 @@
-import { steps } from "@/constants/quiz.steps";
-import QuizProgress from "@/constants/quiz.progress";
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { steps } from '@/constants/quiz.steps'
+import QuizProgress from '@/constants/quiz.progress'
+import { useEffect, useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import s from '@/pages/questionnaire/questionnaire.module.scss'
-import Profile from "@/react/widgets/steps/profile/ui/index.jsx";
-import Services from "@/react/widgets/steps/services/ui/index.jsx";
-import School from "@/react/widgets/steps/school/ui/index.jsx";
-import Publications from "@/react/widgets/steps/publications/ui/index.jsx";
-import Document from "@/react/widgets/steps/document/ui/index.jsx";
-import useGlobal from "@/store";
+import Profile from '@/react/widgets/steps/profile/ui/index.jsx'
+import Services from '@/react/widgets/steps/services/ui/index.jsx'
+import School from '@/react/widgets/steps/school/ui/index.jsx'
+import Publications from '@/react/widgets/steps/publications/ui/index.jsx'
+import Document from '@/react/widgets/steps/document/ui/index.jsx'
+import useGlobal from '@/store'
+import { useMutation } from '@tanstack/react-query'
+import expert from '@/service/expert.js'
 
 export const useQuestionnaire = () => {
 
@@ -17,7 +19,14 @@ export const useQuestionnaire = () => {
   const [ stepTriggered, setStepTriggered ] = useState(false);
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
-
+  
+  const { mutate: mutatePublications } = useMutation({
+    
+    mutationKey: [ 'set-publications-info' ],
+    mutationFn: ( ) => expert.sendExpertDataStep5( )
+    
+  })
+  
   const router = useRouter()
 
   let buttonTitle
@@ -110,10 +119,10 @@ export const useQuestionnaire = () => {
 
     }
     if( globalState.quiz.step === steps.publications ) {
-
-      // setStatus(QuizProgress.end)
+      
       globalActions.quiz.setStep( steps.questionnaire )
-
+      mutatePublications()
+      
     }
 
     const scrollContainer = document.querySelector( `.${ s.content }` )

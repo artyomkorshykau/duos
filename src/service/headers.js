@@ -1,7 +1,27 @@
-export const headers =  {
+import { getCookie } from '@/scripts/helpers/get.token.js'
 
-  Authorization: 'Bearer 6|bGcpuCRa9C11dVqd9qV5wxY28WrjsmTlOrPnyhekdc0cb1e5',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
+export const getHeaders = () => {
+  
+  const token = getCookie('token')
+  
+  return {
+    
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    
+  }
+  
+}
 
+export const getFileHeaders = () => {
+  
+  const token = getCookie('token')
+  
+  return {
+    
+    Authorization: `Bearer ${token}`,
+    
+  }
+  
 }

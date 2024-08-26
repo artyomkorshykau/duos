@@ -1,42 +1,23 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react";
-import useGlobal from "@/store";
-import SignInIcon from "@/react/components/icons/sign.in.icon";
-import DefaultButton from "@/react/components/buttons/default.button";
-import HeaderAuthPanel from "./auth.panel";
-import s from "./header.sign.panel.module.scss";
+import SignInIcon from '@/react/components/icons/sign.in.icon'
+import DefaultButton from '@/react/components/buttons/default.button'
+import HeaderAuthPanel from './auth.panel'
+import s from './header.sign.panel.module.scss'
+import useGlobal from '@/store/index.js'
 
 const HeaderSignPanel = ({
 
   quizHadCompleted = false,
   signIn = () => {},
   signUp = () => {},
-  status
+  status,
+  logged
 
 }) => {
-
+  
   const [ globalState, globalActions ] = useGlobal()
-  const [ logged , setLogged ] = useState(false)
-  const [ loading, setLoading ] = useState(true)
-
-  useEffect(() => {
-
-    globalActions.user.setUser().then(() => {
-
-      setLogged(true)
-      setLoading(false)
-
-    })
-
-  }, [ globalState.user.role_id ])
-
-  if (loading) {
-
-    return null
-
-  }
-
+  
   function sendQuiz() { alert('закончить анкету') }
 
   return (

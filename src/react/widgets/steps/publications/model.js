@@ -12,8 +12,6 @@ export const usePublications = () => {
     
     const allFieldsFilled = publications.categories[0].profileInfo.slice(1).every(profile => profile.text.length >= 320);
     
-    console.log(publications.categories[0].profileInfo.slice(1)[0].text.length)
-    
     if ( !!photos && photos.length > 0 && allFieldsFilled ) {
 
       setFiled( true )

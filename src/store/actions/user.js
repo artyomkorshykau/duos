@@ -1,9 +1,9 @@
-import auth from "@/service/auth.js";
+import auth from '@/service/auth.js'
 
 const userActions = {
 
   setUser: async( store ) => {
-
+    
     try {
       const userData = await auth.checkToken()
 
@@ -13,13 +13,12 @@ const userActions = {
 
       } else {
 
-        console.error( 'Ошибка проверки токена:', userData.message )
+        console.error( 'Ошибка проверки токена:', userData )
 
       }
 
     } catch ( error ) {
 
-      console.error( 'Ошибка сети или сервера:', error )
 
     }
 

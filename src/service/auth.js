@@ -1,7 +1,6 @@
 import { BASE_URL } from '@/constants/urls.js'
-import { headers } from '@/service/headers.js'
+import { getHeaders } from '@/service/headers.js'
 import { extractNumbers } from '@/scripts/helpers/extract.numbers.js'
-import { getCookie } from '@/scripts/helpers/get.token.js'
 
 const auth = {
 
@@ -10,7 +9,7 @@ const auth = {
     const response = await fetch(`${BASE_URL}/sign-up`, {
 
       method: 'POST',
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({ phone: extractNumbers(phone), email, code })
 
     })
@@ -32,7 +31,7 @@ const auth = {
     const response = await fetch(`${BASE_URL}/sign-in`, {
 
       method: 'POST',
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({ phone: extractNumbers(phone), code: password })
 
     })
@@ -60,7 +59,7 @@ const auth = {
     const response = await fetch(`${BASE_URL}/forgot`, {
 
       method: 'POST',
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({ phone: extractNumbers(phone) })
 
     })
@@ -71,12 +70,10 @@ const auth = {
 
   async checkToken() {
 
-    const token = getCookie('token')
-
     const response = await fetch(`${BASE_URL}/sign/check`, {
 
       method: 'GET',
-      headers: { Authorization: `Bearer ${token}` }
+      headers: getHeaders()
 
     })
 

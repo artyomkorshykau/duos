@@ -1,8 +1,8 @@
 import s from './publication.card.module.scss'
-import PlaceholderImage from "@/react/components/icons/img.placeholder";
-import DefaultButton from "@/react/components/buttons/default.button";
-import Status from "@/react/components/status";
-import Cross from "@/react/components/icons/cross";
+import PlaceholderImage from '@/react/components/icons/img.placeholder'
+import DefaultButton from '@/react/components/buttons/default.button'
+import Status from '@/react/components/status'
+import Cross from '@/react/components/icons/cross'
 
 const PublicationCard = ( props ) => {
 
@@ -38,7 +38,7 @@ const PublicationCard = ( props ) => {
 
           <div className = { `${ s.card__content__status }` }>
 
-            <Status status = { status }/>
+            <Status status = { status === 1 ? 'Filled' : 'NotFilled' }/>
 
             <DefaultButton
 

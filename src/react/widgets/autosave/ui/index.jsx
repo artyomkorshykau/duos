@@ -1,16 +1,13 @@
 import s from './autosave.module.scss'
-import DefaultButton from '@/react/components/buttons/default.button';
-import Save from '@/react/components/icons/save';
-import NotiseInfo from '@/react/components/icons/notise.info';
-import NotiseSuccess from '@/react/components/icons/notise.success';
+import DefaultButton from '@/react/components/buttons/default.button'
+import Save from '@/react/components/icons/save'
+import NotiseInfo from '@/react/components/icons/notise.info'
+import NotiseSuccess from '@/react/components/icons/notise.success'
+import { useAutosave } from '@/react/widgets/autosave/model.js'
 
-const Autosave = ( props ) => {
-
-  const {
-
-    onClickHandler
-
-  } = props
+const Autosave = ( ) => {
+  
+ const { continueLater } = useAutosave()
 
   return (
 
@@ -66,7 +63,7 @@ const Autosave = ( props ) => {
 
         name = { 'Продолжить позже' }
         className = {`${ s.autosave__button }`}
-        action = { onClickHandler }
+        action = { continueLater }
         icon = { <Save fill = '#fff'/> }
         positionIcon = 'right'
 

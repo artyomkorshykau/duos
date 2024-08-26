@@ -1,6 +1,6 @@
-import expert from "@/service/expert.js";
-import locations from "@/service/locations.js";
-import QuizProgress from '@/constants/quiz.progress';
+import expert from '@/service/expert.js'
+import locations from '@/service/locations.js'
+import QuizProgress from '@/constants/quiz.progress'
 
 const profileActions = {
 
@@ -30,8 +30,8 @@ const profileActions = {
             phoneNumber: data.profile.temp.phone,
             email: data.profile.temp.email,
             progress: 1
-          },
-
+          }
+          
         });
 
         if ( data.profile.temp.length === 0 ) {
