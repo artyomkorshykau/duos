@@ -51,27 +51,3 @@ export const useAutosave = () => {
   return { continueLater }
   
 }
-
-const payload = {
-  "photo_url": "string",
-  "about": "string",
-  "mission": "string",
-  "ethical_principles": "string",
-  "personal_principles": "string",
-  "is_temp": 1,
-  "articles": [
-    {
-      "title": "string",
-      "content": "string",
-      "article_category_id": 0,
-      "image_url": "string",
-      "tags": [
-        {
-          "tag": "string"
-        }
-      ],
-      "is_draft": 1,
-      "in_library": 1
-    }
-  ]
-}

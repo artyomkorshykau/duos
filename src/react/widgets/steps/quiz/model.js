@@ -121,7 +121,7 @@ export const useQuestionnaire = () => {
     if( globalState.quiz.step === steps.publications ) {
       
       globalActions.quiz.setStep( steps.questionnaire )
-      mutatePublications()
+      mutatePublications(true)
       
     }
 

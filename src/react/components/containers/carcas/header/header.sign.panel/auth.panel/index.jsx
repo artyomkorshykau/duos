@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import { useState } from "react";
-import useGlobal from "@/store";
-import AuthMenu from "./auth.menu";
-import s from "./auth.panel.module.scss";
-import QuizProgress from '@/constants/quiz.progress';
+import { useState } from 'react'
+import useGlobal from '@/store'
+import AuthMenu from './auth.menu'
+import s from './auth.panel.module.scss'
+import QuizProgress from '@/constants/quiz.progress'
 
 const HeaderAuthPanel = ({
 
@@ -14,7 +14,7 @@ const HeaderAuthPanel = ({
 }) => {
 
   const [ globalState, globalActions ] = useGlobal();
-
+  
   const quizStatusText = {
 
     completed: "Анкета на верификации",
@@ -67,8 +67,8 @@ const HeaderAuthPanel = ({
 
         <div className = "flex items-center justify-end">
 
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.user.last_name || 'Фамилия' }</p>
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.user.first_name || 'Имя' }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.profile.lastName || 'Фамилия' }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.profile.firstName || 'Имя' }</p>
 
         </div>
 

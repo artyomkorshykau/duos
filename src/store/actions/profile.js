@@ -30,7 +30,9 @@ const profileActions = {
             phoneNumber: data.profile.temp.phone,
             email: data.profile.temp.email,
             progress: 1
-          }
+          },
+          
+          publications: {...store.state.publications, ...data.publications.temp }
           
         });
 
