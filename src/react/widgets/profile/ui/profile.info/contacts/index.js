@@ -12,16 +12,18 @@ const Contacts = () => {
   const [ globalState, globalActions ] = useGlobal()
   const { phoneNumber, email } = globalState.profile
   const { setPhoneNumber, setEmail } = globalActions.profile
+  
   const [ editNumber, setEditNumber ] = useState(false)
   const [ editEmail, setEditEmail ] = useState(false)
-  const numberRef = useRef(null)
+  
+  const phoneRef = useRef(null)
   const emailRef = useRef(null)
   const controlsRef = useRef(null)
   
   const handleEditNumber = () => {
     
     setEditNumber(true)
-    numberRef.current.focus()
+    phoneRef.current.focus()
     
   }
   
@@ -35,7 +37,7 @@ const Contacts = () => {
   const handleClearNumber = () => {
     
     setPhoneNumber('')
-    numberRef.current.focus()
+    phoneRef.current.focus()
     
   }
   
@@ -51,21 +53,21 @@ const Contacts = () => {
     alert('Отправка на сервер')
     setEditNumber(false)
     setEditEmail(false)
-    numberRef.current.blur()
+    phoneRef.current.blur()
     emailRef.current.blur()
     
   }
   
   const handleClickOutside = (e) => {
     
-      if ( ( numberRef.current || emailRef.current )
-        && ( !numberRef.current.contains(e.target) || !emailRef.current.contains(e.target) ) &&
+      if ( ( phoneRef.current || emailRef.current )
+        && ( !phoneRef.current.contains(e.target) || !emailRef.current.contains(e.target) ) &&
         controlsRef.current && !controlsRef.current.contains(e.target)
       
       ) {
         
         setEditEmail(false)
-        numberRef.current.blur()
+        phoneRef.current.blur()
         emailRef.current.blur()
         
       }
@@ -79,7 +81,7 @@ const Contacts = () => {
       
       setEditNumber(false)
       setEditEmail(false)
-      numberRef.current.blur()
+      phoneRef.current.blur()
       emailRef.current.blur()
       
     } else if (e.key === 'Enter') {
@@ -122,7 +124,7 @@ const Contacts = () => {
             value = { phoneNumber }
             placeholder = { 'Телефон' }
             onChange = { (e) => setPhoneNumber( e.target.value ) }
-            ref = { numberRef }
+            ref = { phoneRef }
             onClick = { handleEditNumber }
           
           />

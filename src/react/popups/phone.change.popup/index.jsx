@@ -11,22 +11,23 @@ const PhoneChangePopup = ( props ) => {
     
     isOpened,
     bodyClassName,
-    closePopup
+    closePopup,
     
   } = props
   
   const {
     
-    phoneNumber,
-    setPhoneNumber,
     handleButtonAction,
     handleCancelButton,
     codeMode,
     setUserCode,
     userCode,
-    error
+    error,
+    newPhoneNumber,
+    setNewPhoneNumber,
+    codeRef
     
-  } = usePhoneChange(closePopup)
+  } = usePhoneChange(closePopup, isOpened)
   
   const content = useMemo( () => {
     
@@ -40,6 +41,7 @@ const PhoneChangePopup = ( props ) => {
             
             placeholder = "Код"
             password
+            ref = { codeRef }
             value = { userCode }
             maxLength = { 5 }
             error = { error }
@@ -69,9 +71,9 @@ const PhoneChangePopup = ( props ) => {
           
           <Textfield
             
-            value = { phoneNumber }
+            value = { newPhoneNumber }
             placeholder = { 'Телефон' }
-            onChange = { ( e ) => setPhoneNumber( e.target.value ) }
+            onChange = { ( e ) => setNewPhoneNumber( e.target.value ) }
             type = "phone"
           
           />
@@ -91,7 +93,7 @@ const PhoneChangePopup = ( props ) => {
       
     }
     
-  }, [ codeMode, userCode ] )
+  }, [ codeMode, userCode, newPhoneNumber ] )
   
   return (
     
@@ -106,7 +108,7 @@ const PhoneChangePopup = ( props ) => {
       title = { codeMode ? 'Введите код из SMS' : 'Изменить номер' }
       subtitle = { codeMode
         
-        ? `Отправили код на номер ${ phoneNumber }`
+        ? `Отправили код на номер ${ newPhoneNumber }`
         : 'Введите новый номер телефона' }
     
     >

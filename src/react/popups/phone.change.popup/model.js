@@ -3,65 +3,76 @@ import { useMutation } from '@tanstack/react-query'
 import auth from '@/service/auth.js'
 import { useEffect, useState } from 'react'
 
-export const usePhoneChange = (closePopup) => {
+export const usePhoneChange = ( closePopup, isOpened ) => {
   
   const [ globalState, globalActions ] = useGlobal()
-  const { phoneNumber } = globalState.profile
-  const { setPhoneNumber } = globalActions.profile
   
-  const [ codeMode, setCodeMode ] = useState(false)
-  const [ userCode, setUserCode ] = useState("")
-  const [ error, setError ] = useState(null)
+  const [ codeMode, setCodeMode ] = useState( false )
+  const [ userCode, setUserCode ] = useState( '' )
+  const [ error, setError ] = useState( null )
+  const [ newPhoneNumber, setNewPhoneNumber ] = useState( globalState.profile.phoneNumber )
   
-  const { mutate: mutatePhoneEdit, data } = useMutation({
+  const { mutate: mutatePhoneEdit, data } = useMutation( {
     
     mutationKey: [ 'phone-edit' ],
-    mutationFn: ( { phone, code } ) => auth.editPhone(  phone, code  ),
-    onSuccess: ( error ) => { setError(error.errors ? error.errors : error.error) }
+    mutationFn: ( { phone, code } ) => auth.editPhone( phone, code ),
+    onSuccess: ( error ) => { setError( error.errors ? error.errors : error.error ) }
     
-  })
+  } )
   
   const handleButtonAction = () => {
     
-    mutatePhoneEdit( { phone: phoneNumber } )
-    setCodeMode(true)
+    globalActions.profile.setPhoneNumber( newPhoneNumber )
+    mutatePhoneEdit( { phone: newPhoneNumber } )
+    setCodeMode( true )
     
   }
   
   const handleCancelButton = () => {
     
     closePopup()
-    setCodeMode(false)
+    setCodeMode( false )
+    setUserCode( '' )
     
   }
   
-  useEffect( ()=> {
+  useEffect( () => {
     
-    if( data?.success ) setCodeMode(true)
-    
-  }, [ data ])
-  
-  useEffect(() => {
-    
-    if (userCode.length === 5) {
+    if ( data?.success ) setCodeMode( true )
+    if ( userCode.length === 5 ) {
       
-      mutatePhoneEdit({ phone: phoneNumber, code: userCode })
+      //Если номер успешно изменён, то закрывает попап
+      setTimeout( () => {
+        
+        handleCancelButton()
+        
+      }, 1000 )
       
     }
     
-  }, [userCode])
+  }, [ data, userCode ] )
+  
+  useEffect( () => {
+    
+    if ( userCode.length === 5 ) {
+      
+      mutatePhoneEdit( { phone: newPhoneNumber, code: userCode } )
+      
+    }
+    
+  }, [ userCode ] )
   
   return {
     
-    phoneNumber,
-    setPhoneNumber,
+    newPhoneNumber,
+    setNewPhoneNumber,
     handleButtonAction,
     handleCancelButton,
     codeMode,
     setUserCode,
     userCode,
-    error
-  
+    error,
+    
   }
   
 }
