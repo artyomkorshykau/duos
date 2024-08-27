@@ -5,6 +5,7 @@ import useGlobal from '@/store/index.js'
 import { useEffect, useRef, useState } from 'react'
 import Pencil from '@/react/components/icons/pencil.jsx'
 import cssIf from '@/scripts/helpers/css.if.js'
+import PhoneChangePopup from '@/react/popups/phone.change.popup/index.jsx'
 
 const Contacts = () => {
   
@@ -63,7 +64,6 @@ const Contacts = () => {
       
       ) {
         
-        setEditNumber(false)
         setEditEmail(false)
         numberRef.current.blur()
         emailRef.current.blur()
@@ -89,8 +89,6 @@ const Contacts = () => {
     }
     
   }
-  
-  
   
   useEffect(() => {
     
@@ -230,6 +228,15 @@ const Contacts = () => {
         </div>
       
       </div>
+      
+      <PhoneChangePopup
+      
+      isOpened = { editNumber }
+      bodyClassName = { `${ s.profile__right_side__phone_change_popup }` }
+      closePopup = { () => setEditNumber( false )}
+      
+      />
+      
     
     </div>
   

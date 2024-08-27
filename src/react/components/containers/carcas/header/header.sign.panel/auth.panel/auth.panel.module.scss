@@ -3,19 +3,17 @@
 .auth-panel {
 
   min-width: $apx-155;
-  padding-right: $apx-16;
+  padding-right: $apx-34;
+  gap: $apx-8;
 
   &__avatar {
   
-    $size: $apx-65;
-    width: $size;
-    height: $size;
-    margin-left: $apx-8;
     border-radius: 100%;
+    height: $apx-60;
 
     &__img {
     
-      $size: $apx-55;
+      $size: $apx-25;
       width: $size;
       height: $size;
       border-radius: 100%;
@@ -30,16 +28,19 @@
     
       font-weight: 600;
       white-space: nowrap;
-      margin-top: $apx-2;
       color: var(--color-accent-black-500);
     
     }
    
     &__userdata {
       
-      margin: 0 $apx-2;
       font-weight: 600;
       color: var(--color-accent-blue-700);
+      display: block;
+      width: $apx-90;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     
     }
 
@@ -47,8 +48,8 @@
 
   &__menu {
   
-    top: $apx-61;
-    right: $apx-25;
+    top: $apx-55;
+    right: $apx-23;
     width: $apx-280;
     height: max-content;
     padding: $apx-8;

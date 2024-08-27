@@ -4,7 +4,7 @@ import { useState } from 'react'
 import useGlobal from '@/store'
 import AuthMenu from './auth.menu'
 import s from './auth.panel.module.scss'
-import QuizProgress from '@/constants/quiz.progress'
+import { formatPhoneNumber } from '@/scripts/helpers/extract.numbers.js'
 
 const HeaderAuthPanel = ({
 
@@ -21,7 +21,12 @@ const HeaderAuthPanel = ({
     uncompleted: "Анкета не завершена",
 
   }
-
+  
+  const userName = globalState.profile.firstName
+    
+    ? `${globalState.profile.lastName} ${globalState.profile.firstName}`
+    : formatPhoneNumber(String(globalState.profile.phone))
+  
   const [ menuIsOpened, setMenuIsOpened ] = useState( false );
 
   const handleMouseOver = () => {
@@ -46,14 +51,14 @@ const HeaderAuthPanel = ({
 
         <img
         
-          src = { globalState.user.photo_url || 'img/test.default.data/avatar.jpg' }
+          src = { globalState.user.photo_url || 'img/test.default.data/avatar.png' }
           className = {`${ s['auth-panel__avatar__img'] } pointer`}
           
         />
 
       </div>
       
-      <div>
+      <div className = { `flex flex-column items-end`}>
 
         <p
         
@@ -61,14 +66,13 @@ const HeaderAuthPanel = ({
           
         >
 
-         { globalState.user.role_id === 1 && (status === QuizProgress.end ? quizStatusText.completed : quizStatusText.uncompleted) }
+         { quizStatusText.uncompleted }
 
         </p>
 
-        <div className = "flex items-center justify-end">
+        <div>
 
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.profile.lastName || 'Фамилия' }</p>
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ globalState.profile.firstName || 'Имя' }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ '+7 999 999-99-99' }</p>
 
         </div>
 

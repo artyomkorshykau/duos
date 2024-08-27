@@ -15,7 +15,8 @@ export const useSignup = ( { closePopup } ) => {
   const [ intervalId, setIntervalId ] = useState( null );
   const [ roleModeOpened, setRoleModeOpened ] = useState( false );
   const [ globalState, globalActions ] = useGlobal()
-  const [ error, setError ] = useState(false)
+  const [ error, setError ] = useState(null)
+  const [ codeError, setCodeError ] = useState(null)
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -24,7 +25,7 @@ export const useSignup = ( { closePopup } ) => {
 
     mutationKey: [ 'sign-up' ],
     mutationFn: ({ phone, email, code }) => auth.register(phone, email, code ),
-    onSuccess: (error) => { !error.success ? setError(true) : null }
+    onSuccess: ( error ) => { setError(error.errors ? error.errors : error.error) }
 
   })
 
@@ -35,7 +36,7 @@ export const useSignup = ( { closePopup } ) => {
     setUserEmail("");
     setUserCode("");
     setCodeModeOpened(false)
-    setError(false)
+    setError(null)
 
   };
 
@@ -89,7 +90,8 @@ export const useSignup = ( { closePopup } ) => {
   useEffect(()=> {
 
     if( userCode.length === 5 && policyAgree ) {
-
+      
+      globalActions.profile.setPhoneNumber(userNumber)
       mutate({ phone : userNumber, email: userEmail, code: userCode })
 
     }

@@ -1,6 +1,5 @@
 import { BASE_URL } from '@/constants/urls.js'
 import { getHeaders } from '@/service/headers.js'
-import { format } from 'date-fns'
 import { postImage } from '@/service/image.js'
 
 const expert = {
@@ -18,42 +17,53 @@ const expert = {
     
   },
   
-  async sendExpertDataStep1( profile ) {
+  async sendExpertDataStep1( isTemp ) {
     
-    const updatedProfile = {
+    const profile = JSON.parse(localStorage.getItem('profile'))
+    
+    const body = {
+      
       first_name: profile.firstName,
       mid_name: profile.surName,
       last_name: profile.lastName,
-      birthday: profile.birthDate && format( new Date( profile.birthDate ), 'yyyy-MM-dd' ),
+      birthday: profile.birthDate,
       gender: profile.gender,
-      pseudonym: profile.nickName,
       tax_status: profile.taxStatus,
       tax_name: profile.taxName,
       tax_inn: profile.taxIIN,
-      country_id: profile.country?.id,
-      city_id: profile.city?.id,
+      country_id: profile.country,
+      city_id: profile.city,
       email: profile.email,
-      is_temp: true
+      is_temp: !!isTemp
       
     }
     
-    if ( profile.phoneNumber ) {
-      updatedProfile.phone = parseInt( profile.phoneNumber.toString().replace( /\D/g, '' ) )
+    try {
+      
+      const response = await fetch(`${BASE_URL}/expert/step1`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(body)
+        
+      })
+      
+      if ( !response.ok ) {
+        
+        console.log(`Ошибка сервера (500)`)
+        
+      }
+      
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error(`Ошибка при отправке данных: ${error.message}`)
+      
     }
-    
-    const response = await fetch( `${ BASE_URL }/expert/step1`, {
-      
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify( updatedProfile )
-      
-    } )
-    
-    return await response.json()
     
   },
 
-    async sendExpertDataStep3(school) {
+  async sendExpertDataStep3(school) {
        
         const updatedProfile = {
 

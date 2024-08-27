@@ -1,9 +1,10 @@
-import * as React from "react"
-import { memo } from "react"
+import * as React from 'react'
+import { memo } from 'react'
+
 const SvgComponent = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={16}
+    width={20}
     height={17}
     fill="none"
     {...props}

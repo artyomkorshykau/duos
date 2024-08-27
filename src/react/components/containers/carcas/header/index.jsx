@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { useRouter } from 'next/router'
 import NAVBAR from './header.navbar'
 import Link from 'next/link'
@@ -7,7 +7,6 @@ import HeaderSignPanel from './header.sign.panel'
 import SignInPopup from '@/react/popups/sign.in.popup'
 import SignUpPopup from '@/react/popups/sign.up.popup'
 import s from './header.module.scss'
-import useGlobal from '@/store/index.js'
 
 const Header = ({
 
@@ -22,44 +21,6 @@ const Header = ({
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
   const [ showSignUpPopup, setShowSignUpPopup ] = useState( false );
   const [ codeModeClosed, setCodeModeClosed ] = useState( false );
-  const [ globalState, globalActions ] = useGlobal()
-  
-  const [ logged , setLogged ] = useState(false)
-  const [ loading, setLoading ] = useState(true)
-  
-  useEffect(() => {
-    
-    const fetchUser = async () => {
-      
-      await globalActions.user.setUser()
-      
-      setLoading(false)
-      
-    }
-    
-    fetchUser()
-    
-  }, [ globalActions ])
-  
-  useEffect(() => {
-    
-    if (globalState.user && globalState.user.role_id) {
-      
-      setLogged(true)
-      
-    } else {
-      
-      setLogged(false)
-    }
-    
-  }, [ globalState.user ])
-  
-  if ( loading ) {
-    
-    return null
-    
-  }
-
   function signIn( fast = false ) {
 
     setShowSignUpPopup( false );
@@ -180,7 +141,6 @@ const Header = ({
         signIn = { () => signIn() }
         signUp = { () => signUp() }
         status = { status }
-        logged = { logged }
 
       />
 

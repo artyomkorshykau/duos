@@ -14,11 +14,29 @@ export const useAvatar = () => {
     
     const file = e.target.files[0]
     
-    if ( file ) {
+    if (file) {
       
-      console.log( file )
+      const maxFileSize = 20 * 1024 * 1024 // 20MB
+      const allowedFileTypes = ['image/png', 'image/tiff', 'image/jpeg']
+      
+      if (!allowedFileTypes.includes(file.type)) {
+        
+        alert('Файл должен быть в формате PNG, TIFF или JPEG.')
+        return
+        
+      }
+      
+      if (file.size > maxFileSize) {
+        
+        alert('Размер файла не должен превышать 20MB.')
+        return
+        
+      }
+      
+      alert('Файл успешно загружен!')
       
     }
+    
   }
   
   return {

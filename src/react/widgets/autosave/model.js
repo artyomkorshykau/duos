@@ -16,10 +16,18 @@ export const useAutosave = () => {
     
   })
   
+  const { mutate: mutateProfile } = useMutation({
+    
+    mutationKey: [ 'set-profile-info' ],
+    mutationFn: (  isTemp  ) => expert.sendExpertDataStep1( isTemp )
+    
+  })
+  
   const continueLater = () => {
     
     if( globalState.quiz.step === steps.profile ) {
-    
+      
+      mutateProfile(true)
     
     }
     

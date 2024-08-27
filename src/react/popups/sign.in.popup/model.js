@@ -12,7 +12,7 @@ export const useLogin = ( { closePopup, logIn } ) => {
   const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
   const [ globalState, globalActions ] = useGlobal()
   const { refresh } = useRouter()
-  const [ error, setError ] = useState(false)
+  const [ error, setError ] = useState(null)
 
   const handleClosePopup = () => {
 
@@ -20,7 +20,7 @@ export const useLogin = ( { closePopup, logIn } ) => {
     setShowRecoveryPopup(false)
     setUserNumber("");
     setUserPassword("");
-    setError(false)
+    setError(null)
 
   };
 
@@ -28,7 +28,7 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
     mutationKey: [ 'sign-in' ],
     mutationFn: ({ phone, password }) => auth.login(phone, password),
-    onSuccess: (error) => { !error.success ? setError(true) : null }
+    onSuccess: (error) => { setError(error.error) }
 
   })
 
@@ -42,7 +42,8 @@ export const useLogin = ( { closePopup, logIn } ) => {
   const handleLog = () => {
 
     if ( userNumber.length >= 11 && userPassword !== '' ) {
-
+      
+      globalActions.profile.setPhoneNumber(userNumber)
       login({ phone : userNumber, password: userPassword })
 
     }

@@ -9,7 +9,7 @@ const userActions = {
 
       if ( userData && userData.success ) {
 
-        store.setState( { user: userData.user } )
+        store.setState( { profile: userData.user } )
 
       } else {
 

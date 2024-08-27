@@ -39,7 +39,7 @@ const SignUpPopup = ({
     error
 
   } = useSignup( {closePopup} )
-
+  
     return (
 
       <Popup
@@ -66,7 +66,7 @@ const SignUpPopup = ({
               value = { userNumber }
               withTitle = { false }
               onChange = { (e) => setUserNumber(e.target.value) }
-              error = { error }
+              error = { error?.phone?.[0] }
               type = 'phone'
               placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
 
@@ -77,7 +77,7 @@ const SignUpPopup = ({
               withTitle = { false }
               placeholder = "E-mail"
               className = { `${ s.email }` }
-              error = { error }
+              error = { error?.email?.[0] }
               value = { userEmail }
               onChange = { (e) => setUserEmail(e.target.value) }
               type = 'text'

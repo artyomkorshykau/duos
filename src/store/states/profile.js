@@ -19,4 +19,28 @@ const profileState = {
     errors: null
 }
 
-export default profileState
+const getInitialProfileState = () => {
+  
+  if (typeof window !== "undefined") {
+    
+    const storedServiceState = JSON.parse(localStorage.getItem("profile"))
+    
+    if (storedServiceState) {
+      
+      return storedServiceState
+      
+    } else {
+      
+      localStorage.setItem("profile", JSON.stringify(profileState))
+      
+      return profileState
+      
+    }
+    
+  }
+  
+  return profileState
+}
+
+export default getInitialProfileState
+

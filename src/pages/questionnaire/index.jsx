@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react'
+import { useMemo } from 'react'
 import ProgressBar from '@/react/widgets/progress.bar/ui'
 import Pagination from '@/react/widgets/pagination/ui'
 import Autosave from '@/react/widgets/autosave/ui'
@@ -24,21 +24,6 @@ export default function QuestionnairePage() {
     description
 
   } = useQuestionnaire()
-
-  useEffect(() => {
-
-    globalActions.profile.getCountries()
-    globalActions.profile.getCities()
-    globalActions.main.getProfile()
-
-  }, [])
-
-
-  useEffect(() => {
-
-    globalActions.main.getProfile()
-
-  }, [])
 
   const content = useMemo(() => (
 
@@ -68,15 +53,7 @@ export default function QuestionnairePage() {
 
             { quizContent }
 
-            <Autosave
-              onClickHandler={
-                globalState.quiz.step === 'Профиль'
-                  ? () => globalActions.profile.sendProfile()
-                  : globalState.quiz.step === 'Школа'
-                  ? () => globalActions.school.sendProfile()
-                  : undefined
-              }
-            />
+            <Autosave/>
 
             <Pagination
 

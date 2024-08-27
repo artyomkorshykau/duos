@@ -1,7 +1,7 @@
-import { useMemo, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { steps } from "@/constants/quiz.steps";
-import QuizProgress from "@/constants/quiz.progress";
+import { useEffect, useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { steps } from '@/constants/quiz.steps'
+import QuizProgress from '@/constants/quiz.progress'
 import s from '@/pages/questionnaire/questionnaire.module.scss'
 import Profile from '@/react/widgets/steps/profile/ui/index.jsx'
 import Services from '@/react/widgets/steps/services/ui/index.jsx'
@@ -19,6 +19,9 @@ export const useQuestionnaire = () => {
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
   
+  const router = useRouter()
+  let buttonTitle
+
   const { mutate: mutatePublications } = useMutation({
     
     mutationKey: [ 'set-publications-info' ],
@@ -26,9 +29,12 @@ export const useQuestionnaire = () => {
     
   })
   
-  const router = useRouter()
-
-  let buttonTitle
+  const { mutate: mutateProfile } = useMutation({
+    
+    mutationKey: [ 'set-profile-info' ],
+    mutationFn: () => expert.sendExpertDataStep1()
+    
+  })
 
   switch( globalState.quiz.progress ) {
 
@@ -88,9 +94,11 @@ export const useQuestionnaire = () => {
   const nextStep = async () => {
 
     if( globalState.quiz.step === steps.profile ) {
-
-      await globalActions.profile.sendProfile()
-      setStepTriggered(true)
+      
+      globalActions.quiz.setStep( steps.service )
+      setTitle('Услуги')
+      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')
+      mutateProfile(false)
 
     }
 
@@ -120,7 +128,7 @@ export const useQuestionnaire = () => {
     if( globalState.quiz.step === steps.publications ) {
       
       globalActions.quiz.setStep( steps.questionnaire )
-      mutatePublications(true)
+      mutatePublications(false)
       
     }
 
@@ -138,7 +146,49 @@ export const useQuestionnaire = () => {
     }
 
   }
-
+  
+  const prevStep = () => {
+    
+    if ( globalState.quiz.step === steps.service ) {
+      
+      globalActions.quiz.setStep( steps.profile )
+      setTitle('Профиль')
+      setDescription('Эти данные станут частью вашего профиля и помогут продвижению')
+      
+    }
+    
+    if ( globalState.quiz.step === steps.school ) {
+      
+      globalActions.quiz.setStep( steps.service )
+      setTitle('Услуги')
+      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')
+      
+    }
+    
+    if ( globalState.quiz.step === steps.documents ) {
+      
+      globalActions.quiz.setStep( steps.school )
+      setTitle('Школа')
+      setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
+      
+    }
+    if ( globalState.quiz.step === steps.publications ) {
+      
+      globalActions.quiz.setStep( steps.documents )
+      setTitle('Документы')
+      setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
+      
+    }
+    
+    window.scrollTo({
+      
+      top: 0,
+      behavior: 'smooth'
+      
+    })
+    
+  }
+  
   useEffect(() => {
 
     if (!globalState.school.errors && globalState.quiz.step === steps.school) {
@@ -166,7 +216,7 @@ export const useQuestionnaire = () => {
 
       globalActions.quiz.setStep( steps.service )
       setTitle('Услуги')
-      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам') 
+      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')
 
       const scrollContainer = document.querySelector( `.${ s.content }` )
 
@@ -180,57 +230,27 @@ export const useQuestionnaire = () => {
         })
 
       }
-          
-    } 
+      
+    }
 
 
     setStepTriggered(false)
 
   }, [stepTriggered])
+  
+  useEffect(() => {
+    
+    globalActions.profile.getCountries()
+    globalActions.profile.getCities()
+    
+  }, [])
 
-  const prevStep = () => {
-
-    if ( globalState.quiz.step === steps.service ) {
-
-      globalActions.quiz.setStep( steps.profile )
-      setTitle('Профиль')
-      setDescription('Эти данные станут частью вашего профиля и помогут продвижению')
-
-    }
-
-    if ( globalState.quiz.step === steps.school ) {
-
-      globalActions.quiz.setStep( steps.service )
-      setTitle('Услуги')
-      setDescription('В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам')
-
-    }
-
-    if ( globalState.quiz.step === steps.documents ) {
-
-      globalActions.quiz.setStep( steps.school )
-      setTitle('Школа')
-      setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
-
-    }
-    if ( globalState.quiz.step === steps.publications ) {
-
-      globalActions.quiz.setStep( steps.documents )
-      setTitle('Документы')
-      setDescription('Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее')
-
-    }
-
-    window.scrollTo({
-
-      top: 0,
-      behavior: 'smooth'
-
-    })
-
-  }
-
-
+  useEffect(() => {
+    
+    globalActions.main.getProfile()
+    
+  }, [])
+  
   const quizContent = useMemo(() => {
 
     if ( globalState.quiz.step === steps.profile ) {
@@ -242,6 +262,7 @@ export const useQuestionnaire = () => {
       )
 
     }
+    
     if ( globalState.quiz.step === steps.service ) {
 
       return (

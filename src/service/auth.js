@@ -47,6 +47,20 @@ const auth = {
     return data
 
   },
+  
+  async editPhone(  phone, code  ) {
+    
+    const response = await fetch(`${BASE_URL}/user/edit/phone`, {
+      
+      method: 'PUT',
+      headers: getHeaders(),
+      body: JSON.stringify({ phone: +extractNumbers(phone), code: +code })
+      
+    })
+    
+    return response.json()
+    
+  },
 
   async logout( ) {
 

@@ -5,6 +5,7 @@ import DefaultButton from '@/react/components/buttons/default.button'
 import HeaderAuthPanel from './auth.panel'
 import s from './header.sign.panel.module.scss'
 import useGlobal from '@/store/index.js'
+import { useEffect, useState } from 'react'
 
 const HeaderSignPanel = ({
 
@@ -12,19 +13,53 @@ const HeaderSignPanel = ({
   signIn = () => {},
   signUp = () => {},
   status,
-  logged
 
 }) => {
   
   const [ globalState, globalActions ] = useGlobal()
+  const [ logged , setLogged ] = useState(false)
+  const [ loading, setLoading ] = useState(true)
+  
+  useEffect(() => {
+    
+    const fetchUser = async () => {
+      
+      await globalActions.user.setUser()
+      
+      setLoading(false)
+      
+    }
+    
+    fetchUser()
+    
+  }, [ globalActions ])
+  
+  useEffect(() => {
+    
+    if (globalState.profile && globalState.profile.role_id) {
+      
+      setLogged(true)
+      
+    } else {
+      
+      setLogged(false)
+    }
+    
+  }, [ globalState.profile ])
+  
+  if ( loading ) {
+    
+    return null
+    
+  }
   
   function sendQuiz() { alert('закончить анкету') }
-
+  
   return (
 
     <div className = {`flex items-center justify-between${ s['sign-panel'] } ${ globalState.user.role_id ? s['sign-panel__in_auth'] : s['sign-panel__in_unauth'] } relative`}>
 
-      { !logged  ?
+      { logged  ?
 
         <>
 
