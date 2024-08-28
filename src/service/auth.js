@@ -3,98 +3,98 @@ import { getHeaders } from '@/service/headers.js'
 import { extractNumbers } from '@/scripts/helpers/extract.numbers.js'
 
 const auth = {
-
+  
   async register( phone, email, code ) {
-
-    const response = await fetch(`${BASE_URL}/sign-up`, {
-
+    
+    const response = await fetch( `${ BASE_URL }/sign-up`, {
+      
       method: 'POST',
       headers: getHeaders(),
-      body: JSON.stringify({ phone: extractNumbers(phone), email, code })
-
-    })
-
-    const data = await response.json();
-
+      body: JSON.stringify( { phone: extractNumbers( phone ), email, code } )
+      
+    } )
+    
+    const data = await response.json()
+    
     if ( data.token ) {
-
-      document.cookie = `token=${data.token}; path=/; secure;`
-
+      
+      document.cookie = `token=${ data.token }; path=/; secure;`
+      
     }
-
+    
     return data
-
-  },
-
-  async login( phone, password ) {
-
-    const response = await fetch(`${BASE_URL}/sign-in`, {
-
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify({ phone: extractNumbers(phone), code: password })
-
-    })
-
-    const data = await response.json();
-
-    if ( data.token ) {
-
-      document.cookie = `token=${data.token}; path=/; secure;`
-
-    }
-
-    return data
-
+    
   },
   
-  async editPhone(  phone, code  ) {
+  async login( phone, password ) {
     
-    const response = await fetch(`${BASE_URL}/user/edit/phone`, {
+    const response = await fetch( `${ BASE_URL }/sign-in`, {
+      
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify( { phone: extractNumbers( phone ), code: password } )
+      
+    } )
+    
+    const data = await response.json()
+    
+    if ( data.token ) {
+      
+      document.cookie = `token=${ data.token }; path=/; secure;`
+      
+    }
+    
+    return data
+    
+  },
+  
+  async editPhone( phone, code ) {
+    
+    const response = await fetch( `${ BASE_URL }/user/edit/phone`, {
       
       method: 'PUT',
       headers: getHeaders(),
-      body: JSON.stringify({ phone: +extractNumbers(phone), code: +code })
+      body: JSON.stringify( { phone: +extractNumbers( phone ), code: +code } )
       
-    })
+    } )
     
     return response.json()
     
   },
-
-  async logout( ) {
-
-    document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure";
-
+  
+  async logout() {
+    
+    document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure'
+    
   },
-
+  
   async recovery( phone ) {
-
-    const response = await fetch(`${BASE_URL}/forgot`, {
-
+    
+    const response = await fetch( `${ BASE_URL }/forgot`, {
+      
       method: 'POST',
       headers: getHeaders(),
-      body: JSON.stringify({ phone: extractNumbers(phone) })
-
-    })
-
-    return await response.json();
-
+      body: JSON.stringify( { phone: extractNumbers( phone ) } )
+      
+    } )
+    
+    return await response.json()
+    
   },
-
+  
   async checkToken() {
-
-    const response = await fetch(`${BASE_URL}/sign/check`, {
-
+    
+    const response = await fetch( `${ BASE_URL }/sign/check`, {
+      
       method: 'GET',
       headers: getHeaders()
-
-    })
-
+      
+    } )
+    
     return await response.json()
-
+    
   }
-
+  
 }
 
 export default auth

@@ -7,38 +7,38 @@ import s from './profile.page.module.scss'
 import useGlobal from '@/store'
 import dynamic from 'next/dynamic'
 
-const ProfileWithoutSSR = dynamic(( ) => import('@/react/widgets/profile/ui/index.jsx'), { ssr: false } )
+const ProfileWithoutSSR = dynamic( () => import('@/react/widgets/profile/ui/index.jsx'), { ssr: false } )
 
-export default function ProfilePage () {
+export default function ProfilePage() {
   
-  const [ globalState, globalActions ] = useGlobal();
+  const [ globalState, globalActions ] = useGlobal()
   
   const { profile } = globalActions
   
-  useEffect(() => {
+  useEffect( () => {
     
     profile.getLocations()
     
-  }, [])
-
-  const [ activeTab , setActiveTab ] = useState('Профиль' )
-
+  }, [] )
+  
+  const [ activeTab, setActiveTab ] = useState( 'Профиль' )
+  
   return (
     
     <main>
       
       <Carcas
         
-        authorized={ true }
+        authorized = { true }
       
       >
         
-        <div className={ ` ${ s.profile_page }` }>
+        <div className = { ` ${ s.profile_page }` }>
           
           <ProfileHeader
             
-            activeTab={ activeTab }
-            setActiveTab={ setActiveTab }
+            activeTab = { activeTab }
+            setActiveTab = { setActiveTab }
           
           />
           

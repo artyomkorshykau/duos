@@ -12,19 +12,19 @@ import useGlobal from '@/store'
 import s from './questionnaire.module.scss'
 
 export default function QuestionnairePage() {
-
-  const [ globalState, globalActions ] = useGlobal();
+  
+  const [ globalState, globalActions ] = useGlobal()
   
   const { profile } = globalActions
   
-  useEffect(() => {
+  useEffect( () => {
     
     profile.getLocations()
     
-  }, [])
-
+  }, [] )
+  
   const {
-
+    
     prevStep,
     nextStep,
     buttonTitle,
@@ -32,73 +32,73 @@ export default function QuestionnairePage() {
     handleButtonAction,
     title,
     description
-
+    
   } = useQuestionnaire()
   
-  const content = useMemo(() => (
-
+  const content = useMemo( () => (
+    
     <>
       
       {
-      
+        
         ( globalState.quiz.step === steps.questionnaire
-
-          ? <Quiz
-
+            
+            ? <Quiz
+              
               buttonTitle = { buttonTitle }
               handleButtonAction = { handleButtonAction }
               status = { globalState.quiz.progress }
-
+            
             />
-
-          : <div className = { `${ s.content }` }>
-
-            <ProgressBar
-
-              title = { title }
-              description = { description }
-              activeStep = { globalState.quiz.step }
-
-            />
-
-            { quizContent }
-
-            <Autosave/>
-
-            <Pagination
-
-              nextStep = { nextStep }
-              activeStep = { globalState.quiz.step }
-              prevStep = { prevStep }
-
-            />
-
+            
+            : <div className = { `${ s.content }` }>
+              
+              <ProgressBar
+                
+                title = { title }
+                description = { description }
+                activeStep = { globalState.quiz.step }
+              
+              />
+              
+              { quizContent }
+              
+              <Autosave/>
+              
+              <Pagination
+                
+                nextStep = { nextStep }
+                activeStep = { globalState.quiz.step }
+                prevStep = { prevStep }
+              
+              />
+            
             </div>
-
+        
         )
-
+        
       }
-
+    
     </>
-
+  
   ), [ globalState.quiz ] )
-
+  
   return (
-
-    <main id = {``} className = {`${ globalState.quiz.step === steps.questionnaire && 'flex items-center h-dvh' }`}>
-
+    
+    <main className = { `${ globalState.quiz.step === steps.questionnaire && 'flex items-center h-dvh' }` }>
+      
       <Carcas
-
+        
         authorized = { true }
-
+      
       >
-
+        
         { content }
-
+      
       </Carcas>
-
+    
     </main>
-
-  );
-
+  
+  )
+  
 }

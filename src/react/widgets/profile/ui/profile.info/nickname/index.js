@@ -6,61 +6,61 @@ import { useEffect, useRef, useState } from 'react'
 import Pencil from '@/react/components/icons/pencil.jsx'
 import cssIf from '@/scripts/helpers/css.if.js'
 
-const Nickname = (  ) => {
+const Nickname = () => {
   
   const [ globalState, globalActions ] = useGlobal()
   const { nickName } = globalState.profile
   const { setNickName } = globalActions.profile
-  const [ edit, setEdit] = useState(false)
-  const inputRef = useRef(null)
-  const controlsRef = useRef(null)
+  const [ edit, setEdit ] = useState( false )
+  const inputRef = useRef( null )
+  const controlsRef = useRef( null )
   
   const handleEditClick = () => {
     
-    setEdit(true)
+    setEdit( true )
     inputRef.current.focus()
     
   }
   
   const handleSaveClick = () => {
     
-    alert('Отправка на сервер')
-    setEdit(false)
+    alert( 'Отправка на сервер' )
+    setEdit( false )
     inputRef.current.blur()
     
   }
   
   const handleClearClick = () => {
     
-    setNickName('')
+    setNickName( '' )
     inputRef.current.focus()
     
   }
   
-  const handleClickOutside = (e) => {
+  const handleClickOutside = ( e ) => {
     
     if (
       
-      inputRef.current && !inputRef.current.contains(e.target) &&
-      controlsRef.current && !controlsRef.current.contains(e.target)
-      
+      inputRef.current && !inputRef.current.contains( e.target ) &&
+      controlsRef.current && !controlsRef.current.contains( e.target )
+    
     ) {
       
-      setEdit(false)
+      setEdit( false )
       inputRef.current.blur()
       
     }
     
   }
   
-  const handleKeyDown = (e) => {
+  const handleKeyDown = ( e ) => {
     
-    if (e.key === 'Escape') {
+    if ( e.key === 'Escape' ) {
       
-      setEdit(false)
+      setEdit( false )
       inputRef.current.blur()
       
-    } else if (e.key === 'Enter') {
+    } else if ( e.key === 'Enter' ) {
       
       handleSaveClick()
       
@@ -68,30 +68,31 @@ const Nickname = (  ) => {
     
   }
   
-  useEffect(() => {
+  useEffect( () => {
     
-    document.addEventListener('mousedown', handleClickOutside)
-    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener( 'mousedown', handleClickOutside )
+    document.addEventListener( 'keydown', handleKeyDown )
     
     return () => {
       
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener( 'mousedown', handleClickOutside )
+      document.removeEventListener( 'keydown', handleKeyDown )
       
     }
     
-  }, [ ])
+  }, [] )
   
   return (
     
-    <div className = { `${ s.profile__right_side__profile_info__nickname }`}>
+    <div className = { `${ s.profile__right_side__profile_info__nickname }` }>
       
-      <p className = { `text-20 ${ s.profile__right_side__profile_info__nickname__title }`}>Псевдоним</p>
+      <p
+        className = { `text-20 ${ s.profile__right_side__profile_info__nickname__title }` }>Псевдоним</p>
       
       <div className = { `
       ${ s.profile__right_side__profile_info__nickname__textfield }
-      ${cssIf(edit, s.profile__right_side__profile_info__nickname__textfield__active)}
-      `}
+      ${ cssIf( edit, s.profile__right_side__profile_info__nickname__textfield__active ) }
+      ` }
       
       >
         
@@ -100,47 +101,48 @@ const Nickname = (  ) => {
           value = { nickName }
           ref = { inputRef }
           placeholder = { 'Псевдоним' }
-          onChange = { (e) => setNickName( e.target.value ) }
+          onChange = { ( e ) => setNickName( e.target.value ) }
           onClick = { handleEditClick }
-          
+        
         />
         
         { edit && nickName.length > 0 &&
           
           <div
             
-            className={ `${ s.profile__right_side__profile_info__nickname__textfield__controls }` }
+            className = { `${ s.profile__right_side__profile_info__nickname__textfield__controls }` }
             ref = { controlsRef }
           
           >
-          
-          <Cross
             
-            stroke={ '#7C92A7' }
-            onClick={ handleClearClick }
-            className={ `${ s.profile__right_side__profile_info__nickname__textfield__controls__cross }` }
-          
-          />
-          
-          <div
+            <Cross
+              
+              stroke = { '#7C92A7' }
+              onClick = { handleClearClick }
+              className = { `${ s.profile__right_side__profile_info__nickname__textfield__controls__cross }` }
             
-            className={ `${ s.profile__right_side__profile_info__nickname__textfield__controls__save }` }
-            onClick={ handleSaveClick }
-          
-          >
+            />
             
-            <Save fill={ '#fff' }/>
+            <div
+              
+              className = { `${ s.profile__right_side__profile_info__nickname__textfield__controls__save }` }
+              onClick = { handleSaveClick }
+            
+            >
+              
+              <Save fill = { '#fff' }/>
+            
+            </div>
           
           </div>
-        
-        </div>
-        
+          
         }
         
         { !edit &&
           
-          <Pencil className={ `${ s.profile__right_side__profile_info__nickname__textfield__pencil }` }/>
-        
+          <Pencil
+            className = { `${ s.profile__right_side__profile_info__nickname__textfield__pencil }` }/>
+          
         }
       
       </div>
