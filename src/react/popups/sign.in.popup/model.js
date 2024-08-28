@@ -1,26 +1,23 @@
 import { useEffect, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import auth from '@/service/auth'
-import { useRouter } from 'next/navigation'
 import { extractNumbers } from '@/scripts/helpers/extract.numbers'
 import useGlobal from '@/store'
 
-export const useLogin = ( { closePopup, logIn } ) => {
+export const useLogin = ( { closePopup, setShowRecoveryPopup } ) => {
 
   const [ userNumber, setUserNumber ] = useState("");
   const [ userPassword, setUserPassword ] = useState("");
-  const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
   const [ globalState, globalActions ] = useGlobal()
-  const { refresh } = useRouter()
   const [ error, setError ] = useState(null)
 
   const handleClosePopup = () => {
 
     closePopup();
-    setShowRecoveryPopup(false)
     setUserNumber("");
     setUserPassword("");
     setError(null)
+    setShowRecoveryPopup(false)
 
   };
 
@@ -69,14 +66,18 @@ export const useLogin = ( { closePopup, logIn } ) => {
 
     }
 
+  }, [ loginData ])
+  
+  useEffect( () => {
+    
     if( recoveryData?.success ){
-
+      
       setShowRecoveryPopup(true)
-
+      
     }
-
-
-  }, [ loginData, recoveryData ])
+    
+    
+  }, [ recoveryData ])
 
   return {
 
@@ -87,9 +88,7 @@ export const useLogin = ( { closePopup, logIn } ) => {
     userPassword,
     setUserPassword,
     handleRecovery,
-    showRecoveryPopup,
     recoveryData,
-    setShowRecoveryPopup,
     loginData,
     error
 

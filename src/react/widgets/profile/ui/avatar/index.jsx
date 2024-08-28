@@ -10,7 +10,8 @@ const Avatar = () => {
     
     handleEditClick,
     handleFileChange,
-    fileInputRef
+    fileInputRef,
+    avatar
   
   } = useAvatar()
   
@@ -23,7 +24,7 @@ const Avatar = () => {
         <div
           className={ `${ s.profile__left_side__avatar__photo_wrapper__photo }` }>
           
-          <img src="img/test.default.data/avatar.png" alt="avatar"/>
+          <img src = { avatar } alt="avatar"/>
         
         </div>
       

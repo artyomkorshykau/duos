@@ -30,8 +30,6 @@ const Select = ( props ) => {
 
   } = props;
   
-  console.log(options, '1')
-  
   const [ isOpen, setIsOpen ] = useState( false );
   const [ search, setSearch ] = useState( '' );
   const [ selectOption, setSelectOption ] = useState( value );

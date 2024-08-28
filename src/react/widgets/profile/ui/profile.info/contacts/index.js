@@ -6,12 +6,15 @@ import { useEffect, useRef, useState } from 'react'
 import Pencil from '@/react/components/icons/pencil.jsx'
 import cssIf from '@/scripts/helpers/css.if.js'
 import PhoneChangePopup from '@/react/popups/phone.change.popup/index.jsx'
+import { formatPhoneNumber } from '@/scripts/helpers/extract.numbers.js'
 
 const Contacts = () => {
   
   const [ globalState, globalActions ] = useGlobal()
-  const { phoneNumber, email } = globalState.profile
+  const { phone, email } = globalState.user
   const { setPhoneNumber, setEmail } = globalActions.profile
+  
+  const formatPhone = formatPhoneNumber(String(phone))
   
   const [ editNumber, setEditNumber ] = useState(false)
   const [ editEmail, setEditEmail ] = useState(false)
@@ -121,7 +124,7 @@ const Contacts = () => {
           
           <input
             
-            value = { phoneNumber }
+            value = { formatPhone }
             placeholder = { 'Телефон' }
             onChange = { (e) => setPhoneNumber( e.target.value ) }
             ref = { phoneRef }
@@ -129,7 +132,7 @@ const Contacts = () => {
           
           />
           
-          { editNumber && phoneNumber.length > 0 &&
+          { editNumber && phone.length > 0 &&
             
             <div
               

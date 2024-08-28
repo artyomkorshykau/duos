@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useMemo } from 'react'
 import ProgressBar from '@/react/widgets/progress.bar/ui'
 import Pagination from '@/react/widgets/pagination/ui'
