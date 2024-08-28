@@ -29,7 +29,9 @@ const Select = ( props ) => {
     ...selectParams
 
   } = props;
-
+  
+  console.log(options, '1')
+  
   const [ isOpen, setIsOpen ] = useState( false );
   const [ search, setSearch ] = useState( '' );
   const [ selectOption, setSelectOption ] = useState( value );
@@ -47,10 +49,10 @@ const Select = ( props ) => {
   };
 
   const filteredOptions = useMemo( () => {
+    
+    return options?.filter( item => item.label.toLowerCase().includes( search.toLowerCase() ) )
 
-    return options.filter( item => item.label.toLowerCase().includes( search.toLowerCase() ) );
-
-  }, [ search ] );
+  }, [ search ] )
 
   const clearSearch = ( e ) => {
 

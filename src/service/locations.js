@@ -11,7 +11,7 @@ const locations = {
       headers: getHeaders(),
 
     })
-
+    
    return response.json()
 
   },
@@ -24,7 +24,7 @@ const locations = {
       headers: getHeaders(),
 
     })
-
+    
     return response.json()
 
   }

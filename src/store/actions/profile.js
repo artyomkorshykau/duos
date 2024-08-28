@@ -128,65 +128,52 @@ const profileActions = {
     
   },
 
-  getCountries: async ( store ) => {
+  getLocations: async ( store ) => {
 
     try {
 
-      const data = await locations.getCountries(null, null)
+      const dataCountries = await locations.getCountries(null, null)
+      const dataCity = await locations.getCities(1, null, null)
 
-      if ( data && data.success ) {
+      let countries = []
+      let cities = []
+      
+      if ( dataCountries && dataCountries.success ) {
         
-        const countries = data.countries.map((country) => ({
-            
+         countries = dataCountries.countries.map((country) => ({
+          
             id: country.id,
             value: country.name,
             label: country.name,
             
           }))
         
-        localStorage.setItem('profile', JSON.stringify({ ...store.state.profile, countries}))
-        store.setState( { ...store.state.profile, countries} )
-
       } else {
 
-        console.error( 'Ошибка загрузки стран', data.message )
+        console.error( 'Ошибка загрузки стран' )
 
       }
-
-    } catch ( error ) {
-
-      console.error( 'Ошибка сети или сервера:', error )
-
-    }
-
-  },
-
-  getCities: async ( store ) => {
-    
-    try {
-
-      const data = await locations.getCities(1, null, null)
-
-      if ( data && data.success ) {
+      
+      if ( dataCity && dataCity.success ) {
         
-        const cities = data.cities.map((city) => ({
-            
-            id: city.id,
-            value: city.name,
-            label: city.name,
-            
-          }))
+         cities = dataCity.cities.map((city) => ({
           
+          id: city.id,
+          value: city.name,
+          label: city.name,
+          
+        }))
         
-        localStorage.setItem('profile', JSON.stringify({ ...store.state.profile, cities}))
-
-        store.setState({ ...store.state.profile, cities})
-
       } else {
-
-        console.error( 'Ошибка загрузки стран', data.message )
-
+        
+        console.error( 'Ошибка загрузки стран' )
+        
       }
+      
+      localStorage.setItem('profile', JSON.stringify({ ...store.state.profile, countries, cities } ) )
+      store.setState( { ...store.state.profile, countries, cities } )
+      
+      console.log({ ...store.state.profile, countries, cities })
 
     } catch ( error ) {
 
@@ -195,6 +182,40 @@ const profileActions = {
     }
 
   },
+
+  // getCities: async ( store ) => {
+  //
+  //   try {
+  //
+  //     const data = await locations.getCities(1, null, null)
+  //
+  //      if ( data && data.success ) {
+  //
+  //       const cities = data.cities.map((city) => ({
+  //
+  //         id: city.id,
+  //         value: city.name,
+  //         label: city.name,
+  //
+  //       }))
+  //
+  //       localStorage.setItem('profile', JSON.stringify({ ...store.state.profile, cities } ) )
+  //
+  //       store.setState( { ...store.state.profile, cities } )
+  //
+  //     }else {
+  //
+  //       console.error( 'Ошибка загрузки стран', data.message )
+  //
+  //     }
+  //
+  //   } catch ( error ) {
+  //
+  //     console.error( 'Ошибка сети или сервера:', error )
+  //
+  //   }
+  //
+  // },
 
 }
 

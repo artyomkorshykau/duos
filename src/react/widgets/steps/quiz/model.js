@@ -253,13 +253,6 @@ export const useQuestionnaire = () => {
 
   }, [stepTriggered])
   
-  useEffect(() => {
-    
-    globalActions.profile.getCountries()
-    globalActions.profile.getCities()
-    
-  }, [])
-  
   const quizContent = useMemo(() => {
 
     if ( globalState.quiz.step === steps.profile ) {
