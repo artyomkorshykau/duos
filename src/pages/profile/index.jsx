@@ -1,10 +1,20 @@
 import Carcas from '@/react/components/containers/carcas/index.jsx'
 import ProfileHeader from '@/react/widgets/section.header/ui/index.jsx'
 import Profile from '@/react/widgets/profile/ui/index.jsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import s from './profile.page.module.scss'
+import useGlobal from '@/store'
 
 export default function ProfilePage () {
+  const [ globalState, globalActions ] = useGlobal();
+  
+  const { profile } = globalActions
+  
+  useEffect(() => {
+    
+    profile.getLocations()
+    
+  }, [])
 
   const [ activeTab , setActiveTab ] = useState('Профиль' )
 

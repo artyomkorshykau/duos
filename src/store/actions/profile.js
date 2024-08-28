@@ -170,10 +170,10 @@ const profileActions = {
         
       }
       
-      localStorage.setItem('profile', JSON.stringify({ ...store.state.profile, countries, cities } ) )
-      store.setState( { ...store.state.profile, countries, cities } )
+      const profile = JSON.parse(localStorage.getItem('profile'))
       
-      console.log({ ...store.state.profile, countries, cities })
+      localStorage.setItem('profile', JSON.stringify({ ...profile, countries, cities } ) )
+      store.setState( { profile: { ...store.state.profile, countries, cities } } )
 
     } catch ( error ) {
 

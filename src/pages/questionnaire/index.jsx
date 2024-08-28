@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import ProgressBar from '@/react/widgets/progress.bar/ui'
 import Pagination from '@/react/widgets/pagination/ui'
 import Autosave from '@/react/widgets/autosave/ui'
@@ -12,6 +12,14 @@ import s from './questionnaire.module.scss'
 export default function QuestionnairePage() {
 
   const [ globalState, globalActions ] = useGlobal();
+  
+  const { profile } = globalActions
+  
+  useEffect(() => {
+    
+    profile.getLocations()
+    
+  }, [])
 
   const {
 
