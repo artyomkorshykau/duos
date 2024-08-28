@@ -4,4 +4,4 @@ export const PAGES = {
 
 }
 
-export const BASE_URL = 'http://194.58.94.203/v1'
+export const BASE_URL = 'https://api.duos.space/v1'

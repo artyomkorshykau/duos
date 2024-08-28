@@ -23,7 +23,7 @@ const Avatar = () => {
         <div
           className={ `${ s.profile__left_side__avatar__photo_wrapper__photo }` }>
           
-          <img src="img/test.default.data/avatar.jpg" alt="avatar"/>
+          <img src="img/test.default.data/avatar.png" alt="avatar"/>
         
         </div>
       

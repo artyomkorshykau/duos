@@ -36,7 +36,7 @@ const HeaderSignPanel = ({
   
   useEffect(() => {
     
-    if (globalState.profile && globalState.profile.role_id) {
+    if (globalState.user && globalState.user.role_id) {
       
       setLogged(true)
       
@@ -45,7 +45,7 @@ const HeaderSignPanel = ({
       setLogged(false)
     }
     
-  }, [ globalState.profile ])
+  }, [ globalState.user ])
   
   if ( loading ) {
     
@@ -59,7 +59,7 @@ const HeaderSignPanel = ({
 
     <div className = {`flex items-center justify-between${ s['sign-panel'] } ${ globalState.user.role_id ? s['sign-panel__in_auth'] : s['sign-panel__in_unauth'] } relative`}>
 
-      { logged  ?
+      { !logged  ?
 
         <>
 

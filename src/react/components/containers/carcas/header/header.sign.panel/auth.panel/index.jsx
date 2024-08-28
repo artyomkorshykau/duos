@@ -22,10 +22,10 @@ const HeaderAuthPanel = ({
 
   }
   
-  const userName = globalState.profile.firstName
+  const userName = globalState.user.firstName
     
-    ? `${globalState.profile.lastName} ${globalState.profile.firstName}`
-    : formatPhoneNumber(String(globalState.profile.phone))
+    ? `${globalState.user.lastName} ${globalState.user.firstName}`
+    : formatPhoneNumber(String(globalState.user.phone))
   
   const [ menuIsOpened, setMenuIsOpened ] = useState( false );
 
@@ -72,7 +72,7 @@ const HeaderAuthPanel = ({
 
         <div>
 
-          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ '+7 999 999-99-99' }</p>
+          <p className = {`${ s['auth-panel__text__userdata'] } text-13`}>{ userName }</p>
 
         </div>
 

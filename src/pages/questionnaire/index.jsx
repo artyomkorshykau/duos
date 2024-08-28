@@ -24,12 +24,12 @@ export default function QuestionnairePage() {
     description
 
   } = useQuestionnaire()
-
+  
   const content = useMemo(() => (
 
     <>
       
-      { globalState.quiz.isLoading === true &&
+      {
       
         ( globalState.quiz.step === steps.questionnaire
 

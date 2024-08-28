@@ -5,7 +5,7 @@ import useGlobal from '@/store'
 const Contacts = ( { disabled } ) => {
 
   const [ globalState, globalActions ] = useGlobal()
-
+  
   return (
 
     <div>
@@ -22,7 +22,7 @@ const Contacts = ( { disabled } ) => {
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'Номер'}
-          value = { globalState.profile.phoneNumber }
+          value = { globalState.user.phone }
           onChange = { (e) => globalActions.profile.setPhoneNumber(e.target.value) }
           type = 'phone'
           error = { globalState.profile.errors?.phone }
@@ -34,7 +34,7 @@ const Contacts = ( { disabled } ) => {
 
           className = {`${ s.profile__section__filedsWrapper__filed }`}
           placeholder = {'E-mail'}
-          value = { globalState.profile.email }
+          value = { globalState.user.email }
           onChange = { (e) => globalActions.profile.setEmail(e.target.value)}
           error = { globalState.profile.errors?.email }
           disabled = { disabled }

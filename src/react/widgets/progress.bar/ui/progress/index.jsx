@@ -35,17 +35,34 @@ const Progress = ({
   const [ progress, setProgress ] = useState(0)
 
   useEffect(() => {
-
+    
     if (activeId === 1 && activeId === id) {
-
-      const totalFields = Object.keys(profile).length
-      const filledFields = Object.values(profile).filter(value => value !== '').length
-
-      const progress = totalFields > 0 ? Math.min(filledFields / totalFields, 1) : 0
-
-      setProgress(progress)
-
-    } else if ( activeId === 2 && activeId === id ) {
+      
+      const requiredFields = [
+        
+        'lastName',
+        'firstName',
+        'surName',
+        'birthDate',
+        'gender',
+        'nickName',
+        'taxStatus',
+        'city',
+        'country'
+        
+      ];
+      
+      const filledRequiredFields = requiredFields.filter(field => {
+        
+        const value = profile[field]
+        return value !== '' && value !== null && value !== undefined
+        
+      }).length
+      
+      const progress = 0.1 + (filledRequiredFields / requiredFields.length) * 0.9
+      setProgress(Math.min(progress, 1))
+      
+    }  else if ( activeId === 2 && activeId === id ) {
 
       const statuses = category.map( item => item.status )
 

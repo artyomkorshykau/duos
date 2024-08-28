@@ -17,7 +17,7 @@ const expert = {
     
   },
   
-  async sendExpertDataStep1( isTemp ) {
+  async sendExpertDataStep1( isTemp, email ) {
     
     const profile = JSON.parse(localStorage.getItem('profile'))
     
@@ -26,14 +26,15 @@ const expert = {
       first_name: profile.firstName,
       mid_name: profile.surName,
       last_name: profile.lastName,
-      birthday: profile.birthDate,
+      pseudonym: profile.nickName,
+      birthday: profile.birthDate.split('T')[0],
       gender: profile.gender,
       tax_status: profile.taxStatus,
-      tax_name: profile.taxName,
-      tax_inn: profile.taxIIN,
-      country_id: profile.country,
-      city_id: profile.city,
-      email: profile.email,
+      tax_name: profile.taxName || '',
+      tax_inn: profile.taxIIN || '',
+      country_id: profile.country.id,
+      city_id: profile.city.id,
+      email: email,
       is_temp: !!isTemp
       
     }
@@ -63,39 +64,40 @@ const expert = {
     
   },
 
-  async sendExpertDataStep3(school) {
-       
-        const updatedProfile = {
-
-            name: school.schoolName,
-            comment: school.comment,
-            is_temp: 1,
-
-          }
-
-          if (school.courses) {
-
-            const filteredCourses = school.courses
-              .filter((item) => item.name !== '' && item.name !== undefined)
-              .map((item) => ({
-                name: item.name,
-              }));
-
-              if (filteredCourses.length > 0) {
-                updatedProfile.expert_course = filteredCourses;
-              }
-
-          }
-  
+  async sendExpertDataStep3( isTemp ) {
+    
+    
+    
+    const school = JSON.parse(localStorage.getItem('school'))
+    
+    const body = {
+    
+    
+    }
+    
+    try {
+      
       const response = await fetch(`${BASE_URL}/expert/step3`, {
-  
+        
         method: 'POST',
         headers: getHeaders(),
-        body: JSON.stringify(updatedProfile)
-  
+        body: JSON.stringify(body)
+        
       })
-  
-    return await response.json()
+      
+      if ( !response.ok ) {
+        
+        console.log(`Ошибка сервера (500)`)
+        
+      }
+      
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error(`Ошибка при отправке данных: ${error.message}`)
+      
+    }
   
     },
   
