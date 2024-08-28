@@ -136,22 +136,16 @@ const profileActions = {
 
       if ( data && data.success ) {
         
-        const profile = {
-          
-          ...store.state.profile,
-          countries: data.countries.map((country) => ({
+        const countries = data.countries.map((country) => ({
+            
             id: country.id,
             value: country.name,
             label: country.name,
             
-          })),
-          
-          isLoading: true
-          
-        }
+          }))
         
-        localStorage.setItem('profile', JSON.stringify({ profile }))
-        store.setState({ profile })
+        localStorage.setItem('profile', JSON.stringify({ ...store.state.profile, countries}))
+        store.setState( { ...store.state.profile, countries} )
 
       } else {
 
@@ -175,23 +169,18 @@ const profileActions = {
 
       if ( data && data.success ) {
         
-        const profile = {
-          
-          ...store.state.profile,
-          cities: data.cities.map((city) => ({
+        const cities = data.cities.map((city) => ({
+            
             id: city.id,
             value: city.name,
             label: city.name,
             
-          })),
+          }))
           
-          isLoading: true
-          
-        }
         
-        localStorage.setItem('profile', JSON.stringify({ profile }))
+        localStorage.setItem('profile', JSON.stringify({ ...store.state.profile, cities}))
 
-        store.setState({ profile })
+        store.setState({ ...store.state.profile, cities})
 
       } else {
 

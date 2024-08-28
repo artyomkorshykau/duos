@@ -28,7 +28,7 @@ const Location = ( { disabled } ) => {
         <Select
           
           placeholder="Страна"
-          options={ [] }
+          options={ globalState.profile.countries }
           value={ globalState.profile.country?.value }
           onChange={ value => globalActions.profile.setCountry( globalState.profile.countries.find( ( item ) => item.value === value ) ) }
           disabled={ disabled }
@@ -37,7 +37,7 @@ const Location = ( { disabled } ) => {
         <Select
           
           placeholder={ 'Город' }
-          options={ [] }
+          options={ globalState.profile.cities }
           value={ globalState.profile.city?.value }
           onChange={ value => globalActions.profile.setCity( globalState.profile.cities.find( ( item ) => item.value === value ) ) }
           disabled={ disabled }
