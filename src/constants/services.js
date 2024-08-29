@@ -3,28 +3,21 @@ export const deliveryFormatList = [
   {
 
     id: 0,
-    value: 'Video',
+    value: 'video',
     label: 'Видео'
 
   },
   {
 
     id: 1,
-    value: 'Audio',
+    value: 'audio',
     label: 'Аудио'
 
   },
   {
 
-    id: 2,
-    value: 'Text',
-    label: 'Текстом'
-
-  },
-  {
-
     id: 3,
-    value: 'Intramural',
+    value: 'offline',
     label: 'Очно'
 
   }
@@ -36,21 +29,21 @@ export const minuteHoursDaysList = [
   {
 
     id: 0,
-    value: 'minute',
+    value: 'Минут',
     label: 'Минут'
 
   },
   {
 
     id: 1,
-    value: 'hours',
+    value: 'Часов',
     label: 'Часов'
 
   },
   {
 
     id: 2,
-    value: 'days',
+    value: 'Дней',
     label: 'Дней'
 
   }
@@ -62,28 +55,28 @@ export const paymentFormatList = [
   {
 
     id: 0,
-    value: 'Fixed',
+    value: 'fix',
     label: 'Фиксированная'
 
   },
   {
 
     id: 1,
-    value: 'Subscription',
+    value: 'subscription',
     label: 'Подписка'
 
   },
   {
 
     id: 2,
-    value: 'Range',
+    value: 'range',
     label: 'Диапазон'
 
   },
   {
 
     id: 3,
-    value: 'Free',
+    value: 'free',
     label: 'Бесплатно'
 
   }
@@ -120,32 +113,6 @@ export const dayWeekMonthYearList = [
     label: 'Год'
 
   }
-
-]
-
-export const directionList = [
-
-  {
-
-    id: 0,
-    value: 'Психология',
-    label: 'Психология'
-
-  },
-  {
-
-    id: 1,
-    value: 'Наука',
-    label: 'Наука'
-
-  },
-  {
-
-    id: 2,
-    value: 'Other',
-    label: 'Другое'
-
-  },
 
 ]
 

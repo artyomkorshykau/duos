@@ -37,7 +37,7 @@ const PaymentFormat = ({
 
         <Select
           
-          className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
+          className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'subscription', 'col-span-2' ) }`}
           placeholder = {'Формат оплаты услуги'}
           options = { paymentFormatList }
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat }
@@ -45,10 +45,10 @@ const PaymentFormat = ({
           
         />
 
-        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Subscription' &&
+        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'subscription' &&
           <Select
             
-            className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'Subscription', 'col-span-2' ) }`}
+            className = {`${ s.service__section__filedsGrid__filed } ${ cssIf( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat !== 'subscription', 'col-span-2' ) }`}
             placeholder = 'День/неделя/месяц/год'
             options = { dayWeekMonthYearList }
             value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.dayWeekMonthYearList }
@@ -57,8 +57,8 @@ const PaymentFormat = ({
           />
         }
 
-        { ( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Fixed' || 
-          globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Subscription' ||
+        { ( globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'fix' || 
+          globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'subscription' ||
           !globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat) &&
 
           <Textfield
@@ -72,7 +72,7 @@ const PaymentFormat = ({
           
         }
         
-        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'Range' &&
+        { globalState.service.category?.[categoryIndex]?.services?.[index]?.paymentFormat === 'range' &&
         
           <>
           

@@ -8,11 +8,12 @@ import useGlobal from '@/store'
 export default function ProfilePage () {
   const [ globalState, globalActions ] = useGlobal();
   
-  const { profile } = globalActions
+  const { profile, service } = globalActions
   
   useEffect(() => {
     
     profile.getLocations()
+    service.getServiceCategories()
     
   }, [])
 
