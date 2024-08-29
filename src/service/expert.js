@@ -200,28 +200,30 @@ const expert = {
   
   async sendExpertDataStep4( isTemp ) {
     
-    const service = JSON.parse( localStorage.getItem( 'service' ) )
+    const { category, passport, serviceCategories } = JSON.parse( localStorage.getItem( 'service' ) )
     
     try {
       
-      const passportPhoto = await postImage( service.passport.files )
+      const passportPhoto = await postImage( passport.files )
       
-      const categoryEducationImages = await Promise.all( service.category.map( async( category ) => {
+      const categoryEducationImages = await Promise.all( category.map( async( cat ) => {
+        
+        const service_category = serviceCategories.find((category) => category.value === cat.direction)
         
         try {
           
-          const documentPhoto = await postImage( category.certificatesFiles )
+          const documentPhoto = await postImage( cat.certificatesFiles )
           
           return {
             
-            service_category_expert_id: category.id,
+            service_category_expert_id: service_category.id,
             document_image_url: documentPhoto.image_url
             
           }
           
         } catch ( error ) {
           
-          console.error( `Ошибка при загрузке сертификата для категории ${ category.id }: ${ error.message }` )
+          console.error( `Ошибка при загрузке сертификата для категории ${ service_category.id }: ${ error.message }` )
           
           throw error
           
@@ -229,20 +231,26 @@ const expert = {
         
       } ) )
       
-      const expertConfirmContacts = category.flatMap( cat =>
+      const expertConfirmContacts = category.flatMap(cat => {
         
-        cat.services.map( service => ( {
+        const service_category = serviceCategories.find((category) => category.value === cat.direction)
+        
+        return cat.services.map(service => ({
           
           name: service.clientFullName,
           phone: service.phone,
           communication_method: service.communication,
-          service_id: service.id
+          service_id: service_category.id  
           
-        } ) ) )
+        }))
+        
+      })
       
-      const expertReviews = await Promise.all( service.category.flatMap( ( cat ) =>
+      const expertReviews = await Promise.all( category.flatMap( ( cat ) =>
         
         cat.services.map( async( service ) => {
+          
+          const service_category = serviceCategories.find((category) => category.value === cat.direction)
           
           try {
             
@@ -250,7 +258,8 @@ const expert = {
             
             return {
               
-              image_id: imageIdResponse.image_id, service_id: service.id
+              image_id: imageIdResponse.image_id,
+              service_id: service_category.id
               
             }
             
@@ -333,12 +342,11 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      console.error(`Ошибка при отправке данных: ${error.message}`)
       
     }
     
   }
-  
   
 }
 

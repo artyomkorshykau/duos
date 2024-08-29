@@ -27,6 +27,13 @@ export const useQuestionnaire = () => {
     
   } )
   
+  const { mutate: mutateService } = useMutation({
+    
+    mutationKey: [ 'set-service-info' ],
+    mutationFn: ({ isTemp }) => expert.sendExpertDataStep2( isTemp )
+    
+  })
+  
   const { mutate: mutateSchool } = useMutation( {
     
     mutationKey: [ 'set-school-info' ],
@@ -45,13 +52,6 @@ export const useQuestionnaire = () => {
     
     mutationKey: [ 'set-publications-info' ],
     mutationFn: () => expert.sendExpertDataStep5()
-    
-  })
-
-  const { mutate: mutateService } = useMutation({
-    
-    mutationKey: [ 'set-service-info' ],
-    mutationFn: ({ isTemp }) => expert.sendExpertDataStep2( isTemp )
     
   })
   
