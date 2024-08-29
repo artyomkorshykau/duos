@@ -8,7 +8,8 @@ const expert = {
     
     const response = await fetch( `${ BASE_URL }/expert`, {
       
-      method: 'GET', headers: getHeaders()
+      method: 'GET',
+      headers: getHeaders()
       
     } )
     
@@ -18,7 +19,7 @@ const expert = {
   
   async sendExpertDataStep1( isTemp, email ) {
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    const profile = JSON.parse(localStorage.getItem('profile'))
     
     const body = {
       
@@ -40,14 +41,16 @@ const expert = {
     
     try {
       
-      const response = await fetch( `${ BASE_URL }/expert/step1`, {
-        method: 'POST', headers: getHeaders(), body: JSON.stringify( body )
+      const response = await fetch(`${BASE_URL}/expert/step1`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(body)
         
-      } )
+      })
       
       if ( !response.ok ) {
         
-        console.log( `Ошибка сервера (500)` )
+        console.log(`Ошибка сервера (500)`)
         
       }
       
@@ -55,16 +58,112 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      console.error(`Ошибка при отправке данных: ${error.message}`)
       
     }
     
   },
+
+  async sendExpertDataStep2( isTemp ) {
+    
+    const service = JSON.parse(localStorage.getItem('service'))
+
+    const {
+      
+      category,
+      serviceCategories
+      
+    } = service
+
+    const service_category_expert = await Promise.all(
+
+      category.map(async (expert) => {
+
+        const service_category_id = serviceCategories.find((category) => category.value === expert.direction);
+
+        const servicesWithPhotos = await Promise.all(
+
+          expert.services.map(async (service) => {
+
+            const photo = await postImage(service.files);
+
+            return {
+
+              service_category_id: service_category_id.id,
+              title: service.title,
+              description: service.meaningService,
+              price: +service?.price || null,
+              price_from: +service?.before || null,
+              image_url: photo.image_url,
+              format: service.deliveryFormat,
+              duration: service.duration,
+              duration_type: service.minuteHoursDays,
+              pay_format: service.paymentFormat,
+              //subscription_duration
+
+            };
+
+          })
+
+        );
+
+        return {
+
+          service_category_id: service_category_id.id,
+          title: expert.direction,
+          experience: expert.directionWorkExperience,
+          education_grade: expert.education,
+          education_organization: expert.educationOrganizationName,
+          education_name: expert.educationCourseName,
+          teacher_name: expert.educationCourseAuthor,
+          education_days: expert.educationDuration,
+          education_date: expert.educationCompletionDate.split("T")[0],
+          services: servicesWithPhotos,
+
+        };
+
+      })
+      
+    );
+    
+    const body = {
+      
+      is_temp: !!isTemp,
+      service_category_expert
+    
+    }
+    
+    try {
+      
+      const response = await fetch(`${BASE_URL}/expert/step2`, {
+        
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(body)
+        
+      })
+      
+      if ( !response.ok ) {
+        
+        console.log(`Ошибка сервера (500)`)
+        
+      }
+      
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error(`Ошибка при отправке данных: ${error.message}`)
+      
+    }
   
+  },
+
   async sendExpertDataStep3( isTemp ) {
     
     
-    const school = JSON.parse( localStorage.getItem( 'school' ) )
+    
+    const school = JSON.parse(localStorage.getItem('school'))
     
     const body = {
       
@@ -188,7 +287,7 @@ const expert = {
     } catch ( error ) {
       console.error( `Ошибка при отправке данных: ${ error.message }` )
     }
-    
+  
   },
   
   async sendExpertDataStep5( isTemp ) {
@@ -245,69 +344,3 @@ const expert = {
 
 export default expert
 
-
-const category = [ {
-  'id': 'e26e3922-5d61-11ef-92d1-a343d9a361ea',
-  'title': 'Психология',
-  'status': 'Filled',
-  'documentStatus': 'Filled',
-  'services': [ {
-    'id': 'e26e3924-5d61-11ef-92d1-a343d9a361ea',
-    'title': 'Прием у психотерапевта',
-    'status': 'Filled',
-    'documentStatus': 'Filled',
-    'files': '',
-    'serviceType': '1',
-    'deliveryFormat': 'Video',
-    'duration': '1',
-    'minuteHoursDays': 'minute',
-    'paymentFormat': 'Fixed',
-    'price': '1',
-    'meaningService': '1',
-    'clientFullName': '4',
-    'communication': 'Telegram',
-    'phone': '1',
-    'reviewsFiles': [ '' ]
-  } ],
-  'direction': 'Наука',
-  'directionWorkExperience': '1',
-  'education': '1',
-  'educationOrganizationName': '1',
-  'educationCourseName': '1',
-  'educationCourseAuthor': '3',
-  'educationDuration': '1',
-  'educationCompletionDate': '2024-08-01T09:36:15.000Z',
-  'certificatesFiles': ''
-}, {
-  'id': '583c8230-65f8-11ef-a883-e93974cf76ce',
-  'title': 'Направление №2',
-  'services': [ {
-    'id': '583c8231-65f8-11ef-a883-e93974cf76ce',
-    'title': 'Услуга №1',
-    'status': 'Filled',
-    'documentStatus': 'Filled',
-    'files': '',
-    'serviceType': '1',
-    'deliveryFormat': 'Video',
-    'duration': '1',
-    'minuteHoursDays': 'minute',
-    'paymentFormat': 'Subscription',
-    'price': '1',
-    'meaningService': '1',
-    'clientFullName': '1',
-    'communication': 'Telegram',
-    'phone': '1',
-    'reviewsFiles': [ '' ]
-  } ],
-  'status': 'Filled',
-  'documentStatus': 'Filled',
-  'direction': 'Психология',
-  'directionWorkExperience': '2',
-  'education': '1',
-  'educationOrganizationName': '1',
-  'educationCourseName': '1',
-  'educationCourseAuthor': '1',
-  'educationDuration': '1',
-  'educationCompletionDate': '2024-08-09T11:17:57.000Z',
-  'certificatesFiles': ''
-} ]

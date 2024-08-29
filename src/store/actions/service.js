@@ -1,6 +1,56 @@
+import dictionary from "@/service/dictionary";
 import { v1 } from "uuid";
 
+function flattenCategories(categories) {
+    let result = [];
+
+    categories.forEach(category => {
+        result.push({
+            id: category.id,
+            value: category.name,
+            label: category.name
+        });
+
+        if (category.children_categories && category.children_categories.length > 0) {
+            result = result.concat(flattenCategories(category.children_categories));
+        }
+    });
+
+    return result;
+}
+
 const serviceActions = {
+
+  getServiceCategories: async ( store ) => {
+
+    try {
+
+      const dataServiceCategories = await dictionary.getServiceCategories(null, null, null)
+
+      let serviceCategories = []
+      
+      if ( dataServiceCategories && dataServiceCategories.success ) {
+        
+        serviceCategories = flattenCategories(dataServiceCategories.service_categories)
+        
+      } else {
+
+        console.error( 'Ошибка загрузки serviceCategories' )
+
+      }
+      
+      const service = JSON.parse(localStorage.getItem('service'))
+      
+      localStorage.setItem('service', JSON.stringify({ ...service, serviceCategories } ) )
+      store.setState( { service: { ...store.state.service, serviceCategories } } )
+
+    } catch ( error ) {
+
+      console.error( 'Ошибка сети или сервера:', error )
+
+    }
+
+  },
 
   setDirection: (store, direction, index) => {
 

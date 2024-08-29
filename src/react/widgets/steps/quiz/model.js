@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { steps } from '@/constants/quiz.steps'
 import QuizProgress from '@/constants/quiz.progress'
 import s from '@/pages/questionnaire/questionnaire.module.scss'
@@ -19,7 +18,6 @@ export const useQuestionnaire = () => {
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
   
-  const router = useRouter()
   let buttonTitle
   
   const { mutate: mutateProfile } = useMutation( {
@@ -28,10 +26,6 @@ export const useQuestionnaire = () => {
     mutationFn: ( { isTemp, email } ) => expert.sendExpertDataStep1( isTemp, email )
     
   } )
-  
-  const id = "e26e3922-5d61-11ef-92d1-a343d9a361ea"
-  
-  console.log(+id, 'id')
   
   const { mutate: mutateSchool } = useMutation( {
     
@@ -52,7 +46,14 @@ export const useQuestionnaire = () => {
     mutationKey: [ 'set-publications-info' ],
     mutationFn: () => expert.sendExpertDataStep5()
     
-  } )
+  })
+
+  const { mutate: mutateService } = useMutation({
+    
+    mutationKey: [ 'set-service-info' ],
+    mutationFn: ({ isTemp }) => expert.sendExpertDataStep2( isTemp )
+    
+  })
   
   switch ( globalState.quiz.progress ) {
     
@@ -129,9 +130,10 @@ export const useQuestionnaire = () => {
     if ( globalState.quiz.step === steps.service ) {
       
       globalActions.quiz.setStep( steps.school )
-      setTitle( 'Школа' )
-      setDescription( 'Если у вас нет собственной школы или курса переходите к следующему шагу' )
-      
+      setTitle('Школа')
+      setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
+      mutateService( { isTemp: false } )
+
     }
     
     if ( globalState.quiz.step === steps.school ) {
