@@ -33,7 +33,7 @@ const Progress = ({
   const { category, passport } = service
 
   const [ progress, setProgress ] = useState(0)
-
+  
   useEffect(() => {
     
     if (activeId === 1 && activeId === id) {
@@ -89,6 +89,7 @@ const Progress = ({
         }
         
         return filledFields / fieldsCount
+        
       }
       
       const progress = calculateProgress(school)
