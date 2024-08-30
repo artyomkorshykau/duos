@@ -1,7 +1,10 @@
 import { useRef } from 'react'
+import useGlobal from '@/store/index.js'
 
 export const useAvatar = () => {
   
+  const [ globalState, globalActions ] = useGlobal()
+  const avatar = globalState.user.photo_url
   const fileInputRef = useRef(null)
   
   const handleEditClick = () => {
@@ -43,7 +46,8 @@ export const useAvatar = () => {
     
     handleEditClick,
     handleFileChange,
-    fileInputRef
+    fileInputRef,
+    avatar
   
   }
   

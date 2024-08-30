@@ -21,6 +21,8 @@ const Header = ({
   const [ showSignInPopup, setShowSignInPopup ] = useState( false );
   const [ showSignUpPopup, setShowSignUpPopup ] = useState( false );
   const [ codeModeClosed, setCodeModeClosed ] = useState( false );
+  const [ showRecoveryPopup, setShowRecoveryPopup ] = useState( false );
+  
   function signIn( fast = false ) {
 
     setShowSignUpPopup( false );
@@ -147,8 +149,11 @@ const Header = ({
       <SignInPopup
 
         isOpened = { showSignInPopup }
+        setShowSignInPopup = { setShowSignInPopup }
+        showRecoveryPopup = { showRecoveryPopup }
+        setShowRecoveryPopup = { setShowRecoveryPopup }
         closePopup = { () => closePopups() }
-        logIn = { () => logIn() }
+        logIn = { setShowSignInPopup }
         signUp = { () => signUp( true ) }
         bodyClassName = {`${ s.auth__popup } ${ s.auth__popup__in }`}
 

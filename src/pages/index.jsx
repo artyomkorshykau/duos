@@ -7,25 +7,25 @@ export default function Home() {
   const [ globalState, globalActions ] = useGlobal()
   const { profile } = globalActions
   
-  useEffect(() => {
+  useEffect( () => {
     
     profile.getLocations()
     
-  }, [])
+  }, [] )
   
   return (
-
-    <main className={ `flex justify-center items-center h-dvh` }>
-
+    
+    <main className = { `flex justify-center items-center h-dvh` }>
+      
       <Carcas
-
+      
       >
-
+      
       </Carcas>
-
-
+    
+    
     </main>
-
-  );
-
+  
+  )
+  
 }

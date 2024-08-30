@@ -10,20 +10,21 @@ const Avatar = () => {
     
     handleEditClick,
     handleFileChange,
-    fileInputRef
+    fileInputRef,
+    avatar
   
   } = useAvatar()
   
   return (
     
-    <div className={ `${ s.profile__left_side__avatar }` }>
+    <div className = { `${ s.profile__left_side__avatar }` }>
       
-      <div className={ `${ s.profile__left_side__avatar__photo_wrapper }` }>
+      <div className = { `${ s.profile__left_side__avatar__photo_wrapper }` }>
         
         <div
-          className={ `${ s.profile__left_side__avatar__photo_wrapper__photo }` }>
+          className = { `${ s.profile__left_side__avatar__photo_wrapper__photo }` }>
           
-          <img src="img/test.default.data/avatar.png" alt="avatar"/>
+          <img src = { avatar } alt="avatar"/>
         
         </div>
       
@@ -31,8 +32,8 @@ const Avatar = () => {
       
       <div
         
-        className={ `${ s.profile__left_side__avatar__edit }` }
-        onClick={ handleEditClick }
+        className = { `${ s.profile__left_side__avatar__edit }` }
+        onClick = { handleEditClick }
       
       >
         
@@ -40,7 +41,7 @@ const Avatar = () => {
       
       </div>
       
-      <div className={ `${ s.profile__left_side__avatar__tags }` }>
+      <div className = { `${ s.profile__left_side__avatar__tags }` }>
         
         <Crown/>
       

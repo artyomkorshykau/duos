@@ -65,37 +65,37 @@ const HeaderSignPanel = ({
 
           <div
 
-            onClick={ () => signIn() }
-            className={ `flex items-center justify-between ${ s[ 'sign-panel__in' ] } pointer` }
+            onClick = { () => signIn() }
+            className = { `flex items-center justify-between ${ s[ 'sign-panel__in' ] } pointer` }
 
           >
 
             <p
-              className={ `flex items-center justify-between text-16 ${ s[ 'sign-panel__in__text' ] }` }>Войти</p>
+              className = { `flex items-center justify-between text-16 ${ s[ 'sign-panel__in__text' ] }` }>Войти</p>
 
-            <SignInIcon className={ `${ s[ 'sign-panel__in__icon' ] } pointer` }/>
+            <SignInIcon className = { `${ s[ 'sign-panel__in__icon' ] } pointer` }/>
 
           </div>
 
           <DefaultButton
 
-            name="Регистрация"
-            className={ `${ s.button }` }
-            action={ () => signUp() }
+            name = "Регистрация"
+            className = { `${ s.button }` }
+            action = { () => signUp() }
 
           />
 
         </>
 
-        : <div className={ `flex items-center ${ s[ 'sign-panel__in_auth__avatar' ] }` }>
+        : <div className = { `flex items-center ${ s[ 'sign-panel__in_auth__avatar' ] }` }>
 
         { !quizHadCompleted &&
 
           <DefaultButton
 
-            name="Закончить анкету"
-            className={ `${ s.button } ${ s.button__quiz } ${ globalState.user.user_id === 1 && s[ 'button__quiz--opened' ] }` }
-            action={ () => sendQuiz() }
+            name = "Закончить анкету"
+            className = { `${ s.button } ${ s.button__quiz } ${ globalState.user.user_id === 1 && s[ 'button__quiz--opened' ] }` }
+            action = { () => sendQuiz() }
 
           />
 
@@ -103,8 +103,8 @@ const HeaderSignPanel = ({
 
         <HeaderAuthPanel
 
-          quizHadCompleted={ quizHadCompleted }
-          status={ status }
+          quizHadCompleted = { quizHadCompleted }
+          status = { status }
 
         />
 

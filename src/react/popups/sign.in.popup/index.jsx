@@ -10,11 +10,13 @@ import RecoveryPopup from '@/react/popups/recovery.popup'
 
 const SignInPopup = ({
 
-  logIn = () => {},
   signUp = () => {},
   bodyClassName = "",
   isOpened = false,
   closePopup = () => {},
+  setShowSignInPopup,
+  showRecoveryPopup,
+  setShowRecoveryPopup
 
 }) => {
 
@@ -27,16 +29,13 @@ const SignInPopup = ({
     userNumber,
     userPassword,
     handleRecovery,
-    showRecoveryPopup,
-    setShowRecoveryPopup,
     recoveryData,
-    loginData,
-    error
+    error,
 
   } = useLogin( {
 
     closePopup,
-    logIn
+    setShowRecoveryPopup
 
   } )
 
@@ -50,7 +49,7 @@ const SignInPopup = ({
         closePopup = { handleClosePopup }
         bodyClassName = {`${ s.recovery__popup }`}
         email = { recoveryData?.email }
-        logIn = { () =>  setShowRecoveryPopup(true) }
+        logIn = { setShowRecoveryPopup }
 
       />
 

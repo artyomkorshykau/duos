@@ -26,69 +26,69 @@ const AuthMenu = ({
     
     <div
       
-      onMouseOut={ onMouseOut }
-      onMouseOver={ onMouseOver }
-      className={ `${ s[ 'auth-panel__menu' ] } ${ isOpened && s[ 'auth-panel__menu--opened' ] } absolute pointer` }
+      onMouseOut = { onMouseOut }
+      onMouseOver = { onMouseOver }
+      className = { `${ s[ 'auth-panel__menu' ] } ${ isOpened && s[ 'auth-panel__menu--opened' ] } absolute pointer` }
     
     >
       
       <div
-        className={ `relative ${ s[ 'auth-panel__menu__point__container' ] }` }>
+        className = { `relative ${ s[ 'auth-panel__menu__point__container' ] }` }>
         
         <div
-          className={ `absolute ${ s[ 'auth-panel__menu__point' ] } ${ s[ 'auth-panel__menu__point--' + pointPosition ] }` }/>
+          className = { `absolute ${ s[ 'auth-panel__menu__point' ] } ${ s[ 'auth-panel__menu__point--' + pointPosition ] }` }/>
       
       </div>
       
       <div
         
-        onClick={ () => push( '/profile' ) }
-        className={ `flex items-center justify-between ${ s[ 'auth-panel__menu__row' ] } ${ s[ 'auth-panel__menu__row__open_quiz' ] }` }
+        onClick = { () => push( '/profile' ) }
+        className = { `flex items-center justify-between ${ s[ 'auth-panel__menu__row' ] } ${ s[ 'auth-panel__menu__row__open_quiz' ] }` }
       
       >
         
         <p
-          className={ `${ s[ 'auth-panel__menu__row__open_quiz' ] } text-14` }>Мой
+          className = { `${ s[ 'auth-panel__menu__row__open_quiz' ] } text-14` }>Мой
           кабинет</p>
         
         <MenuPersonIcon
-          className={ `${ s[ 'auth-panel__menu__row__open_quiz__icon' ] }` }/>
+          className = { `${ s[ 'auth-panel__menu__row__open_quiz__icon' ] }` }/>
       
       </div>
       
-      <div className={ `${ s[ 'auth-panel__menu__liner' ] }` }/>
+      <div className = { `${ s[ 'auth-panel__menu__liner' ] }` }/>
       
       <div
         
-        onClick={ () => openQuiz() }
-        className={ `flex items-center justify-between ${ s[ 'auth-panel__menu__row' ] } ${ s[ 'auth-panel__menu__row__open_quiz' ] }` }
+        onClick = { () => openQuiz() }
+        className = { `flex items-center justify-between ${ s[ 'auth-panel__menu__row' ] } ${ s[ 'auth-panel__menu__row__open_quiz' ] }` }
       
       >
         
         <p
-          className={ `${ s[ 'auth-panel__menu__row__open_quiz' ] } text-14` }>Открыть
+          className = { `${ s[ 'auth-panel__menu__row__open_quiz' ] } text-14` }>Открыть
           анкету</p>
         
         <MenuPersonIcon
-          className={ `${ s[ 'auth-panel__menu__row__open_quiz__icon' ] }` }/>
+          className = { `${ s[ 'auth-panel__menu__row__open_quiz__icon' ] }` }/>
       
       </div>
       
-      <div className={ `${ s[ 'auth-panel__menu__liner' ] }` }/>
+      <div className = { `${ s[ 'auth-panel__menu__liner' ] }` }/>
       
       <div
         
-        onClick={ () => logOut() }
-        className={ `flex items-center justify-between ${ s[ 'auth-panel__menu__row' ] } ${ s[ 'auth-panel__menu__row__log_out' ] }` }
+        onClick = { () => logOut() }
+        className = { `flex items-center justify-between ${ s[ 'auth-panel__menu__row' ] } ${ s[ 'auth-panel__menu__row__log_out' ] }` }
       
       >
         
         <p
-          className={ `${ s[ 'auth-panel__menu__row__logout' ] } text-14` }>Выйти
+          className = { `${ s[ 'auth-panel__menu__row__logout' ] } text-14` }>Выйти
           из системы</p>
         
         <SignOutIcon
-          className={ `${ s[ 'auth-panel__menu__row__logout__icon' ] }` }/>
+          className = { `${ s[ 'auth-panel__menu__row__logout__icon' ] }` }/>
       
       </div>
     

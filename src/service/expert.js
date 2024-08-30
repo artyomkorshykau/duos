@@ -19,7 +19,7 @@ const expert = {
   
   async sendExpertDataStep1( isTemp, email ) {
     
-    const profile = JSON.parse(localStorage.getItem('profile'))
+    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
     
     const body = {
       
@@ -27,7 +27,7 @@ const expert = {
       mid_name: profile.surName,
       last_name: profile.lastName,
       pseudonym: profile.nickName,
-      birthday: profile.birthDate.split('T')[0],
+      birthday: profile.birthDate.split( 'T' )[ 0 ],
       gender: profile.gender,
       tax_status: profile.taxStatus,
       tax_name: profile.taxName || '',
@@ -41,16 +41,16 @@ const expert = {
     
     try {
       
-      const response = await fetch(`${BASE_URL}/expert/step1`, {
+      const response = await fetch( `${ BASE_URL }/expert/step1`, {
         method: 'POST',
         headers: getHeaders(),
-        body: JSON.stringify(body)
+        body: JSON.stringify( body )
         
-      })
+      } )
       
       if ( !response.ok ) {
         
-        console.log(`Ошибка сервера (500)`)
+        console.log( `Ошибка сервера (500)` )
         
       }
       
@@ -58,7 +58,7 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error(`Ошибка при отправке данных: ${error.message}`)
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
       
     }
     
@@ -162,27 +162,23 @@ const expert = {
   async sendExpertDataStep3( isTemp ) {
     
     
+    const school = JSON.parse( localStorage.getItem( 'school' ) )
     
-    const school = JSON.parse(localStorage.getItem('school'))
-    
-    const body = {
-    
-    
-    }
+    const body = {}
     
     try {
       
-      const response = await fetch(`${BASE_URL}/expert/step3`, {
+      const response = await fetch( `${ BASE_URL }/expert/step3`, {
         
         method: 'POST',
         headers: getHeaders(),
-        body: JSON.stringify(body)
+        body: JSON.stringify( body )
         
-      })
+      } )
       
       if ( !response.ok ) {
         
-        console.log(`Ошибка сервера (500)`)
+        console.log( `Ошибка сервера (500)` )
         
       }
       
@@ -190,17 +186,17 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error(`Ошибка при отправке данных: ${error.message}`)
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
       
     }
-  
+    
   },
   
   async sendExpertDataStep5( isTemp ) {
     
-    const publications = JSON.parse(localStorage.getItem('publications'))
+    const publications = JSON.parse( localStorage.getItem( 'publications' ) )
     
-    const photo = await postImage(publications.categories[0].photos[0])
+    const photo = await postImage( publications.categories[ 0 ].photos[ 0 ] )
     
     const [
       
@@ -209,10 +205,10 @@ const expert = {
       mission,
       ethical_principle,
       personal_principles
-      
-    ] = publications.categories[0].profileInfo
     
-    const articles = publications.categories[1].publicationsCards
+    ] = publications.categories[ 0 ].profileInfo
+    
+    const articles = publications.categories[ 1 ].publicationsCards
     
     const body = {
       
@@ -228,16 +224,16 @@ const expert = {
     
     try {
       
-      const response = await fetch(`${BASE_URL}/expert/step5`, {
+      const response = await fetch( `${ BASE_URL }/expert/step5`, {
         method: 'POST',
         headers: getHeaders(),
-        body: JSON.stringify(body)
+        body: JSON.stringify( body )
         
-      })
+      } )
       
       if ( !response.ok ) {
         
-        console.log(`Ошибка сервера (500)`)
+        console.log( `Ошибка сервера (500)` )
         
       }
       
@@ -245,7 +241,7 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error(`Ошибка при отправке данных: ${error.message}`)
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
       
     }
     
