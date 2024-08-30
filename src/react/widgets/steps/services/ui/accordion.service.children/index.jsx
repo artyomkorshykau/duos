@@ -100,10 +100,10 @@ const AccordionServiceChildren = ({
   }, [ el.status ])
 
   useEffect(() => {
-    if (((paymentFormat === 'Free' && paymentFormat) ||
-      (paymentFormat === 'Fixed' && price) ||
-      (paymentFormat === 'Range' && from && before) ||
-      (paymentFormat === 'Subscription' && price)) &&
+    if (((paymentFormat === 'free' && paymentFormat) ||
+      (paymentFormat === 'fix' && price) ||
+      (paymentFormat === 'range' && from && before) ||
+      (paymentFormat === 'subscription' && price)) &&
       title &&
       serviceType &&
       deliveryFormat &&

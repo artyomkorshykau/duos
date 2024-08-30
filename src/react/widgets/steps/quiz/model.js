@@ -43,6 +43,13 @@ export const useQuestionnaire = () => {
     
   })
 
+  const { mutate: mutateService } = useMutation({
+    
+    mutationKey: [ 'set-service-info' ],
+    mutationFn: ({ isTemp }) => expert.sendExpertDataStep2( isTemp )
+    
+  })
+
   switch( globalState.quiz.progress ) {
 
     case QuizProgress.begin:
@@ -120,6 +127,7 @@ export const useQuestionnaire = () => {
       globalActions.quiz.setStep( steps.school )
       setTitle('Школа')
       setDescription('Если у вас нет собственной школы или курса переходите к следующему шагу')
+      mutateService( { isTemp: false } )
 
     }
 

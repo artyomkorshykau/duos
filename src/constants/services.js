@@ -3,29 +3,29 @@ export const deliveryFormatList = [
   {
 
     id: 0,
-    value: 'Video',
+    value: 'video',
     label: 'Видео'
 
   },
   {
 
     id: 1,
-    value: 'Audio',
+    value: 'audio',
     label: 'Аудио'
 
   },
   {
 
-    id: 2,
-    value: 'Text',
-    label: 'Текстом'
+    id: 3,
+    value: 'offline',
+    label: 'Очно'
 
   },
   {
 
-    id: 3,
-    value: 'Intramural',
-    label: 'Очно'
+    id: 4,
+    value: 'text',
+    label: 'Текст'
 
   }
 
@@ -36,21 +36,21 @@ export const minuteHoursDaysList = [
   {
 
     id: 0,
-    value: 'minute',
+    value: 'Минут',
     label: 'Минут'
 
   },
   {
 
     id: 1,
-    value: 'hours',
+    value: 'Часов',
     label: 'Часов'
 
   },
   {
 
     id: 2,
-    value: 'days',
+    value: 'Дней',
     label: 'Дней'
 
   }
@@ -62,28 +62,28 @@ export const paymentFormatList = [
   {
 
     id: 0,
-    value: 'Fixed',
+    value: 'fix',
     label: 'Фиксированная'
 
   },
   {
 
     id: 1,
-    value: 'Subscription',
+    value: 'subscription',
     label: 'Подписка'
 
   },
   {
 
     id: 2,
-    value: 'Range',
+    value: 'range',
     label: 'Диапазон'
 
   },
   {
 
     id: 3,
-    value: 'Free',
+    value: 'free',
     label: 'Бесплатно'
 
   }
@@ -95,57 +95,31 @@ export const dayWeekMonthYearList = [
   {
 
     id: 0,
-    value: 'Day',
+    value: 'day',
     label: 'День'
 
   },
   {
 
     id: 1,
-    value: 'Week',
+    value: 'week',
     label: 'Неделя'
 
   },
   {
 
     id: 2,
-    value: 'Month',
+    value: 'month',
     label: 'Месяц'
 
   },
   {
 
     id: 3,
-    value: 'Year',
+    value: 'year',
     label: 'Год'
 
   }
-
-]
-
-export const directionList = [
-
-  {
-
-    id: 0,
-    value: 'Психология',
-    label: 'Психология'
-
-  },
-  {
-
-    id: 1,
-    value: 'Наука',
-    label: 'Наука'
-
-  },
-  {
-
-    id: 2,
-    value: 'Other',
-    label: 'Другое'
-
-  },
 
 ]
 
