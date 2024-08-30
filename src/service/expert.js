@@ -99,7 +99,7 @@ const expert = {
               duration: service.duration,
               duration_type: service.minuteHoursDays,
               pay_format: service.paymentFormat,
-              //subscription_duration
+              subscription_duration: service.dayWeekMonthYearList
 
             };
 

@@ -20,6 +20,13 @@ export const deliveryFormatList = [
     value: 'offline',
     label: 'Очно'
 
+  },
+  {
+
+    id: 4,
+    value: 'text',
+    label: 'Текст'
+
   }
 
 ]
@@ -88,28 +95,28 @@ export const dayWeekMonthYearList = [
   {
 
     id: 0,
-    value: 'Day',
+    value: 'day',
     label: 'День'
 
   },
   {
 
     id: 1,
-    value: 'Week',
+    value: 'week',
     label: 'Неделя'
 
   },
   {
 
     id: 2,
-    value: 'Month',
+    value: 'month',
     label: 'Месяц'
 
   },
   {
 
     id: 3,
-    value: 'Year',
+    value: 'year',
     label: 'Год'
 
   }
