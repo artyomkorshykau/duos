@@ -126,14 +126,6 @@ export const communicationList = [
 
   },
   {
-
-    id: 1,
-    value: "WhatsApp",
-    label: "WhatsApp",
-
-  },
-  {
-
     id: 2,
     value: "По номеру",
     label: "По номеру",

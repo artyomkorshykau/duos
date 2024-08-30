@@ -19,7 +19,7 @@ const expert = {
   
   async sendExpertDataStep1( isTemp, email ) {
     
-    const profile = JSON.parse(localStorage.getItem('profile'))
+    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
     
     const body = {
       
@@ -41,16 +41,16 @@ const expert = {
     
     try {
       
-      const response = await fetch(`${BASE_URL}/expert/step1`, {
+      const response = await fetch( `${ BASE_URL }/expert/step1`, {
         method: 'POST',
         headers: getHeaders(),
-        body: JSON.stringify(body)
+        body: JSON.stringify( body )
         
-      })
+      } )
       
       if ( !response.ok ) {
         
-        console.log(`Ошибка сервера (500)`)
+        console.log( `Ошибка сервера (500)` )
         
       }
       
@@ -58,57 +58,55 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error(`Ошибка при отправке данных: ${error.message}`)
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
       
     }
     
   },
-
+  
   async sendExpertDataStep2( isTemp ) {
     
-    const service = JSON.parse(localStorage.getItem('service'))
-
+    const service = JSON.parse( localStorage.getItem( 'service' ) )
+    
     const {
       
       category,
       serviceCategories
       
     } = service
-
+    
     const service_category_expert = await Promise.all(
-
-      category.map(async (expert) => {
-
-        const service_category_id = serviceCategories.find((category) => category.value === expert.direction);
-
+      category.map( async( expert ) => {
+        
+        const service_category_id = serviceCategories.find( ( category ) => category.value === expert.direction )
+        
         const servicesWithPhotos = await Promise.all(
-
-          expert.services.map(async (service) => {
-
-            const photo = await postImage(service.files);
-
+          expert.services.map( async( service ) => {
+            
+            const photo = await postImage( service.files )
+            
             return {
-
+              
               service_category_id: service_category_id.id,
               title: service.title,
               description: service.meaningService,
-              price: +service?.price || null,
-              price_from: +service?.before || null,
+              price: +service?.price || '',
+              price_from: +service?.before || '',
               image_url: photo.image_url,
               format: service.deliveryFormat,
               duration: service.duration,
               duration_type: service.minuteHoursDays,
-              pay_format: service.paymentFormat,
+              pay_format: service.paymentFormat
               //subscription_duration
-
-            };
-
-          })
-
-        );
-
+              
+            }
+            
+          } )
+        )
+        
         return {
-
+          
           service_category_id: service_category_id.id,
           title: expert.direction,
           experience: expert.directionWorkExperience,
@@ -117,35 +115,34 @@ const expert = {
           education_name: expert.educationCourseName,
           teacher_name: expert.educationCourseAuthor,
           education_days: expert.educationDuration,
-          education_date: expert.educationCompletionDate.split("T")[0],
-          services: servicesWithPhotos,
-
-        };
-
-      })
-      
-    );
+          education_date: expert.educationCompletionDate.split( 'T' )[ 0 ],
+          services: servicesWithPhotos
+          
+        }
+        
+      } )
+    )
     
     const body = {
       
       is_temp: !!isTemp,
       service_category_expert
-    
+      
     }
     
     try {
       
-      const response = await fetch(`${BASE_URL}/expert/step2`, {
+      const response = await fetch( `${ BASE_URL }/expert/step2`, {
         
         method: 'POST',
         headers: getHeaders(),
-        body: JSON.stringify(body)
+        body: JSON.stringify( body )
         
-      })
+      } )
       
       if ( !response.ok ) {
         
-        console.log(`Ошибка сервера (500)`)
+        console.log( `Ошибка сервера (500)` )
         
       }
       
@@ -153,17 +150,17 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error(`Ошибка при отправке данных: ${error.message}`)
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
       
     }
-  
+    
   },
-
+  
   async sendExpertDataStep3( isTemp ) {
     
     
-    
-    const school = JSON.parse(localStorage.getItem('school'))
+    const school = JSON.parse( localStorage.getItem( 'school' ) )
     
     const body = {
       
@@ -193,6 +190,7 @@ const expert = {
     } catch ( error ) {
       
       console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
       
     }
     
@@ -200,7 +198,11 @@ const expert = {
   
   async sendExpertDataStep4( isTemp ) {
     
-    const { category, passport, serviceCategories } = JSON.parse( localStorage.getItem( 'service' ) )
+    const {
+      category,
+      passport,
+      serviceCategories
+    } = JSON.parse( localStorage.getItem( 'service' ) )
     
     try {
       
@@ -208,7 +210,7 @@ const expert = {
       
       const categoryEducationImages = await Promise.all( category.map( async( cat ) => {
         
-        const service_category = serviceCategories.find((category) => category.value === cat.direction)
+        const service_category = serviceCategories.find( ( category ) => category.value === cat.direction )
         
         try {
           
@@ -224,33 +226,52 @@ const expert = {
         } catch ( error ) {
           
           console.error( `Ошибка при загрузке сертификата для категории ${ service_category.id }: ${ error.message }` )
-          
           throw error
           
         }
         
       } ) )
       
-      const expertConfirmContacts = category.flatMap(cat => {
+      const expertConfirmContacts = category.flatMap( cat => {
         
-        const service_category = serviceCategories.find((category) => category.value === cat.direction)
+        const service_category = serviceCategories.find( ( category ) => category.value === cat.direction )
         
-        return cat.services.map(service => ({
+        return cat.services.map( service => {
           
-          name: service.clientFullName,
-          phone: service.phone,
-          communication_method: service.communication,
-          service_id: service_category.id  
+          let communicationMethod = ''
           
-        }))
+          if ( service.communication === 'Telegram' ) {
+            
+            communicationMethod = 'telegram'
+            
+          } else if ( service.communication === 'WhatsApp' ) {
+            
+            communicationMethod = 'whatsapp'
+            
+          } else if ( service.communication === 'По номеру' ) {
+            
+            communicationMethod = 'phone'
+            
+          }
+          
+          return {
+            
+            name: service.clientFullName,
+            phone: service.phone,
+            communication_method: communicationMethod,
+            service_id: service_category.id
+            
+          }
+          
+        } )
         
-      })
+      } )
       
       const expertReviews = await Promise.all( category.flatMap( ( cat ) =>
         
         cat.services.map( async( service ) => {
           
-          const service_category = serviceCategories.find((category) => category.value === cat.direction)
+          const service_category = serviceCategories.find( ( category ) => category.value === cat.direction )
           
           try {
             
@@ -295,8 +316,9 @@ const expert = {
       return await response.json()
     } catch ( error ) {
       console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
     }
-  
+    
   },
   
   async sendExpertDataStep5( isTemp ) {
@@ -342,7 +364,8 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error(`Ошибка при отправке данных: ${error.message}`)
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
       
     }
     
