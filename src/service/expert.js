@@ -51,6 +51,7 @@ const expert = {
       if ( !response.ok ) {
         
         console.log( `Ошибка сервера (500)` )
+        throw new Error()
         
       }
       
@@ -144,6 +145,7 @@ const expert = {
       if ( !response.ok ) {
         
         console.log( `Ошибка сервера (500)` )
+        throw new Error()
         
       }
       
@@ -183,6 +185,7 @@ const expert = {
       if ( !response.ok ) {
         
         console.log( `Ошибка сервера (500)` )
+        throw new Error()
         
       }
       
@@ -312,6 +315,7 @@ const expert = {
       
       if ( !response.ok ) {
         console.log( `Ошибка сервера (${ response.status })` )
+        throw new Error()
       }
       
       return await response.json()
@@ -358,6 +362,7 @@ const expert = {
       if ( !response.ok ) {
         
         console.log( `Ошибка сервера (500)` )
+        throw new Error()
         
       }
       

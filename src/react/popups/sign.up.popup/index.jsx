@@ -35,7 +35,6 @@ const SignUpPopup = ({
     minutes,
     seconds,
     getNewCode,
-    data,
     error
 
   } = useSignup( {closePopup} )

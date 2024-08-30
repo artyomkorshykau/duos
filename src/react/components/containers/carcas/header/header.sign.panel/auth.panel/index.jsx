@@ -4,7 +4,9 @@ import { useState } from 'react'
 import useGlobal from '@/store'
 import AuthMenu from './auth.menu'
 import s from './auth.panel.module.scss'
-import { formatPhoneNumber } from '@/scripts/helpers/extract.numbers.js'
+import {
+  formatPhoneNumberForHeader
+} from '@/scripts/helpers/extract.numbers.js'
 
 const HeaderAuthPanel = ({
 
@@ -25,7 +27,7 @@ const HeaderAuthPanel = ({
   const userName = globalState.user.firstName
     
     ? `${globalState.user.lastName} ${globalState.user.firstName}`
-    : formatPhoneNumber(String(globalState.user.phone))
+    : formatPhoneNumberForHeader(String(globalState.user.phone))
   
   const [ menuIsOpened, setMenuIsOpened ] = useState( false );
 
