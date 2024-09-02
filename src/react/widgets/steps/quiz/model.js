@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { steps } from '@/constants/quiz.steps'
 import QuizProgress from '@/constants/quiz.progress'
 import s from '@/pages/questionnaire/questionnaire.module.scss'
@@ -8,13 +8,27 @@ import School from '@/react/widgets/steps/school/ui/index.jsx'
 import Publications from '@/react/widgets/steps/publications/ui/index.jsx'
 import Document from '@/react/widgets/steps/document/ui/index.jsx'
 import useGlobal from '@/store'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import expert from '@/service/expert.js'
 import { useRouter } from 'next/navigation'
+
+function findFirstProgressLessThan100( data ) {
+  for( const key in data ) {
+    if ( data.hasOwnProperty( key ) ) {
+      if ( data[ key ] && typeof data[ key ] === 'object' && 'progress' in data[ key ] ) {
+        if ( data[ key ].progress < 100 ) {
+          return key
+        }
+      }
+    }
+  }
+  return null
+}
 
 export const useQuestionnaire = () => {
   
   const [ globalState, globalActions ] = useGlobal()
+  const { profile, service } = globalActions
   const [ title, setTitle ] = useState( 'Профиль' )
   const [ description, setDescription ] = useState( 'Эти данные станут частью вашего профиля и помогут продвижению' )
   
@@ -97,6 +111,13 @@ export const useQuestionnaire = () => {
     
   } )
   
+  const { data: expertData, isSuccess } = useQuery( {
+    
+    queryKey: [ 'expert' ],
+    queryFn: () => expert.getExpert()
+    
+  } )
+  
   switch ( globalState.quiz.progress ) {
     
     case QuizProgress.begin:
@@ -129,11 +150,11 @@ export const useQuestionnaire = () => {
     
     if ( globalState.quiz.progress === QuizProgress.continue ) {
       
-      if( globalState.quiz.continueStep === steps.profile ) globalActions.quiz.setStep( steps.profile )
-      if( globalState.quiz.continueStep === steps.service ) globalActions.quiz.setStep( steps.service )
-      if( globalState.quiz.continueStep === steps.school ) globalActions.quiz.setStep( steps.school )
-      if( globalState.quiz.continueStep === steps.documents ) globalActions.quiz.setStep( steps.documents )
-      if( globalState.quiz.continueStep === steps.publications ) globalActions.quiz.setStep( steps.publications )
+      if ( globalState.quiz.continueStep === steps.profile ) globalActions.quiz.setStep( steps.profile )
+      if ( globalState.quiz.continueStep === steps.service ) globalActions.quiz.setStep( steps.service )
+      if ( globalState.quiz.continueStep === steps.school ) globalActions.quiz.setStep( steps.school )
+      if ( globalState.quiz.continueStep === steps.documents ) globalActions.quiz.setStep( steps.documents )
+      if ( globalState.quiz.continueStep === steps.publications ) globalActions.quiz.setStep( steps.publications )
       
     }
     
@@ -282,6 +303,38 @@ export const useQuestionnaire = () => {
     
   }, [ globalState.quiz ] )
   
+  useEffect( () => {
+    
+    profile.getLocations()
+    service.getServiceCategories()
+    expert.getExpert()
+    
+  }, [] )
+  
+  useEffect( () => {
+    
+    if ( isSuccess ) {
+      
+      if ( !findFirstProgressLessThan100( expertData ) ) {
+        
+        globalActions.quiz.setQuizStatus( QuizProgress.end )
+        
+      } else {
+        
+        if ( findFirstProgressLessThan100( expertData ) === 'profile' ) globalActions.quiz.setContinueStep( steps.profile )
+        if ( findFirstProgressLessThan100( expertData ) === 'services' ) globalActions.quiz.setContinueStep( steps.service )
+        if ( findFirstProgressLessThan100( expertData ) === 'values' ) globalActions.quiz.setContinueStep( steps.school )
+        if ( findFirstProgressLessThan100( expertData ) === 'docs' ) globalActions.quiz.setContinueStep( steps.documents )
+        if ( findFirstProgressLessThan100( expertData ) === 'publications' ) globalActions.quiz.setContinueStep( steps.publications )
+        
+        globalActions.quiz.setQuizStatus( QuizProgress.continue )
+        
+      }
+      
+    }
+    
+  }, [ isSuccess ] )
+  
   return {
     
     quizContent,
@@ -290,7 +343,9 @@ export const useQuestionnaire = () => {
     buttonTitle,
     handleButtonAction,
     title,
-    description
+    description,
+    globalState,
+    isSuccess
     
   }
   

@@ -6,14 +6,23 @@ const expert = {
   
   async getExpert() {
     
-    const response = await fetch( `${ BASE_URL }/expert`, {
+    try {
       
-      method: 'GET',
-      headers: getHeaders()
+      const response = await fetch( `${ BASE_URL }/expert`, {
+        
+        method: 'GET',
+        headers: getHeaders()
+        
+      } )
       
-    } )
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error('Error fetching data:', error);
+      
+    }
     
-    return await response.json()
     
   },
   
@@ -65,7 +74,7 @@ const expert = {
     }
     
   },
-
+  
   async sendExpertDataStep2( isTemp ) {
     
     const service = JSON.parse( localStorage.getItem( 'service' ) )
@@ -100,13 +109,12 @@ const expert = {
               duration_type: service.minuteHoursDays,
               pay_format: service.paymentFormat,
               subscription_duration: service.dayWeekMonthYearList
-
-            };
-
-          })
-
-        );
-
+              
+            }
+            
+          } )
+        )
+        
         return {
           
           service_category_id: service_category_id.id,

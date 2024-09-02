@@ -31,6 +31,7 @@ const SignInPopup = ({
     handleRecovery,
     recoveryData,
     error,
+    lengthError,
 
   } = useLogin( {
 
@@ -39,7 +40,7 @@ const SignInPopup = ({
 
   } )
   
-  console.log( error?.phone ? error.phone[0] : error )
+  console.log(error)
   
   if( showRecoveryPopup ) {
 
@@ -80,7 +81,7 @@ const SignInPopup = ({
             withTitle = { false }
             onChange = { (e) => setUserNumber(e.target.value) }
             placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
-            error = { error?.phone ? error.phone?.[0] : error }
+            error = { error?.error ? error?.error : error?.errors?.phone[0] }
             type = 'phone'
             className = {`${s.signin_content__field}`}
 
@@ -92,7 +93,7 @@ const SignInPopup = ({
             onChange = { (e) => setUserPassword(e.target.value) }
             withTitle = { false }
             className = {`${s.signin_content__field}`}
-            error = { error?.phone ? error : error }
+            error = { error?.error || '' }
             placeholder = "Пароль"
             maxLength = { 5 }
             password
