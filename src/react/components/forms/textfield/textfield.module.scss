@@ -15,7 +15,7 @@
 
   &__error {
 
-    margin-bottom: $apx-48 !important;
+    margin-bottom: $apx-65 !important;
 
     input {
 
@@ -30,8 +30,20 @@
       color: var(--color-notice-error-500);
       font-weight: 600;
       font-size: $apx-13;
-      gap: $apx-4;
+      gap: $apx-7;
       text-align: left;
+
+      & > svg {
+
+        width: $apx-30;
+
+      }
+
+      & > p {
+
+        height: max-content;
+
+      }
 
     }
 

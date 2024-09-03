@@ -6,23 +6,38 @@ const auth = {
   
   async register( phone, email, code ) {
     
-    const response = await fetch( `${ BASE_URL }/sign-up`, {
+    try {
       
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify( { phone: extractNumbers( phone ), email, code } )
+      const response = await fetch( `${ BASE_URL }/sign-up`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify( { phone: extractNumbers( phone ), email, code } )
+        
+      } )
       
-    } )
-    
-    const data = await response.json()
-    
-    if ( data.token ) {
+      if ( !response.ok ) {
+        
+        return await response.json()
+        throw new Error( 'Что-то пошло не так' )
+        
+      }
       
-      document.cookie = `token=${ data.token }; path=/; secure;`
+      const data = await response.json()
+      
+      if ( data.token ) {
+        
+        document.cookie = `token=${ data.token }; path=/; secure;`
+        
+      }
+      
+      return data
+      
+    } catch ( error ) {
+      
+      console.error( 'Ошибка регистрации:', error.message )
+      throw error
       
     }
-    
-    return data
     
   },
   

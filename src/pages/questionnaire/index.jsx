@@ -23,7 +23,8 @@ export default function QuestionnairePage() {
     title,
     description,
     globalState,
-    isSuccess
+    isSuccess,
+    refetchExpert
     
   } = useQuestionnaire()
   
@@ -55,7 +56,7 @@ export default function QuestionnairePage() {
               
               { quizContent }
               
-              <Autosave/>
+              <Autosave refetchExpert = { refetchExpert }/>
               
               <Pagination
                 

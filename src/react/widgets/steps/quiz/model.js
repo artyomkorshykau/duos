@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { steps } from '@/constants/quiz.steps'
+import { QuizSteps, steps } from '@/constants/quiz.steps'
 import QuizProgress from '@/constants/quiz.progress'
 import s from '@/pages/questionnaire/questionnaire.module.scss'
 import Profile from '@/react/widgets/steps/profile/ui/index.jsx'
@@ -25,6 +25,54 @@ function findFirstProgressLessThan100( data ) {
   return null
 }
 
+function extractProgressFields( data ) {
+  const result = {}
+  
+  for( const key in data ) {
+    if ( data.hasOwnProperty( key ) ) {
+      const value = data[ key ]
+      
+      if ( value && typeof value === 'object' && 'progress' in value ) {
+        result[ key ] = value
+      }
+    }
+  }
+  
+  return result
+}
+
+function updateQuizSteps( response ) {
+  
+  QuizSteps.forEach( step => {
+      
+      switch ( step.title ) {
+        
+        case 'Профиль':
+          step.progress = response.profile.progress
+          break
+        case 'Услуги':
+          step.progress = response.services.progress
+          break
+        case 'Школа':
+          step.progress = response.values.progress
+          break
+        case 'Документы':
+          step.progress = response.docs.progress
+          break
+        case 'Публикации':
+          step.progress = response.publications.progress
+          break
+        default:
+          break
+        
+      }
+      
+    }
+  )
+  
+}
+
+
 export const useQuestionnaire = () => {
   
   const [ globalState, globalActions ] = useGlobal()
@@ -35,6 +83,13 @@ export const useQuestionnaire = () => {
   let buttonTitle
   const { push } = useRouter()
   
+  const { data: expertData, isSuccess, refetch: refetchExpert } = useQuery( {
+    
+    queryKey: [ 'expert' ],
+    queryFn: () => expert.getExpert()
+    
+  } )
+  
   const { mutate: mutateProfile } = useMutation( {
     
     mutationKey: [ 'set-profile-info' ],
@@ -44,6 +99,7 @@ export const useQuestionnaire = () => {
                   } ) => expert.sendExpertDataStep1( isTemp, email ),
     onSuccess: () => {
       
+      refetchExpert()
       globalActions.quiz.setStep( steps.service )
       globalActions.quiz.setContinueStep( steps.service )
       setTitle( 'Услуги' )
@@ -57,8 +113,9 @@ export const useQuestionnaire = () => {
     
     mutationKey: [ 'set-service-info' ],
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep2( isTemp ),
+    
     onSuccess: () => {
-      
+      refetchExpert()
       globalActions.quiz.setStep( steps.school )
       globalActions.quiz.setContinueStep( steps.school )
       setTitle( 'Школа' )
@@ -74,6 +131,7 @@ export const useQuestionnaire = () => {
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep3( isTemp ),
     onSuccess: () => {
       
+      refetchExpert()
       globalActions.quiz.setStep( steps.documents )
       globalActions.quiz.setContinueStep( steps.documents )
       setTitle( 'Документы' )
@@ -89,6 +147,7 @@ export const useQuestionnaire = () => {
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep4( isTemp ),
     onSuccess: () => {
       
+      refetchExpert()
       globalActions.quiz.setStep( steps.publications )
       globalActions.quiz.setContinueStep( steps.publications )
       setTitle( 'Публикации' )
@@ -104,17 +163,11 @@ export const useQuestionnaire = () => {
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep5( isTemp ),
     onSuccess: () => {
       
+      refetchExpert()
       globalActions.quiz.setQuizStatus( QuizProgress.end )
       globalActions.quiz.setStep( steps.questionnaire )
       
     }
-    
-  } )
-  
-  const { data: expertData, isSuccess } = useQuery( {
-    
-    queryKey: [ 'expert' ],
-    queryFn: () => expert.getExpert(),
     
   } )
   
@@ -164,31 +217,31 @@ export const useQuestionnaire = () => {
     
     if ( globalState.quiz.step === steps.profile ) {
       
-      mutateProfile( { isTemp: false, email: globalState.user.email } )
+      await mutateProfile( { isTemp: false, email: globalState.user.email } )
       
     }
     
     if ( globalState.quiz.step === steps.service ) {
       
-      mutateService( { isTemp: false } )
+      await mutateService( { isTemp: false } )
       
     }
     
     if ( globalState.quiz.step === steps.school ) {
       
-      mutateSchool( { isTemp: false } )
+      await mutateSchool( { isTemp: false } )
       
     }
     
     if ( globalState.quiz.step === steps.documents ) {
       
-      mutateDocuments( { isTemp: false } )
+      await mutateDocuments( { isTemp: false } )
       
     }
     
     if ( globalState.quiz.step === steps.publications ) {
       
-      mutatePublications( { isTemp: false } )
+      await mutatePublications( { isTemp: false } )
       
     }
     
@@ -307,13 +360,16 @@ export const useQuestionnaire = () => {
     
     profile.getLocations()
     service.getServiceCategories()
-    expert.getExpert()
     
   }, [] )
   
   useEffect( () => {
     
     if ( isSuccess ) {
+      
+      const stepProgress = extractProgressFields( expertData )
+      
+      updateQuizSteps( stepProgress )
       
       if ( expertData.profile.progress === 0 ) {
         
@@ -335,13 +391,9 @@ export const useQuestionnaire = () => {
         
       }
       
-    } else {
-      
-      console.log('ощибка')
-      
     }
     
-  }, [ isSuccess ] )
+  }, [ isSuccess, expertData ] )
   
   return {
     
@@ -353,7 +405,8 @@ export const useQuestionnaire = () => {
     title,
     description,
     globalState,
-    isSuccess
+    isSuccess,
+    refetchExpert
     
   }
   

@@ -25,7 +25,6 @@ export const useSignup = ( { closePopup } ) => {
 
     mutationKey: [ 'sign-up' ],
     mutationFn: ({ phone, email, code }) => auth.register(phone, email, code ),
-    onSuccess: ( error ) => { setError(error.errors ? error.errors : error.error) }
 
   })
 
@@ -104,6 +103,10 @@ export const useSignup = ( { closePopup } ) => {
 
       setCodeModeOpened(true)
 
+    } else {
+      
+      setError( data )
+      
     }
 
     if( data?.token ) {

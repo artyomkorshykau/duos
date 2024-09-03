@@ -6,7 +6,8 @@ const quizState = {
   progress: QuizProgress.begin,
   step: steps.questionnaire,
   continueStep: null,
-  isLoading: false
+  isLoading: false,
+  stepsProgress: null
 
 }
 

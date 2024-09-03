@@ -17,6 +17,12 @@ const quizActions = {
     
     store.setState( { quiz: { ...store.state.quiz, continueStep: step } } )
     
+  },
+  
+  setStepsProgress: ( store, stepsProgress ) => {
+    
+    store.setState( { quiz: { ...store.state.quiz, stepsProgress } } )
+    
   }
   
 }

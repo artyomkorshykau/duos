@@ -5,9 +5,9 @@ import NotiseInfo from '@/react/components/icons/notise.info'
 import NotiseSuccess from '@/react/components/icons/notise.success'
 import { useAutosave } from '@/react/widgets/autosave/model.js'
 
-const Autosave = ( ) => {
+const Autosave = ( { refetchExpert } ) => {
   
- const { continueLater } = useAutosave()
+ const { continueLater } = useAutosave( refetchExpert )
 
   return (
 

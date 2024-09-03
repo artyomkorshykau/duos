@@ -5,7 +5,7 @@ import expert from '@/service/expert.js'
 import { useRouter } from 'next/navigation'
 import QuizProgress from '@/constants/quiz.progress.js'
 
-export const useAutosave = () => {
+export const useAutosave = (  refetchExpert  ) => {
   
   const [ globalState, globalActions ] = useGlobal()
   const { push } = useRouter()
@@ -16,39 +16,64 @@ export const useAutosave = () => {
     mutationFn: ( {
                     isTemp,
                     email
-                  } ) => expert.sendExpertDataStep1( isTemp, email )
+                  } ) => expert.sendExpertDataStep1( isTemp, email ),
+    onSuccess: () => {
+      
+      refetchExpert()
+      
+    }
     
   } )
   
   const { mutate: mutateService } = useMutation( {
     
     mutationKey: [ 'set-service-info' ],
-    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep2( isTemp )
+    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep2( isTemp ),
+    onSuccess: () => {
+      
+      refetchExpert()
+      
+    }
     
   } )
   
   const { mutate: mutateSchool } = useMutation( {
     
     mutationKey: [ 'set-school-info' ],
-    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep3( isTemp )
+    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep3( isTemp ),
+    onSuccess: () => {
+      
+      refetchExpert()
+      
+    }
     
   } )
   
   const { mutate: mutateDocuments } = useMutation( {
     
     mutationKey: [ 'set-documents-info' ],
-    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep4( isTemp )
+    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep4( isTemp ),
+    onSuccess: () => {
+      
+      refetchExpert()
+      
+    }
     
   } )
   
   const { mutate: mutatePublications } = useMutation( {
     
     mutationKey: [ 'set-publications-info' ],
-    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep5( isTemp )
+    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep5( isTemp ),
+    onSuccess: () => {
+      
+      refetchExpert()
+      
+    }
     
   } )
   
-  const continueLater = () => {
+  const continueLater = async () => {
     
     if ( globalState.quiz.step === steps.profile ) {
       
@@ -59,7 +84,6 @@ export const useAutosave = () => {
     if ( globalState.quiz.step === steps.service ) {
       
       mutateService( { isTemp: true } )
-      
       
     }
     
@@ -80,7 +104,6 @@ export const useAutosave = () => {
       mutatePublications( { isTemp: true } )
       
     }
-    
     
     globalActions.quiz.setQuizStatus( QuizProgress.continue )
     globalActions.quiz.setStep( steps.questionnaire )
