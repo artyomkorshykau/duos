@@ -114,7 +114,7 @@ export const useQuestionnaire = () => {
   const { data: expertData, isSuccess } = useQuery( {
     
     queryKey: [ 'expert' ],
-    queryFn: () => expert.getExpert()
+    queryFn: () => expert.getExpert(),
     
   } )
   
@@ -315,7 +315,11 @@ export const useQuestionnaire = () => {
     
     if ( isSuccess ) {
       
-      if ( !findFirstProgressLessThan100( expertData ) ) {
+      if ( expertData.profile.progress === 0 ) {
+        
+        globalActions.quiz.setQuizStatus( QuizProgress.begin )
+        
+      } else if ( !findFirstProgressLessThan100( expertData ) ) {
         
         globalActions.quiz.setQuizStatus( QuizProgress.end )
         
@@ -330,6 +334,10 @@ export const useQuestionnaire = () => {
         globalActions.quiz.setQuizStatus( QuizProgress.continue )
         
       }
+      
+    } else {
+      
+      console.log('ощибка')
       
     }
     

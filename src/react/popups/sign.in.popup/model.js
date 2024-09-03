@@ -10,7 +10,6 @@ export const useLogin = ( { closePopup, setShowRecoveryPopup } ) => {
   const [ userPassword, setUserPassword ] = useState( '' )
   const [ globalState, globalActions ] = useGlobal()
   const [ error, setError ] = useState( null )
-  const [ lengthError, setLengthError ] = useState( null )
   
   const handleClosePopup = () => {
     
@@ -46,10 +45,6 @@ export const useLogin = ( { closePopup, setShowRecoveryPopup } ) => {
     if ( userNumber.length >= 11 && userPassword !== '' ) {
       
       login( { phone: userNumber, password: userPassword } )
-      
-    } else {
-      
-      setLengthError( 'Некорректный номер телефона' )
       
     }
     
@@ -99,7 +94,6 @@ export const useLogin = ( { closePopup, setShowRecoveryPopup } ) => {
     recoveryData,
     loginData,
     error,
-    lengthError
     
   }
   

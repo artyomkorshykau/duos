@@ -19,10 +19,10 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error('Error fetching data:', error);
+      console.error( 'Error fetching data:', error )
+      throw error
       
     }
-    
     
   },
   
@@ -37,14 +37,14 @@ const expert = {
       last_name: profile.lastName,
       pseudonym: profile.nickName,
       birthday: profile.birthDate.split( 'T' )[ 0 ],
-      gender: profile.gender,
-      tax_status: profile.taxStatus,
-      tax_name: profile.taxName || '',
-      tax_inn: profile.taxIIN || '',
+      tax_name: profile.taxName,
+      tax_inn: profile.taxIIN,
       country_id: profile.country.id,
       city_id: profile.city.id,
       email: email,
-      is_temp: !!isTemp
+      is_temp: !!isTemp,
+      ...( profile.gender && { gender: profile.gender } ),
+      ...( profile.taxStatus && { tax_status: profile.taxStatus } )
       
     }
     
