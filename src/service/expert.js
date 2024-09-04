@@ -59,8 +59,8 @@ const expert = {
       
       if ( !response.ok ) {
         
-        console.log( `Ошибка сервера (500)` )
-        throw new Error()
+        const { errors } = await response.json()
+        throw errors
         
       }
       
@@ -68,7 +68,6 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error( `Ошибка при отправке данных: ${ error.message }` )
       throw error
       
     }

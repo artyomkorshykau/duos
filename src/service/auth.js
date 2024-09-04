@@ -63,22 +63,9 @@ const auth = {
     
   },
   
-  async editPhone( phone, code ) {
-    
-    const response = await fetch( `${ BASE_URL }/user/edit/phone`, {
-      
-      method: 'PUT',
-      headers: getHeaders(),
-      body: JSON.stringify( { phone: +extractNumbers( phone ), code: +code } )
-      
-    } )
-    
-    return response.json()
-    
-  },
-  
   async logout() {
     
+    localStorage.clear()
     document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure'
     
   },

@@ -1,7 +1,7 @@
-import cssIf from "@/scripts/helpers/css.if";
-import WhiteBox from "@/react/components/containers/whitebox";
-import CloseInCircle from "@/react/components/icons/close.in.circle";
-import s from "./popup.module.scss";
+import cssIf from '@/scripts/helpers/css.if'
+import WhiteBox from '@/react/components/containers/whitebox'
+import CloseInCircle from '@/react/components/icons/close.in.circle'
+import s from './popup.module.scss'
 
 const Popup = ({
   
@@ -20,7 +20,7 @@ const Popup = ({
   boxRef = null,
   background = false,
   closeBackground,
-  titleLeft
+  titleLeft,
 
 }) => {
 

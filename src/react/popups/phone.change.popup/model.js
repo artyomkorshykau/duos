@@ -1,9 +1,9 @@
 import useGlobal from '@/store/index.js'
 import { useMutation } from '@tanstack/react-query'
-import auth from '@/service/auth.js'
 import { useEffect, useState } from 'react'
+import profile from '@/service/profile.js'
 
-export const usePhoneChange = ( closePopup, isOpened ) => {
+export const usePhoneChange = ( closePopup, email, phone ) => {
   
   const [ globalState, globalActions ] = useGlobal()
   
@@ -11,20 +11,85 @@ export const usePhoneChange = ( closePopup, isOpened ) => {
   const [ userCode, setUserCode ] = useState( '' )
   const [ error, setError ] = useState( null )
   const [ newPhoneNumber, setNewPhoneNumber ] = useState( globalState.profile.phoneNumber )
+  const [ newEmail, setNewEmail ] = useState( globalState.user.email )
   
-  const { mutate: mutatePhoneEdit, data } = useMutation( {
+  const { mutate: mutatePhoneEdit } = useMutation( {
     
     mutationKey: [ 'phone-edit' ],
-    mutationFn: ( { phone, code } ) => auth.editPhone( phone, code ),
-    onSuccess: ( error ) => { setError( error.errors ? error.errors : error.error ) }
+    mutationFn: ( { phone, code } ) => profile.editPhone( phone, code ),
+    onSuccess: () => {
+      
+      if ( !codeMode ) {
+        
+        setCodeMode( true )
+        
+      } else {
+        
+        globalActions.profile.setPhoneNumber( newPhoneNumber )
+        closePopup()
+        setCodeMode( false )
+        setUserCode( '' )
+        
+      }
+      
+    },
+    onError: ( error ) => {
+      
+      setError( error )
+      
+    }
+    
+  } )
+  
+  const { mutate: mutateEmailEdit } = useMutation( {
+    
+    mutationKey: [ 'email-edit' ],
+    mutationFn: ( { email, code } ) => profile.editEmail( email, code ),
+    onSuccess: () => {
+      
+      if ( !codeMode ) {
+        
+        setCodeMode( true )
+        
+      } else {
+        
+        globalActions.user.setUser()
+        closePopup()
+        setCodeMode( false )
+        setUserCode( '' )
+        
+      }
+      
+    },
+    onError: ( error ) => {
+      
+      setError( error )
+      
+    }
     
   } )
   
   const handleButtonAction = () => {
     
-    globalActions.profile.setPhoneNumber( newPhoneNumber )
-    mutatePhoneEdit( { phone: newPhoneNumber } )
-    setCodeMode( true )
+    if ( phone ) {
+      
+      if ( !codeMode ) {
+        
+        mutatePhoneEdit( { phone: newPhoneNumber } )
+        
+      }
+      
+    }
+    
+    if ( email ) {
+      
+      if ( !codeMode ) {
+        
+        mutateEmailEdit( { email: newEmail } )
+        
+      }
+      
+    }
     
   }
   
@@ -38,25 +103,25 @@ export const usePhoneChange = ( closePopup, isOpened ) => {
   
   useEffect( () => {
     
-    if ( data?.success ) setCodeMode( true )
-    if ( userCode.length === 5 ) {
+    if ( phone ) {
       
-      //Если номер успешно изменён, то закрывает попап
-      setTimeout( () => {
+      if ( userCode.length === 5 ) {
         
-        handleCancelButton()
+        mutatePhoneEdit( { phone: newPhoneNumber, code: userCode } )
         
-      }, 1000 )
+      }
       
     }
     
-  }, [ data, userCode ] )
-  
-  useEffect( () => {
-    
-    if ( userCode.length === 5 ) {
+    if ( email ) {
       
-      mutatePhoneEdit( { phone: newPhoneNumber, code: userCode } )
+      if ( userCode.length === 5 ) {
+        
+        debugger
+        
+        mutateEmailEdit( { email: newEmail, code: userCode } )
+        
+      }
       
     }
     
@@ -66,12 +131,14 @@ export const usePhoneChange = ( closePopup, isOpened ) => {
     
     newPhoneNumber,
     setNewPhoneNumber,
+    newEmail,
+    setNewEmail,
     handleButtonAction,
     handleCancelButton,
     codeMode,
     setUserCode,
     userCode,
-    error,
+    error
     
   }
   

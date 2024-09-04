@@ -104,6 +104,13 @@ export const useQuestionnaire = () => {
       globalActions.quiz.setContinueStep( steps.service )
       setTitle( 'Услуги' )
       setDescription( 'В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам' )
+      globalActions.user.setUser()
+      localStorage.removeItem( 'profile' )
+      
+    },
+    onError: ( error ) => {
+      
+      globalActions.profile.setProfileErrors( error )
       
     }
     
@@ -120,6 +127,7 @@ export const useQuestionnaire = () => {
       globalActions.quiz.setContinueStep( steps.school )
       setTitle( 'Школа' )
       setDescription( 'Если у вас нет собственной школы или курса переходите к следующему шагу' )
+      localStorage.removeItem( 'service' )
       
     }
     
@@ -136,6 +144,7 @@ export const useQuestionnaire = () => {
       globalActions.quiz.setContinueStep( steps.documents )
       setTitle( 'Документы' )
       setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
+      localStorage.removeItem( 'school' )
       
     }
     
@@ -152,6 +161,7 @@ export const useQuestionnaire = () => {
       globalActions.quiz.setContinueStep( steps.publications )
       setTitle( 'Публикации' )
       setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
+      localStorage.removeItem( 'documents' )
       
     }
     
@@ -166,6 +176,7 @@ export const useQuestionnaire = () => {
       refetchExpert()
       globalActions.quiz.setQuizStatus( QuizProgress.end )
       globalActions.quiz.setStep( steps.questionnaire )
+      localStorage.removeItem( 'publications' )
       
     }
     

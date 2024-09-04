@@ -9,7 +9,7 @@ import cssIf from '@/scripts/helpers/css.if.js'
 const Nickname = () => {
   
   const [ globalState, globalActions ] = useGlobal()
-  const { nickName } = globalState.profile
+  const { nickName } = globalState.user
   const { setNickName } = globalActions.profile
   const [ edit, setEdit ] = useState( false )
   const inputRef = useRef( null )

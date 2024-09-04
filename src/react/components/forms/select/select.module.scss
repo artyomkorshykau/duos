@@ -212,40 +212,68 @@
 
     }
 
-    &__itemscontainer {
+    &__itemscontainerWrapper {
 
-      padding: $apx-16 $apx-8;
-      display: flex;
-      flex-direction: column;
-      background: var(--color-bw-white);
       border-radius: $apx-28;
+      overflow: hidden;
       position: relative;
+      background: var(--color-bw-white);
+      padding: $apx-15 $apx-5  $apx-15 0;
       z-index: 1;
 
-      &__option {
+      &__itemscontainer {
+        padding: $apx-16 $apx-8;
+        display: flex;
+        max-height: $apx-250;
+        flex-direction: column;
+        background: var(--color-bw-white);
+        border-radius: $apx-28;
+        position: relative;
+        z-index: 1;
+        overflow-y: scroll;
 
-        padding: $apx-8;
-        border-radius: $apx-16;
-        color: var(--color-accent-black-900);
-        font-weight: 600;
-        font-size: $apx-15;
-        cursor: pointer;
-        transition: background 300ms ease;
+        &__option {
+          padding: $apx-8;
+          border-radius: $apx-16;
+          color: var(--color-accent-black-900);
+          font-weight: 600;
+          font-size: $apx-15;
+          cursor: pointer;
+          transition: background 300ms ease;
 
-        &:hover {
-
-          background: var(--color-accent-background);
-
+          &:hover {
+            background: var(--color-accent-background);
+          }
         }
 
-      }
+        //&__strip {
+        //  height: 2px;
+        //  width: calc(100% - $apx-16);
+        //  margin: 0 auto;
+        //  background: var(--color-accent-background);
+        //}
 
-      &__strip {
+        &::-webkit-scrollbar {
+          width: $apx-8;
+        }
 
-        height: 2px;
-        width: calc(100% - $apx-16);
-        margin: 0 auto;
-        background: var(--color-accent-background);
+        &::-webkit-scrollbar-track {
+          background: transparent;
+          border-radius: $apx-28;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: var(--color-accent-blue-270);
+          border-radius: $apx-16;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: darken(#D1E3F7, 10%);
+        }
+
+        &::-webkit-scrollbar-thumb:active {
+          background-color: darken(#D1E3F7, 20%);
+        }
 
       }
 

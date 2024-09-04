@@ -149,6 +149,13 @@ const profileActions = {
     
   },
   
+  setProfileErrors( store, errors ) {
+    
+    
+    store.setState( { profile: { ...store.state.profile, errors } } )
+    
+  },
+  
   getLocations: async( store ) => {
     
     try {

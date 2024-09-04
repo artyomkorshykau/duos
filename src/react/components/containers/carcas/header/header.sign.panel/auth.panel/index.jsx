@@ -24,9 +24,9 @@ const HeaderAuthPanel = ({
 
   }
   
-  const userName = globalState.user.firstName
+  const userName = globalState.user.first_name
     
-    ? `${globalState.user.lastName} ${globalState.user.firstName}`
+    ? `${globalState.user.last_name} ${globalState.user.first_name}`
     : formatPhoneNumberForHeader(String(globalState.user.phone))
   
   const [ menuIsOpened, setMenuIsOpened ] = useState( false );

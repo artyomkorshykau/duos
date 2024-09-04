@@ -1,35 +1,26 @@
-import { useState } from 'react'
-
-const initialSocials = [
-  
-  { id: 0, label: 'E-mail', isToggle: false },
-  { id: 1, label: 'SMS', isToggle: false },
-  { id: 2, label: 'WhatsApp', isToggle: false },
-  { id: 3, label: 'Telegram', isToggle: false }
-
-]
+import { useMutation } from '@tanstack/react-query'
+import profile from '@/service/profile.js'
+import useGlobal from '@/store/index.js'
 
 export const useNotify = () => {
   
-  const [socials, setSocials] = useState(initialSocials)
+  const [ globalState, globalActions ] = useGlobal()
   
-  const handleToggle = ( id ) => {
+  const { mutate: mutateEditNotify } = useMutation( {
     
-    setSocials((prevSocials) =>
-      
-      prevSocials.map((social) =>
-        
-        social.id === id
-          
-          ? { ...social, isToggle: !social.isToggle }
-          : social
-      
-      )
+    mutationKey: [ 'edit-notify' ],
+    mutationFn: ( body ) => profile.editNotifies( body )
     
-    )
+  } )
+  
+  const handleToggle = ( body ) => {
+    
+    mutateEditNotify(body )
+    globalActions.user.setUser()
     
   }
   
-  return { socials, handleToggle}
+  
+  return { handleToggle, globalState }
   
 }
