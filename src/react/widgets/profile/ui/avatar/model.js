@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import useGlobal from '@/store/index.js'
 import { useMutation } from '@tanstack/react-query'
 import profile from '@/service/profile.js'
@@ -9,8 +9,10 @@ export const useAvatar = () => {
   const avatar = globalState.user.photo_url
   const fileInputRef = useRef( null )
   const [ photo, setPhoto ] = useState( null )
+  const [ error, setError ] = useState( '' )
+  const [ errorTimeout, setErrorTimeout ] = useState( null )
   
-  const { mutate: mutateUserPhoto } = useMutation( {
+  const { mutate: mutateUserPhoto, isPending } = useMutation( {
     
     mutationKey: [ 'change-user-photo' ],
     mutationFn: ( base64String ) => profile.editAvatar( base64String ),
@@ -21,7 +23,8 @@ export const useAvatar = () => {
     },
     onError: () => {
       
-      alert( 'Произошла ошибка при загрузке файла.' )
+      setError( 'Произошла ошибка при загрузке файла.' )
+      startErrorTimeout()
       
     }
     
@@ -30,6 +33,8 @@ export const useAvatar = () => {
   const handleEditClick = () => {
     
     fileInputRef.current.click()
+    setError( '' )
+    clearTimeout( errorTimeout )
     
   }
   
@@ -44,14 +49,16 @@ export const useAvatar = () => {
       
       if ( !allowedFileTypes.includes( file.type ) ) {
         
-        alert( 'Файл должен быть в формате PNG, TIFF или JPEG.' )
+        setError( 'Файл должен быть в формате PNG, TIFF или JPEG.' )
+        startErrorTimeout()
         return
         
       }
       
       if ( file.size > maxFileSize ) {
         
-        alert( 'Размер файла не должен превышать 20MB.' )
+        setError( 'Размер файла не должен превышать 20MB.' )
+        startErrorTimeout()
         return
         
       }
@@ -63,7 +70,7 @@ export const useAvatar = () => {
         const base64String = reader.result
         mutateUserPhoto( base64String, {
           onSuccess: () => {
-            setPhoto( reader.result ) // Обновляем фото в состоянии
+            setPhoto( reader.result )
           }
         } )
         
@@ -75,12 +82,37 @@ export const useAvatar = () => {
     
   }
   
+  const startErrorTimeout = () => {
+    
+    clearTimeout( errorTimeout )
+    
+    const timeoutId = setTimeout( () => {
+      
+      setError( '' )
+      
+    }, 5000 )
+    
+    setErrorTimeout( timeoutId )
+    
+  }
+  
+  useEffect( () => {
+    
+    return () => {
+      
+      clearTimeout( errorTimeout )
+      
+    }
+  }, [ errorTimeout ] )
+  
   return {
     
     handleEditClick,
     handleFileChange,
     fileInputRef,
-    avatar
+    avatar,
+    error,
+    isPending
     
   }
   

@@ -13,6 +13,13 @@ export const usePhoneChange = ( closePopup, email, phone ) => {
   const [ newPhoneNumber, setNewPhoneNumber ] = useState( '' )
   const [ newEmail, setNewEmail ] = useState( '' )
   
+  useEffect(() => {
+    if (globalState.user) {
+      setNewPhoneNumber(globalState.user.phone || '')
+      setNewEmail(globalState.user.email || '')
+    }
+  }, [globalState.user])
+  
   const { mutate: mutatePhoneEdit } = useMutation( {
     
     mutationKey: [ 'phone-edit' ],
@@ -108,6 +115,7 @@ export const usePhoneChange = ( closePopup, email, phone ) => {
       if ( userCode.length === 5 ) {
         
         mutatePhoneEdit( { phone: newPhoneNumber, code: userCode } )
+        globalActions.user.setUser()
         
       }
       
@@ -116,8 +124,6 @@ export const usePhoneChange = ( closePopup, email, phone ) => {
     if ( email ) {
       
       if ( userCode.length === 5 ) {
-        
-        debugger
         
         mutateEmailEdit( { email: newEmail, code: userCode } )
         

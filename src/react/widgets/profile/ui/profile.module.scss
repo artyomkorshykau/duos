@@ -28,12 +28,18 @@
         width: $apx-240;
         height: $apx-240;
         border-radius: 50%;
-        background: linear-gradient( to right, #18009E 20%, #1A97E2 80%, #11E3E3 100% );
+        background: linear-gradient(to right, #18009E 20%, #1A97E2 80%, #11E3E3 100%);
         display: flex;
         align-items: center;
         justify-content: center;
 
-        &__photo{
+        &__error {
+
+          background: #C6A708;
+
+        }
+
+        &__photo {
 
           width: $apx-236;
           height: $apx-236;
@@ -91,7 +97,27 @@
         width: $apx-48;
         height: $apx-48;
         border-radius: 50%;
-        background: linear-gradient( to right, #00239E 0%, #0029FF 100%);
+        background: linear-gradient(to right, #00239E 0%, #0029FF 100%);
+
+      }
+
+      &__error {
+
+        font-weight: 600;
+        color: #C6A708;
+        text-align: center;
+        margin-bottom: -$apx-30;
+        margin-top: -$apx-20;
+
+      }
+
+      &__loading {
+
+        color: var(--color-accent-blue-700);
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: -$apx-30;
+        margin-top: -$apx-20;
 
       }
 

@@ -53,7 +53,7 @@ const HeaderAuthPanel = ({
 
         <img
         
-          src = { globalState.user.photo_url || 'img/test.default.data/avatar.png' }
+          src = { globalState.user.photo_url || 'img/test.default.data/avatar.webp' }
           className = {`${ s['auth-panel__avatar__img'] } pointer`}
           
         />
