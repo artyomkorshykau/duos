@@ -1,0 +1,35 @@
+@import "@/styles/apx.scss";
+
+.content {
+
+  overflow-y: scroll;
+  max-height: calc(100dvh - $apx-64);
+  top: $apx-64;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &::-webkit-scrollbar {
+    width: $apx-9;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #E1EBF9;
+    border-radius: $apx-9;
+
+    &:hover {
+
+      background: #A7CAFF;
+      cursor: grab;
+
+    }
+
+  }
+
+}

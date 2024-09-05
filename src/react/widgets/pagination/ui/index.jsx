@@ -1,9 +1,10 @@
-import s from './pagination.module.scss'
+import { steps } from "@/constants/quiz.steps";
 import DefaultButton from '@/react/components/buttons/default.button';
 import Arrow from '@/react/components/icons/arrow';
 import useGlobal from '@/store';
 import { useEffect, useState } from 'react';
-import { steps } from "@/constants/quiz.steps";
+import s from './pagination.module.scss';
+import Save from "@/react/components/icons/save";
 
 const Pagination = ({
   
@@ -67,10 +68,10 @@ const Pagination = ({
 
       <DefaultButton
 
-        name = { activeStep === "Публикации" ? 'Отправить анкету' : 'Далее' }
+        name = { activeStep === "Публикации" ? 'Отправить анкету' : activeStep === "constructor" ? 'Сохранить' : 'Далее' }
         className = {`${ s.pagination__button_next }`}
         action = { nextStep }
-        icon = { <Arrow direction = { 'right' } fill = { '#fff' }/> }
+        icon = { activeStep === "constructor" ? <Save direction = { 'right' } fill = { '#fff' }/> : <Arrow direction = { 'right' } fill = { '#fff' }/> }
         positionIcon = 'right'
         disabled = { disabled }
 
