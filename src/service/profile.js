@@ -157,8 +157,37 @@ const profile = {
       
     }
     
-  }
+  },
   
+  async editPseudonym( pseudonym ) {
+    
+    
+    try {
+      
+      const response = await fetch( `${ BASE_URL }/user/edit/pseudonym`, {
+        
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify( { pseudonym } )
+        
+      } )
+      
+      if ( !response.ok ) {
+        
+        throw await response.json()
+        
+      }
+      
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error( 'Error editing pseudonym:', error )
+      throw error
+      
+    }
+    
+  }
   
 }
 

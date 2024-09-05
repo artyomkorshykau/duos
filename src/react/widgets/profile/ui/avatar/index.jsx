@@ -24,7 +24,7 @@ const Avatar = () => {
         <div
           className = { `${ s.profile__left_side__avatar__photo_wrapper__photo }` }>
           
-          <img src = { avatar } alt="avatar"/>
+          <img src = { avatar || 'img/test.default.data/avatar.webp' } alt="avatar"/>
         
         </div>
       

@@ -5,15 +5,24 @@ import useGlobal from '@/store/index.js'
 import { useEffect, useRef, useState } from 'react'
 import Pencil from '@/react/components/icons/pencil.jsx'
 import cssIf from '@/scripts/helpers/css.if.js'
+import { useMutation } from '@tanstack/react-query'
+import profile from '@/service/profile.js'
 
 const Nickname = () => {
   
   const [ globalState, globalActions ] = useGlobal()
-  const { nickName } = globalState.user
-  const { setNickName } = globalActions.profile
+  const { pseudonym } = globalState.user
+  const [ nickName, setNickName ] = useState( pseudonym )
   const [ edit, setEdit ] = useState( false )
   const inputRef = useRef( null )
   const controlsRef = useRef( null )
+  
+  const { mutate: mutatePseudonym } = useMutation( {
+    
+    mutationKey: [ 'edit-pseudonym' ],
+    mutationFn: ( pseudonym ) => profile.editPseudonym( pseudonym )
+    
+  } )
   
   const handleEditClick = () => {
     
@@ -24,9 +33,9 @@ const Nickname = () => {
   
   const handleSaveClick = () => {
     
-    alert( 'Отправка на сервер' )
     setEdit( false )
     inputRef.current.blur()
+    mutatePseudonym( nickName )
     
   }
   
@@ -82,14 +91,20 @@ const Nickname = () => {
     
   }, [] )
   
+  useEffect( () => {
+    
+    setNickName( pseudonym )
+    
+  }, [ pseudonym ] )
+  
   return (
     
-    <div className = { `${ s.profile__right_side__profile_info__nickname }` }>
+    <div className={ `${ s.profile__right_side__profile_info__nickname }` }>
       
       <p
-        className = { `text-20 ${ s.profile__right_side__profile_info__nickname__title }` }>Псевдоним</p>
+        className={ `text-20 ${ s.profile__right_side__profile_info__nickname__title }` }>Псевдоним</p>
       
-      <div className = { `
+      <div className={ `
       ${ s.profile__right_side__profile_info__nickname__textfield }
       ${ cssIf( edit, s.profile__right_side__profile_info__nickname__textfield__active ) }
       ` }
@@ -98,39 +113,39 @@ const Nickname = () => {
         
         <input
           
-          value = { nickName }
-          ref = { inputRef }
-          placeholder = { 'Псевдоним' }
-          onChange = { ( e ) => setNickName( e.target.value ) }
-          onClick = { handleEditClick }
+          value={ nickName }
+          ref={ inputRef }
+          placeholder={ 'Псевдоним' }
+          onChange={ ( e ) => setNickName( e.target.value ) }
+          onClick={ handleEditClick }
         
         />
         
-        { edit && nickName.length > 0 &&
+        { edit && nickName?.length > 0 &&
           
           <div
             
-            className = { `${ s.profile__right_side__profile_info__nickname__textfield__controls }` }
-            ref = { controlsRef }
+            className={ `${ s.profile__right_side__profile_info__nickname__textfield__controls }` }
+            ref={ controlsRef }
           
           >
             
             <Cross
               
-              stroke = { '#7C92A7' }
-              onClick = { handleClearClick }
-              className = { `${ s.profile__right_side__profile_info__nickname__textfield__controls__cross }` }
+              stroke={ '#7C92A7' }
+              onClick={ handleClearClick }
+              className={ `${ s.profile__right_side__profile_info__nickname__textfield__controls__cross }` }
             
             />
             
             <div
               
-              className = { `${ s.profile__right_side__profile_info__nickname__textfield__controls__save }` }
-              onClick = { handleSaveClick }
+              className={ `${ s.profile__right_side__profile_info__nickname__textfield__controls__save }` }
+              onClick={ handleSaveClick }
             
             >
               
-              <Save fill = { '#fff' }/>
+              <Save fill={ '#fff' }/>
             
             </div>
           
@@ -141,7 +156,7 @@ const Nickname = () => {
         { !edit &&
           
           <Pencil
-            className = { `${ s.profile__right_side__profile_info__nickname__textfield__pencil }` }/>
+            className={ `${ s.profile__right_side__profile_info__nickname__textfield__pencil }` }/>
           
         }
       

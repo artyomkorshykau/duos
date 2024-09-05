@@ -174,7 +174,7 @@ const Contacts = () => {
         }}
         email={editEmail}
         phone={editNumber}
-        popupRef={popupRef} // Передаем ссылку на попап
+        popupRef={popupRef}
       />
     </div>
   );

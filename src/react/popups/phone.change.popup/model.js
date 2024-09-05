@@ -10,8 +10,8 @@ export const usePhoneChange = ( closePopup, email, phone ) => {
   const [ codeMode, setCodeMode ] = useState( false )
   const [ userCode, setUserCode ] = useState( '' )
   const [ error, setError ] = useState( null )
-  const [ newPhoneNumber, setNewPhoneNumber ] = useState( globalState.profile.phoneNumber )
-  const [ newEmail, setNewEmail ] = useState( globalState.user.email )
+  const [ newPhoneNumber, setNewPhoneNumber ] = useState( '' )
+  const [ newEmail, setNewEmail ] = useState( '' )
   
   const { mutate: mutatePhoneEdit } = useMutation( {
     

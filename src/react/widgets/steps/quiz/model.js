@@ -127,7 +127,6 @@ export const useQuestionnaire = () => {
       globalActions.quiz.setContinueStep( steps.school )
       setTitle( 'Школа' )
       setDescription( 'Если у вас нет собственной школы или курса переходите к следующему шагу' )
-      localStorage.removeItem( 'service' )
       
     }
     
