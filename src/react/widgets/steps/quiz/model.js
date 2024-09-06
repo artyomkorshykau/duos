@@ -213,11 +213,45 @@ export const useQuestionnaire = () => {
     
     if ( globalState.quiz.progress === QuizProgress.continue ) {
       
-      if ( globalState.quiz.continueStep === steps.profile ) globalActions.quiz.setStep( steps.profile )
-      if ( globalState.quiz.continueStep === steps.service ) globalActions.quiz.setStep( steps.service )
-      if ( globalState.quiz.continueStep === steps.school ) globalActions.quiz.setStep( steps.school )
-      if ( globalState.quiz.continueStep === steps.documents ) globalActions.quiz.setStep( steps.documents )
-      if ( globalState.quiz.continueStep === steps.publications ) globalActions.quiz.setStep( steps.publications )
+      if ( globalState.quiz.continueStep === steps.profile ) {
+        
+        globalActions.quiz.setStep( steps.profile )
+        setTitle( 'Профиль' )
+        setDescription( 'Эти данные станут частью вашего профиля и помогут продвижению' )
+        
+      }
+      
+      if ( globalState.quiz.continueStep === steps.service ) {
+        
+        globalActions.quiz.setStep( steps.service )
+        setTitle( 'Услуги' )
+        setDescription( 'В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам' )
+        
+      }
+      
+      if ( globalState.quiz.continueStep === steps.school ) {
+        
+        globalActions.quiz.setStep( steps.school )
+        setTitle( 'Школа' )
+        setDescription( 'Если у вас нет собственной школы или курса переходите к следующему шагу' )
+        
+      }
+      
+      if ( globalState.quiz.continueStep === steps.documents ) {
+        
+        globalActions.quiz.setStep( steps.documents )
+        setTitle( 'Документы' )
+        setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
+        
+      }
+      
+      if ( globalState.quiz.continueStep === steps.publications ) {
+        
+        globalActions.quiz.setStep( steps.publications )
+        setTitle( 'Публикации' )
+        setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
+        
+      }
       
     }
     
