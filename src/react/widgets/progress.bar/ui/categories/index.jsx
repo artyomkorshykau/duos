@@ -55,7 +55,6 @@ const Categories = ( props ) => {
         'surName',
         'birthDate',
         'gender',
-        'nickName',
         'taxStatus',
         'city',
         'country'

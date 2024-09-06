@@ -30,6 +30,12 @@
     width: $apx-220;
     cursor: pointer;
 
+    &__text {
+
+      color: var(--color-accent-black-900);
+
+    }
+
     &:hover .autosave__notise__info {
 
       display: flex;
@@ -47,7 +53,7 @@
     &__info {
 
       position: absolute;
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: $apx-15;
       width: $apx-220;
