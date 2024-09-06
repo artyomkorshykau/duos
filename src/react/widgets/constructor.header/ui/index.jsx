@@ -1,102 +1,58 @@
-import Arrow from "@/react/components/icons/arrow.jsx";
-import s from './constructor.header.module.scss';
-import Link from 'next/link';
-import Status from "@/react/components/status";
-import DefaultButton from "@/react/components/buttons/default.button";
-import Promote from "@/react/components/icons/promote";
-import { DuosEditor } from "@/react/components/editor/dist";
-
-const breadcrumbsList = ["Анкетирование", "Публикации", "Новая публикация"]
+import s from './constructor.header.module.scss'
+import Nav from '@/react/widgets/constructor.header/ui/nav/index.jsx'
+import Title from '@/react/widgets/constructor.header/ui/title/index.jsx'
+import Controls from '@/react/widgets/constructor.header/ui/controls/index.jsx'
+import { useState } from 'react'
+import cssIf from '@/scripts/helpers/css.if.js'
+import Tabs from '@/react/widgets/section.header/ui/tabs/index.jsx'
+import useGlobal from '@/store/index.js'
 
 const ConstructorHeader = ( props ) => {
-
+  
+  const {
+    
+    activeTab,
+    setActiveTab
+    
+  } = props
+  
+  const [ collapsed, setCollapsed ] = useState( false )
+  const [ globalState, globalActions ] = useGlobal()
+  
   return (
-
-    <div className = {`${ s.constructorHeader }`}>
-
-      <div className = {`${ s.constructorHeader__wrapper }`}>
-
-        <div className = {`${ s.constructorHeader__wrapper__navigation }`}>
-
-          <Link className = {`${ s.constructorHeader__wrapper__navigation__back }`} href = {'/'}>
-
-            <Arrow direction = { 'left' } fill = { '#7C92A7' }/>
-            <p className = {`text-14 ${ s.constructorHeader__wrapper__navigation__back__title }`}>Назад</p>
-
-          </Link>
-
-          <div className = { s.constructorHeader__wrapper__navigation__breadcrumbs }>
-
-            { breadcrumbsList.map(( breadcrumbs, index ) => (
-
-              <>
-                
-                <p className = {`text-13 ${ s.constructorHeader__wrapper__navigation__breadcrumbs__text }`}>
-
-                  { breadcrumbs }
-
-                </p>
-
-                <div className = { s.constructorHeader__wrapper__navigation__breadcrumbs__dot }/>
-
-              </>
-
-            ))}
-
-          </div>
-
-          <Status status = { 'New' } />
-
-        </div>
-
-        <p className = {`text-26 ${ s.constructorHeader__wrapper__title }`}>
-
-          Новая публикация
-
-        </p>
-
-        <div className = {`${ s.constructorHeader__wrapper__buttons }`}>
-
-          <DefaultButton
-
-            name = { 'Продвигать' }
-            className = {`${ s.constructorHeader__wrapper__buttons__promote }`}
-            action = { () => {console.log("Promote")} }
-            icon = {  <Promote direction = { 'right' } fill = { '#fff' }/> }
-            positionIcon = 'right'
-
-          />
-
-          <DefaultButton
-
-            gray
-            name = { 'Сохранить в черновики' }
-            action = {() => { console.log('save') }}
-
-          />
-
-          <DefaultButton
-
-            name = { 'Отменить' }
-            className = {`${ s.constructorHeader__wrapper__buttons__cancel }`}
-            action = { () => { console.log('cancel') } }
-
-          />
+    
+    <div
+      
+      className={ `${ s.constructorHeader }
+      ${ cssIf( collapsed, s.collapsed ) }` }
+      onClick={ () => setCollapsed( !collapsed ) }
+    
+    >
+      
+      <div
+        className={ `${ s.constructorHeader__wrapper } ` }>
+        
+        <Nav/>
+        <Title/>
+        <Controls/>
+        <Tabs
           
-        </div>
-
+          activeTab={ activeTab }
+          setActiveTab={ setActiveTab }
+          tabs={ globalState.constructorTabs }
+          className = { s.constructorHeader__wrapper__tabs }
+          classNameContent = { s.constructorHeader__wrapper__tabs__content }
+        
+        />
+        
+        
+      
       </div>
-
-      <div style = {{ width: "52.083vw" }}>
-
-        <DuosEditor />
-
-      </div>
-
+    
     </div>
-
+  
   )
-
+  
 }
 
 export default ConstructorHeader

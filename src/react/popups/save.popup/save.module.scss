@@ -1,0 +1,78 @@
+@import "@/styles/apx.scss";
+
+.save {
+
+  width:  $apx-360;
+  height: max-content;
+  margin: auto;
+  animation: fadeIn 0.5s forwards;
+
+  &__content {
+
+    display: flex;
+    flex-direction: column;
+    margin-top: $apx-52;
+    gap: $apx-30;
+
+    &__variant {
+
+      display: flex;
+      justify-content: left;
+      align-items: center;
+
+      &__text {
+
+        text-align: start;
+        font-weight: 600;
+        color: var(--color-accent-black-900);
+
+      }
+
+    }
+
+    &__notise {
+
+      display: flex;
+      align-items: center;
+      background-color: var(--color-accent-blue-100);
+      border-radius: $apx-28;
+      padding: $apx-8 $apx-16;
+
+      & > svg {
+
+        width: 12%;
+
+      }
+
+      &__text {
+
+        font-weight: 600;
+        color: var(--color-accent-blue-700);
+        text-align: left;
+
+      }
+
+    }
+
+    &__controls {
+
+      display: flex;
+      justify-content: space-between;
+      margin-top: $apx-16;
+
+    }
+
+  }
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -16,6 +16,8 @@ import profileActions from '@/store/actions/profile'
 import userActions from '@/store/actions/user'
 import userData from '@/store/states/user.js'
 import getInitialProfileState from '@/store/states/profile.js'
+import profileTabs from '@/store/states/profile.tabs.js'
+import constructorTabs from '@/store/states/constructor.tabs.js'
 
 const initialState = {
 
@@ -27,7 +29,9 @@ const initialState = {
   tax: tax,
   info: info,
   user: userData,
-  data: dataState
+  data: dataState,
+  profileTabs: profileTabs,
+  constructorTabs: constructorTabs
 
 }
 

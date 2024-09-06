@@ -4,8 +4,13 @@ import Carcas from '@/react/components/containers/carcas'
 import Pagination from '@/react/widgets/pagination/ui'
 import s from './constructor.module.scss'
 import ConstructorHeader from '@/react/widgets/constructor.header/ui'
+import { useState } from 'react'
+import SavePopup from '@/react/popups/save.popup/index.jsx'
 
 export default function ConstructorPage() {
+  
+  const [ activeTab, setActiveTab ] = useState( 'Профиль' )
+  const [ openSavePopup, setOpenSavePopup ] = useState( false )
   
   return (
     
@@ -17,21 +22,31 @@ export default function ConstructorPage() {
       
       >
         
-        <div className = { `${ s.content }` }>
-              
-          <ConstructorHeader />
-              
-          <div style = {{ height: "2000px", minHeight: "2000px" }}>content</div>
-              
-          <Pagination
-                
-            nextStep = { () => {console.log("next")} }
-            activeStep = { "constructor" }
-            prevStep = { () => {console.log("prev")} }
-              
-          />
+        <div className={ `${ s.content }` }>
+          
+          <ConstructorHeader
             
+            activeTab={ activeTab }
+            setActiveTab={ setActiveTab }
+          
+          />
+          
+          <Pagination
+            
+            nextStep={ () => setOpenSavePopup( true ) }
+            activeStep={ 'constructor' }
+            prevStep={ () => {console.log( 'prev' )} }
+          
+          />
+        
         </div>
+        
+        <SavePopup
+          
+          isOpened={ openSavePopup }
+          closePopup={ () => setOpenSavePopup( false ) }
+        
+        />
       
       </Carcas>
     

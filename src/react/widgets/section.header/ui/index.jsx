@@ -6,6 +6,7 @@ import Subtitle from '@/react/widgets/section.header/ui/subtitle/index.jsx'
 import Statistics from '@/react/widgets/section.header/ui/statistics/index.jsx'
 import Tabs from '@/react/widgets/section.header/ui/tabs/index.jsx'
 import Title from '@/react/widgets/section.header/ui/title/index.jsx'
+import useGlobal from '@/store/index.js'
 
 const ProfileHeader = ( props ) => {
 
@@ -17,6 +18,7 @@ const ProfileHeader = ( props ) => {
   } = props
 
   const [ collapsed, setCollapsed ] = useState(false )
+  const [ globalState, globalActions ] = useGlobal()
 
   return (
 
@@ -37,6 +39,7 @@ const ProfileHeader = ( props ) => {
 
          activeTab = { activeTab }
          setActiveTab = { setActiveTab }
+         tabs = { globalState.profileTabs }
 
        />
 
