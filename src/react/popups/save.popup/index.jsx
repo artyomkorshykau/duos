@@ -8,9 +8,10 @@ const SavePopup = ( {
                       
                       isOpened = false,
                       closePopup = () => {},
-                      type,
                       inQuiz = false,
-                      inProfile = true
+                      inProfile = true,
+                      saveVariant,
+                      setSaveVariant
                       
                     } ) => {
   
@@ -37,7 +38,14 @@ const SavePopup = ( {
         
         <div className={ `${ s.save__content__variant }` }>
           
-          <Checkbox/>
+          <Checkbox
+            
+            type={ 'secondary' }
+            isChecked={ saveVariant === 'draft' }
+            setIsChecked={ () => setSaveVariant( 'draft' ) }
+          
+          
+          />
           
           <div className={ `text-15 ${ s.save__content__variant__text }` }>
             
@@ -50,7 +58,13 @@ const SavePopup = ( {
         
         <div className={ `${ s.save__content__variant }` }>
           
-          <Checkbox/>
+          <Checkbox
+            
+            type={ 'secondary' }
+            isChecked={ saveVariant === 'completed' }
+            setIsChecked={ () => setSaveVariant( 'completed' ) }
+          
+          />
           
           <div className={ `text-15 ${ s.save__content__variant__text }` }>
             
@@ -64,11 +78,17 @@ const SavePopup = ( {
           
           <div className={ `${ s.save__content__variant }` }>
             
-            <Checkbox/>
+            <Checkbox
+              
+              type={ 'secondary' }
+              isChecked={ saveVariant === 'profile' }
+              setIsChecked={ () => setSaveVariant( 'profile' ) }
+            
+            />
             
             <div className={ `text-15 ${ s.save__content__variant__text }` }>
               
-              Опубликовать в профиле и <br />
+              Опубликовать в профиле и <br/>
               отправить запрос в Библиотеку
             
             </div>
@@ -94,8 +114,7 @@ const SavePopup = ( {
           <DefaultButton
             
             name="Отменить"
-            className={ `` }
-            action={ () => {} }
+            action={ handleClosePopup }
             gray
           
           />
@@ -104,7 +123,6 @@ const SavePopup = ( {
             
             name="Сохранить"
             type="default"
-            className={ `` }
             action={ () => {} }
           
           />

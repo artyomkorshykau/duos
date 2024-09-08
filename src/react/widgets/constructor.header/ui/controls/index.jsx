@@ -2,8 +2,11 @@ import s
   from '@/react/widgets/constructor.header/ui/constructor.header.module.scss'
 import DefaultButton from '@/react/components/buttons/default.button/index.jsx'
 import Promote from '@/react/components/icons/promote.jsx'
+import { useRouter } from 'next/navigation'
 
 const Controls = () => {
+  
+  const { back } = useRouter()
   
   return (
     
@@ -31,7 +34,7 @@ const Controls = () => {
         
         name={ 'Отменить' }
         className={ `${ s.constructorHeader__wrapper__buttons__cancel }` }
-        action={ () => { console.log( 'cancel' ) } }
+        action={ () => back() }
       
       />
     

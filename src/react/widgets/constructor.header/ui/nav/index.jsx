@@ -1,25 +1,25 @@
 import s
   from '@/react/widgets/constructor.header/ui/constructor.header.module.scss'
-import Link from 'next/link'
 import Arrow from '@/react/components/icons/arrow.jsx'
 import Status from '@/react/components/status/index.jsx'
+import { useRouter } from 'next/navigation'
 
 const Nav = () => {
   
   const breadcrumbsList = [ 'Анкетирование', 'Публикации', 'Новая публикация' ]
+  const { back } = useRouter()
   
   return (
     
     <div className={ `${ s.constructorHeader__wrapper__navigation }` }>
       
-      <Link className={ `${ s.constructorHeader__wrapper__navigation__back }` }
-            href={ '/' }>
+      <div className={ `${ s.constructorHeader__wrapper__navigation__back }` } onClick={ () => back()}>
         
         <Arrow direction={ 'left' } fill={ '#7C92A7' }/>
         <p
           className={ `text-14 ${ s.constructorHeader__wrapper__navigation__back__title }` }>Назад</p>
       
-      </Link>
+      </div>
       
       <div className={ s.constructorHeader__wrapper__navigation__breadcrumbs }>
         

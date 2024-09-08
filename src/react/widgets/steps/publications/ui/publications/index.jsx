@@ -4,12 +4,14 @@ import PublicationCard from '@/react/components/publication.card'
 import useGlobal from '@/store'
 import ProgressBar
   from '@/react/widgets/steps/publications/ui/progress.bar/index.jsx'
+import { useRouter } from 'next/navigation'
 
 const PublicationsContent = () => {
 
   const [ globalState, globalActions ] = useGlobal()
   const { publications } = globalState;
   const { publications: publicationsAction } = globalActions
+  const { push } = useRouter()
 
   return (
 
@@ -19,31 +21,7 @@ const PublicationsContent = () => {
 
         <PublicationCard
 
-          addNewPublication = { () => publicationsAction.addNewPublication(
-            
-            {
-              
-              title: 'Как преодолеть тоску, когда не знаешь, в чем ее причина?',
-              content:  'Мы не всегда понимаем то, что чувствуем и тем более не всегда ясно, что стало причиной этих' +
-                ' ощущений. Давайте найдем ответ вместе и освободимся от этой' +
-                ' тяжести на душе. Мы не всегда понимаем то, что чувствуем и тем более не всегда ясно, что стало причиной этих ощущений. Давайте найдем ответ вместе и освободимся от этой тяжести на душ.',
-              article_category_id: Date.now(),
-              image_url: 'http://194.58.94.203:9000/esoterics/media/images/0f88/0f/0f886851f682d0266d52cad7c84e4af5.jpg',
-              tags: [
-                
-                {
-                  tag: '1'
-                  
-                }
-              
-              ],
-              
-              is_draft: 1,
-              in_library: 1
-              
-            }
-
-          ) }
+          addNewPublication = { () => push('/constructor') }
 
         />
 

@@ -7,9 +7,9 @@
   color: var(--color-gray-500);
 
   &__title {
-  
+
     color: var(--color-accent-black-900);
-  
+
   }
 
 }
@@ -18,12 +18,12 @@
 
   $size: $apx-24;
   width: $size;
-  height: $size; 
+  height: $size;
   border-radius: $apx-8;
   margin-right: $apx-8;
   background: var(--color-accent-background);
   transition: background 0.3s ease, border 0.3s ease;
-  
+
   &:focus,
   &--checked  {
 
@@ -38,11 +38,57 @@
   }
 
   &__icon {
-  
+
     $size: $apx-16;
     width: $size;
     height: $size;
     stroke: var(--color-accent-blue-270);
+
+  }
+
+}
+
+.secondary {
+
+  width: $apx-24;
+  height: $apx-24;
+  border-radius: 50%;
+  background: var(--color-accent-blue-270);
+  position: relative;
+  transition: background 0.3s ease, border 0.3s ease;
+
+
+  &--checked {
+
+    background: var(--color-accent-blue-270);
+
+  }
+
+
+  &__inner-circle {
+
+    content: '';
+    width: $apx-12;
+    height: $apx-12;
+    border-radius: 50%;
+    background: var(--color-accent-blue-700);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+
+  }
+
+  &--checked .secondary__inner-circle {
+
+    display: block;
+
+  }
+
+  &:hover {
+
+    border: $apx-1 solid var(--color-accent-black-500);
 
   }
 

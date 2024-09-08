@@ -2,7 +2,7 @@
 
 .save {
 
-  width:  $apx-360;
+  width: $apx-360;
   height: max-content;
   margin: auto;
   animation: fadeIn 0.5s forwards;
@@ -19,6 +19,7 @@
       display: flex;
       justify-content: left;
       align-items: center;
+      gap: $apx-8;
 
       &__text {
 
