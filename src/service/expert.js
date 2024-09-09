@@ -382,7 +382,39 @@ const expert = {
       
     }
     
+  },
+  
+  async createArticle( data ) {
+    
+    
+    const image = await postImage( data.image_url )
+    
+    
+    try {
+      
+      const response = await fetch( `${ BASE_URL }/article`, {
+        method: 'POST', headers: getHeaders(), body: JSON.stringify( {} )
+        
+      } )
+      
+      if ( !response.ok ) {
+        
+        console.log( `Ошибка сервера (500)` )
+        throw new Error()
+        
+      }
+      
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
+      
+    }
+    
   }
+  
   
 }
 

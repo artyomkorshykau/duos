@@ -18,6 +18,8 @@ import userData from '@/store/states/user.js'
 import getInitialProfileState from '@/store/states/profile.js'
 import profileTabs from '@/store/states/profile.tabs.js'
 import constructorTabs from '@/store/states/constructor.tabs.js'
+import tags from '@/store/states/tags.js'
+import tagsActions from '@/store/actions/tags.js'
 
 const initialState = {
 
@@ -31,7 +33,8 @@ const initialState = {
   user: userData,
   data: dataState,
   profileTabs: profileTabs,
-  constructorTabs: constructorTabs
+  constructorTabs: constructorTabs,
+  tags: tags
 
 }
 
@@ -45,6 +48,7 @@ const actions = {
   tax: taxAgreeActions,
   info: infoActions,
   user: userActions,
+  tags: tagsActions
 
 }
 

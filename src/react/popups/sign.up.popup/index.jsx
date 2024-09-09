@@ -127,7 +127,7 @@ const SignUpPopup = ({
                 className = {`${ s.code__numbers__password }`}
                 value = { userCode }
                 maxLength = { 5 }
-                error = { error }
+                error = { error?.errors?.code ? error?.errors?.code?.[0] : error?.error }
                 onChange = { (e) => setUserCode(e.target.value) }
 
               />

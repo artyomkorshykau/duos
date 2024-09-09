@@ -11,7 +11,8 @@ const SavePopup = ( {
                       inQuiz = false,
                       inProfile = true,
                       saveVariant,
-                      setSaveVariant
+                      setSaveVariant,
+  save
                       
                     } ) => {
   
@@ -123,7 +124,7 @@ const SavePopup = ( {
             
             name="Сохранить"
             type="default"
-            action={ () => {} }
+            action={ save }
           
           />
         
