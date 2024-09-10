@@ -17,12 +17,13 @@ import userActions from '@/store/actions/user'
 import userData from '@/store/states/user.js'
 import getInitialProfileState from '@/store/states/profile.js'
 import profileTabs from '@/store/states/profile.tabs.js'
-import constructorTabs from '@/store/states/constructor.tabs.js'
+import constructor from '@/store/states/constructor.js'
 import tags from '@/store/states/tags.js'
 import tagsActions from '@/store/actions/tags.js'
+import constructorActions from '@/store/actions/constructor.js'
 
 const initialState = {
-
+  
   publications: getInitialPublicationsState(),
   profile: getInitialProfileState(),
   service: getInitialServiceState(),
@@ -33,13 +34,13 @@ const initialState = {
   user: userData,
   data: dataState,
   profileTabs: profileTabs,
-  constructorTabs: constructorTabs,
+  constructor: constructor,
   tags: tags
-
+  
 }
 
 const actions = {
-
+  
   profile: profileActions,
   service: serviceActions,
   publications: publicationsActions,
@@ -48,10 +49,11 @@ const actions = {
   tax: taxAgreeActions,
   info: infoActions,
   user: userActions,
-  tags: tagsActions
-
+  tags: tagsActions,
+  constructor: constructorActions
+  
 }
 
-const useGlobal = GlobalHook(initialState, actions)
+const useGlobal = GlobalHook( initialState, actions )
 
 export default useGlobal

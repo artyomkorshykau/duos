@@ -3,8 +3,11 @@ import s
 import Arrow from '@/react/components/icons/arrow.jsx'
 import Status from '@/react/components/status/index.jsx'
 import { useRouter } from 'next/navigation'
+import useGlobal from '@/store/index.js'
 
 const Nav = () => {
+  
+  const [ globalState, globalActions ] = useGlobal()
   
   const breadcrumbsList = [ 'Анкетирование', 'Публикации', 'Новая публикация' ]
   const { back } = useRouter()
@@ -13,7 +16,8 @@ const Nav = () => {
     
     <div className={ `${ s.constructorHeader__wrapper__navigation }` }>
       
-      <div className={ `${ s.constructorHeader__wrapper__navigation__back }` } onClick={ () => back()}>
+      <div className={ `${ s.constructorHeader__wrapper__navigation__back }` }
+           onClick={ () => back() }>
         
         <Arrow direction={ 'left' } fill={ '#7C92A7' }/>
         <p
@@ -34,8 +38,10 @@ const Nav = () => {
             
             </p>
             
-            <div
-              className={ s.constructorHeader__wrapper__navigation__breadcrumbs__dot }/>
+            { index < breadcrumbsList.length - 1 && (
+              <div
+                className={ s.constructorHeader__wrapper__navigation__breadcrumbs__dot }/>
+            ) }
           
           </>
         
@@ -43,7 +49,7 @@ const Nav = () => {
       
       </div>
       
-      <Status status={ 'New' }/>
+      <Status status={ globalState.constructor.status }/>
     
     </div>
   

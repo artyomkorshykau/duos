@@ -386,14 +386,44 @@ const expert = {
   
   async createArticle( data ) {
     
+    try {
+      
+      const { image_url } = await postImage( data.image_url )
+      
+      const response = await fetch( `${ BASE_URL }/article`, {
+        
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify( { ...data, image_url } )
+        
+      } )
+      
+      if ( !response.ok ) {
+        
+        console.log( `Ошибка сервера (500)` )
+        throw new Error()
+        
+      }
+      
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
+      
+    }
     
-    const image = await postImage( data.image_url )
-    
+  },
+  
+  async articleList( ) {
     
     try {
       
       const response = await fetch( `${ BASE_URL }/article`, {
-        method: 'POST', headers: getHeaders(), body: JSON.stringify( {} )
+        
+        method: 'GET',
+        headers: getHeaders(),
         
       } )
       
@@ -414,7 +444,6 @@ const expert = {
     }
     
   }
-  
   
 }
 

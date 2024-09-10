@@ -50,7 +50,9 @@ const PublicationsContent = () => {
           cardCount = { publications.categories[ 1 ].publicationsCards.length }
           type = "publications"
 
-        /> }
+        />
+      
+      }
 
     </>
 

@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import tagsService from '@/service/tags.js'
 import useGlobal from '@/store/index.js'
+import { useMutation } from '@tanstack/react-query'
+import expert from '@/service/expert.js'
 
 export default function ConstructorPage() {
   
@@ -24,6 +26,22 @@ export default function ConstructorPage() {
   const [ image, setImage ] = useState( null )
   const [ selectTags, setSelectTags ] = useState( null )
   const [ content, setContent ] = useState( [] )
+  
+  const { mutate: articleMutate, } = useMutation( {
+    
+    mutationKey: [ 'create-article' ],
+    mutationFn: ( data ) => expert.createArticle( data ),
+    onSuccess: () => {
+      
+      setSelectDirection(null)
+      setImage(null)
+      setSelectTags(null)
+      setContent([])
+      
+    },
+    
+    
+  } )
   
   const { back } = useRouter()
   
@@ -46,7 +64,15 @@ export default function ConstructorPage() {
       .find( ( category ) => category.value === selectDirection )
       .id
     
-    const body = {
+    const reader = new FileReader()
+    
+    reader.onloadend = () => {
+      
+      data.image_url = reader.result
+      
+    }
+    
+    const data = {
       
       article_category_id: categoryID,
       title: titleToString,
@@ -58,9 +84,27 @@ export default function ConstructorPage() {
       
     }
     
-    console.log( body )
-    
-    setOpenSavePopup( false )
+    if ( image ) {
+      
+      const reader = new FileReader()
+      
+      reader.onloadend = () => {
+        
+        data.image_url = reader.result
+        
+        articleMutate( data )
+        setOpenSavePopup( false )
+        
+      }
+      
+      reader.readAsDataURL( image )
+      
+    } else {
+      
+      articleMutate( data )
+      setOpenSavePopup( false )
+      
+    }
     
   }
   

@@ -12,7 +12,7 @@ const ProgressBar = ( {
                         type
                       } ) => {
 
-  const [ progress, setProgress ] = useState( 0 )
+  const [ progress, setProgress ] = useState( null )
 
   const maxPhotos = 5
   const maxTextareas = 4
@@ -74,7 +74,7 @@ const ProgressBar = ( {
     }
 
   }
-
+  
   return (
 
     <div>

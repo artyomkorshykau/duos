@@ -39,7 +39,7 @@ const ConstructorHeader = ( props ) => {
           
           activeTab={ activeTab }
           setActiveTab={ setActiveTab }
-          tabs={ globalState.constructorTabs }
+          tabs={ globalState.constructor.tabs }
           className = { s.constructorHeader__wrapper__tabs }
           classNameContent = { s.constructorHeader__wrapper__tabs__content }
         
