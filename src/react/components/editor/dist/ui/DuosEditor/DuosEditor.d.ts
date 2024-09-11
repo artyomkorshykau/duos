@@ -1,0 +1,20 @@
+import { default as React } from 'react';
+import { Descendant } from 'slate';
+import { EditorContextValue } from '../../model';
+import { Option } from '../../shared/Select';
+import { TagDTO } from '../DuosEditorInputTags/TagDTO';
+type DuosEditorProps<SelectOptionValue> = {
+    initialValue?: Descendant[];
+    image: File | null;
+    onChangeImage: (image: File) => void;
+    removeImage: () => void;
+    selectOptions: Option<SelectOptionValue>[];
+    onChangeSelectOptions: (selectOptions: SelectOptionValue) => void;
+    selectPlaceholder: string;
+    availableTags: TagDTO[];
+    onChangeTagInput: (tags: TagDTO[]) => void;
+    onValueChange?: (value: Descendant[]) => void;
+    className?: string;
+} & EditorContextValue;
+export declare function DuosEditor<SelectOptionValue>({ initialValue, onValueChange, className, image, removeImage, onChangeImage, uploadFile, selectOptions, availableTags, onChangeSelectOptions, onChangeTagInput, selectPlaceholder, }: DuosEditorProps<SelectOptionValue>): React.JSX.Element;
+export {};
