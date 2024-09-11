@@ -569,9 +569,8 @@ const serviceActions = {
     if ( !service?.category ) {
       service.category = []
     }
-    
-    let updatedCategory = removeObjectByIndex( service.category, index )
-    service.category = updatedCategory
+
+    service.category = removeObjectByIndex( service.category, index )
     localStorage.setItem( 'service', JSON.stringify( service ) )
     store.setState( { service } )
     
@@ -764,11 +763,11 @@ const serviceActions = {
   },
   setChangeFilesPassport: ( store, files ) => {
     
-    const service = JSON.parse(localStorage.getItem("service")) || {}
-    
-    localStorage.setItem("service", JSON.stringify(service))
+    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
     
     service.passport.files = files
+    
+    localStorage.setItem( 'service', JSON.stringify( service ) )
     store.setState( { service } )
     
   },

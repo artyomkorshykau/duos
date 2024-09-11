@@ -107,12 +107,14 @@ const Categories = ( props ) => {
       
       const passportStatus = passport.status
       category.map( item => item.documentStatus === 'Filled' && passportStatus === 'Filled'
+        
         ? setProgress( 77 )
         : setProgress( 57 ) )
       
     } else if ( activeStep === steps.publications ) {
       
       publications.categories.map( item => item.documentStatus === 'Filled'
+        
         ? setProgress( 93.5 )
         : setProgress( 77 ) )
       
@@ -129,6 +131,8 @@ const Categories = ( props ) => {
     if ( activeStep === steps.publications ) globalActions.publications.setPublicationsProgress( progress >= 93.5 ? 1 : 0 )
     
   }, [ progress ] )
+  
+  console.log(progress)
   
   return (
     

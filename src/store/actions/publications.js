@@ -40,7 +40,7 @@ const publicationsActions = {
   
   addNewPublication: async( store, newArticle ) => {
     
-   await expert.createArticle( newArticle )
+    await expert.createArticle( newArticle )
     
   },
   
@@ -48,36 +48,35 @@ const publicationsActions = {
     
     const { articles } = await expert.articleList( expert_id )
     
+    const hasArticles = articles.length >= 3
+    
     store.setState( {
         
-      publications: {
+        publications: {
           
-        ...store.state.publications,
-          
+          ...store.state.publications,
           categories: store.state.publications.categories.map( category =>
-            
-            category.id === 1 ? {
+            category.id === 1
               
-              ...category,
-              
-              publicationsCards: articles
-              
-            } : category
-            
+              ? {
+                
+                ...category,
+                publicationsCards: articles,
+                documentStatus: hasArticles ? 'Filled' : category.documentStatus
+                
+              }
+              : category
           )
           
         }
         
       }
-      
     )
     
   },
   
   deletePublication: async( store, article_id ) => {
-    
     try {
-      
       await expert.deleteArticle( article_id )
       
       store.setState( {
@@ -89,20 +88,23 @@ const publicationsActions = {
                 ...category,
                 publicationsCards: category.publicationsCards.filter(
                   publication => publication.id !== article_id
-                )
+                ),
+                documentStatus:
+                  category.publicationsCards.filter(
+                    publication => publication.id !== article_id
+                  ).length === 0
+                    ? 'NotFinished'
+                    : category.documentStatus
               }
               : category
           )
         }
       } )
-      
     } catch ( error ) {
-      
       console.error( 'Ошибка при удалении статьи:', error )
-      
     }
-    
   },
+  
   
   toggleDocumentStatus: ( store, index, newStatus ) => {
     

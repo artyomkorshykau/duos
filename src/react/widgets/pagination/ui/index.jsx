@@ -22,6 +22,8 @@ const Pagination = ( {
   
   const { service, profile, school, publications } = globalState
   
+  const publicationsProgress = publications.categories[0].documentStatus === 'Filled' && publications.categories[1].documentStatus === 'Filled'
+  
   useEffect( () => {
     
     if ( activeStep === 'Услуги' && service.progress !== 1 ) {
@@ -36,7 +38,7 @@ const Pagination = ( {
       
       setDisabled( true )
       
-    } else if ( activeStep === 'Публикации' && publications.progress !== 1 ) {
+    } else if ( activeStep === 'Публикации' && !publicationsProgress ) {
       
       setDisabled( true )
       
@@ -46,7 +48,7 @@ const Pagination = ( {
       
     }
     
-  }, [ activeStep, service.progress, profile, school, publications.progress ] )
+  }, [ activeStep, service.progress, profile, school, publications ] )
   
   return (
     

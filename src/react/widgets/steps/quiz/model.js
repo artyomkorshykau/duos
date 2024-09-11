@@ -34,18 +34,29 @@ function isSchoolFilled( school ) {
   
 }
 
-function findFirstProgressLessThan100( data ) {
-  for( const key in data ) {
-    if ( data.hasOwnProperty( key ) ) {
-      if ( data[ key ] && typeof data[ key ] === 'object' && 'progress' in data[ key ] ) {
-        if ( data[ key ].progress < 100 ) {
-          return key
+function findFirstProgressLessThan100(data) {
+  let valueHasLessThan100 = false;
+  
+  for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+      if (data[key] && typeof data[key] === 'object' && 'progress' in data[key]) {
+        if (key === 'value') {
+          // Если у объекта "value" прогресс меньше 100, запоминаем это
+          if (data[key].progress < 100) {
+            valueHasLessThan100 = true;
+          }
+        } else if (data[key].progress < 100) {
+          // Если у любого другого объекта прогресс меньше 100, сразу возвращаем его ключ
+          return key;
         }
       }
     }
   }
-  return null
+  
+  // Если только "value" имеет прогресс < 100, возвращаем 'value', иначе null
+  return valueHasLessThan100 ? 'value' : null;
 }
+
 
 function extractProgressFields( data ) {
   const result = {}
@@ -127,7 +138,6 @@ export const useQuestionnaire = () => {
       setTitle( 'Услуги' )
       setDescription( 'В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам' )
       globalActions.user.setUser()
-      localStorage.removeItem( 'profile' )
       
     },
     onError: ( error ) => {
@@ -172,7 +182,6 @@ export const useQuestionnaire = () => {
       globalActions.quiz.setContinueStep( steps.publications )
       setTitle( 'Публикации' )
       setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
-      localStorage.removeItem( 'documents' )
       
     }
     
@@ -187,7 +196,6 @@ export const useQuestionnaire = () => {
       refetchExpert()
       globalActions.quiz.setQuizStatus( QuizProgress.end )
       globalActions.quiz.setStep( steps.questionnaire )
-      localStorage.removeItem( 'publications' )
       
     }
     
@@ -296,7 +304,6 @@ export const useQuestionnaire = () => {
       globalActions.quiz.setContinueStep( steps.documents )
       setTitle( 'Документы' )
       setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
-      localStorage.removeItem( 'school' )
       
     }
     
@@ -445,12 +452,13 @@ export const useQuestionnaire = () => {
       } else if ( !findFirstProgressLessThan100( expertData ) ) {
         
         globalActions.quiz.setQuizStatus( QuizProgress.end )
+        localStorage.clear()
         
       } else {
         
         if ( findFirstProgressLessThan100( expertData ) === 'profile' ) globalActions.quiz.setContinueStep( steps.profile )
         if ( findFirstProgressLessThan100( expertData ) === 'services' ) globalActions.quiz.setContinueStep( steps.service )
-        if ( findFirstProgressLessThan100( expertData ) === 'values' ) globalActions.quiz.setContinueStep( steps.documents )
+        if ( findFirstProgressLessThan100( expertData ) === 'values' ) globalActions.quiz.setContinueStep( steps.school )
         if ( findFirstProgressLessThan100( expertData ) === 'docs' ) globalActions.quiz.setContinueStep( steps.documents )
         if ( findFirstProgressLessThan100( expertData ) === 'publications' ) globalActions.quiz.setContinueStep( steps.publications )
         

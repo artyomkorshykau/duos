@@ -420,7 +420,7 @@ const expert = {
     
     try {
       
-      const response = await fetch( `${ BASE_URL }/article?expert+id=${ expert_id }`, {
+      const response = await fetch( `${ BASE_URL }/article?expert_id=${ expert_id }`, {
         
         method: 'GET',
         headers: getHeaders()

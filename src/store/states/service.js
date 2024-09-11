@@ -42,8 +42,6 @@ const getInitialServiceState = () => {
       
     } else {
       
-      console.log(serviceState)
-      
       localStorage.setItem( 'service', JSON.stringify( serviceState ) )
       
       return serviceState
