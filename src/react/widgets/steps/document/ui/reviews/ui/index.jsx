@@ -1,9 +1,8 @@
 'use client'
 
-import Attachment from '@/react/components/attachment';
+import Attachment from '@/react/components/attachment'
 import s from '../../document.module.scss'
-import Textfield from '@/react/components/forms/textfield'
-import useGlobal from '@/store';
+import useGlobal from '@/store'
 
 const Reviews = ({
 
@@ -15,7 +14,7 @@ const Reviews = ({
   const [ globalState, globalActions ] = useGlobal()
   
   const { service } = globalState
-
+  
   return (
 
     <div>

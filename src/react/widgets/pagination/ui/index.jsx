@@ -36,10 +36,6 @@ const Pagination = ( {
       
       setDisabled( true )
       
-    } else if ( activeStep === 'Школа' && school.progress !== 1 ) {
-      
-      setDisabled( true )
-      
     } else if ( activeStep === 'Публикации' && publications.progress !== 1 ) {
       
       setDisabled( true )

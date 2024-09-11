@@ -18,6 +18,8 @@ const ProgressBar = ( {
   const maxTextareas = 4
   const maxTextareaLength = 320
   const maxCards = 5
+  
+  console.log(cardCount)
 
   useEffect( () => {
 
@@ -73,6 +75,12 @@ const ProgressBar = ( {
 
     }
 
+  }
+  
+  if ( type === 'publications' && !cardCount ) {
+    
+    return null
+    
   }
   
   return (

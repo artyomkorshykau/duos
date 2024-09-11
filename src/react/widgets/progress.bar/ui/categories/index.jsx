@@ -6,6 +6,26 @@ import cssIf from '@/scripts/helpers/css.if'
 import Progress from '../progress'
 import { useEffect, useState } from 'react'
 
+export function calculateSchoolProgress( schoolState ) {
+  
+  let fieldsCount = 2
+  let filledFields = 0
+  
+  if ( schoolState.schoolName !== '' ) filledFields++
+  if ( schoolState.comment !== '' ) filledFields++
+  
+  fieldsCount += schoolState.courses.length
+  
+  for( const course of schoolState.courses ) {
+    
+    if ( course.name !== '' ) filledFields++
+    
+  }
+  
+  return filledFields / fieldsCount
+  
+}
+
 const calculateProgress = ( statuses ) => {
   
   if ( statuses.length === 0 ) return 0
@@ -76,28 +96,10 @@ const Categories = ( props ) => {
       
     } else if ( activeStep === steps.school ) {
       
-      function calculateProgress( schoolState ) {
-        
-        let fieldsCount = 2
-        let filledFields = 0
-        
-        if ( schoolState.schoolName !== '' ) filledFields++
-        if ( schoolState.comment !== '' ) filledFields++
-        
-        fieldsCount += schoolState.courses.length
-        
-        for( const course of schoolState.courses ) {
-          
-          if ( course.name !== '' ) filledFields++
-          
-        }
-        
-        return filledFields / fieldsCount
-        
-      }
+      const progress = 37 + ( calculateSchoolProgress( school ) * 20 )
       
-      const progress = 37 + ( calculateProgress( school ) * 20 )
-      progress === 57
+      progress >= 43.6
+        
         ? setProgress( progress )
         : setProgress( 37 )
       

@@ -10,8 +10,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import tagsService from '@/service/tags.js'
 import useGlobal from '@/store/index.js'
-import { useMutation } from '@tanstack/react-query'
-import expert from '@/service/expert.js'
 
 export default function ConstructorPage() {
   
@@ -26,22 +24,6 @@ export default function ConstructorPage() {
   const [ image, setImage ] = useState( null )
   const [ selectTags, setSelectTags ] = useState( null )
   const [ content, setContent ] = useState( [] )
-  
-  const { mutate: articleMutate, } = useMutation( {
-    
-    mutationKey: [ 'create-article' ],
-    mutationFn: ( data ) => expert.createArticle( data ),
-    onSuccess: () => {
-      
-      setSelectDirection(null)
-      setImage(null)
-      setSelectTags(null)
-      setContent([])
-      
-    },
-    
-    
-  } )
   
   const { back } = useRouter()
   
@@ -59,10 +41,11 @@ export default function ConstructorPage() {
   
   const handleSavePublication = () => {
     
+    
     const categoryID = globalState.service.serviceCategories
       
       .find( ( category ) => category.value === selectDirection )
-      .id
+      ?.id
     
     const reader = new FileReader()
     
@@ -92,7 +75,7 @@ export default function ConstructorPage() {
         
         data.image_url = reader.result
         
-        articleMutate( data )
+        globalActions.publications.addNewPublication( data )
         setOpenSavePopup( false )
         
       }
@@ -101,18 +84,26 @@ export default function ConstructorPage() {
       
     } else {
       
-      articleMutate( data )
+      globalActions.publications.addNewPublication( data )
       setOpenSavePopup( false )
       
     }
+    
+    back()
     
   }
   
   useEffect( () => {
     
     globalActions.service.getServiceCategories()
-    tagsService.getTagList().then( ( res ) => {
+    
+    tagsService
+      
+      .getTagList()
+      .then( ( res ) => {
+      
       setTags( res.tags )
+      
     } )
     
   }, [] )
@@ -139,6 +130,8 @@ export default function ConstructorPage() {
             
             activeTab={ activeTab }
             setActiveTab={ setActiveTab }
+            handleSavePublication={ handleSavePublication }
+            setSaveVariant={ setSaveVariant }
           
           />
           
@@ -156,9 +149,11 @@ export default function ConstructorPage() {
             
             removeImage={ () => setImage( null ) }
             uploadFile={ () => {} }
+            
             onValueChange={ ( value ) => setContent( value ) }
             
             className={ `${ s.editor }` }
+            selectPlaceholder={ 'Выберите направление' }
           
           />
           

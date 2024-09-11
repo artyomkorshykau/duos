@@ -416,14 +416,43 @@ const expert = {
     
   },
   
-  async articleList( ) {
+  async articleList( expert_id ) {
     
     try {
       
-      const response = await fetch( `${ BASE_URL }/article`, {
+      const response = await fetch( `${ BASE_URL }/article?expert+id=${ expert_id }`, {
         
         method: 'GET',
-        headers: getHeaders(),
+        headers: getHeaders()
+        
+      } )
+      
+      if ( !response.ok ) {
+        
+        console.log( `Ошибка сервера (500)` )
+        throw new Error()
+        
+      }
+      
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
+      
+    }
+    
+  },
+  
+  async deleteArticle( article_id ) {
+    
+    try {
+      
+      const response = await fetch( `${ BASE_URL }/article/${ article_id }`, {
+        
+        method: 'DELETE',
+        headers: getHeaders()
         
       } )
       

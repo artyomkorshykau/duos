@@ -1,15 +1,15 @@
-import s from "./attachment.module.scss";
-import { useRef, useState } from "react";
-import CloseInCircle from "../icons/close.in.circle";
-import cssIf from "@/scripts/helpers/css.if";
-import AttachmentLabel from "./attachment.label";
-import { Controller, FreeMode, Mousewheel, Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import Arrow from "../icons/arrow";
-import DefaultButton from "../buttons/default.button";
+import s from './attachment.module.scss'
+import { useRef, useState } from 'react'
+import CloseInCircle from '../icons/close.in.circle'
+import cssIf from '@/scripts/helpers/css.if'
+import AttachmentLabel from './attachment.label'
+import { Controller, FreeMode, Mousewheel, Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+import Arrow from '../icons/arrow'
+import DefaultButton from '../buttons/default.button'
 
 const Attachment = ({
 
@@ -39,7 +39,7 @@ const Attachment = ({
   const addFile = ( files ) => {
 
     const file = files[ 0 ];
-
+    
     if ( file.size > maxSize * 1024 * 1024 ) {
 
       setError( 'size' );
@@ -68,12 +68,13 @@ const Attachment = ({
   };
 
   const addFiles = ( files ) => {
-
+    
     if ( files ) {
 
       for ( const file of files ) {
 
         if ( file.size > maxSize * 1024 * 1024 ) {
+          
 
           setError( 'size' );
           return;

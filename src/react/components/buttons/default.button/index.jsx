@@ -1,5 +1,5 @@
-import cssIf from "@/scripts/helpers/css.if";
-import s from "./default.button.module.scss";
+import cssIf from '@/scripts/helpers/css.if'
+import s from './default.button.module.scss'
 
 const DefaultButton = ({
 
@@ -14,7 +14,7 @@ const DefaultButton = ({
   type = 'default',
   buttonType,
   width,
-  disabled
+  disabled,
 
 }) => {
 

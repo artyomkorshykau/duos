@@ -1,11 +1,11 @@
 'use client'
 
-import Select from '@/react/components/forms/select';
+import Select from '@/react/components/forms/select'
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
-import useGlobal from '@/store';
-import { deliveryFormatList, minuteHoursDaysList } from '@/constants/services';
-import {useEffect, useState} from "react";
+import useGlobal from '@/store'
+import { deliveryFormatList, minuteHoursDaysList } from '@/constants/services'
+import { useEffect, useState } from 'react'
 
 const WorkClients = ({
 
@@ -56,6 +56,7 @@ const WorkClients = ({
           placeholder = 'Длительность'
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.duration }
           onChange = {(e) => globalActions.service.setDuration( e.target.value, categoryIndex, index )}
+          type = { 'number' }
           
         />
         

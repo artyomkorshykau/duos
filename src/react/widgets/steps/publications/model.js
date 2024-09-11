@@ -1,7 +1,5 @@
 import useGlobal from '@/store'
 import { useEffect, useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
-import expert from '@/service/expert.js'
 
 export const usePublications = () => {
   
@@ -9,13 +7,6 @@ export const usePublications = () => {
   const { publications } = globalState
   const [ filed, setFiled ] = useState( false )
   const { photos } = publications.categories[ 0 ]
-  
-  const { mutate: mutateArticleList, data: articleList } = useMutation( {
-    
-    mutationKey: [ 'article-list' ],
-    mutationFn: () => expert.articleList()
-    
-  } )
   
   useEffect( () => {
     
@@ -47,10 +38,10 @@ export const usePublications = () => {
   
   useEffect( () => {
     
-    mutateArticleList()
+    globalActions.publications.getPublication( globalState.user.expert_id )
     
   }, [] )
   
-  return { globalState, articleList }
+  return { globalState }
   
 }

@@ -1,12 +1,12 @@
 'use client'
 
-import Select from '@/react/components/forms/select';
+import Select from '@/react/components/forms/select'
 import s from '../../services.module.scss'
 import Textfield from '@/react/components/forms/textfield'
-import useGlobal from '@/store';
-import { dayWeekMonthYearList, paymentFormatList } from '@/constants/services';
-import cssIf from '@/scripts/helpers/css.if';
-import {useEffect, useState} from "react";
+import useGlobal from '@/store'
+import { dayWeekMonthYearList, paymentFormatList } from '@/constants/services'
+import cssIf from '@/scripts/helpers/css.if'
+import { useEffect, useState } from 'react'
 
 const PaymentFormat = ({
 
@@ -67,6 +67,7 @@ const PaymentFormat = ({
             placeholder = {'Стоимость, руб'}
             value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.price }
             onChange = {(e) => globalActions.service.setPrice( e.target.value, categoryIndex, index )}
+            type = { 'number' }
             
           />
           
@@ -82,6 +83,7 @@ const PaymentFormat = ({
               placeholder = {'От, руб'}
               value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.from }
               onChange = {(e) => globalActions.service.setFrom( e.target.value, categoryIndex, index )}
+              type = { 'number' }
               
             />
             
@@ -91,6 +93,7 @@ const PaymentFormat = ({
               placeholder = {'До, руб'}
               value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.before }
               onChange = {(e) => globalActions.service.setBefore( e.target.value, categoryIndex, index )}
+              type = { 'number' }
               
             />
 

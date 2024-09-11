@@ -1,11 +1,11 @@
 'use client'
 
-import Select from '@/react/components/forms/select';
+import Select from '@/react/components/forms/select'
 import s from '../../document.module.scss'
-import useGlobal from '@/store';
-import Textfield from '@/react/components/forms/textfield';
-import { communicationList } from '@/constants/services';
-import { useEffect, useState } from "react";
+import useGlobal from '@/store'
+import Textfield from '@/react/components/forms/textfield'
+import { communicationList } from '@/constants/services'
+import { useEffect, useState } from 'react'
 
 const Recommendation = ({
   categoryIndex,
@@ -62,6 +62,7 @@ const Recommendation = ({
 
           className = {`${ s.document__section__filedsGrid5__filed } `}
           placeholder = {'Номер'}
+          type = 'phone'
           value = { globalState.service.category?.[categoryIndex]?.services?.[index]?.phone }
           onChange = { ( e ) => globalActions.service.setPhone( e.target.value, categoryIndex, index ) }
 

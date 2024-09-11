@@ -12,6 +12,28 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import expert from '@/service/expert.js'
 import { useRouter } from 'next/navigation'
 
+function isSchoolFilled( school ) {
+  
+  if ( !school.schoolName || !school.comment ) {
+    
+    return false
+    
+  }
+  
+  for( const course of school.courses ) {
+    
+    if ( !course.name ) {
+      
+      return false
+      
+    }
+    
+  }
+  
+  return true
+  
+}
+
 function findFirstProgressLessThan100( data ) {
   for( const key in data ) {
     if ( data.hasOwnProperty( key ) ) {
@@ -48,19 +70,19 @@ function updateQuizSteps( response ) {
       switch ( step.title ) {
         
         case 'Профиль':
-          step.progress = response.profile.progress
+          step.progress = response?.profile?.progress
           break
         case 'Услуги':
-          step.progress = response.services.progress
+          step.progress = response?.services?.progress
           break
         case 'Школа':
-          step.progress = response.values.progress
+          step.progress = response?.values?.progress
           break
         case 'Документы':
-          step.progress = response.docs.progress
+          step.progress = response?.docs?.progress
           break
         case 'Публикации':
-          step.progress = response.publications.progress
+          step.progress = response?.publications?.progress
           break
         default:
           break
@@ -120,8 +142,8 @@ export const useQuestionnaire = () => {
     
     mutationKey: [ 'set-service-info' ],
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep2( isTemp ),
-    
     onSuccess: () => {
+      
       refetchExpert()
       globalActions.quiz.setStep( steps.school )
       globalActions.quiz.setContinueStep( steps.school )
@@ -136,16 +158,6 @@ export const useQuestionnaire = () => {
     
     mutationKey: [ 'set-school-info' ],
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep3( isTemp ),
-    onSuccess: () => {
-      
-      refetchExpert()
-      globalActions.quiz.setStep( steps.documents )
-      globalActions.quiz.setContinueStep( steps.documents )
-      setTitle( 'Документы' )
-      setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
-      localStorage.removeItem( 'school' )
-      
-    }
     
   } )
   
@@ -273,7 +285,18 @@ export const useQuestionnaire = () => {
     
     if ( globalState.quiz.step === steps.school ) {
       
-      await mutateSchool( { isTemp: false } )
+      if ( isSchoolFilled( globalState.school ) ) {
+        
+         await mutateSchool( { isTemp: false } )
+        
+      }
+      
+      refetchExpert()
+      globalActions.quiz.setStep( steps.documents )
+      globalActions.quiz.setContinueStep( steps.documents )
+      setTitle( 'Документы' )
+      setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
+      localStorage.removeItem( 'school' )
       
     }
     
@@ -415,7 +438,7 @@ export const useQuestionnaire = () => {
       
       updateQuizSteps( stepProgress )
       
-      if ( expertData.profile.progress === 0 ) {
+      if ( expertData?.profile?.progress === 0 ) {
         
         globalActions.quiz.setQuizStatus( QuizProgress.begin )
         
@@ -427,7 +450,7 @@ export const useQuestionnaire = () => {
         
         if ( findFirstProgressLessThan100( expertData ) === 'profile' ) globalActions.quiz.setContinueStep( steps.profile )
         if ( findFirstProgressLessThan100( expertData ) === 'services' ) globalActions.quiz.setContinueStep( steps.service )
-        if ( findFirstProgressLessThan100( expertData ) === 'values' ) globalActions.quiz.setContinueStep( steps.school )
+        if ( findFirstProgressLessThan100( expertData ) === 'values' ) globalActions.quiz.setContinueStep( steps.documents )
         if ( findFirstProgressLessThan100( expertData ) === 'docs' ) globalActions.quiz.setContinueStep( steps.documents )
         if ( findFirstProgressLessThan100( expertData ) === 'publications' ) globalActions.quiz.setContinueStep( steps.publications )
         

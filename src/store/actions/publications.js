@@ -1,78 +1,132 @@
+import expert from '@/service/expert.js'
+
 const publicationsActions = {
-
+  
   setProfilePhoto: ( store, files ) => {
-
-    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
-
+    
+    const publications = JSON.parse( localStorage.getItem( 'publications' ) ) || {}
+    
     if ( !publications.categories[ 0 ].photos ) {
-
+      
       publications.categories[ 0 ].photos = []
-
+      
     }
-
+    
     publications.categories[ 0 ].photos = [ ...publications.categories[ 0 ].photos, ...files ]
-    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    localStorage.setItem( 'publications', JSON.stringify( publications ) )
     store.setState( { publications } )
-
+    
   },
-
+  
   deleteProfilePhoto: ( store, photoIndex ) => {
-
-    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
-
+    
+    const publications = JSON.parse( localStorage.getItem( 'publications' ) ) || {}
+    
     publications.categories[ 0 ].photos.splice( photoIndex, 1 )
-    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    localStorage.setItem( 'publications', JSON.stringify( publications ) )
     store.setState( { publications } )
-
+    
   },
-
+  
   setAboutYourselfInfo: ( store, index, text ) => {
-
-    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
-
+    
+    const publications = JSON.parse( localStorage.getItem( 'publications' ) ) || {}
+    
     publications.categories[ 0 ].profileInfo[ index ].text = text
-    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    localStorage.setItem( 'publications', JSON.stringify( publications ) )
     store.setState( { publications } )
-
+    
   },
-
-  addNewPublication: ( store, newPublication ) => {
-
-    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
-
-    publications.categories[ 1 ].publicationsCards = [ ...publications.categories[ 1 ].publicationsCards, newPublication ]
-
-    if ( publications.categories[ 1 ].publicationsCards.length >= 4 ) {
-
-      publications.categories[ 1 ].documentStatus = "Filled"
-
+  
+  addNewPublication: async( store, newArticle ) => {
+    
+   await expert.createArticle( newArticle )
+    
+  },
+  
+  getPublication: async( store, expert_id ) => {
+    
+    const { articles } = await expert.articleList( expert_id )
+    
+    store.setState( {
+        
+      publications: {
+          
+        ...store.state.publications,
+          
+          categories: store.state.publications.categories.map( category =>
+            
+            category.id === 1 ? {
+              
+              ...category,
+              
+              publicationsCards: articles
+              
+            } : category
+            
+          )
+          
+        }
+        
+      }
+      
+    )
+    
+  },
+  
+  deletePublication: async( store, article_id ) => {
+    
+    try {
+      
+      await expert.deleteArticle( article_id )
+      
+      store.setState( {
+        publications: {
+          ...store.state.publications,
+          categories: store.state.publications.categories.map( category =>
+            category.id === 1
+              ? {
+                ...category,
+                publicationsCards: category.publicationsCards.filter(
+                  publication => publication.id !== article_id
+                )
+              }
+              : category
+          )
+        }
+      } )
+      
+    } catch ( error ) {
+      
+      console.error( 'Ошибка при удалении статьи:', error )
+      
     }
-
-    localStorage.setItem( "publications", JSON.stringify( publications ) )
-    store.setState( { publications } )
-
+    
   },
-
+  
   toggleDocumentStatus: ( store, index, newStatus ) => {
-
-    const publications = JSON.parse( localStorage.getItem( "publications" ) ) || {}
-
+    
+    const publications = JSON.parse( localStorage.getItem( 'publications' ) ) || {}
+    
     publications.categories[ index ].documentStatus = newStatus
-
-    localStorage.setItem( "publications", JSON.stringify( publications ) )
+    
+    localStorage.setItem( 'publications', JSON.stringify( publications ) )
     store.setState( { publications } )
-
+    
   },
-
-  setPublicationsProgress(store, progress) {
-
-    const publications = JSON.parse(localStorage.getItem('publications'))
-
-    localStorage.setItem('publications', JSON.stringify({ ...publications, progress }))
-    store.setState({ profile: { ...store.state.publications, progress } })
-
+  
+  setPublicationsProgress( store, progress ) {
+    
+    const publications = JSON.parse( localStorage.getItem( 'publications' ) )
+    
+    localStorage.setItem( 'publications', JSON.stringify( {
+      ...publications,
+      progress
+    } ) )
+    store.setState( { profile: { ...store.state.publications, progress } } )
+    
   }
-
+  
 }
 
 export default publicationsActions

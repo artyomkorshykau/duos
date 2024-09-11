@@ -3,7 +3,6 @@ const schoolState = {
   schoolName: '',
   courses: [ { id: 0, name: '' } ],
   comment: '',
-  errors: null
   
 }
 

@@ -4,7 +4,7 @@ import DefaultButton from '@/react/components/buttons/default.button/index.jsx'
 import Promote from '@/react/components/icons/promote.jsx'
 import { useRouter } from 'next/navigation'
 
-const Controls = () => {
+const Controls = ( { handleSavePublication, setSaveVariant } ) => {
   
   const { back } = useRouter()
   
@@ -16,7 +16,12 @@ const Controls = () => {
         
         name={ 'Продвигать' }
         className={ `${ s.constructorHeader__wrapper__buttons__promote }` }
-        action={ () => {console.log( 'Promote' )} }
+        action={ ( e ) => {
+          
+          e.stopPropagation()
+          console.log( 'Promote' )
+          
+        } }
         icon={ <Promote direction={ 'right' } fill={ '#fff' }/> }
         positionIcon="right"
       
@@ -26,7 +31,13 @@ const Controls = () => {
         
         gray
         name={ 'Сохранить в черновики' }
-        action={ () => { console.log( 'save' ) } }
+        action={ ( e ) => {
+          
+          e.stopPropagation()
+          setSaveVariant( 'draft' )
+          handleSavePublication()
+          
+        } }
       
       />
       
@@ -34,7 +45,12 @@ const Controls = () => {
         
         name={ 'Отменить' }
         className={ `${ s.constructorHeader__wrapper__buttons__cancel }` }
-        action={ () => back() }
+        action={ ( e ) => {
+          
+          e.stopPropagation()
+          back()
+          
+        } }
       
       />
     

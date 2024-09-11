@@ -1,6 +1,27 @@
 const serviceState = {
   
-  category: [],
+  category: [
+    
+    {
+      
+      title: "Направление №1",
+      status: "NotFinished",
+      documentStatus: "New",
+      services: [
+        
+        {
+          
+          title: "Услуга №1",
+          status: "New",
+          documentStatus: "New",
+          
+        }
+      
+      ]
+      
+    },
+    
+  ],
   passport: {
     
     status: 'NotFinished'
@@ -20,6 +41,8 @@ const getInitialServiceState = () => {
       return storedServiceState
       
     } else {
+      
+      console.log(serviceState)
       
       localStorage.setItem( 'service', JSON.stringify( serviceState ) )
       

@@ -8,7 +8,7 @@ import ArrowSelect from '@/react/components/icons/arrow_select'
 import { months, years } from '@/react/components/forms/select/contants'
 import ItemSelect from '@/react/components/date/itemselect'
 import TimeInput from '@/react/components/date/timeinput'
-import NotiseError from "@/react/components/icons/notise_error";
+import NotiseError from '@/react/components/icons/notise_error'
 import cssIf from '@/scripts/helpers/css.if'
 import useGlobal from '@/store'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -25,10 +25,11 @@ const DateField = ( props ) => {
     onChange,
     error = '',
     disabled,
+    withTime = false
   } = props;
 
   const [ globalState, globalActions ] = useGlobal();
-
+  
   const [ isOpen, setIsOpen ] = useState( false );
   const [ date, setDate ] = useState( Date( value ) ?? null );
   const [ calendarType, setCalendarType ] = useState( "days" );
@@ -195,7 +196,13 @@ const DateField = ( props ) => {
 
           </div>
 
-          <div className = {`${ s.wrapper__container__header_container__header } ${ cssIf( isOpen, s.header_active ) }`}>
+          <div className = {`
+          
+          ${ s.wrapper__container__header_container__header }
+          ${ cssIf( isOpen, s.header_active ) }
+          ${ cssIf( value, s.value ) }
+          
+          `}>
 
             { getPlaceholder() }
 
@@ -287,62 +294,69 @@ const DateField = ( props ) => {
               inline
 
             />
-
-            <div className = {`${ s.wrapper__container__calendar_wrapper__times_container }`}>
-
-              <div className = {`${ s.wrapper__container__calendar_wrapper__times_container__time_container }`}>
-
+            
+            { withTime &&
+              
+              <div
+              className={ `${ s.wrapper__container__calendar_wrapper__times_container }` }>
+              
+              <div
+                className={ `${ s.wrapper__container__calendar_wrapper__times_container__time_container }` }>
+                
                 <TimeInput
-
-                  placeholder = "00"
-                  value = { startHours }
-                  onChange = { onChangeStartHours }
-                  minValue = { 0 }
-                  maxValue = { 23 }
-
+                  
+                  placeholder="00"
+                  value={ startHours }
+                  onChange={ onChangeStartHours }
+                  minValue={ 0 }
+                  maxValue={ 23 }
+                
                 />
-
+                
                 <span>:</span>
-
+                
                 <TimeInput
-
-                  placeholder = "00"
-                  value = { startMinutes }
-                  onChange = { onChangeStartMinutes }
-                  minValue = { 0 }
-                  maxValue = { 59 }
-
+                  
+                  placeholder="00"
+                  value={ startMinutes }
+                  onChange={ onChangeStartMinutes }
+                  minValue={ 0 }
+                  maxValue={ 59 }
+                
                 />
-
+              
               </div>
-
-              <div className = {`${ s.wrapper__container__calendar_wrapper__times_container__time_container }`}>
-
+              
+              <div
+                className={ `${ s.wrapper__container__calendar_wrapper__times_container__time_container }` }>
+                
                 <TimeInput
-
-                  placeholder = "23"
-                  value = { endHours }
-                  onChange = { onChangeEndHours }
-                  minValue = { 0 }
-                  maxValue = { 23 }
-
+                  
+                  placeholder="23"
+                  value={ endHours }
+                  onChange={ onChangeEndHours }
+                  minValue={ 0 }
+                  maxValue={ 23 }
+                
                 />
-
+                
                 <span>:</span>
-
+                
                 <TimeInput
-
-                  placeholder = "59"
-                  value = { endMinutes }
-                  onChange = { onChangeEndMinutes }
-                  minValue = { 0 }
-                  maxValue = { 59 }
-
+                  
+                  placeholder="59"
+                  value={ endMinutes }
+                  onChange={ onChangeEndMinutes }
+                  minValue={ 0 }
+                  maxValue={ 59 }
+                
                 />
-
+              
               </div>
-
+            
             </div>
+            
+            }
 
           </div>
 

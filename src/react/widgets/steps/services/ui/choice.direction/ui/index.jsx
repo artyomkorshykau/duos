@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import Textfield from '@/react/components/forms/textfield';
-import WarningIcon from '@/react/components/icons/warning';
-import Select from '@/react/components/forms/select';
-import InfoPopup from "@/react/popups/info.popup";
-import useGlobal from '@/store';
+import { useEffect, useState } from 'react'
+import Textfield from '@/react/components/forms/textfield'
+import WarningIcon from '@/react/components/icons/warning'
+import Select from '@/react/components/forms/select'
+import InfoPopup from '@/react/popups/info.popup'
+import useGlobal from '@/store'
 import s from '../../services.module.scss'
 
 export const directionList = [
@@ -114,6 +114,7 @@ const ChoiceDirection = ({
             s.service__section__filedsWrapper__filed_experince_placeholder  }`}
           value = { globalState.service.category?.[index]?.directionWorkExperience }
           onChange = { (e) => globalActions.service.setDirectionWorkExperience( e.target.value, index ) }
+          type = { 'number' }
 
         />
 

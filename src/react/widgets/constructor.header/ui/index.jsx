@@ -12,7 +12,9 @@ const ConstructorHeader = ( props ) => {
   const {
     
     activeTab,
-    setActiveTab
+    setActiveTab,
+    handleSavePublication,
+    setSaveVariant
     
   } = props
   
@@ -34,18 +36,22 @@ const ConstructorHeader = ( props ) => {
         
         <Nav/>
         <Title/>
-        <Controls/>
+        <Controls
+          
+          handleSavePublication={ handleSavePublication }
+          setSaveVariant={ setSaveVariant }
+        
+        />
         <Tabs
           
           activeTab={ activeTab }
           setActiveTab={ setActiveTab }
           tabs={ globalState.constructor.tabs }
-          className = { s.constructorHeader__wrapper__tabs }
-          classNameContent = { s.constructorHeader__wrapper__tabs__content }
+          className={ s.constructorHeader__wrapper__tabs }
+          classNameContent={ s.constructorHeader__wrapper__tabs__content }
         
         />
-        
-        
+      
       
       </div>
     
