@@ -60,6 +60,8 @@ const expert = {
       if ( !response.ok ) {
         
         const { errors } = await response.json()
+        console.log(errors)
+        alert(' Ошибка ')
         throw errors
         
       }

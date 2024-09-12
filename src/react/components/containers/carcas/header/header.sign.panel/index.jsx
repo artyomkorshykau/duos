@@ -53,7 +53,11 @@ const HeaderSignPanel = ({
     
   }
   
-  function sendQuiz() { alert('закончить анкету') }
+  function sendQuiz() {
+    
+    alert('закончить анкету') 
+  
+  }
   
   return (
 
@@ -89,17 +93,14 @@ const HeaderSignPanel = ({
 
         : <div className = { `flex items-center ${ s[ 'sign-panel__in_auth__avatar' ] }` }>
 
-        { !quizHadCompleted &&
-
           <DefaultButton
 
             name = "Закончить анкету"
-            className = { `${ s.button } ${ s.button__quiz } ${ globalState.user.user_id === 1 && s[ 'button__quiz--opened' ] }` }
+            className = { `${ s.button } ${ s.button__quiz } ${ globalState.user.verify_status === 'waiting' && s[ 'button__quiz--opened' ] }` }
             action = { () => sendQuiz() }
 
           />
-
-        }
+          
 
         <HeaderAuthPanel
 

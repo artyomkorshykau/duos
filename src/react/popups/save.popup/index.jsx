@@ -8,8 +8,7 @@ const SavePopup = ( {
                       
                       isOpened = false,
                       closePopup = () => {},
-                      inQuiz = false,
-                      inProfile = true,
+                      inProfile = false,
                       saveVariant,
                       setSaveVariant,
   save
@@ -53,8 +52,7 @@ const SavePopup = ( {
             Сохранить как черновик
           
           </div>
-        
-        
+          
         </div>
         
         <div className={ `${ s.save__content__variant }` }>

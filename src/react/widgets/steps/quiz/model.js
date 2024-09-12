@@ -34,29 +34,18 @@ function isSchoolFilled( school ) {
   
 }
 
-function findFirstProgressLessThan100(data) {
-  let valueHasLessThan100 = false;
-  
-  for (const key in data) {
-    if (data.hasOwnProperty(key)) {
-      if (data[key] && typeof data[key] === 'object' && 'progress' in data[key]) {
-        if (key === 'value') {
-          // Если у объекта "value" прогресс меньше 100, запоминаем это
-          if (data[key].progress < 100) {
-            valueHasLessThan100 = true;
-          }
-        } else if (data[key].progress < 100) {
-          // Если у любого другого объекта прогресс меньше 100, сразу возвращаем его ключ
-          return key;
+function findFirstProgressLessThan100( data ) {
+  for( const key in data ) {
+    if ( data.hasOwnProperty( key ) ) {
+      if ( data[ key ] && typeof data[ key ] === 'object' && 'progress' in data[ key ] ) {
+        if ( data[ key ].progress < 100 ) {
+          return key
         }
       }
     }
   }
-  
-  // Если только "value" имеет прогресс < 100, возвращаем 'value', иначе null
-  return valueHasLessThan100 ? 'value' : null;
+  return null
 }
-
 
 function extractProgressFields( data ) {
   const result = {}
@@ -123,7 +112,7 @@ export const useQuestionnaire = () => {
     
   } )
   
-  const { mutate: mutateProfile } = useMutation( {
+  const { mutate: mutateProfile, isPending: isPendingProfile } = useMutation( {
     
     mutationKey: [ 'set-profile-info' ],
     mutationFn: ( {
@@ -139,6 +128,19 @@ export const useQuestionnaire = () => {
       setDescription( 'В каких направлениях и какие услуги вы готовы оказывать вашим будущим клиентам' )
       globalActions.user.setUser()
       
+      const scrollContainer = document.querySelector( `.${ s.content }` )
+      
+      if ( scrollContainer ) {
+        
+        scrollContainer.scrollTo( {
+          
+          top: 0,
+          behavior: 'smooth'
+          
+        } )
+        
+      }
+      
     },
     onError: ( error ) => {
       
@@ -148,7 +150,7 @@ export const useQuestionnaire = () => {
     
   } )
   
-  const { mutate: mutateService } = useMutation( {
+  const { mutate: mutateService, isPending: isPendingService } = useMutation( {
     
     mutationKey: [ 'set-service-info' ],
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep2( isTemp ),
@@ -160,18 +162,34 @@ export const useQuestionnaire = () => {
       setTitle( 'Школа' )
       setDescription( 'Если у вас нет собственной школы или курса переходите к следующему шагу' )
       
+      const scrollContainer = document.querySelector( `.${ s.content }` )
+      
+      if ( scrollContainer ) {
+        
+        scrollContainer.scrollTo( {
+          
+          top: 0,
+          behavior: 'smooth'
+          
+        } )
+        
+      }
+      
     }
     
   } )
   
-  const { mutate: mutateSchool } = useMutation( {
+  const { mutate: mutateSchool, isPending: isPendingSchool } = useMutation( {
     
     mutationKey: [ 'set-school-info' ],
-    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep3( isTemp ),
+    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep3( isTemp )
     
   } )
   
-  const { mutate: mutateDocuments } = useMutation( {
+  const {
+    mutate: mutateDocuments,
+    isPending: isPendingDocuments
+  } = useMutation( {
     
     mutationKey: [ 'set-documents-info' ],
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep4( isTemp ),
@@ -183,11 +201,27 @@ export const useQuestionnaire = () => {
       setTitle( 'Публикации' )
       setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
       
+      const scrollContainer = document.querySelector( `.${ s.content }` )
+      
+      if ( scrollContainer ) {
+        
+        scrollContainer.scrollTo( {
+          
+          top: 0,
+          behavior: 'smooth'
+          
+        } )
+        
+      }
+      
     }
     
   } )
   
-  const { mutate: mutatePublications } = useMutation( {
+  const {
+    mutate: mutatePublications,
+    isPending: isPendingPublications
+  } = useMutation( {
     
     mutationKey: [ 'set-publications-info' ],
     mutationFn: ( { isTemp } ) => expert.sendExpertDataStep5( isTemp ),
@@ -196,6 +230,19 @@ export const useQuestionnaire = () => {
       refetchExpert()
       globalActions.quiz.setQuizStatus( QuizProgress.end )
       globalActions.quiz.setStep( steps.questionnaire )
+      
+      const scrollContainer = document.querySelector( `.${ s.content }` )
+      
+      if ( scrollContainer ) {
+        
+        scrollContainer.scrollTo( {
+          
+          top: 0,
+          behavior: 'smooth'
+          
+        } )
+        
+      }
       
     }
     
@@ -293,17 +340,26 @@ export const useQuestionnaire = () => {
     
     if ( globalState.quiz.step === steps.school ) {
       
-      if ( isSchoolFilled( globalState.school ) ) {
-        
-         await mutateSchool( { isTemp: false } )
-        
-      }
+      await mutateSchool( { isTemp: false } )
       
       refetchExpert()
       globalActions.quiz.setStep( steps.documents )
       globalActions.quiz.setContinueStep( steps.documents )
       setTitle( 'Документы' )
       setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
+      
+      const scrollContainer = document.querySelector( `.${ s.content }` )
+      
+      if ( scrollContainer ) {
+        
+        scrollContainer.scrollTo( {
+          
+          top: 0,
+          behavior: 'smooth'
+          
+        } )
+        
+      }
       
     }
     
@@ -316,19 +372,6 @@ export const useQuestionnaire = () => {
     if ( globalState.quiz.step === steps.publications ) {
       
       await mutatePublications( { isTemp: false } )
-      
-    }
-    
-    const scrollContainer = document.querySelector( `.${ s.content }` )
-    
-    if ( scrollContainer ) {
-      
-      scrollContainer.scrollTo( {
-        
-        top: 0,
-        behavior: 'smooth'
-        
-      } )
       
     }
     
@@ -366,13 +409,6 @@ export const useQuestionnaire = () => {
       setDescription( 'Сертификаты, отзывы и прочая информация относительно всего, что вы заполняли ранее' )
       
     }
-    
-    window.scrollTo( {
-      
-      top: 0,
-      behavior: 'smooth'
-      
-    } )
     
   }
   

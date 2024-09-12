@@ -19,8 +19,6 @@ const ProgressBar = ( {
   const maxTextareaLength = 320
   const maxCards = 5
   
-  console.log(cardCount)
-
   useEffect( () => {
 
     calculateProgress()
@@ -35,25 +33,26 @@ const ProgressBar = ( {
       setProgress( Math.min( cardProgress, 97 ) )
 
     } else {
-
-      let photoCount = photos.length
-      let totalSymbols = 0
-
-      textareas.forEach( textarea => {
-
-        if ( textarea.length > 0 ) {
-
-          totalSymbols += textarea.length
-
+      let photoCount = photos.length;
+      let totalSymbols = 0;
+      
+      textareas.forEach((textarea) => {
+        if (textarea.length > 0) {
+          totalSymbols += textarea.length;
         }
-
-      } );
-
-      let photoProgress = Math.min( photoCount, maxPhotos ) * 4
-      let symbolProgress = Math.min( totalSymbols, maxTextareas * maxTextareaLength ) * 0.0625
-
-      setProgress( Math.min( photoProgress + symbolProgress, 97 ) )
-
+      });
+      
+      // Update photoProgress to give 97% if at least 1 photo is uploaded
+      let photoProgress = photoCount > 0 ? 97 : 0;
+      
+      // Scale the symbolProgress relative to the total possible length
+      let symbolProgress = Math.min(
+        totalSymbols / (maxTextareas * maxTextareaLength) * 97,
+        97
+      );
+      
+      // Only set progress to 97 if both conditions are fulfilled
+      setProgress(Math.min(photoProgress, symbolProgress));
     }
 
   }

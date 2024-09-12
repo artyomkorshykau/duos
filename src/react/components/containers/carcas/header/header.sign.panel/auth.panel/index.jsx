@@ -17,12 +17,10 @@ const HeaderAuthPanel = ({
 
   const [ globalState, globalActions ] = useGlobal();
   
-  const quizStatusText = {
-
-    completed: "Анкета на верификации",
-    uncompleted: "Анкета не завершена",
-
-  }
+  const quizStatus = globalState.user.verify_status === 'moderation'
+    
+    ? "Анкета на верификации"
+    : "Анкета не завершена"
   
   const userName = globalState.user.first_name
     
@@ -68,7 +66,7 @@ const HeaderAuthPanel = ({
           
         >
 
-         { quizStatusText.uncompleted }
+         { quizStatus }
 
         </p>
 

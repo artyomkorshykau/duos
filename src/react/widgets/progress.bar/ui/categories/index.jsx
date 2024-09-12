@@ -132,8 +132,6 @@ const Categories = ( props ) => {
     
   }, [ progress ] )
   
-  console.log(progress)
-  
   return (
     
     <div className={ `${ s.progressBar__steps }` }>

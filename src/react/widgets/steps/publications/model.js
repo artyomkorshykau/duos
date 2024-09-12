@@ -6,7 +6,7 @@ export const usePublications = () => {
   const [ globalState, globalActions ] = useGlobal()
   const { publications } = globalState
   const [ filed, setFiled ] = useState( false )
-  const { photos } = publications.categories[ 0 ]
+  const { photos } = publications?.categories?.[ 0 ]
   
   useEffect( () => {
     
