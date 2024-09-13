@@ -7,7 +7,8 @@ const constructor = {
     { id: 2, title: 'Профиль', content: '12' }
   ],
   
-  status: 'New'
+  status: 'New',
+  currentArticle: null
   
 }
 

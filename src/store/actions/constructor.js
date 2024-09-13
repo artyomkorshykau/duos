@@ -4,6 +4,23 @@ const constructorActions = {
     
     store.setState( { constructor: { ...store.state.constructor, status } } )
     
+  },
+  
+  setCurrentArticle( store, currentArticle ) {
+    
+    store.setState( {
+      
+      constructor: {
+        
+        ...store.state.constructor,
+        currentArticle
+        
+        }
+        
+      }
+      
+    )
+    
   }
   
 }

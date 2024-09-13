@@ -11,7 +11,7 @@ const SavePopup = ( {
                       inProfile = false,
                       saveVariant,
                       setSaveVariant,
-  save
+                      save
                       
                     } ) => {
   
@@ -52,7 +52,7 @@ const SavePopup = ( {
             Сохранить как черновик
           
           </div>
-          
+        
         </div>
         
         <div className={ `${ s.save__content__variant }` }>
@@ -123,6 +123,7 @@ const SavePopup = ( {
             name="Сохранить"
             type="default"
             action={ save }
+            disabled={ !saveVariant }
           
           />
         

@@ -5,18 +5,11 @@ import ProgressBar
   from '@/react/widgets/steps/publications/ui/progress.bar/index.jsx'
 import { useRouter } from 'next/navigation'
 import useGlobal from '@/store/index.js'
-import { useEffect } from 'react'
 
 const PublicationsContent = () => {
   
   const { push } = useRouter()
   const [ globalState, globalActions ] = useGlobal()
-  
-  useEffect( () => {
-    
-    globalActions.publications.getPublication( globalState.user.expert_id )
-    
-  }, [] )
   
   return (
     

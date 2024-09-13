@@ -4,6 +4,9 @@ import DefaultButton from '@/react/components/buttons/default.button'
 import Status from '@/react/components/status'
 import Cross from '@/react/components/icons/cross'
 import useGlobal from '@/store/index.js'
+import DeletePopup from '@/react/popups/delete.popup/index.jsx'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const PublicationCard = ( props ) => {
   
@@ -13,13 +16,24 @@ const PublicationCard = ( props ) => {
     status,
     title,
     description,
-    action,
     addNewPublication,
-    articleID,
+    articleID
     
   } = props
   
   const [ globalState, globalActions ] = useGlobal()
+  const [ isDeletePopUp, setIsDeletePopUp ] = useState( false )
+  const { push } = useRouter()
+  
+  const handleOpenArticle = () => {
+    
+    const currentArticle = globalState.publications.categories[ 1 ].publicationsCards
+      .find( ( card ) => card.id === articleID )
+    
+    globalActions.constructor.setCurrentArticle( currentArticle )
+    push( '/constructor' )
+    
+  }
   
   if ( title ) {
     
@@ -49,7 +63,7 @@ const PublicationCard = ( props ) => {
               name="Удалить"
               type="any"
               className={ `${ s.card__content__status__button }` }
-              action={ () => globalActions.publications.deletePublication( articleID ) }
+              action={ () => setIsDeletePopUp( true ) }
             
             />
           
@@ -72,11 +86,21 @@ const PublicationCard = ( props ) => {
             name={ 'Открыть' }
             gray
             className={ `${ s.card__content__button }` }
-            action={ action }
+            action={ handleOpenArticle }
           
           />
         
         </div>
+        
+        <DeletePopup
+          
+          isOpened={ isDeletePopUp }
+          closePopup={ () => setIsDeletePopUp( false ) }
+          title={ title }
+          type={ 'Статью:' }
+          action={ () => globalActions.publications.deletePublication( articleID ) }
+        
+        />
       
       </div>
     

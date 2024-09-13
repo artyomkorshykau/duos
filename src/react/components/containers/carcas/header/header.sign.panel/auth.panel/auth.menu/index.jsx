@@ -35,7 +35,7 @@ const AuthMenu = ( {
   const authMenu = () => {
     
     //waiting
-    if ( globalState.user.verify_status === 'waiting' ) {
+    if ( globalState.user.verify_status === 'moderation' ) {
       
       return (
         
@@ -64,7 +64,7 @@ const AuthMenu = ( {
     }
     
     //create
-    if ( !globalState.user.verify_status ) {
+    if ( globalState.user.verify_status === 'waiting' ) {
       
       return (
         
@@ -93,7 +93,7 @@ const AuthMenu = ( {
     }
     
     //verified
-    if ( globalState.user.verify_status === 'verified' ) {
+    if ( globalState.user.verify_status === 'confirmed' ) {
       
       return (
         

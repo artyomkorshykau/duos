@@ -1,5 +1,5 @@
-import Link from "next/link";
-import s from "./sign.up.module.scss";
+import Link from 'next/link'
+import s from './sign.up.module.scss'
 
 const RoleChoice = ({
   
@@ -13,7 +13,7 @@ const RoleChoice = ({
 
       <p className = {`font-bold text-40 ${ s.rolechoice__title }`}>В какой роли вы хотите <br />зарегистрироваться?</p>
 
-      <div className = "flex justify-center">
+      <div className = "flex justify-center gap-24">
 
         <div className = {`flex flex-col item-center ${ s.rolechoice__card } relative`}>
 

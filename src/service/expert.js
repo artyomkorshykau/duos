@@ -60,8 +60,7 @@ const expert = {
       if ( !response.ok ) {
         
         const { errors } = await response.json()
-        console.log(errors)
-        alert(' Ошибка ')
+        alert( '500: ( Internal Server Error )' )
         throw errors
         
       }
@@ -153,7 +152,7 @@ const expert = {
       
       if ( !response.ok ) {
         
-        console.log( `Ошибка сервера (500)` )
+        alert( '500: ( Internal Server Error )' )
         throw new Error()
         
       }
@@ -193,7 +192,7 @@ const expert = {
       
       if ( !response.ok ) {
         
-        console.log( `Ошибка сервера (500)` )
+        alert( '500: ( Internal Server Error )' )
         throw new Error()
         
       }
@@ -323,7 +322,7 @@ const expert = {
       } )
       
       if ( !response.ok ) {
-        console.log( `Ошибка сервера (${ response.status })` )
+        alert( '500: ( Internal Server Error )' )
         throw new Error()
       }
       
@@ -370,7 +369,7 @@ const expert = {
       
       if ( !response.ok ) {
         
-        console.log( `Ошибка сервера (500)` )
+        alert( '500: ( Internal Server Error )' )
         throw new Error()
         
       }
@@ -390,7 +389,14 @@ const expert = {
     
     try {
       
-      const { image_url } = await postImage( data.image_url )
+      let image_url = null
+      
+      if ( data.image_url ) {
+        
+        const result = await postImage( data.image_url )
+        image_url = result.image_url
+        
+      }
       
       const response = await fetch( `${ BASE_URL }/article`, {
         
@@ -402,7 +408,7 @@ const expert = {
       
       if ( !response.ok ) {
         
-        console.log( `Ошибка сервера (500)` )
+        console.log( 'Ошибка сервера (500)' )
         throw new Error()
         
       }
@@ -461,6 +467,45 @@ const expert = {
       if ( !response.ok ) {
         
         console.log( `Ошибка сервера (500)` )
+        throw new Error()
+        
+      }
+      
+      return await response.json()
+      
+    } catch ( error ) {
+      
+      console.error( `Ошибка при отправке данных: ${ error.message }` )
+      throw error
+      
+    }
+    
+  },
+  
+  async editArticleById( article_id, data ) {
+    
+    try {
+      
+      let image_url = null
+      
+      if ( data.image_url ) {
+        
+        const result = await postImage( data.image_url )
+        image_url = result.image_url
+        
+      }
+      
+      const response = await fetch( `${ BASE_URL }/article/${ article_id }`, {
+        
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify( { ...data, image_url } )
+        
+      } )
+      
+      if ( !response.ok ) {
+        
+        console.log( 'Ошибка сервера (500)' )
         throw new Error()
         
       }

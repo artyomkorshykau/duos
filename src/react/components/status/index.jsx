@@ -1,13 +1,15 @@
-import cssIf from "@/scripts/helpers/css.if";
-import s from "./status.module.scss";
-import { useEffect, useState } from "react";
-import Ellipse from "../icons/ellipse";
+import cssIf from '@/scripts/helpers/css.if'
+import s from './status.module.scss'
+import { useEffect, useState } from 'react'
+import Ellipse from '../icons/ellipse'
 
 const Status = ({
 
   status
 
 }) => {
+  
+  
 
   const [name, setName] = useState();
 
@@ -36,7 +38,13 @@ const Status = ({
 
     <div
     
-      className = {`${ s.status } ${ cssIf( status === "New", s.status__blue ) } ${ cssIf( status === "NotFinished", s.status__yellow ) } ${ cssIf( status === "NotFilled", s.status__red ) } ${ cssIf( status === "Filled", s.status__green ) }`}
+      className = {`
+      
+      ${ s.status }
+      ${ cssIf( status === "New", s.status__blue ) }
+      ${ cssIf( status === "NotFinished", s.status__yellow ) }
+      ${ cssIf( status === "NotFilled", s.status__red ) }
+      ${ cssIf( status === "Filled", s.status__green ) }`}
       
     >
 

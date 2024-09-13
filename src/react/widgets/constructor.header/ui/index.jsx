@@ -14,7 +14,7 @@ const ConstructorHeader = ( props ) => {
     activeTab,
     setActiveTab,
     handleSavePublication,
-    setSaveVariant
+    setSaveVariant,
     
   } = props
   
@@ -34,7 +34,7 @@ const ConstructorHeader = ( props ) => {
       <div
         className={ `${ s.constructorHeader__wrapper } ` }>
         
-        <Nav/>
+        <Nav />
         <Title/>
         <Controls
           

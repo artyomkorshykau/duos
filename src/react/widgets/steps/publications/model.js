@@ -40,7 +40,7 @@ export const usePublications = () => {
     
     globalActions.publications.getPublication( globalState.user.expert_id )
     
-  }, [] )
+  }, [ ] )
   
   return { globalState }
   

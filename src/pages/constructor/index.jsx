@@ -39,8 +39,7 @@ export default function ConstructorPage() {
     .map( item => item.children.map( child => child.text ).join( '' ) )
     .join( ' ' )
   
-  const handleSavePublication = () => {
-    
+  const handleSavePublication = ( variant = saveVariant ) => {
     
     const categoryID = globalState.service.serviceCategories
       
@@ -61,8 +60,8 @@ export default function ConstructorPage() {
       title: titleToString,
       content: contentToString,
       image_url: image,
-      is_draft: saveVariant === 'draft',
-      in_library: saveVariant === 'profile',
+      is_draft: variant === 'draft',
+      in_library: variant === 'profile',
       tags: selectTags
       
     }
@@ -93,6 +92,12 @@ export default function ConstructorPage() {
     
   }
   
+  const handleSaveDraft = () => {
+    
+    handleSavePublication( 'draft' )
+    
+  }
+  
   useEffect( () => {
     
     globalActions.service.getServiceCategories()
@@ -101,10 +106,10 @@ export default function ConstructorPage() {
       
       .getTagList()
       .then( ( res ) => {
-      
-      setTags( res.tags )
-      
-    } )
+        
+        setTags( res.tags )
+        
+      } )
     
   }, [] )
   
@@ -137,7 +142,7 @@ export default function ConstructorPage() {
           
           <DuosEditor
             
-            availableTags={ tags }
+            availableTags={  tags }
             onChangeTagInput={ ( tags ) => setSelectTags( tags ) }
             
             image={ image }
@@ -153,7 +158,8 @@ export default function ConstructorPage() {
             onValueChange={ ( value ) => setContent( value ) }
             
             className={ `${ s.editor }` }
-            selectPlaceholder={ 'Выберите направление' }
+            selectPlaceholder={ globalState.constructor.currentArticle?.category?.name ?? 'Выберите' +
+              ' направление' }
           
           />
           
@@ -161,7 +167,7 @@ export default function ConstructorPage() {
             
             nextStep={ () => setOpenSavePopup( true ) }
             activeStep={ 'constructor' }
-            prevStep={ () => back() }
+            prevStep={ handleSaveDraft }
             editor
           
           />

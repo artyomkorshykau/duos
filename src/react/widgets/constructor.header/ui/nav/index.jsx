@@ -5,7 +5,7 @@ import Status from '@/react/components/status/index.jsx'
 import { useRouter } from 'next/navigation'
 import useGlobal from '@/store/index.js'
 
-const Nav = () => {
+const Nav = ( ) => {
   
   const [ globalState, globalActions ] = useGlobal()
   
