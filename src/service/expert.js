@@ -408,8 +408,8 @@ const expert = {
       
       if ( !response.ok ) {
         
-        console.log( 'Ошибка сервера (500)' )
-        throw new Error()
+        const errorData = await response.json()
+        throw new Error( JSON.stringify( errorData ) )
         
       }
       
@@ -417,7 +417,6 @@ const expert = {
       
     } catch ( error ) {
       
-      console.error( `Ошибка при отправке данных: ${ error.message }` )
       throw error
       
     }
