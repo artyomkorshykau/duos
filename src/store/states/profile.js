@@ -1,46 +1,51 @@
-const profileState = {
+import { profileStateInstance } from '../../../localforage.config.js'
 
-    firstName: '',
-    lastName: '',
-    surName: '',
-    birthDate: '',
-    gender: '',
-    nickName: '',
-    taxStatus: '',
-    taxName: '',
-    country: '',
-    city: '',
-    phoneNumber: '',
-    email: '',
-    taxIIN: '',
-    countries: null,
-    cities: null,
-    isLoading: false,
-    errors: null
+const profileState = {
+  
+  firstName: '',
+  lastName: '',
+  surName: '',
+  birthDate: '',
+  gender: '',
+  nickName: '',
+  taxStatus: '',
+  taxName: '',
+  country: '',
+  city: '',
+  phoneNumber: '',
+  email: '',
+  taxIIN: '',
+  countries: null,
+  cities: null,
+  isLoading: false,
+  errors: null
 }
 
-const getInitialProfileState = () => {
+const getInitialProfileState = async() => {
   
-  if (typeof window !== "undefined") {
+  try {
     
-    const storedProfileState = JSON.parse(localStorage.getItem("profile"))
+    const storedProfileState = await profileStateInstance.getItem( 'profile' )
     
-    if (storedProfileState) {
+    if ( storedProfileState ) {
       
       return storedProfileState
       
     } else {
       
-      localStorage.setItem("profile", JSON.stringify(profileState))
-      
+      await profileStateInstance.setItem( 'profile', profileState )
       return profileState
       
     }
     
+  } catch ( error ) {
+    
+    console.error( 'Error accessing profile state:', error )
+    return profileState
+    
   }
   
-  return profileState
 }
 
-export default getInitialProfileState
+export { getInitialProfileState }
 

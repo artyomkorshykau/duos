@@ -28,6 +28,8 @@ export default function QuestionnairePage() {
     
   } = useQuestionnaire()
   
+  console.log(globalState)
+  
   const content = useMemo( () => (
     
     <>

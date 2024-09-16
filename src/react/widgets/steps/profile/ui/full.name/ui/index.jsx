@@ -5,27 +5,11 @@ import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store'
 import Select from '@/react/components/forms/select'
 import { genderList } from '@/constants/profile'
-import { useEffect, useState } from 'react'
 import DateField from '@/react/components/date'
 
 const FullName = ( { disabled } ) => {
   
   const [ globalState, globalActions ] = useGlobal()
-  
-  //TODO delete this when api will ready
-  const [ isLoaded, setIsLoaded ] = useState( false )
-  
-  useEffect( () => {
-    
-    setIsLoaded( true )
-    
-  }, [] )
-  
-  if ( !isLoaded ) {
-    
-    return <div>Loading...</div>
-    
-  }
   
   return (
     

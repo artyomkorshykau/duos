@@ -1,165 +1,160 @@
 import locations from '@/service/locations.js'
+import { profileStateInstance } from '../../../localforage.config.js'
 
 const profileActions = {
-  
-  setFirstName: ( store, firstName ) => {
+  setFirstName: async( store, firstName ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
-    
-    localStorage.setItem( 'profile', JSON.stringify( {
+    await profileStateInstance.setItem( 'profile', {
       ...profile,
       firstName
-    } ) )
-    store.setState( { profile: { ...store.state.profile, firstName } } )
+    } )
     
+    store.setState( { profile: { ...store.state.profile, firstName } } )
   },
   
-  setLastName: ( store, lastName ) => {
+  setLastName: async( store, lastName ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
-    
-    localStorage.setItem( 'profile', JSON.stringify( {
+    await profileStateInstance.setItem( 'profile', {
       ...profile,
       lastName
-    } ) )
+    } )
+    
     store.setState( { profile: { ...store.state.profile, lastName } } )
-    
   },
   
-  setSurName: ( store, surName ) => {
+  setSurName: async( store, surName ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    await profileStateInstance.setItem( 'profile', {
+      ...profile, surName
+    } )
     
-    localStorage.setItem( 'profile', JSON.stringify( { ...profile, surName } ) )
     store.setState( { profile: { ...store.state.profile, surName } } )
-    
   },
   
-  setBirthDate: ( store, birthDate ) => {
+  setBirthDate: async( store, birthDate ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
-    
-    localStorage.setItem( 'profile', JSON.stringify( {
+    await profileStateInstance.setItem( 'profile', {
       ...profile,
       birthDate
-    } ) )
+    } )
+    
     store.setState( { profile: { ...store.state.profile, birthDate } } )
-    
   },
   
-  setGender: ( store, gender ) => {
+  setGender: async( store, gender ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    await profileStateInstance.setItem( 'profile', {
+      ...profile, gender
+    } )
     
-    localStorage.setItem( 'profile', JSON.stringify( { ...profile, gender } ) )
     store.setState( { profile: { ...store.state.profile, gender } } )
-    
   },
   
-  setNickName: ( store, nickName ) => {
+  setNickName: async( store, nickName ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
-    
-    localStorage.setItem( 'profile', JSON.stringify( {
+    await profileStateInstance.setItem( 'profile', {
       ...profile,
       nickName
-    } ) )
-    store.setState( { profile: { ...store.state.profile, nickName } } )
+    } )
     
+    store.setState( { profile: { ...store.state.profile, nickName } } )
   },
   
-  setTaxStatus: ( store, taxStatus ) => {
+  setTaxStatus: async( store, taxStatus ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
-    
-    localStorage.setItem( 'profile', JSON.stringify( {
+    await profileStateInstance.setItem( 'profile', {
       ...profile,
       taxStatus
-    } ) )
+    } )
+    
     store.setState( { profile: { ...store.state.profile, taxStatus } } )
-    
   },
   
-  setTaxName: ( store, taxName ) => {
+  setTaxName: async( store, taxName ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    await profileStateInstance.setItem( 'profile', {
+      ...profile, taxName
+    } )
     
-    localStorage.setItem( 'profile', JSON.stringify( { ...profile, taxName } ) )
     store.setState( { profile: { ...store.state.profile, taxName } } )
-    
   },
   
-  setTaxIIN: ( store, taxIIN ) => {
+  setTaxIIN: async( store, taxIIN ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    await profileStateInstance.setItem( 'profile', {
+      ...profile, taxIIN
+    } )
     
-    localStorage.setItem( 'profile', JSON.stringify( { ...profile, taxIIN } ) )
     store.setState( { profile: { ...store.state.profile, taxIIN } } )
-    
   },
   
-  setCountry: ( store, country ) => {
+  setCountry: async( store, country ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    await profileStateInstance.setItem( 'profile', {
+      ...profile, country
+    } )
     
-    localStorage.setItem( 'profile', JSON.stringify( { ...profile, country } ) )
     store.setState( { profile: { ...store.state.profile, country } } )
-    
   },
   
-  setCity: ( store, city ) => {
+  setCity: async( store, city ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    await profileStateInstance.setItem( 'profile', {
+      ...profile, city
+    } )
     
-    localStorage.setItem( 'profile', JSON.stringify( { ...profile, city } ) )
     store.setState( { profile: { ...store.state.profile, city } } )
-    
   },
   
-  setPhoneNumber: ( store, phoneNumber ) => {
+  setPhoneNumber: async( store, phoneNumber ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
-    
-    localStorage.setItem( 'profile', JSON.stringify( {
+    await profileStateInstance.setItem( 'profile', {
       ...profile,
       phoneNumber
-    } ) )
+    } )
+    
     store.setState( { profile: { ...store.state.profile, phoneNumber } } )
-    
   },
   
-  setEmail: ( store, email ) => {
+  setEmail: async( store, email ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    await profileStateInstance.setItem( 'profile', {
+      ...profile, email
+    } )
     
-    localStorage.setItem( 'profile', JSON.stringify( { ...profile, email } ) )
     store.setState( { profile: { ...store.state.profile, email } } )
-    
   },
   
-  setProfileProgress( store, progress ) {
+  setProfileProgress: async( store, progress ) => {
+    const profile = await profileStateInstance.getItem( 'profile' )
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
-    
-    localStorage.setItem( 'profile', JSON.stringify( {
+    await profileStateInstance.setItem( 'profile', {
       ...profile,
       progress
-    } ) )
-    store.setState( { profile: { ...store.state.profile, progress } } )
+    } )
     
+    store.setState( { profile: { ...store.state.profile, progress } } )
   },
   
-  setProfileErrors( store, errors ) {
-    
-    
+  setProfileErrors: ( store, errors ) => {
     store.setState( { profile: { ...store.state.profile, errors } } )
-    
   },
   
   getLocations: async( store ) => {
-    
     try {
-      
       const dataCountries = await locations.getCountries( null, null )
       const dataCity = await locations.getCities( 1, null, null )
       
@@ -167,68 +162,45 @@ const profileActions = {
       let cities = []
       
       if ( dataCountries && dataCountries.success ) {
-        
         countries = dataCountries.countries.map( ( country ) => ( {
-          
           id: country.id,
           value: country.name,
           label: country.name
-          
         } ) )
-        
       } else {
-        
         console.error( 'Ошибка загрузки стран' )
-        
       }
       
       if ( dataCity && dataCity.success ) {
-        
         cities = dataCity.cities.map( ( city ) => ( {
-          
           id: city.id,
           value: city.name,
           label: city.name
-          
         } ) )
-        
       } else {
-        
-        console.error( 'Ошибка загрузки стран' )
-        
+        console.error( 'Ошибка загрузки городов' )
       }
       
-      const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+      const profile = await profileStateInstance.getItem( 'profile' )
       
-      localStorage.setItem( 'profile', JSON.stringify( {
-        
+      await profileStateInstance.setItem( 'profile', {
         ...profile,
         countries,
         cities
-        
-      } ) )
+      } )
       
       store.setState( {
-        
         profile: {
           ...store.state.profile,
           countries,
           cities
-          
         }
-        
       } )
       
     } catch ( error ) {
-      
       console.error( 'Ошибка сети или сервера:', error )
-      
     }
-    
-  },
-  
+  }
 }
 
 export default profileActions
-
-
