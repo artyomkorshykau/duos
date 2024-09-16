@@ -517,7 +517,8 @@ export const useQuestionnaire = () => {
     description,
     globalState,
     isSuccess,
-    refetchExpert
+    refetchExpert,
+    globalActions
     
   }
   

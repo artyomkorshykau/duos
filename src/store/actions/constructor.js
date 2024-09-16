@@ -8,20 +8,53 @@ const constructorActions = {
   
   setCurrentArticle( store, currentArticle ) {
     
-    store.setState( {
+    const constructor = JSON.parse( localStorage.getItem( 'constructor' ) )
+    
+    localStorage.setItem( 'constructor', JSON.stringify( {
       
-      constructor: {
+      ...constructor,
+      currentArticle
+      
+    } ) )
+    
+    store.setState( {
         
-        ...store.state.constructor,
-        currentArticle
-        
+        constructor: {
+          
+          ...store.state.constructor,
+          currentArticle
+          
         }
         
       }
+    )
+    
+  },
+  removeCurrentArticle( store ) {
+    
+    const constructor = JSON.parse( localStorage.getItem( 'constructor' ) )
+    
+    localStorage.setItem( 'constructor', JSON.stringify( {
       
+      ...constructor,
+      currentArticle: null
+      
+    } ) )
+    
+    store.setState( {
+        
+        constructor: {
+          
+          ...store.state.constructor,
+          currentArticle: null
+          
+        }
+        
+      }
     )
     
   }
+  
   
 }
 

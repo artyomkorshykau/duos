@@ -3,10 +3,12 @@ import s
 import DefaultButton from '@/react/components/buttons/default.button/index.jsx'
 import Promote from '@/react/components/icons/promote.jsx'
 import { useRouter } from 'next/navigation'
+import useGlobal from '@/store/index.js'
 
 const Controls = ( { handleSavePublication, setSaveVariant } ) => {
   
   const { back } = useRouter()
+  const [ globalState, globalActions ] = useGlobal()
   
   return (
     
@@ -49,6 +51,7 @@ const Controls = ( { handleSavePublication, setSaveVariant } ) => {
           
           e.stopPropagation()
           back()
+          globalActions.constructor.removeCurrentArticle()
           
         } }
       

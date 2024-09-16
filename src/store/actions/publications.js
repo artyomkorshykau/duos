@@ -44,6 +44,12 @@ const publicationsActions = {
     
   },
   
+  editPublication: async( store, article_id, newArticle ) => {
+    
+    await expert.editArticleById( article_id,newArticle )
+    
+  },
+  
   getPublication: async( store, expert_id ) => {
     
     const { articles } = await expert.articleList( expert_id )
@@ -104,7 +110,6 @@ const publicationsActions = {
       console.error( 'Ошибка при удалении статьи:', error )
     }
   },
-  
   
   toggleDocumentStatus: ( store, index, newStatus ) => {
     

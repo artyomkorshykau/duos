@@ -20,10 +20,28 @@ export default function ConstructorPage() {
   const [ saveVariant, setSaveVariant ] = useState( '' )
   const [ tags, setTags ] = useState( null )
   
-  const [ selectDirection, setSelectDirection ] = useState( null )
+  const [ selectDirection, setSelectDirection ] = useState( globalState.constructor.currentArticle?.category || null )
   const [ image, setImage ] = useState( null )
-  const [ selectTags, setSelectTags ] = useState( null )
-  const [ content, setContent ] = useState( [] )
+  const [ selectTags, setSelectTags ] = useState( [] )
+  const [ content, setContent ] = useState( [
+    {
+      'type': 'heading-one',
+      'children': [
+        {
+          'text': globalState.constructor.currentArticle?.title || 'Заголовок'
+        }
+      ]
+    },
+    {
+      'type': 'paragraph',
+      'children': [
+        {
+          'text': globalState.constructor.currentArticle?.content || 'Начните' +
+            ' вводить текст'
+        }
+      ]
+    }
+  ] )
   
   const { back } = useRouter()
   
@@ -39,47 +57,27 @@ export default function ConstructorPage() {
     .map( item => item.children.map( child => child.text ).join( '' ) )
     .join( ' ' )
   
-  const handleSavePublication = ( variant = saveVariant ) => {
+  const handleSavePublication = async( variant ) => {
     
     const categoryID = globalState.service.serviceCategories
-      
       .find( ( category ) => category.value === selectDirection )
       ?.id
     
-    const reader = new FileReader()
-    
-    reader.onloadend = () => {
-      
-      data.image_url = reader.result
-      
-    }
-    
     const data = {
       
-      article_category_id: categoryID,
+      article_category_id: globalState.constructor.currentArticle?.category?.id || categoryID,
       title: titleToString,
       content: contentToString,
-      image_url: image,
-      is_draft: variant === 'draft',
-      in_library: variant === 'profile',
+      image_url: image ? await readFileAsDataURL( image ) : image,
+      is_draft: variant ? variant === 'draft' : saveVariant === 'draft',
+      in_library: saveVariant === 'profile',
       tags: selectTags
       
     }
     
-    if ( image ) {
+    if ( globalState.constructor.currentArticle ) {
       
-      const reader = new FileReader()
-      
-      reader.onloadend = () => {
-        
-        data.image_url = reader.result
-        
-        globalActions.publications.addNewPublication( data )
-        setOpenSavePopup( false )
-        
-      }
-      
-      reader.readAsDataURL( image )
+      globalActions.publications.editPublication( globalState.constructor.currentArticle.id, data )
       
     } else {
       
@@ -89,8 +87,23 @@ export default function ConstructorPage() {
     }
     
     back()
+    globalActions.constructor.removeCurrentArticle()
     
   }
+  
+  const readFileAsDataURL = ( file ) => {
+    
+    return new Promise( ( resolve, reject ) => {
+      
+      const reader = new FileReader()
+      reader.onloadend = () => resolve( reader.result )
+      reader.onerror = reject
+      reader.readAsDataURL( file )
+      
+    } )
+    
+  }
+  
   
   const handleSaveDraft = () => {
     
@@ -125,49 +138,51 @@ export default function ConstructorPage() {
       
       <Carcas
         
-        authorized={ true }
+        authorized = { true }
       
       >
         
-        <div className={ `${ s.content }` }>
+        <div className = { `${ s.content }` }>
           
           <ConstructorHeader
             
-            activeTab={ activeTab }
-            setActiveTab={ setActiveTab }
-            handleSavePublication={ handleSavePublication }
-            setSaveVariant={ setSaveVariant }
+            activeTab = { activeTab }
+            setActiveTab = { setActiveTab }
+            handleSavePublication = { handleSavePublication }
+            setSaveVariant = { setSaveVariant }
           
           />
           
           <DuosEditor
             
-            availableTags={  tags }
-            onChangeTagInput={ ( tags ) => setSelectTags( tags ) }
+            availableTags = { tags }
+            defaultTagInputValues = { globalState.constructor.currentArticle?.tags || [] }
+            onChangeTagInput = { ( tags ) => setSelectTags( tags ) }
             
-            image={ image }
-            onChangeImage={ setImage }
+            image = { image }
+            onChangeImage = { setImage }
             
-            selectOptions={ globalState.service.serviceCategories }
-            onChangeSelectOptions={ ( optionValue ) => setSelectDirection( optionValue ) }
+            selectOptions = { globalState.service.serviceCategories }
+            onChangeSelectOptions = { ( optionValue ) => setSelectDirection( optionValue ) }
             
             
-            removeImage={ () => setImage( null ) }
-            uploadFile={ () => {} }
+            removeImage = { () => setImage( null ) }
+            uploadFile = { () => {} }
             
-            onValueChange={ ( value ) => setContent( value ) }
+            onValueChange = { ( value ) => setContent( value ) }
+            initialValue = { content }
             
-            className={ `${ s.editor }` }
-            selectPlaceholder={ globalState.constructor.currentArticle?.category?.name ?? 'Выберите' +
+            className = { `${ s.editor }` }
+            selectPlaceholder = { globalState.constructor.currentArticle?.category?.name ?? 'Выберите' +
               ' направление' }
           
           />
           
           <Pagination
             
-            nextStep={ () => setOpenSavePopup( true ) }
-            activeStep={ 'constructor' }
-            prevStep={ handleSaveDraft }
+            nextStep = { () => setOpenSavePopup( true ) }
+            activeStep = { 'constructor' }
+            prevStep = { handleSaveDraft }
             editor
           
           />
@@ -176,11 +191,11 @@ export default function ConstructorPage() {
         
         <SavePopup
           
-          isOpened={ openSavePopup }
-          closePopup={ () => setOpenSavePopup( false ) }
-          saveVariant={ saveVariant }
-          setSaveVariant={ setSaveVariant }
-          save={ handleSavePublication }
+          isOpened = { openSavePopup }
+          closePopup = { () => setOpenSavePopup( false ) }
+          saveVariant = { saveVariant }
+          setSaveVariant = { setSaveVariant }
+          save = { handleSavePublication }
         
         />
       

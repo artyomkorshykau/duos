@@ -13,4 +13,27 @@ const constructor = {
 }
 
 
-export default constructor
+const getInitialConstructorState = () => {
+  
+  if (typeof window !== "undefined") {
+    
+    const storedConstructorState = JSON.parse(localStorage.getItem("constructor"))
+    
+    if (storedConstructorState) {
+      
+      return storedConstructorState
+      
+    } else {
+      
+      localStorage.setItem("constructor", JSON.stringify(constructor))
+      
+      return constructor
+      
+    }
+    
+  }
+  
+  return constructor
+}
+
+export default getInitialConstructorState

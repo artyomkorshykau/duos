@@ -1,6 +1,6 @@
 import { FC } from 'react';
 type DuosEditorPreviewDropZoneProps = {
-    image: File | null;
+    image: File | string | null;
     onChangeImage: (file: File) => void;
     removeArticleImage: () => void;
 };

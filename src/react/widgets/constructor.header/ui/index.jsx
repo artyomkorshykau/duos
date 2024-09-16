@@ -14,7 +14,7 @@ const ConstructorHeader = ( props ) => {
     activeTab,
     setActiveTab,
     handleSavePublication,
-    setSaveVariant,
+    setSaveVariant
     
   } = props
   
@@ -25,30 +25,30 @@ const ConstructorHeader = ( props ) => {
     
     <div
       
-      className={ `${ s.constructorHeader }
+      className = { `${ s.constructorHeader }
       ${ cssIf( collapsed, s.collapsed ) }` }
-      onClick={ () => setCollapsed( !collapsed ) }
+      onClick = { () => setCollapsed( !collapsed ) }
     
     >
       
       <div
-        className={ `${ s.constructorHeader__wrapper } ` }>
+        className = { `${ s.constructorHeader__wrapper } ` }>
         
-        <Nav />
+        <Nav/>
         <Title/>
         <Controls
           
-          handleSavePublication={ handleSavePublication }
-          setSaveVariant={ setSaveVariant }
+          handleSavePublication = { handleSavePublication }
+          setSaveVariant = { setSaveVariant }
         
         />
         <Tabs
           
-          activeTab={ activeTab }
-          setActiveTab={ setActiveTab }
-          tabs={ globalState.constructor.tabs }
-          className={ s.constructorHeader__wrapper__tabs }
-          classNameContent={ s.constructorHeader__wrapper__tabs__content }
+          activeTab = { activeTab }
+          setActiveTab = { setActiveTab }
+          tabs = { globalState.constructor.tabs }
+          className = { s.constructorHeader__wrapper__tabs }
+          classNameContent = { s.constructorHeader__wrapper__tabs__content }
         
         />
       

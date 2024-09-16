@@ -389,7 +389,7 @@ const expert = {
     
     try {
       
-      let image_url = null
+      let image_url = ''
       
       if ( data.image_url ) {
         
@@ -486,7 +486,7 @@ const expert = {
     
     try {
       
-      let image_url = null
+      let image_url = ''
       
       if ( data.image_url ) {
         
