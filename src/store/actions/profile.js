@@ -168,7 +168,7 @@ const profileActions = {
       
       if ( dataCountries && dataCountries.success ) {
         
-        countries = dataCountries.countries.map( ( country ) => ( {
+        countries = dataCountries.countries?.map( ( country ) => ( {
           
           id: country.id,
           value: country.name,

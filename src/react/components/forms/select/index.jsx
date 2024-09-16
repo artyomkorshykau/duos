@@ -256,7 +256,7 @@ const Select = ( props ) => {
             
             <div className={ `${ s.wrapper__container__itemscontainerWrapper__itemscontainer }` }>
               
-              { filteredOptions.map( option => (
+              { filteredOptions?.map( option => (
                 
                 <Option
                   key={ option.value }

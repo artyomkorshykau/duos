@@ -3,7 +3,7 @@ import useGlobal from '@/store'
 import AccordionDocument from './accordion.document'
 import Attachment from '@/react/components/attachment'
 import { useEffect } from 'react'
-import AccordionParent from "@/react/widgets/accordion.parent/index.jsx";
+import AccordionParent from '@/react/widgets/accordion.parent/index.jsx'
 
 const Document = () => {
 
@@ -84,7 +84,7 @@ const Document = () => {
         changeStatus = { (index) =>  changeStatus(index) }
       />
 
-      {service.category.map(( category, index ) => (
+      {service.category?.map(( category, index ) => (
 
         <AccordionDocument category = { category } key={ index } index = { index } />
            

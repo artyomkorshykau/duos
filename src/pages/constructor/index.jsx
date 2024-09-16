@@ -47,7 +47,7 @@ export default function ConstructorPage() {
   
   const { back } = useRouter()
   
-  const { mutate: mutateAddNewPublication, error } = useMutation( {
+  const { mutate: mutateAddNewPublication } = useMutation( {
     
     mutationKey: [ 'add-new-article' ],
     mutationFn: ( newArticle ) => expert.createArticle( newArticle ),
@@ -55,12 +55,33 @@ export default function ConstructorPage() {
       
       back()
       globalActions.constructor.removeCurrentArticle()
+     
       
     },
     onError: ( error ) => {
       
         const parsedError = JSON.parse( error.message )
         alert( `Ошибка при создании статьи: ${JSON.stringify(parsedError.errors )}`, )
+      
+    }
+    
+  } )
+  
+  const { mutate: mutateEditPublication } = useMutation( {
+    
+    mutationKey: [ 'edit-article' ],
+    mutationFn: ( { id, newArticle } ) => expert.editArticleById( id,newArticle ),
+    onSuccess: () => {
+      
+      back()
+      globalActions.constructor.removeCurrentArticle()
+     
+      
+    },
+    onError: ( error ) => {
+      
+      const parsedError = JSON.parse( error.message )
+      alert( `Ошибка при создании статьи: ${JSON.stringify(parsedError.errors )}`, )
       
     }
     
@@ -95,17 +116,24 @@ export default function ConstructorPage() {
       tags: selectTags
       
     }
+    debugger
     
     if ( globalState.constructor.currentArticle ) {
       
-      globalActions.publications.editPublication( globalState.constructor.currentArticle.id, newArticle )
+      mutateEditPublication( {
+        
+        id: globalState.constructor.currentArticle.id,
+        newArticle
+        
+      })
       
     } else {
       
       mutateAddNewPublication( newArticle )
-      setOpenSavePopup( false )
       
     }
+    
+    setOpenSavePopup( false )
     
   }
   

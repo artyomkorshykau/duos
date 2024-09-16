@@ -38,18 +38,6 @@ const publicationsActions = {
     
   },
   
-  addNewPublication: async( store, newArticle ) => {
-    
-    await expert.createArticle( newArticle )
-    
-  },
-  
-  editPublication: async( store, article_id, newArticle ) => {
-    
-    await expert.editArticleById( article_id,newArticle )
-    
-  },
-  
   getPublication: async( store, expert_id ) => {
     
     const { articles } = await expert.articleList( expert_id )
