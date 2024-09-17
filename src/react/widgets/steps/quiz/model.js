@@ -186,8 +186,6 @@ export const useQuestionnaire = () => {
     
   } )
   
-  console.log(globalState.service.category)
-  
   const {
     mutate: mutateDocuments,
     isPending: isPendingDocuments
@@ -226,7 +224,7 @@ export const useQuestionnaire = () => {
   } = useMutation( {
     
     mutationKey: [ 'set-publications-info' ],
-    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep5( isTemp ),
+    mutationFn: ( { isTemp, articles } ) => expert.sendExpertDataStep5( isTemp, articles ),
     onSuccess: () => {
       
       refetchExpert()
@@ -373,7 +371,7 @@ export const useQuestionnaire = () => {
     
     if ( globalState.quiz.step === steps.publications ) {
       
-      await mutatePublications( { isTemp: false } )
+      await mutatePublications( { isTemp: false, articles: globalState.articles } )
       
     }
     

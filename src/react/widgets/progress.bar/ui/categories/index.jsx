@@ -113,10 +113,10 @@ const Categories = ( props ) => {
       
     } else if ( activeStep === steps.publications ) {
       
-      publications.categories.map( item => item.documentStatus === 'Filled'
+      publications.categories[0].documentStatus === 'Filled' && globalState.articles?.length >= 3
         
         ? setProgress( 93.5 )
-        : setProgress( 77 ) )
+        : setProgress( 77 ) 
       
     }
     

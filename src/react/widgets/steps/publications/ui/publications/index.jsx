@@ -23,7 +23,7 @@ const PublicationsContent = () => {
         
         />
         
-        { globalState?.publications?.categories?.[ 1 ]?.publicationsCards?.map( article => {
+        { globalState?.articles?.map( article => {
           
           return <PublicationCard
             
@@ -42,11 +42,11 @@ const PublicationsContent = () => {
       
       </div>
       
-      { !!globalState?.publications?.categories?.[ 1 ]?.publicationsCards?.length &&
+      { !!globalState.articles?.length &&
         
         <ProgressBar
           
-          cardCount={ globalState?.publications?.categories?.[ 1 ]?.publicationsCards?.length }
+          cardCount={ globalState.articles?.length }
           type="publications"
         
         />

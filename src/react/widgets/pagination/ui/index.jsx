@@ -22,7 +22,7 @@ const Pagination = ( {
   
   const { service, profile, school, publications } = globalState
   
-  const publicationsProgress = publications?.categories?.[0].documentStatus === 'Filled' && publications.categories[1].documentStatus === 'Filled'
+  const publicationsProgress = publications?.categories?.[0].documentStatus === 'Filled' && globalState.articles?.length >= 3
   
   useEffect( () => {
     

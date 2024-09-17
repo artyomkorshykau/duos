@@ -38,7 +38,7 @@ const Publications = () => {
             description={ category.description }
             type="Направление"
             addNewServices={ false }
-            status={ category.documentStatus }
+            status={ !index ? category.documentStatus : globalState.articles?.length >= 3 ? 'Filled' : 'NotFilled' }
             isBottomContent={ false }
           
           />

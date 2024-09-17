@@ -43,7 +43,7 @@ const expert = {
       first_name: profile.firstName,
       mid_name: profile.surName,
       last_name: profile.lastName,
-      pseudonym: profile.nickName,
+      pseudonym: profile.nickName || '',
       birthday: birthDate,
       tax_name: profile.taxName || '',
       tax_inn: profile.taxIIN || '',
@@ -343,7 +343,7 @@ const expert = {
     
   },
   
-  async sendExpertDataStep5( isTemp ) {
+  async sendExpertDataStep5( isTemp, articles ) {
     
     const publications = await publicationsStateInstance.getItem( 'publications' )
     
@@ -355,7 +355,17 @@ const expert = {
     
     ] = publications.categories[ 0 ].profileInfo
     
-    const articles = publications.categories[ 1 ].publicationsCards
+    const newArticles = articles.map( ( article ) => ( {
+      
+      title: article.title,
+      content: article.content,
+      article_category_id: article.category.id,
+      image_url: article.image_url,
+      tags: article.tags,
+      is_draft: article.is_draft,
+      in_library: article.in_library
+      
+    } ) )
     
     const body = {
       
@@ -365,7 +375,7 @@ const expert = {
       mission: mission.text,
       ethical_principles: ethical_principle.text,
       personal_principles: personal_principles.text,
-      articles: articles
+      articles: newArticles
       
     }
     

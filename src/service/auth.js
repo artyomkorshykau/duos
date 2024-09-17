@@ -2,6 +2,7 @@ import { BASE_URL } from '@/constants/urls.js'
 import { getHeaders } from '@/service/headers.js'
 import { extractNumbers } from '@/scripts/helpers/extract.numbers.js'
 import {
+  constructorStateInstance,
   profileStateInstance,
   publicationsStateInstance,
   schoolStateInstance,
@@ -75,6 +76,7 @@ const auth = {
     await serviceStateInstance.clear()
     await schoolStateInstance.clear()
     await publicationsStateInstance.clear()
+    await constructorStateInstance.clear()
     
     document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure'
     

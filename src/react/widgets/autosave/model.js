@@ -64,7 +64,7 @@ export const useAutosave = (  refetchExpert  ) => {
   const { mutate: mutatePublications } = useMutation( {
     
     mutationKey: [ 'set-publications-info' ],
-    mutationFn: ( { isTemp } ) => expert.sendExpertDataStep5( isTemp ),
+    mutationFn: ( { isTemp, articles } ) => expert.sendExpertDataStep5( isTemp, articles ),
     onSuccess: () => {
       
       refetchExpert()
@@ -101,7 +101,7 @@ export const useAutosave = (  refetchExpert  ) => {
     
     if ( globalState.quiz.step === steps.publications ) {
       
-      mutatePublications( { isTemp: true } )
+      mutatePublications( { isTemp: true, articles: globalState.articles } )
       
     }
     

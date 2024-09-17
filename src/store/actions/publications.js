@@ -46,14 +46,6 @@ const publicationsActions = {
     }
   },
   
-  addNewPublication: async( store, newArticle ) => {
-    try {
-      await expert.createArticle( newArticle )
-    } catch ( error ) {
-      console.error( 'Error adding new publication:', error )
-    }
-  },
-  
   getPublication: async( store, expert_id ) => {
     try {
       const { articles } = await expert.articleList( expert_id )
@@ -61,19 +53,20 @@ const publicationsActions = {
       const hasArticles = articles.length >= 3
       
       store.setState( {
+        articles,
         publications: {
           ...store.state.publications,
           categories: store.state.publications.categories.map( category =>
             category.id === 1
               ? {
                 ...category,
-                publicationsCards: articles,
                 documentStatus: hasArticles ? 'Filled' : category.documentStatus
               }
               : category
           )
         }
       } )
+      
     } catch ( error ) {
       console.error( 'Error getting publications:', error )
     }
@@ -83,22 +76,24 @@ const publicationsActions = {
     try {
       await expert.deleteArticle( article_id )
       
+      const updatedArticles = store.state.articles.filter(
+        article => article.id !== article_id
+      )
+      
+      const hasLessThanThreeArticles = updatedArticles.length < 3
+      
       store.setState( {
+        articles: updatedArticles,
         publications: {
           ...store.state.publications,
           categories: store.state.publications.categories.map( category =>
             category.id === 1
               ? {
                 ...category,
-                publicationsCards: category.publicationsCards.filter(
-                  publication => publication.id !== article_id
-                ),
-                documentStatus:
-                  category.publicationsCards.filter(
-                    publication => publication.id !== article_id
-                  ).length === 0
-                    ? 'NotFinished'
-                    : category.documentStatus
+                publicationsCards: updatedArticles,
+                documentStatus: hasLessThanThreeArticles
+                  ? 'NotFilled'
+                  : category.documentStatus
               }
               : category
           )
