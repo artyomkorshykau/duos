@@ -3,9 +3,6 @@
 const nextConfig = {
   
   reactStrictMode: true,
-  images: {
-    domains: ['194.58.94.203'],
-  },
   
 }
 
