@@ -9,9 +9,9 @@ import { useQuestionnaire } from '@/react/widgets/steps/quiz/model.js'
 import Quiz from '@/react/widgets/steps/quiz/ui/index.jsx'
 import { steps } from '@/constants/quiz.steps'
 import s from './questionnaire.module.scss'
+import { initializeState } from '@/store/initializeState.js'
 
 export default function QuestionnairePage() {
-  
   
   const {
     
@@ -24,11 +24,13 @@ export default function QuestionnairePage() {
     description,
     globalState,
     isSuccess,
-    refetchExpert
+    refetchExpert,
     
   } = useQuestionnaire()
   
-  console.log(globalState)
+  
+  initializeState()
+  
   
   const content = useMemo( () => (
     
@@ -58,7 +60,7 @@ export default function QuestionnairePage() {
               
               { quizContent }
               
-              <Autosave refetchExpert = { refetchExpert }/>
+              <Autosave refetchExpert={ refetchExpert }/>
               
               <Pagination
                 

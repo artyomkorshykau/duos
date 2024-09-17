@@ -47,5 +47,5 @@ const getInitialProfileState = async() => {
   
 }
 
-export { getInitialProfileState }
+export default getInitialProfileState 
 

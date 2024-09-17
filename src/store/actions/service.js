@@ -1,5 +1,5 @@
 import dictionary from '@/service/dictionary'
-import { v1 } from 'uuid'
+import { serviceStateInstance } from '../../../localforage.config.js'
 
 function flattenCategories( categories ) {
   let result = []
@@ -22,810 +22,803 @@ function flattenCategories( categories ) {
 const serviceActions = {
   
   getServiceCategories: async( store ) => {
-    
     try {
-      
       const dataServiceCategories = await dictionary.getServiceCategories( null, null, null )
-      
       let serviceCategories = []
       
       if ( dataServiceCategories && dataServiceCategories.success ) {
-        
         serviceCategories = flattenCategories( dataServiceCategories.service_categories )
-        
       } else {
-        
         console.error( 'Ошибка загрузки serviceCategories' )
-        
       }
       
-      const service = JSON.parse( localStorage.getItem( 'service' ) )
-      
-      localStorage.setItem( 'service', JSON.stringify( {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      await serviceStateInstance.setItem( 'service', {
         ...service,
         serviceCategories
-      } ) )
+      } )
       store.setState( {
         service: {
           ...store.state.service,
           serviceCategories
         }
       } )
+    } catch ( error ) {
+      console.error( 'Ошибка сети или сервера:', error )
+    }
+  },
+  setDirection: async( store, direction, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = { ...service.category[ index ], direction }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления направления:', error )
+    }
+  },
+  setDirectionName: async( store, directionName, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        directionName
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления названия направления:', error )
+    }
+  },
+  setDirectionWorkExperience: async( store, directionWorkExperience, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        directionWorkExperience
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления опыта работы:', error )
+    }
+  },
+  setEducation: async( store, education, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = { ...service.category[ index ], education }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления образования:', error )
+    }
+  },
+  setEducationCourseAuthor: async( store, educationCourseAuthor, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        educationCourseAuthor
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления автора курса:', error )
+    }
+  },
+  setEducationOrganizationName: async( store, educationOrganizationName, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        educationOrganizationName
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления названия организации:', error )
+    }
+  },
+  setEducationDuration: async( store, educationDuration, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        educationDuration
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления продолжительности обучения:', error )
+    }
+  },
+  setEducationCourseName: async( store, educationCourseName, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        educationCourseName
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления названия курса:', error )
+    }
+  },
+  setEducationCompletionDate: async( store, educationCompletionDate, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        educationCompletionDate
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления даты завершения обучения:', error )
+    }
+  },
+  
+  setTitle: async( store, title, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        title
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления заголовка:', error )
+    }
+  },
+  setServiceType: async( store, serviceType, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        serviceType
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления типа услуги:', error )
+    }
+  },
+  setDeliveryFormat: async( store, deliveryFormat, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        deliveryFormat
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления формата доставки:', error )
+    }
+  },
+  setDuration: async( store, duration, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        duration
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления продолжительности:', error )
+    }
+  },
+  setMinuteHoursDays: async( store, minuteHoursDays, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        minuteHoursDays
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления минут/часов/дней:', error )
+    }
+  },
+  setMeaningService: async( store, meaningService, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        meaningService
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления значения услуги:', error )
+    }
+  },
+  setServiceFiles: async( store, files, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        files
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления файлов услуги:', error )
+    }
+  },
+  setPaymentFormat: async( store, paymentFormat, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        paymentFormat
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления формата оплаты:', error )
+    }
+  },
+  setPrice: async( store, price, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        price
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления цены:', error )
+    }
+  },
+  setFrom: async( store, from, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        from
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления значения "from":', error )
+    }
+  },
+  
+  setBefore: async( store, before, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        before
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления before:', error )
+    }
+  },
+  setDayWeekMonthYearList: async( store, dayWeekMonthYearList, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        dayWeekMonthYearList
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления списка:', error )
+    }
+  },
+  setNewServices: async( store, categoryIndex ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      const length = service.category[ categoryIndex ].services.length
+      service.category[ categoryIndex ].services[ length ] = {
+        id: uuidv1(),
+        title: `Услуга №${ length + 1 }`,
+        status: 'New',
+        documentStatus: 'New'
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка добавления новой услуги:', error )
+    }
+  },
+  setNewDirection: async( store ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      const length = service.category.length
+      service.category[ length ] = {
+        id: uuidv1(),
+        title: `Направление №${ length + 1 }`,
+        services: [
+          {
+            id: uuidv1(),
+            title: `Услуга №1`,
+            status: 'New',
+            documentStatus: 'New'
+          }
+        ],
+        status: 'New',
+        documentStatus: 'New'
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка добавления нового направления:', error )
+    }
+  },
+  setDeleteServices: async( store, categoryIndex, index ) => {
+    try {
+      const removeObjectByIndex = ( arr, index ) => {
+        if ( index >= 0 && index < arr.length ) {
+          arr.splice( index, 1 )
+        }
+        return arr
+      }
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services = removeObjectByIndex( service.category[ categoryIndex ].services, index )
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка удаления услуги:', error )
+    }
+  },
+  setDeleteCategory: async( store, index ) => {
+    try {
+      const removeObjectByIndex = ( arr, index ) => {
+        if ( index >= 0 && index < arr.length ) {
+          arr.splice( index, 1 )
+        }
+        return arr
+      }
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category = removeObjectByIndex( service.category, index )
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка удаления категории:', error )
+    }
+  },
+  setChangeStatusCategory: async( store, status, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = { ...service.category[ index ], status }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка изменения статуса категории:', error )
+    }
+  },
+  setChangeStatusServices: async( store, status, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        status
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка изменения статуса услуги:', error )
+    }
+  },
+  setChangeProgress: async( store, progress ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      service.progress = progress
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка изменения прогресса:', error )
+    }
+  },
+  setChangeStatusPassport: async( store, status ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service.passport ) {
+        service.passport = {}
+      }
+      service.passport.status = status
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка изменения статуса паспорта:', error )
+    }
+  },
+  
+  setClientFullName: async( store, clientFullName, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        clientFullName
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления полного имени клиента:', error )
+    }
+  },
+  setCommunication: async( store, communication, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        communication
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления коммуникации:', error )
+    }
+  },
+  setPhone: async( store, phone, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        phone
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления телефона:', error )
+    }
+  },
+  setChangeDocumentStatusCategory: async( store, documentStatus, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        documentStatus
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка изменения статуса документа категории:', error )
+    }
+  },
+  setChangeDocumentStatusServices: async( store, documentStatus, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ] = {
+        ...service.category[ categoryIndex ].services[ index ],
+        documentStatus
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка изменения статуса документа услуги:', error )
+    }
+  },
+  setServiceReviewsFiles: async( store, reviewsFiles, categoryIndex, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      if ( !service.category[ categoryIndex ].services[ index ].reviewsFiles ) {
+        service.category[ categoryIndex ].services[ index ].reviewsFiles = []
+      }
+      service.category[ categoryIndex ].services[ index ].reviewsFiles = [
+        ...service.category[ categoryIndex ].services[ index ].reviewsFiles,
+        ...reviewsFiles
+      ]
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления файлов отзывов услуги:', error )
+    }
+  },
+  setChangeFilesPassport: async( store, files ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service.passport ) {
+        service.passport = {}
+      }
+      service.passport.files = files
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка изменения файлов паспорта:', error )
+    }
+  },
+  setCertificatesFiles: async( store, certificatesFiles, index ) => {
+    try {
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      service.category[ index ] = {
+        ...service.category[ index ],
+        certificatesFiles
+      }
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка обновления файлов сертификатов:', error )
+    }
+  },
+  setServiceDeleteReviewsFiles: async( store, categoryIndex, index, indexFile ) => {
+    try {
+      const removeObjectByIndex = ( arr, index ) => {
+        if ( index >= 0 && index < arr.length ) {
+          arr.splice( index, 1 )
+        }
+        return arr
+      }
+      const service = await serviceStateInstance.getItem( 'service' ) || {}
+      if ( !service?.category ) {
+        service.category = []
+      }
+      if ( !service.category[ categoryIndex ] ) {
+        service.category[ categoryIndex ] = {}
+      }
+      if ( !service.category[ categoryIndex ]?.services ) {
+        service.category[ categoryIndex ].services = []
+      }
+      service.category[ categoryIndex ].services[ index ].reviewsFiles = removeObjectByIndex(
+        service.category[ categoryIndex ].services[ index ].reviewsFiles,
+        indexFile
+      )
+      await serviceStateInstance.setItem( 'service', service )
+      store.setState( { service } )
+    } catch ( error ) {
+      console.error( 'Ошибка удаления файлов отзывов услуги:', error )
+    }
+  },
+  
+  setService: async( store, newService ) => {
+    
+    try {
+      
+      const service = await serviceStateInstance.getItem( 'service' )
+      
+      const updatedService = {
+        
+        ...service,
+        ...newService
+        
+      }
+      
+      await serviceStateInstance.setItem( 'service', updatedService )
+      
+      store.setState( {
+        
+        service: updatedService
+        
+      } )
       
     } catch ( error ) {
       
-      console.error( 'Ошибка сети или сервера:', error )
+      console.error( 'Error setting service:', error )
       
     }
-    
-  },
-  
-  setDirection: ( store, direction, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = { ...service.category[ index ], direction }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setDirectionName: ( store, directionName, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = { ...service.category[ index ], directionName }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setDirectionWorkExperience: ( store, directionWorkExperience, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = {
-      ...service.category[ index ],
-      directionWorkExperience
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setEducation: ( store, education, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = { ...service.category[ index ], education }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setEducationCourseAuthor: ( store, educationCourseAuthor, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = {
-      ...service.category[ index ],
-      educationCourseAuthor
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setEducationOrganizationName: ( store, educationOrganizationName, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = {
-      ...service.category[ index ],
-      educationOrganizationName
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setEducationDuration: ( store, educationDuration, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = {
-      ...service.category[ index ],
-      educationDuration
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setEducationCourseName: ( store, educationCourseName, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = {
-      ...service.category[ index ],
-      educationCourseName
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setEducationCompletionDate: ( store, educationCompletionDate, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = {
-      ...service.category[ index ],
-      educationCompletionDate
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setTitle: ( store, title, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      title
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setServiceType: ( store, serviceType, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      serviceType
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setDeliveryFormat: ( store, deliveryFormat, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      deliveryFormat
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setDuration: ( store, duration, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      duration
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setMinuteHoursDays: ( store, minuteHoursDays, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      minuteHoursDays
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setMeaningService: ( store, meaningService, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      meaningService
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setServiceFiles: ( store, files, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      files
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setPaymentFormat: ( store, paymentFormat, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      paymentFormat
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setPrice: ( store, price, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      price
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setFrom: ( store, from, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      from
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setBefore: ( store, before, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      before
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setDayWeekMonthYearList: ( store, dayWeekMonthYearList, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      dayWeekMonthYearList
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setNewServices: ( store, categoryIndex ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    const length = category[ categoryIndex ].services.length
-    
-    service.category[ categoryIndex ].services[ length ] = {
-      id: v1(),
-      title: `Услуга №${ length + 1 }`,
-      status: 'New',
-      documentStatus: 'New'
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setNewDirection: ( store ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    const length = service.category.length
-    
-    service.category[ length ] = {
-      id: v1(),
-      title: `Направление №${ length + 1 }`,
-      services: [ {
-        id: v1(),
-        title: `Услуга №1`,
-        status: 'New',
-        documentStatus: 'New'
-      } ],
-      status: 'New',
-      documentStatus: 'New'
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setDeleteServices: ( store, categoryIndex, index ) => {
-    
-    function removeObjectByIndex( arr, index ) {
-      if ( index >= 0 && index < arr.length ) {
-        arr.splice( index, 1 )
-      }
-      return arr
-    }
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    let updatedService = removeObjectByIndex(
-      service.category[ categoryIndex ].services,
-      index
-    )
-    service.category[ categoryIndex ].services = updatedService
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setDeleteCategory: ( store, index ) => {
-    
-    function removeObjectByIndex( arr, index ) {
-      if ( index >= 0 && index < arr.length ) {
-        arr.splice( index, 1 )
-      }
-      return arr
-    }
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-
-    service.category = removeObjectByIndex( service.category, index )
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setChangeStatusCategory: ( store, status, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = { ...service.category[ index ], status }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setChangeStatusServices: ( store, status, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      status
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setChangeProgress: ( store, progress ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    service.progress = progress
-    
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setChangeStatusPassport: ( store, status ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    service.passport.status = status
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setClientFullName: ( store, clientFullName, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      clientFullName
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setCommunication: ( store, communication, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      communication
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setPhone: ( store, phone, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      phone
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setChangeDocumentStatusCategory: ( store, documentStatus, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = { ...service.category[ index ], documentStatus }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setChangeDocumentStatusServices: ( store, documentStatus, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ] = {
-      ...service.category[ categoryIndex ].services[ index ],
-      documentStatus
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setServiceReviewsFiles: ( store, reviewsFiles, categoryIndex, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    if ( !service.category[ categoryIndex ].services[ index ].reviewsFiles ) {
-      service.category[ categoryIndex ].services[ index ].reviewsFiles = []
-    }
-    
-    service.category[ categoryIndex ].services[ index ].reviewsFiles = [
-      ...service.category[ categoryIndex ].services[ index ].reviewsFiles,
-      ...reviewsFiles
-    ]
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setChangeFilesPassport: ( store, files ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    service.passport.files = files
-    
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setCertificatesFiles: ( store, certificatesFiles, index ) => {
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    
-    service.category[ index ] = {
-      ...service.category[ index ],
-      certificatesFiles
-    }
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-  },
-  setServiceDeleteReviewsFiles: ( store, categoryIndex, index, indexFile ) => {
-    
-    function removeObjectByIndex( arr, index ) {
-      if ( index >= 0 && index < arr.length ) {
-        arr.splice( index, 1 )
-      }
-      return arr
-    }
-    
-    const service = JSON.parse( localStorage.getItem( 'service' ) ) || {}
-    
-    if ( !service?.category ) {
-      service.category = []
-    }
-    const category = service.category
-    if ( !category?.[ categoryIndex ] ) {
-      category[ categoryIndex ] = {}
-    }
-    if ( !category?.[ categoryIndex ]?.services ) {
-      category[ categoryIndex ].services = []
-    }
-    
-    let updatedReviewsFiles = removeObjectByIndex(
-      service.category[ categoryIndex ].services[ index ].reviewsFiles,
-      indexFile
-    )
-    service.category[ categoryIndex ].services[ index ].reviewsFiles =
-      updatedReviewsFiles
-    localStorage.setItem( 'service', JSON.stringify( service ) )
-    store.setState( { service } )
-    
-    /*
-    
-    service.category[categoryIndex].services[index].reviewsFiles = [
-      ...service.category[categoryIndex].services[index].reviewsFiles,
-      ...reviewsFiles,
-    ]
-    localStorage.setItem("service", JSON.stringify(service))
-    store.setState({ service })*/
     
   }
   

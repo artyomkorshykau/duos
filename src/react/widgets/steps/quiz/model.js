@@ -186,6 +186,8 @@ export const useQuestionnaire = () => {
     
   } )
   
+  console.log(globalState.service.category)
+  
   const {
     mutate: mutateDocuments,
     isPending: isPendingDocuments
@@ -517,7 +519,8 @@ export const useQuestionnaire = () => {
     description,
     globalState,
     isSuccess,
-    refetchExpert
+    refetchExpert,
+    globalActions
     
   }
   

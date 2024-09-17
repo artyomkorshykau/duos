@@ -1,26 +1,28 @@
+import { serviceStateInstance } from '../../../localforage.config.js'
+
 const serviceState = {
   
   category: [
     
     {
       
-      title: "Направление №1",
-      status: "NotFinished",
-      documentStatus: "New",
+      title: 'Направление №1',
+      status: 'NotFinished',
+      documentStatus: 'New',
       services: [
         
         {
           
-          title: "Услуга №1",
-          status: "New",
-          documentStatus: "New",
+          title: 'Услуга №1',
+          status: 'New',
+          documentStatus: 'New'
           
         }
       
       ]
       
-    },
-    
+    }
+  
   ],
   passport: {
     
@@ -30,11 +32,11 @@ const serviceState = {
   
 }
 
-const getInitialServiceState = () => {
+const getInitialServiceState = async() => {
   
-  if ( typeof window !== 'undefined' ) {
+  try {
     
-    const storedServiceState = JSON.parse( localStorage.getItem( 'service' ) )
+    const storedServiceState = await serviceStateInstance.getItem( 'service' )
     
     if ( storedServiceState ) {
       
@@ -42,15 +44,18 @@ const getInitialServiceState = () => {
       
     } else {
       
-      localStorage.setItem( 'service', JSON.stringify( serviceState ) )
-      
+      await serviceStateInstance.setItem( 'service', serviceState )
       return serviceState
       
     }
     
+  } catch ( error ) {
+    
+    console.error( 'Error accessing service state:', error )
+    return serviceState
+    
   }
   
-  return serviceState
 }
 
 export default getInitialServiceState

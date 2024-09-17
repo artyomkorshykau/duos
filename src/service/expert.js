@@ -1,6 +1,12 @@
 import { BASE_URL } from '@/constants/urls.js'
 import { getHeaders } from '@/service/headers.js'
 import { postImage } from '@/service/image.js'
+import {
+  profileStateInstance,
+  publicationsStateInstance,
+  schoolStateInstance,
+  serviceStateInstance
+} from '../../localforage.config.js'
 
 const expert = {
   
@@ -28,7 +34,9 @@ const expert = {
   
   async sendExpertDataStep1( isTemp, email ) {
     
-    const profile = JSON.parse( localStorage.getItem( 'profile' ) )
+    const profile = await profileStateInstance.getItem( 'profile' )
+    
+    const birthDate = new Date( profile.birthDate ).toISOString().split( 'T' )[ 0 ]
     
     const body = {
       
@@ -36,9 +44,9 @@ const expert = {
       mid_name: profile.surName,
       last_name: profile.lastName,
       pseudonym: profile.nickName,
-      birthday: profile.birthDate.split( 'T' )[ 0 ],
-      tax_name: profile.taxName,
-      tax_inn: profile.taxIIN,
+      birthday: birthDate,
+      tax_name: profile.taxName || '',
+      tax_inn: profile.taxIIN || '',
       country_id: profile.country.id,
       city_id: profile.city.id,
       email: email,
@@ -49,6 +57,7 @@ const expert = {
     }
     
     try {
+      
       
       const response = await fetch( `${ BASE_URL }/expert/step1`, {
         method: 'POST',
@@ -77,7 +86,7 @@ const expert = {
   
   async sendExpertDataStep2( isTemp ) {
     
-    const service = JSON.parse( localStorage.getItem( 'service' ) )
+    const service = await serviceStateInstance.getItem( 'service' )
     
     const {
       
@@ -88,6 +97,8 @@ const expert = {
     
     const service_category_expert = await Promise.all(
       category.map( async( expert ) => {
+        
+        const educationCompletionDate = new Date( expert.educationCompletionDate ).toISOString().split( 'T' )[ 0 ]
         
         const service_category_id = serviceCategories.find( ( category ) => category.value === expert.direction )
         
@@ -125,7 +136,7 @@ const expert = {
           education_name: expert.educationCourseName,
           teacher_name: expert.educationCourseAuthor,
           education_days: expert.educationDuration,
-          education_date: expert.educationCompletionDate.split( 'T' )[ 0 ],
+          education_date: educationCompletionDate,
           services: servicesWithPhotos
           
         }
@@ -171,7 +182,7 @@ const expert = {
   async sendExpertDataStep3( isTemp ) {
     
     
-    const school = JSON.parse( localStorage.getItem( 'school' ) )
+    const school = await schoolStateInstance.getItem( 'school' )
     
     const body = {
       
@@ -214,13 +225,15 @@ const expert = {
       category,
       passport,
       serviceCategories
-    } = JSON.parse( localStorage.getItem( 'service' ) )
+    } = await serviceStateInstance.getItem( 'service' )
     
     try {
       
       const passportPhoto = await postImage( passport.files )
       
       const categoryEducationImages = await Promise.all( category.map( async( cat ) => {
+        
+        debugger
         
         const service_category = serviceCategories.find( ( category ) => category.value === cat.direction )
         
@@ -230,7 +243,7 @@ const expert = {
           
           return {
             
-            service_category_expert_id: service_category.id,
+            service_category_expert_id: service_category?.id,
             document_image_url: documentPhoto.image_url
             
           }
@@ -315,8 +328,6 @@ const expert = {
         
       }
       
-      console.log( 'Sending data to server...', body )
-      
       const response = await fetch( `${ BASE_URL }/expert/step4`, {
         method: 'POST', headers: getHeaders(), body: JSON.stringify( body )
       } )
@@ -336,7 +347,7 @@ const expert = {
   
   async sendExpertDataStep5( isTemp ) {
     
-    const publications = JSON.parse( localStorage.getItem( 'publications' ) )
+    const publications = await publicationsStateInstance.getItem( 'publications' )
     
     const photo = await postImage( publications.categories[ 0 ].photos[ 0 ] )
     

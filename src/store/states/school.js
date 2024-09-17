@@ -1,16 +1,18 @@
+import { schoolStateInstance } from '../../../localforage.config.js'
+
 const schoolState = {
   
   schoolName: '',
   courses: [ { id: 0, name: '' } ],
-  comment: '',
+  comment: ''
   
 }
 
-const getInitialSchoolState = () => {
+const getInitialSchoolState = async() => {
   
-  if ( typeof window !== 'undefined' ) {
+  try {
     
-    const storedSchoolState = JSON.parse( localStorage.getItem( 'school' ) )
+    const storedSchoolState = await schoolStateInstance.getItem( 'school' )
     
     if ( storedSchoolState ) {
       
@@ -18,15 +20,18 @@ const getInitialSchoolState = () => {
       
     } else {
       
-      localStorage.setItem( 'school', JSON.stringify( schoolState ) )
-      
+      await schoolStateInstance.setItem( 'school', schoolState )
       return schoolState
       
     }
     
+  } catch ( error ) {
+    
+    console.error( 'Error accessing school state:', error )
+    return schoolState
+    
   }
   
-  return schoolState
 }
 
 export default getInitialSchoolState

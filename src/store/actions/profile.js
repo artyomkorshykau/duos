@@ -200,7 +200,37 @@ const profileActions = {
     } catch ( error ) {
       console.error( 'Ошибка сети или сервера:', error )
     }
+  },
+  
+  setProfile: async( store, newProfile ) => {
+    
+    try {
+      
+      const profile = await profileStateInstance.getItem( 'profile' )
+      
+      const updatedProfile = {
+        
+        ...profile,
+        ...newProfile
+        
+      }
+      
+      await profileStateInstance.setItem( 'profile', updatedProfile )
+      
+      store.setState( {
+        
+        profile: updatedProfile
+        
+      } )
+      
+    } catch ( error ) {
+      
+      console.error( 'Error setting profile:', error )
+      
+    }
+    
   }
+  
 }
 
 export default profileActions

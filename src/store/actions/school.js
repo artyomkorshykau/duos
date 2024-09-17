@@ -1,66 +1,111 @@
+import { schoolStateInstance } from '../../../localforage.config.js'
+
 const schoolActions = {
-
-  setSchoolName: (store, schoolName) => {
-    
-    const school = JSON.parse( localStorage.getItem( 'school' ) )
-    
-    localStorage.setItem( 'school', JSON.stringify( { ...school, schoolName } ) )
-    store.setState({ school: { ...store.state.school, schoolName } })
-
+  
+  setSchoolName: async( store, schoolName ) => {
+    try {
+      const school = await schoolStateInstance.getItem( 'school' ) || {}
+      const updatedSchool = { ...school, schoolName }
+      
+      await schoolStateInstance.setItem( 'school', updatedSchool )
+      store.setState( { school: { ...store.state.school, schoolName } } )
+    } catch ( error ) {
+      console.error( 'Error setting school name:', error )
+    }
   },
-
-  setComment: (store, comment) => {
-    
-    const school = JSON.parse( localStorage.getItem( 'school' ) )
-    
-    localStorage.setItem( 'school', JSON.stringify( { ...school, comment } ) )
-    store.setState({ school: { ...store.state.school, comment } })
-
+  
+  setComment: async( store, comment ) => {
+    try {
+      const school = await schoolStateInstance.getItem( 'school' ) || {}
+      const updatedSchool = { ...school, comment }
+      
+      await schoolStateInstance.setItem( 'school', updatedSchool )
+      store.setState( { school: { ...store.state.school, comment } } )
+    } catch ( error ) {
+      console.error( 'Error setting comment:', error )
+    }
   },
-
-  setCourseName: (store, index, title) => {
-    
-    const school = JSON.parse( localStorage.getItem( 'school' ) )
-    
-    const updatedCourses = store.state.school.courses.map((course, i) =>
-
-      i === index ? { ...course, name: title } : course
-
-    )
-    
-    localStorage.setItem( 'school', JSON.stringify( { ...school, courses: updatedCourses } ) )
-    store.setState({ school: { ...store.state.school, courses: updatedCourses } })
-
+  
+  setCourseName: async( store, index, title ) => {
+    try {
+      const school = await schoolStateInstance.getItem( 'school' ) || {}
+      const updatedCourses = store.state.school.courses.map( ( course, i ) =>
+        i === index ? { ...course, name: title } : course
+      )
+      
+      const updatedSchool = { ...school, courses: updatedCourses }
+      await schoolStateInstance.setItem( 'school', updatedSchool )
+      
+      store.setState( {
+        school: {
+          ...store.state.school,
+          courses: updatedCourses
+        }
+      } )
+    } catch ( error ) {
+      console.error( 'Error setting course name:', error )
+    }
   },
-
-  addNewCourse: ( store ) => {
-    
-    const school = JSON.parse( localStorage.getItem( 'school' ) )
-    const index = store.state.school.courses.length
-    
-    localStorage.setItem( 'school', JSON.stringify( { ...school, courses: [...store.state.school.courses, { id: index, name: '' } ] } ) )
-    store.setState({ school: { ...store.state.school, courses: [...store.state.school.courses, { id: index, name: '' } ] } })
-
+  
+  addNewCourse: async( store ) => {
+    try {
+      const school = await schoolStateInstance.getItem( 'school' ) || {}
+      const index = store.state.school.courses.length
+      
+      const updatedSchool = {
+        ...school,
+        courses: [ ...store.state.school.courses, { id: index, name: '' } ]
+      }
+      
+      await schoolStateInstance.setItem( 'school', updatedSchool )
+      
+      store.setState( {
+        school: {
+          ...store.state.school,
+          courses: [ ...store.state.school.courses, { id: index, name: '' } ]
+        }
+      } )
+    } catch ( error ) {
+      console.error( 'Error adding new course:', error )
+    }
   },
-
-  deleteCourse: ( store, index ) => {
-    
-    const school = JSON.parse( localStorage.getItem( 'school' ) )
-    const updateCourses = store.state.school.courses.filter( ( course, i ) => i !== index )
-    
-    localStorage.setItem( 'school', JSON.stringify( { ...school, courses: updateCourses } ) )
-    store.setState({ school: { ...store.state.school, courses: updateCourses } })
-
+  
+  deleteCourse: async( store, index ) => {
+    try {
+      const school = await schoolStateInstance.getItem( 'school' ) || {}
+      const updatedCourses = store.state.school.courses.filter( ( course, i ) => i !== index )
+      
+      const updatedSchool = { ...school, courses: updatedCourses }
+      await schoolStateInstance.setItem( 'school', updatedSchool )
+      
+      store.setState( {
+        school: {
+          ...store.state.school,
+          courses: updatedCourses
+        }
+      } )
+    } catch ( error ) {
+      console.error( 'Error deleting course:', error )
+    }
   },
-
-  setSchoolProgress(store, progress) {
-
-    store.setState({ school: { ...store.state.school, progress } })
-
+  
+  setSchoolProgress: ( store, progress ) => {
+    store.setState( { school: { ...store.state.school, progress } } )
   },
-
+  
+  setSchool: async( store, newSchool ) => {
+    try {
+      const school = await schoolStateInstance.getItem( 'school' ) || {}
+      
+      const updatedSchool = { ...school, ...newSchool }
+      
+      await schoolStateInstance.setItem( 'school', updatedSchool )
+      
+      store.setState( { school: updatedSchool } )
+    } catch ( error ) {
+      console.error( 'Error setting school:', error )
+    }
+  }
 }
 
 export default schoolActions
-
-

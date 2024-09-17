@@ -1,8 +1,8 @@
 import useGlobal from '@/store'
 import AccordionParent from '@/react/widgets/accordion.parent'
-import { useEffect, useState } from 'react';
-import Certificate from '../certificate/ui';
-import AccordionDocumentChildren from '../accordion.document.children';
+import { useEffect, useState } from 'react'
+import Certificate from '../certificate/ui'
+import AccordionDocumentChildren from '../accordion.document.children'
 import s from '../document.module.scss'
 
 const AccordionDocument = ({
@@ -94,7 +94,7 @@ const AccordionDocument = ({
       index = { index }
       isDelete = { false }
       content = { () => content(index) }
-      title = { category.title }
+      title = { category.direction }
       description = "Загрузите ниже все необходимые графические файлы по этому направлению"
       type = "Направление"
       addNewServices = { false }

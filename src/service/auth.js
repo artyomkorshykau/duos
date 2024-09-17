@@ -1,6 +1,11 @@
 import { BASE_URL } from '@/constants/urls.js'
 import { getHeaders } from '@/service/headers.js'
 import { extractNumbers } from '@/scripts/helpers/extract.numbers.js'
+import {
+  profileStateInstance,
+  schoolStateInstance,
+  serviceStateInstance
+} from '../../localforage.config.js'
 
 const auth = {
   
@@ -65,7 +70,10 @@ const auth = {
   
   async logout() {
     
-    localStorage.clear()
+    await profileStateInstance.clear();
+    await serviceStateInstance.clear();
+    await schoolStateInstance.clear();
+    
     document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure'
     
   },

@@ -1,78 +1,82 @@
 import expert from '@/service/expert.js'
+import { publicationsStateInstance } from '../../../localforage.config.js'
 
 const publicationsActions = {
   
-  setProfilePhoto: ( store, files ) => {
-    
-    const publications = JSON.parse( localStorage.getItem( 'publications' ) ) || {}
-    
-    if ( !publications.categories[ 0 ].photos ) {
+  setProfilePhoto: async( store, files ) => {
+    try {
+      const publications = await publicationsStateInstance.getItem( 'publications' ) || {}
       
-      publications.categories[ 0 ].photos = []
+      if ( !publications.categories[ 0 ].photos ) {
+        publications.categories[ 0 ].photos = []
+      }
       
+      publications.categories[ 0 ].photos = [ ...publications.categories[ 0 ].photos, ...files ]
+      await publicationsStateInstance.setItem( 'publications', publications )
+      
+      store.setState( { publications } )
+    } catch ( error ) {
+      console.error( 'Error setting profile photo:', error )
     }
-    
-    publications.categories[ 0 ].photos = [ ...publications.categories[ 0 ].photos, ...files ]
-    localStorage.setItem( 'publications', JSON.stringify( publications ) )
-    store.setState( { publications } )
-    
   },
   
-  deleteProfilePhoto: ( store, photoIndex ) => {
-    
-    const publications = JSON.parse( localStorage.getItem( 'publications' ) ) || {}
-    
-    publications.categories[ 0 ].photos.splice( photoIndex, 1 )
-    localStorage.setItem( 'publications', JSON.stringify( publications ) )
-    store.setState( { publications } )
-    
+  deleteProfilePhoto: async( store, photoIndex ) => {
+    try {
+      const publications = await publicationsStateInstance.getItem( 'publications' ) || {}
+      
+      publications.categories[ 0 ].photos.splice( photoIndex, 1 )
+      await publicationsStateInstance.setItem( 'publications', publications )
+      
+      store.setState( { publications } )
+    } catch ( error ) {
+      console.error( 'Error deleting profile photo:', error )
+    }
   },
   
-  setAboutYourselfInfo: ( store, index, text ) => {
-    
-    const publications = JSON.parse( localStorage.getItem( 'publications' ) ) || {}
-    
-    publications.categories[ 0 ].profileInfo[ index ].text = text
-    localStorage.setItem( 'publications', JSON.stringify( publications ) )
-    store.setState( { publications } )
-    
+  setAboutYourselfInfo: async( store, index, text ) => {
+    try {
+      const publications = await publicationsStateInstance.getItem( 'publications' ) || {}
+      
+      publications.categories[ 0 ].profileInfo[ index ].text = text
+      await publicationsStateInstance.setItem( 'publications', publications )
+      
+      store.setState( { publications } )
+    } catch ( error ) {
+      console.error( 'Error setting about yourself info:', error )
+    }
   },
   
   addNewPublication: async( store, newArticle ) => {
-    
-    await expert.createArticle( newArticle )
-    
+    try {
+      await expert.createArticle( newArticle )
+    } catch ( error ) {
+      console.error( 'Error adding new publication:', error )
+    }
   },
   
   getPublication: async( store, expert_id ) => {
-    
-    const { articles } = await expert.articleList( expert_id )
-    
-    const hasArticles = articles.length >= 3
-    
-    store.setState( {
-        
+    try {
+      const { articles } = await expert.articleList( expert_id )
+      
+      const hasArticles = articles.length >= 3
+      
+      store.setState( {
         publications: {
-          
           ...store.state.publications,
           categories: store.state.publications.categories.map( category =>
             category.id === 1
-              
               ? {
-                
                 ...category,
                 publicationsCards: articles,
                 documentStatus: hasArticles ? 'Filled' : category.documentStatus
-                
               }
               : category
           )
-          
         }
-        
-      }
-    )
-    
+      } )
+    } catch ( error ) {
+      console.error( 'Error getting publications:', error )
+    }
   },
   
   deletePublication: async( store, article_id ) => {
@@ -101,34 +105,48 @@ const publicationsActions = {
         }
       } )
     } catch ( error ) {
-      console.error( 'Ошибка при удалении статьи:', error )
+      console.error( 'Error deleting publication:', error )
     }
   },
   
-  
-  toggleDocumentStatus: ( store, index, newStatus ) => {
-    
-    const publications = JSON.parse( localStorage.getItem( 'publications' ) ) || {}
-    
-    publications.categories[ index ].documentStatus = newStatus
-    
-    localStorage.setItem( 'publications', JSON.stringify( publications ) )
-    store.setState( { publications } )
-    
+  toggleDocumentStatus: async( store, index, newStatus ) => {
+    try {
+      const publications = await publicationsStateInstance.getItem( 'publications' ) || {}
+      
+      publications.categories[ index ].documentStatus = newStatus
+      await publicationsStateInstance.setItem( 'publications', publications )
+      
+      store.setState( { publications } )
+    } catch ( error ) {
+      console.error( 'Error toggling document status:', error )
+    }
   },
   
-  setPublicationsProgress( store, progress ) {
-    
-    const publications = JSON.parse( localStorage.getItem( 'publications' ) )
-    
-    localStorage.setItem( 'publications', JSON.stringify( {
-      ...publications,
-      progress
-    } ) )
-    store.setState( { profile: { ...store.state.publications, progress } } )
-    
-  }
+  setPublicationsProgress: async( store, progress ) => {
+    try {
+      const publications = await publicationsStateInstance.getItem( 'publications' ) || {}
+      
+      const updatedPublications = { ...publications, progress }
+      await publicationsStateInstance.setItem( 'publications', updatedPublications )
+      
+      store.setState( { publications: updatedPublications } )
+    } catch ( error ) {
+      console.error( 'Error setting publications progress:', error )
+    }
+  },
   
+  setPublications: async( store, newPublications ) => {
+    try {
+      const publications = await publicationsStateInstance.getItem( 'publications' ) || {}
+      
+      const updatedPublications = { ...publications, ...newPublications }
+      
+      await publicationsStateInstance.setItem( 'publications', updatedPublications )
+      store.setState( { publications: updatedPublications } )
+    } catch ( error ) {
+      console.error( 'Error setting publications:', error )
+    }
+  }
 }
 
 export default publicationsActions

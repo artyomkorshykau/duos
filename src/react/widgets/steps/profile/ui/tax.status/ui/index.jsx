@@ -6,27 +6,11 @@ import { taxStatusesList } from '@/constants/profile'
 import Select from '@/react/components/forms/select'
 import WarningIcon from '@/react/components/icons/warning'
 import s from '../../profile.module.scss'
-import { useEffect, useState } from 'react'
 import TaxInfoPopup from '@/react/popups/tax.info.popup'
 
 const TaxStatus = ( { disabled }) => {
 
   const [ globalState, globalActions ] = useGlobal();
-
-  //TODO delete this when api will ready
-  const [ isLoaded, setIsLoaded ] = useState( false );
-
-  useEffect( () => {
-
-    setIsLoaded( true );
-
-  }, [] );
-
-  if ( !isLoaded ) {
-
-    return <div>Loading...</div>;
-
-  }
 
   return (
 
