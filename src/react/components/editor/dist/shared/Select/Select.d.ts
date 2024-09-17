@@ -3,6 +3,7 @@ export type Option<Value> = {
     id: number | string;
     label: string;
     value: Value;
+    isDefault?: boolean;
 };
 type SelectProps<OptionValue> = {
     options: Option<OptionValue>[];

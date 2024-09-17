@@ -13,10 +13,12 @@ import profileActions from '@/store/actions/profile'
 import userActions from '@/store/actions/user'
 import userData from '@/store/states/user.js'
 import profileTabs from '@/store/states/profile.tabs.js'
-import constructor from '@/store/states/constructor.js'
+import getInitialConstructorState from '@/store/states/constructor.js'
 import tags from '@/store/states/tags.js'
 import tagsActions from '@/store/actions/tags.js'
 import constructorActions from '@/store/actions/constructor.js'
+import popups from '@/store/states/popups.js'
+import popupsActions from '@/store/actions/popups.js'
 
 const initialState = {
   
@@ -30,8 +32,9 @@ const initialState = {
   user: userData,
   data: dataState,
   profileTabs: profileTabs,
-  constructor: constructor,
-  tags: tags
+  constructor: getInitialConstructorState(),
+  tags: tags,
+  popups: popups
   
 }
 
@@ -46,7 +49,8 @@ const actions = {
   info: infoActions,
   user: userActions,
   tags: tagsActions,
-  constructor: constructorActions
+  constructor: constructorActions,
+  popups: popupsActions
   
 }
 

@@ -64,7 +64,7 @@ const AuthMenu = ( {
     }
     
     //create
-    if ( globalState.user.verify_status === 'waiting' ) {
+    if ( globalState.user.verify_status === 'waiting' ||  !globalState.user?.verify_status ) {
       
       return (
         

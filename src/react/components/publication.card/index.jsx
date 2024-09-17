@@ -4,8 +4,6 @@ import DefaultButton from '@/react/components/buttons/default.button'
 import Status from '@/react/components/status'
 import Cross from '@/react/components/icons/cross'
 import useGlobal from '@/store/index.js'
-import DeletePopup from '@/react/popups/delete.popup/index.jsx'
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 const PublicationCard = ( props ) => {
@@ -22,7 +20,6 @@ const PublicationCard = ( props ) => {
   } = props
   
   const [ globalState, globalActions ] = useGlobal()
-  const [ isDeletePopUp, setIsDeletePopUp ] = useState( false )
   const { push } = useRouter()
   
   const handleOpenArticle = () => {
@@ -39,12 +36,12 @@ const PublicationCard = ( props ) => {
     
     return (
       
-      <div className={ `${ s.card }` }>
+      <div className = { `${ s.card }` }>
         
         { photo
           
-          ? <img src={ photo } alt={ '' }/>
-          : <div className={ `${ s.card__placeholder }` }>
+          ? <img src = { photo } alt={ '' }/>
+          : <div className = { `${ s.card__placeholder }` }>
             
             <PlaceholderImage/>
           
@@ -52,30 +49,34 @@ const PublicationCard = ( props ) => {
           
         }
         
-        <div className={ `${ s.card__content }` }>
+        <div className = { `${ s.card__content }` }>
           
-          <div className={ `${ s.card__content__status }` }>
+          <div className = { `${ s.card__content__status }` }>
             
-            <Status status={ status }/>
+            <Status status = { status }/>
             
             <DefaultButton
               
-              name="Удалить"
-              type="any"
-              className={ `${ s.card__content__status__button }` }
-              action={ () => setIsDeletePopUp( true ) }
+              name = "Удалить"
+              type = "any"
+              className = { `${ s.card__content__status__button }` }
+              action = { () => {
+                
+                globalActions.popups.openDeletePublicationsPopup( articleID )
+                
+              } }
             
             />
           
           </div>
           
-          <h4 className={ `text-20 ${ s.card__content__title }` }>
+          <h4 className = { `text-20 ${ s.card__content__title }` }>
             
             { title }
           
           </h4>
           
-          <p className={ `text-13 ${ s.card__content__description }` }>
+          <p className = { `text-13 ${ s.card__content__description }` }>
             
             { description }
           
@@ -83,24 +84,14 @@ const PublicationCard = ( props ) => {
           
           <DefaultButton
             
-            name={ 'Открыть' }
+            name = { 'Открыть' }
             gray
-            className={ `${ s.card__content__button }` }
-            action={ handleOpenArticle }
+            className = { `${ s.card__content__button }` }
+            action = { handleOpenArticle }
           
           />
         
         </div>
-        
-        <DeletePopup
-          
-          isOpened={ isDeletePopUp }
-          closePopup={ () => setIsDeletePopUp( false ) }
-          title={ title }
-          type={ 'Статью:' }
-          action={ () => globalActions.publications.deletePublication( articleID ) }
-        
-        />
       
       </div>
     
@@ -110,20 +101,20 @@ const PublicationCard = ( props ) => {
   
   return (
     
-    <div className={ `${ s.create_card }` }>
+    <div className = { `${ s.create_card }` }>
       
       <DefaultButton
         
         gray
-        name=""
-        className={ `${ s.create_card__add_button }` }
-        icon={ <Cross fill={ '#18009E' }/> }
-        positionIcon="right"
-        action={ addNewPublication }
+        name = ""
+        className = { `${ s.create_card__add_button }` }
+        icon = { <Cross fill={ '#18009E' }/> }
+        positionIcon = "right"
+        action = { addNewPublication }
       
       />
       
-      <p className={ `text-13 ${ s.create_card__title }` }>
+      <p className = { `text-13 ${ s.create_card__title }` }>
         
         Нажмите, чтобы создать публикацию
       
