@@ -23,7 +23,7 @@ export default function ConstructorPage() {
   const [ tags, setTags ] = useState( null )
   
   const [ selectDirection, setSelectDirection ] = useState( globalState.constructor.currentArticle?.category || null )
-  const [ image, setImage ] = useState( null )
+  const [ image, setImage ] = useState(  globalState.constructor.currentArticle?.image_url || null )
   const [ selectTags, setSelectTags ] = useState( [] )
   const [ content, setContent ] = useState( [
     {
