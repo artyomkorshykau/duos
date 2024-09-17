@@ -11,69 +11,65 @@ const ProgressBar = ( {
                         cardCount = 0,
                         type
                       } ) => {
-
+  
   const [ progress, setProgress ] = useState( null )
-
+  
   const maxPhotos = 5
   const maxTextareas = 4
   const maxTextareaLength = 320
   const maxCards = 5
   
   useEffect( () => {
-
+    
     calculateProgress()
-
+    
   }, [ photos, textareas, cardCount ] )
-
+  
   const calculateProgress = () => {
-
+    
     if ( type === 'publications' ) {
-
+      
       let cardProgress = ( cardCount / maxCards ) * 100
       setProgress( Math.min( cardProgress, 97 ) )
-
+      
     } else {
-      let photoCount = photos.length;
-      let totalSymbols = 0;
+      let photoCount = photos?.length
+      let totalSymbols = 0
       
-      textareas.forEach((textarea) => {
-        if (textarea.length > 0) {
-          totalSymbols += textarea.length;
+      textareas.forEach( ( textarea ) => {
+        if ( textarea.length > 0 ) {
+          totalSymbols += textarea.length
         }
-      });
+      } )
       
-      // Update photoProgress to give 97% if at least 1 photo is uploaded
-      let photoProgress = photoCount > 0 ? 97 : 0;
+      let photoProgress = photoCount > 0 ? 97 : 0
       
-      // Scale the symbolProgress relative to the total possible length
       let symbolProgress = Math.min(
-        totalSymbols / (maxTextareas * maxTextareaLength) * 97,
+        totalSymbols / ( maxTextareas * maxTextareaLength ) * 97,
         97
-      );
+      )
       
-      // Only set progress to 97 if both conditions are fulfilled
-      setProgress(Math.min(photoProgress, symbolProgress));
+      setProgress( Math.min( photoProgress, symbolProgress ) )
     }
-
+    
   }
-
+  
   const getMessage = () => {
-
+    
     if ( progress === 0 ) {
-
+      
       return 'Начните заполнять поля'
-
-    } else if ( progress < 30 && progress > 0) {
-
+      
+    } else if ( progress < 30 && progress > 0 ) {
+      
       return 'Хотелось бы узнать больше...'
-
-    }
-    else if ( progress > 30  ) {
-
+      
+    } else if ( progress > 30 ) {
+      
       return 'У вас отлично получается, продолжайте!'
-
+      
     }
-
+    
   }
   
   if ( type === 'publications' && !cardCount ) {
@@ -83,39 +79,39 @@ const ProgressBar = ( {
   }
   
   return (
-
+    
     <div>
-
+      
       <div className={ s.progressContainer }>
-
+        
         <div className={ s.progressContainer__progressBar }
              style={ { width: `${ progress }%` } }></div>
-
+        
         <div style={ { left: `${ progress }%` } }
-             className = {`${s.progressContainer__progressIndicator}`}>
-
+             className={ `${ s.progressContainer__progressIndicator }` }>
+          
           { progress <= 30
-
+            
             ? <ProgressBarIndicatorPoor/>
             : <ProgressBarIndicatorInProgress/>
-
+            
           }
-
+        
         </div>
-
-
+      
+      
       </div>
-
+      
       <div className={ `text-13 ${ s.message }` }>
-
+        
         { getMessage() }
-
+      
       </div>
-
+    
     </div>
-
+  
   )
-
+  
 }
 
 

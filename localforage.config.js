@@ -28,4 +28,11 @@ const publicationsStateInstance = localforage.createInstance( {
   
 } )
 
-export { profileStateInstance, serviceStateInstance, schoolStateInstance, publicationsStateInstance }
+const constructorStateInstance = localforage.createInstance( {
+  
+  name: 'myConstructorState',
+  storeName: 'constructorState'
+  
+} )
+
+export { profileStateInstance, serviceStateInstance, schoolStateInstance, publicationsStateInstance, constructorStateInstance }

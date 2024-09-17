@@ -18,7 +18,7 @@ const Tabs = ( props ) => {
     
     <div className={ `${ s.header__tabs } ${ className }` }>
       
-      { tabs.map( ( tab ) => {
+      { tabs?.map( ( tab ) => {
         
         return (
           

@@ -1,3 +1,5 @@
+import { publicationsStateInstance } from '../../../localforage.config.js'
+
 const publicationsState = {
   
   categories: [
@@ -74,11 +76,11 @@ const publicationsState = {
   
 }
 
-const getInitialPublicationsState = () => {
+const getInitialPublicationsState = async() => {
   
-  if ( typeof window !== 'undefined' ) {
+  try {
     
-    const storedPublicationsState = JSON.parse( localStorage.getItem( 'publications' ) )
+    const storedPublicationsState = await publicationsStateInstance.getItem( 'publications' )
     
     if ( storedPublicationsState ) {
       
@@ -86,15 +88,17 @@ const getInitialPublicationsState = () => {
       
     } else {
       
-      localStorage.setItem( 'publications', JSON.stringify( publicationsState ) )
-      
+      await publicationsStateInstance.setItem( 'publications', publicationsState )
       return publicationsState
       
     }
     
+  } catch ( error ) {
+    
+    console.error( 'Error accessing publicationsState state:', error )
+    return publicationsState
+    
   }
-  
-  return publicationsState
   
 }
 

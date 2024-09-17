@@ -233,8 +233,6 @@ const expert = {
       
       const categoryEducationImages = await Promise.all( category.map( async( cat ) => {
         
-        debugger
-        
         const service_category = serviceCategories.find( ( category ) => category.value === cat.direction )
         
         try {

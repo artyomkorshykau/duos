@@ -3,6 +3,7 @@ import { getHeaders } from '@/service/headers.js'
 import { extractNumbers } from '@/scripts/helpers/extract.numbers.js'
 import {
   profileStateInstance,
+  publicationsStateInstance,
   schoolStateInstance,
   serviceStateInstance
 } from '../../localforage.config.js'
@@ -70,9 +71,10 @@ const auth = {
   
   async logout() {
     
-    await profileStateInstance.clear();
-    await serviceStateInstance.clear();
-    await schoolStateInstance.clear();
+    await profileStateInstance.clear()
+    await serviceStateInstance.clear()
+    await schoolStateInstance.clear()
+    await publicationsStateInstance.clear()
     
     document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure'
     

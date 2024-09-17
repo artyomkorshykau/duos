@@ -29,6 +29,7 @@ export default function QuestionnairePage() {
     
   } = useQuestionnaire()
   
+  console.log(globalState.publications)
   
   initializeState()
   
@@ -98,7 +99,7 @@ export default function QuestionnairePage() {
           
           isOpened = { globalState.popups.steps.deletePublication }
           closePopup = { () => globalActions.popups.openDeletePublicationsPopup() }
-          title = { globalState.publications.categories[ 1 ].publicationsCards.find( article => article.id === globalState.popups.steps.deletePublicationID )?.title }
+          title = { globalState.publications?.categories?.[ 1 ].publicationsCards?.find( article => article.id === globalState.popups.steps.deletePublicationID )?.title }
           type = { 'Статью: ' }
           action = { () => {
             

@@ -116,7 +116,6 @@ export default function ConstructorPage() {
       tags: selectTags
       
     }
-    debugger
     
     if ( globalState.constructor.currentArticle ) {
       

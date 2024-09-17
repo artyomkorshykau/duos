@@ -4,6 +4,7 @@ import useGlobal from '@/store/index.js'
 import getInitialServiceState from '@/store/states/service.js'
 import getInitialSchoolState from '@/store/states/school.js'
 import getInitialPublicationsState from '@/store/states/publications.js'
+import getInitialConstructorState from '@/store/states/constructor.js'
 
 export const initializeState = () => {
   
@@ -24,6 +25,9 @@ export const initializeState = () => {
       
       const publicationsState = await getInitialPublicationsState()
       globalActions.publications.setPublications( publicationsState )
+      
+      const constructorState = await getInitialConstructorState()
+      globalActions.constructor.setConstructor( constructorState )
       
     }
     

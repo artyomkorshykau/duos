@@ -1,3 +1,5 @@
+import { constructorStateInstance } from '../../../localforage.config.js'
+
 const constructor = {
   
   tabs: [
@@ -13,27 +15,30 @@ const constructor = {
 }
 
 
-const getInitialConstructorState = () => {
+const getInitialConstructorState = async() => {
   
-  if (typeof window !== "undefined") {
+  try {
     
-    const storedConstructorState = JSON.parse(localStorage.getItem("constructor"))
+    const storedConstructorState = await constructorStateInstance.getItem( 'constructor' )
     
-    if (storedConstructorState) {
+    if ( storedConstructorState ) {
       
       return storedConstructorState
       
     } else {
       
-      localStorage.setItem("constructor", JSON.stringify(constructor))
-      
+      await constructorStateInstance.setItem( 'constructor', constructor )
       return constructor
       
     }
     
+  } catch ( error ) {
+    
+    console.error( 'Error accessing constructor state:', error )
+    return constructor
+    
   }
   
-  return constructor
 }
 
 export default getInitialConstructorState

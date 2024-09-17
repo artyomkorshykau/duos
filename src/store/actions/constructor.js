@@ -1,61 +1,69 @@
+import { constructorStateInstance } from '../../../localforage.config.js'
+
 const constructorActions = {
   
-  setPublicationStatus( store, status ) {
-    
+  setPublicationStatus: ( store, status ) => {
+    // Update only the status in the constructor state
     store.setState( { constructor: { ...store.state.constructor, status } } )
-    
   },
   
-  setCurrentArticle( store, currentArticle ) {
-    
-    const constructor = JSON.parse( localStorage.getItem( 'constructor' ) )
-    
-    localStorage.setItem( 'constructor', JSON.stringify( {
+  setCurrentArticle: async( store, currentArticle ) => {
+    try {
+      const constructor = await constructorStateInstance.getItem( 'constructor' ) || {}
       
-      ...constructor,
-      currentArticle
+      const updatedConstructor = {
+        ...constructor,
+        currentArticle
+      }
       
-    } ) )
-    
-    store.setState( {
-        
+      await constructorStateInstance.setItem( 'constructor', updatedConstructor )
+      
+      store.setState( {
         constructor: {
-          
           ...store.state.constructor,
           currentArticle
-          
         }
-        
-      }
-    )
-    
+      } )
+    } catch ( error ) {
+      console.error( 'Error setting current article:', error )
+    }
   },
-  removeCurrentArticle( store ) {
-    
-    const constructor = JSON.parse( localStorage.getItem( 'constructor' ) )
-    
-    localStorage.setItem( 'constructor', JSON.stringify( {
+  
+  removeCurrentArticle: async( store ) => {
+    try {
+      const constructor = await constructorStateInstance.getItem( 'constructor' ) || {}
       
-      ...constructor,
-      currentArticle: null
+      const updatedConstructor = {
+        ...constructor,
+        currentArticle: null
+      }
       
-    } ) )
-    
-    store.setState( {
-        
+      await constructorStateInstance.setItem( 'constructor', updatedConstructor )
+      
+      store.setState( {
         constructor: {
-          
           ...store.state.constructor,
           currentArticle: null
-          
         }
-        
-      }
-    )
-    
+      } )
+    } catch ( error ) {
+      console.error( 'Error removing current article:', error )
+    }
+  },
+  
+  setConstructor: async( store, newConstructor ) => {
+    try {
+      const constructor = await constructorStateInstance.getItem( 'constructor' ) || {}
+      
+      const updatedConstructor = { ...constructor, ...newConstructor }
+      
+      await constructorStateInstance.setItem( 'constructor', updatedConstructor )
+      
+      store.setState( { constructor: updatedConstructor } )
+    } catch ( error ) {
+      console.error( 'Error setting constructor:', error )
+    }
   }
-  
-  
 }
 
 export default constructorActions
