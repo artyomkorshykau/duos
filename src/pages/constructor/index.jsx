@@ -23,7 +23,7 @@ export default function ConstructorPage() {
   const [ tags, setTags ] = useState( null )
   
   const [ selectDirection, setSelectDirection ] = useState( globalState.constructor.currentArticle?.category || null )
-  const [ image, setImage ] = useState( null )
+  const [ image, setImage ] = useState( globalState.constructor.currentArticle?.image_url || null )
   const [ selectTags, setSelectTags ] = useState( [] )
   const [ content, setContent ] = useState( [
     {
@@ -55,13 +55,13 @@ export default function ConstructorPage() {
       
       back()
       globalActions.constructor.removeCurrentArticle()
-     
+      
       
     },
     onError: ( error ) => {
       
-        const parsedError = JSON.parse( error.message )
-        alert( `Ошибка при создании статьи: ${JSON.stringify(parsedError.errors )}`, )
+      const parsedError = JSON.parse( error.message )
+      alert( `Ошибка при создании статьи: ${ JSON.stringify( parsedError.errors ) }` )
       
     }
     
@@ -70,18 +70,21 @@ export default function ConstructorPage() {
   const { mutate: mutateEditPublication } = useMutation( {
     
     mutationKey: [ 'edit-article' ],
-    mutationFn: ( { id, newArticle } ) => expert.editArticleById( id,newArticle ),
+    mutationFn: ( {
+                    id,
+                    newArticle
+                  } ) => expert.editArticleById( id, newArticle ),
     onSuccess: () => {
       
       back()
       globalActions.constructor.removeCurrentArticle()
-     
+      
       
     },
     onError: ( error ) => {
       
       const parsedError = JSON.parse( error.message )
-      alert( `Ошибка при создании статьи: ${JSON.stringify(parsedError.errors )}`, )
+      alert( `Ошибка при создании статьи: ${ JSON.stringify( parsedError.errors ) }` )
       
     }
     
@@ -124,7 +127,7 @@ export default function ConstructorPage() {
         id: globalState.constructor.currentArticle.id,
         newArticle
         
-      })
+      } )
       
     } else {
       

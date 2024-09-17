@@ -679,14 +679,14 @@ p {
     justify-content: center;
     position: relative;
     width: 100%;
-    max-height: 270px;
+    max-height: 270px
 }
 
 ._image_1hh4h_1 {
     width: max-content;
+    max-height: 270px;
     object-fit: contain;
     border-radius: 24px;
-    height: 270px;
 }
 
 ._actions_1hh4h_15 {
@@ -998,7 +998,7 @@ p {
     box-shadow: 0 20px 15px #15009d0d;
     padding: 16px;
     border-radius: 0 0 32px 32px;
-    z-index: 15;
+    z-index: 2;
     color: var(--black-500)
 }
 
