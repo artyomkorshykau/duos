@@ -7,6 +7,8 @@ export default function Home() {
   const [ globalState, globalActions ] = useGlobal()
   const { profile } = globalActions
   
+  
+  
   useEffect( () => {
     
     profile.getLocations()
