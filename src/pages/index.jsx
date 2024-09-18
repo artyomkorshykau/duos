@@ -11,6 +11,8 @@ export default function Home() {
     
     profile.getLocations()
     
+    
+    
   }, [] )
   
   return (
