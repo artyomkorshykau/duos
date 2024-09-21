@@ -36,7 +36,7 @@ const Pagination = ( {
       
     } else if ( activeStep === 'Профиль' && profile.progress !== 1 ) {
       
-      setDisabled( true )
+      // setDisabled( true )
       
     } else if ( activeStep === 'Публикации' && !publicationsProgress ) {
       

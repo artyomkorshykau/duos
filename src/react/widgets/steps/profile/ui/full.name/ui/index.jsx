@@ -11,10 +11,19 @@ const FullName = ( { disabled } ) => {
   
   const [ globalState, globalActions ] = useGlobal()
   
+  const {
+    errors,
+    user,
+    lastName,
+    firstName,
+    surName,
+    birthDate,
+    gender
+  } = globalState
+  
   return (
     
     <div>
-      
       <p className={ `text-20 ${ s.profile__section__title }` }>
         
         Фамилия Имя и Отчество
@@ -27,9 +36,9 @@ const FullName = ( { disabled } ) => {
           
           className={ `${ s.profile__section__filedsWrapper__filed }` }
           placeholder="Фамилия"
-          value={ globalState.profile.lastName || globalState.user.last_name }
+          value={ lastName || user.last_name }
           onChange={ ( e ) => globalActions.profile.setLastName( e.target.value ) }
-          error={ globalState.profile.errors?.last_name }
+          error={ errors?.last_name }
           disabled={ disabled }
         
         />
@@ -38,9 +47,9 @@ const FullName = ( { disabled } ) => {
           
           className={ `${ s.profile__section__filedsWrapper__filed }` }
           placeholder="Имя"
-          value={ globalState.profile.firstName || globalState.user.first_name }
+          value={ firstName || user.first_name }
           onChange={ ( e ) => globalActions.profile.setFirstName( e.target.value ) }
-          error={ globalState.profile.errors?.first_name }
+          error={ errors?.first_name }
           disabled={ disabled }
         
         />
@@ -48,18 +57,18 @@ const FullName = ( { disabled } ) => {
           
           className={ `${ s.profile__section__filedsWrapper__filed }` }
           placeholder="Отчество"
-          value={ globalState.profile.surName || globalState.user.mid_name }
+          value={ surName || user.mid_name }
           onChange={ ( e ) => globalActions.profile.setSurName( e.target.value ) }
-          error={ globalState.profile.errors?.mid_name }
+          error={ errors?.mid_name }
           disabled={ disabled }
         
         />
         <DateField
           
           placeholder="Дата рождения"
-          value={ globalState.profile.birthDate || globalState.user.birthday }
-          onChange={ ( value ) => globalActions.profile.setBirthDate( value ) }
-          error={ globalState.profile.errors?.birthday }
+          value={ birthDate || user.birthday }
+          onChange={ value => globalActions.profile.setBirthDate( value ) }
+          error={ errors?.birthday }
           disabled={ disabled }
         
         />
@@ -67,7 +76,7 @@ const FullName = ( { disabled } ) => {
           
           placeholder="Пол"
           options={ genderList }
-          value={ globalState.profile.gender }
+          value={ gender }
           onChange={ value => globalActions.profile.setGender( value ) }
           disabled={ disabled }
         

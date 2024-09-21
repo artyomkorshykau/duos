@@ -1,15 +1,11 @@
 import tagsService from '@/service/tags.js'
 
-const tagsActions = {
+
+export const setTags = async( store ) => {
   
-  setTags: async ( store ) => {
-    
-    const { tags } = await tagsService.getTagList()
-    
-    store.setState( { tags } )
-    
-  }
+  const { tags } = await tagsService.getTagList()
+  
+  store.setState( { tags } )
+  store.actions.updateRender()
   
 }
-
-export default tagsActions

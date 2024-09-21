@@ -6,6 +6,8 @@ const Location = ( { disabled } ) => {
   
   const [ globalState, globalActions ] = useGlobal()
   
+  const { countries, cities, city, country } = globalState
+  
   return (
     
     <div className={ `${ s.profile__section }` }>
@@ -28,18 +30,18 @@ const Location = ( { disabled } ) => {
         <Select
           
           placeholder="Страна"
-          options={ globalState.profile.countries }
-          value={ globalState.profile.country?.value }
-          onChange={ value => globalActions.profile.setCountry( globalState.profile.countries.find( ( item ) => item.value === value ) ) }
+          options={ countries }
+          value={ country?.value }
+          onChange={ value => globalActions.profile.setCountry( countries.find( ( item ) => item.value === value ) ) }
           disabled={ disabled }
         
         />
         <Select
           
           placeholder={ 'Город' }
-          options={ globalState.profile.cities }
-          value={ globalState.profile.city?.value }
-          onChange={ value => globalActions.profile.setCity( globalState.profile.cities.find( ( item ) => item.value === value ) ) }
+          options={ cities }
+          value={ city?.value }
+          onChange={ value => globalActions.profile.setCity( cities.find( ( item ) => item.value === value ) ) }
           disabled={ disabled }
         
         />

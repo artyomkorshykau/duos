@@ -8,7 +8,7 @@ import getInitialConstructorState from '@/store/states/constructor.js'
 
 export const initializeState = () => {
   
-  const [ globalState, globalActions ] = useGlobal()
+  const [ _, globalActions ] = useGlobal()
   
   useEffect( () => {
     

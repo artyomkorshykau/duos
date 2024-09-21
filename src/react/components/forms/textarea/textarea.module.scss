@@ -55,7 +55,7 @@
     font-weight: 500;
     font-size: $apx-16;
     line-height: $apx-21;
-    color: var(--color-accent-black-500);
+    color: var(--color-accent-black-900);
     background: transparent;
     resize: vertical;
 
@@ -112,14 +112,14 @@
 
     &::-webkit-resizer {
 
-      background-color: var(--color-accent-background);
+      background-color: transparent;
       border-bottom-right-radius: $apx-28;
        
     }
     
     &::-moz-resizer {
   
-      background-color: var(--color-accent-background);
+      background-color: transparent;
       border-bottom-right-radius: $apx-28;
       visibility: hidden;
   

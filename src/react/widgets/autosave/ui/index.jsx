@@ -50,7 +50,7 @@ const Autosave = ( { refetchExpert } ) => {
         
         </div>
         
-        <NotiseInfo fill={ '#A7CAFF' }/>
+        <NotiseInfo fill={ 'rgba(24, 0, 158, 1)' }/>
         
         <p className={ `text-13 ${ s.autosave__notise__title }` }>
           

@@ -2,7 +2,6 @@ import Popup from '../popup'
 import s from './save.module.scss'
 import DefaultButton from '@/react/components/buttons/default.button/index.jsx'
 import Checkbox from '@/react/components/forms/checkbox/index.jsx'
-import NotiseInfo from '@/react/components/icons/notise.info.jsx'
 
 const SavePopup = ( {
                       
@@ -96,17 +95,17 @@ const SavePopup = ( {
           
         }
         
-        <div className={ `${ s.save__content__notise }` }>
-          
-          <NotiseInfo fill={ '#18009E' }/>
-          
-          <div className={ `text-13 ${ s.save__content__notise__text }` }>
-            
-            Окончательное решение о публикации принимает администратор
-          
-          </div>
+        {/*<div className={ `${ s.save__content__notise }` }>*/}
+        {/*  */}
+        {/*  <NotiseInfo fill={ '#18009E' }/>*/}
+        {/*  */}
+        {/*  <div className={ `text-13 ${ s.save__content__notise__text }` }>*/}
+        {/*    */}
+        {/*    Окончательное решение о публикации принимает администратор*/}
+        {/*  */}
+        {/*  </div>*/}
         
-        </div>
+        {/*</div>*/}
         
         <div className={ `${ s.save__content__controls }` }>
           

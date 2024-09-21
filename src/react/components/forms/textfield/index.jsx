@@ -70,7 +70,11 @@ const Textfield = ( props ) => {
             
             <div className = { `flex items-start ${ s.textfield__error__text }` }>
               
-              <NotiseError/>
+              <div className ={`${ s.textfield__error__text__icon }` }>
+                
+                <NotiseError/>
+                
+              </div>
               
               <p>{ error }</p>
             
@@ -117,9 +121,13 @@ const Textfield = ( props ) => {
           
           { !!error &&
             
-            <div className = { `flex items-start ${ s.textfield__error__text }` }>
+            <div className={ `flex items-start ${ s.textfield__error__text }` }>
               
-              <NotiseError/>
+              <div className={ `${ s.textfield__error__text__icon }` }>
+                
+                <NotiseError/>
+              
+              </div>
               
               <p>{ error }</p>
             
@@ -135,7 +143,7 @@ const Textfield = ( props ) => {
         
         <Eye
           
-          stroke = { '#7C92A7' }
+          stroke={ '#7C92A7' }
           hide = { !hide }
           className = { `${ s.textfield__eye }` }
           onClick = { () => setHide( !hide ) }

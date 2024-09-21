@@ -24,6 +24,8 @@ const PublicationCard = ( props ) => {
   
   const handleOpenArticle = () => {
     
+    debugger
+    
     const currentArticle = globalState.publications.categories[ 1 ].publicationsCards
       .find( ( card ) => card.id === articleID )
     
@@ -62,7 +64,7 @@ const PublicationCard = ( props ) => {
               className = { `${ s.card__content__status__button }` }
               action = { () => {
                 
-                globalActions.popups.openDeletePublicationsPopup( articleID )
+                globalActions.popup.openDeletePublicationsPopup( articleID )
                 
               } }
             

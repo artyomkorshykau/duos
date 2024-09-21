@@ -163,8 +163,8 @@ const expert = {
       
       if ( !response.ok ) {
         
-        alert( '500: ( Internal Server Error )' )
-        throw new Error()
+        const { errors } = await response.json()
+        throw errors
         
       }
       
@@ -382,6 +382,7 @@ const expert = {
     try {
       
       const response = await fetch( `${ BASE_URL }/expert/step5`, {
+        
         method: 'POST', headers: getHeaders(), body: JSON.stringify( body )
         
       } )

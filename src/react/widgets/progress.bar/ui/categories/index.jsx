@@ -81,7 +81,7 @@ const Categories = ( props ) => {
       ]
       
       const filledRequiredFields = requiredFields.filter( field => {
-        const value = profile[ field ]
+        const value = globalState[ field ]
         return value !== '' && value !== null && value !== undefined
       } ).length
       
@@ -120,7 +120,7 @@ const Categories = ( props ) => {
       
     }
     
-  }, [ profile, service, school, publications ] )
+  }, [ globalState, service, school, publications ] )
   
   useEffect( () => {
     

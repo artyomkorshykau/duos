@@ -43,14 +43,16 @@ const Textarea = ( props ) => {
     onChange( e );
 
   }
-
+  
   const handleMouseDown = ( e ) => {
 
     setIsResizing( true );
     setStartY( e.clientY );
 
   };
-
+  
+  console.log(value)
+  
   const handleMouseMove = ( e ) => {
 
     if ( isResizing ) {
@@ -120,6 +122,7 @@ const Textarea = ( props ) => {
       className = {`
         ${ s.textfield }
         ${ cssIf( error === "", s['textfield--error'] ) }
+        ${ cssIf( value, s.active)}
         ${ className }
       `}
       ref = { textareaDivRef }

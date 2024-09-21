@@ -33,15 +33,19 @@
       gap: $apx-7;
       text-align: left;
 
-      & > svg {
+      &__icon {
 
-        width: $apx-30;
+        width: 5%;
 
       }
 
       & > p {
 
         height: max-content;
+        width: 90%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
 
       }
 

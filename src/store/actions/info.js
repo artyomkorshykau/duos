@@ -1,11 +1,9 @@
-const infoActions = {
 
-    setFirstIconClick: ( store ) => {
+
+export const setFirstIconClick = ( store ) => {
   
-        store.setState({ info: {  ...store.state.info, firstIconClick: true }})
-    
-      },
+  store.setState({ info: {  ...store.state.info, firstIconClick: true }})
   
-  }
+}
   
-  export default infoActions
+  

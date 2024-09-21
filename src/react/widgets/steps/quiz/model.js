@@ -175,6 +175,24 @@ export const useQuestionnaire = () => {
         
       }
       
+    },
+    onError: ( error ) => {
+      
+      globalActions.service.setServiceErrors( error )
+      
+      const scrollContainer = document.querySelector( `.${ s.content }` )
+      
+      if ( scrollContainer ) {
+        
+        scrollContainer.scrollTo( {
+          
+          top: 0,
+          behavior: 'smooth'
+          
+        } )
+        
+      }
+      
     }
     
   } )
@@ -464,7 +482,7 @@ export const useQuestionnaire = () => {
       
     }
     
-  }, [ globalState.quiz ] )
+  }, [ globalState ] )
   
   useEffect( () => {
     

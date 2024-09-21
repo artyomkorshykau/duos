@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import s from "@/react/widgets/steps/publications/ui/publications.module.scss";
-import Textarea from "@/react/components/forms/textarea";
-import useGlobal from "@/store";
-import { useEffect, useState } from "react";
-import Attachment from "@/react/components/attachment";
-import ProgressBar from "@/react/widgets/steps/publications/ui/progress.bar";
+import s from '@/react/widgets/steps/publications/ui/publications.module.scss'
+import Textarea from '@/react/components/forms/textarea'
+import useGlobal from '@/store'
+import { useEffect, useState } from 'react'
+import Attachment from '@/react/components/attachment'
+import ProgressBar from '@/react/widgets/steps/publications/ui/progress.bar'
 
 const AboutYourselfContent = ( props ) => {
 
@@ -34,7 +34,7 @@ const AboutYourselfContent = ( props ) => {
     globalActions.publications.setAboutYourselfInfo( sectionId, value )
 
   }
-
+  
   return (
 
     <>
@@ -64,9 +64,6 @@ const AboutYourselfContent = ( props ) => {
                 accept = ".png, .jpg, .tiff"
                 files = { photos }
                 onChange = { ( files ) => globalActions.publications.setProfilePhoto( files ) }
-                deleteMultipleFile = { ( indexPhoto ) => globalActions.publications.deleteProfilePhoto( indexPhoto ) }
-                multiple
-                maxLength = { 5 }
 
               />
 

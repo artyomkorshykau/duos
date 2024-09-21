@@ -30,7 +30,7 @@ export default function ConstructorPage() {
       'type': 'heading-one',
       'children': [
         {
-          'text': globalState.constructor.currentArticle?.title || 'Заголовок'
+          'text': globalState.constructor.currentArticle?.title || 'Заголовок H1'
         }
       ]
     },

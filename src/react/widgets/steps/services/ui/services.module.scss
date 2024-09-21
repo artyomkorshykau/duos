@@ -41,12 +41,18 @@
       &__filed {
 
         max-width: $apx-305 !important;
-        height: $apx-64 !important;
+        height: max-content !important;
         margin: 0 !important;
 
         &_experince_placeholder {
 
           line-height: $apx-20;
+
+        }
+
+        & > input {
+
+          height: $apx-65;
 
         }
 
