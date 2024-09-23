@@ -20,7 +20,7 @@ const Pagination = ( {
   
   const [ disabled, setDisabled ] = useState( false )
   
-  const { service, profile, school, publications } = globalState
+  const { service, progress, school, publications } = globalState
   
   const publicationsProgress = publications?.categories?.[0].documentStatus === 'Filled' && globalState.articles?.length >= 3
   
@@ -34,9 +34,9 @@ const Pagination = ( {
       
       setDisabled( true )
       
-    } else if ( activeStep === 'Профиль' && profile.progress !== 1 ) {
+    } else if ( activeStep === 'Профиль' && progress !== 1 ) {
       
-      // setDisabled( true )
+      setDisabled( true )
       
     } else if ( activeStep === 'Публикации' && !publicationsProgress ) {
       
@@ -48,7 +48,7 @@ const Pagination = ( {
       
     }
     
-  }, [ activeStep, service.progress, profile, school, publications ] )
+  }, [ activeStep, service.progress, progress, school, publications ] )
   
   return (
     

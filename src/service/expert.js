@@ -347,7 +347,7 @@ const expert = {
     
     const publications = await publicationsStateInstance.getItem( 'publications' )
     
-    const photo = await postImage( publications.categories[ 0 ].photos[ 0 ] )
+    const photo = await postImage( publications.categories[ 0 ].photos )
     
     const [
       
