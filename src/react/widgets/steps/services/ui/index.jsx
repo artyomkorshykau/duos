@@ -10,8 +10,6 @@ const Services = () => {
   
   const { service } = globalState
   
-  console.log( globalState.service.errors )
-  
   return (
     
     <div className={ `${ s.wrapper }` }>

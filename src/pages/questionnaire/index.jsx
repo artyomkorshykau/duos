@@ -32,8 +32,6 @@ export default function QuestionnairePage() {
   
   initializeState()
   
-  console.log(globalState)
-  
   const content = useMemo( () => (
     
     <>
@@ -99,11 +97,11 @@ export default function QuestionnairePage() {
           
           isOpened={ globalState.popups.steps.deletePublication }
           closePopup={ () => globalActions.popup.openDeletePublicationsPopup() }
-          title={ globalState.publications?.categories?.[ 1 ].publicationsCards?.find( article => article.id === globalState.popups.steps.deletePublicationID )?.title }
+          title={ globalState.articles?.find( article => article.id === globalState.popups.steps.deletePublicationID )?.title }
           type={ 'Статью: ' }
           action={ () => {
             
-            globalActions.publications.deletePublication( globalState.popup.steps.deletePublicationID )
+            globalActions.publications.deletePublication( globalState.popups.steps.deletePublicationID )
             globalActions.popup.openDeletePublicationsPopup()
             
           } }

@@ -51,8 +51,6 @@ const Textarea = ( props ) => {
 
   };
   
-  console.log(value)
-  
   const handleMouseMove = ( e ) => {
 
     if ( isResizing ) {

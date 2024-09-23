@@ -24,9 +24,7 @@ const PublicationCard = ( props ) => {
   
   const handleOpenArticle = () => {
     
-    debugger
-    
-    const currentArticle = globalState.publications.categories[ 1 ].publicationsCards
+    const currentArticle = globalState.articles
       .find( ( card ) => card.id === articleID )
     
     globalActions.constructor.setCurrentArticle( currentArticle )
