@@ -33,7 +33,7 @@ const auth = {
       
       if ( data.token ) {
         
-        document.cookie = `token=${ data.token }; path=/; secure;`
+        document.cookie = `token=${data.token}; path=/; secure; samesite=none;`
         
       }
       
@@ -62,7 +62,7 @@ const auth = {
     
     if ( data.token ) {
       
-      document.cookie = `token=${ data.token }; path=/; secure;`
+      document.cookie = `token=${data.token}; path=/; secure; samesite=none;`
       
     }
     

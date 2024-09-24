@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 
 export async function middleware( request ) {
   
-  const token = request.headers.get('cookie')
+  const { cookies } = request
+  const token = cookies.get( 'token' )
   const url = request.nextUrl.clone()
   
   if ( url.pathname === '/questionnaire'
