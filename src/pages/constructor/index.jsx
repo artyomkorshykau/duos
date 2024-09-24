@@ -44,6 +44,7 @@ export default function ConstructorPage() {
       ]
     }
   ] )
+  const [ errors, setErrors ] = useState( null )
   
   const { back } = useRouter()
   
@@ -61,7 +62,7 @@ export default function ConstructorPage() {
     onError: ( error ) => {
       
       const parsedError = JSON.parse( error.message )
-      alert( `Ошибка при создании статьи: ${ JSON.stringify( parsedError.errors ) }` )
+      setErrors( parsedError?.errors )
       
     }
     
@@ -105,7 +106,6 @@ export default function ConstructorPage() {
   const handleSavePublication = async( variant = null ) => {
     
     const actualSaveVariant = variant || saveVariant
-    console.log(variant)
     
     const categoryID = globalState.service.serviceCategories
       .find( ( category ) => category.value === selectDirection )
@@ -182,6 +182,9 @@ export default function ConstructorPage() {
     return null
     
   }
+  
+  console.log( errors?.article_category_id?.[ 0 ], 'Ошибка категории' )
+  console.log( errors?.image_url?.[ 0 ], 'Ошибка фотографии' )
   
   return (
     

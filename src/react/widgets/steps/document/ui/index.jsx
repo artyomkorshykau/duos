@@ -31,7 +31,7 @@ const Document = () => {
 
         globalActions.service.setChangeStatusPassport("NotFinished")
 
-      }, 15000)
+      }, 5000)
 
       return () => clearTimeout(timer)
 

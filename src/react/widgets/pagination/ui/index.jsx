@@ -24,7 +24,7 @@ const Pagination = ( {
   
   const publicationsProgress = publications?.categories?.[ 0 ].documentStatus === 'Filled' && globalState.articles?.length >= 3
   
-  const allDocumentsFilled = service.category.every( item => item.documentStatus === 'Filled' )
+  const allDocumentsFilled = service.category?.every( item => item.documentStatus === 'Filled' )
   useEffect( () => {
     
     if ( activeStep === 'Услуги' && service.progress !== 1 ) {

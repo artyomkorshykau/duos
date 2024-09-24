@@ -1,14 +1,14 @@
 import useGlobal from '@/store'
-import s from "./accordion.service.children.module.scss"
-import { useEffect } from 'react';
-import AccordionChildren from '@/react/widgets/accordion.children';
-import General from '../general/ui';
-import WorkClients from '../work.clients/ui';
-import PaymentFormat from '../payment.format/ui';
-import ServiceDescription from '../service.description/ui';
-import Attachment from '@/react/components/attachment';
-import DefaultButton from '@/react/components/buttons/default.button';
-import Save from '@/react/components/icons/save';
+import s from './accordion.service.children.module.scss'
+import { useEffect } from 'react'
+import AccordionChildren from '@/react/widgets/accordion.children'
+import General from '../general/ui'
+import WorkClients from '../work.clients/ui'
+import PaymentFormat from '../payment.format/ui'
+import ServiceDescription from '../service.description/ui'
+import Attachment from '@/react/components/attachment'
+import DefaultButton from '@/react/components/buttons/default.button'
+import Save from '@/react/components/icons/save'
 
 const AccordionServiceChildren = ({
 
@@ -93,7 +93,7 @@ const AccordionServiceChildren = ({
 
         globalActions.service.setChangeStatusServices("NotFinished", categoryIndex, index)
 
-      }, 15000);
+      }, 5000);
 
       return () => clearTimeout(timer);
     }
