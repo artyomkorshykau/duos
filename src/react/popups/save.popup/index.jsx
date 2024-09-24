@@ -121,7 +121,7 @@ const SavePopup = ( {
             
             name="Сохранить"
             type="default"
-            action={ save }
+            action={() => save()}
             disabled={ !saveVariant }
           
           />

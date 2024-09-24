@@ -35,7 +35,6 @@ const Controls = ( { handleSavePublication, setSaveVariant } ) => {
         action={ ( e ) => {
           
           e.stopPropagation()
-          setSaveVariant( 'draft' )
           handleSavePublication()
           
         } }

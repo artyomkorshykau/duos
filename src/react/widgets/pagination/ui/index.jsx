@@ -22,17 +22,26 @@ const Pagination = ( {
   
   const { service, progress, school, publications } = globalState
   
-  const publicationsProgress = publications?.categories?.[0].documentStatus === 'Filled' && globalState.articles?.length >= 3
+  const publicationsProgress = publications?.categories?.[ 0 ].documentStatus === 'Filled' && globalState.articles?.length >= 3
   
+  const allDocumentsFilled = service.category.every( item => item.documentStatus === 'Filled' )
   useEffect( () => {
     
     if ( activeStep === 'Услуги' && service.progress !== 1 ) {
       
       setDisabled( true )
       
-    } else if ( activeStep === 'Документы' && service.progress !== 1 ) {
+    } else if ( activeStep === 'Документы' ) {
       
-      setDisabled( true )
+      if ( service.passport.status === 'Filled' && allDocumentsFilled ) {
+        
+        setDisabled( false )
+        
+      } else {
+        
+        setDisabled( true )
+        
+      }
       
     } else if ( activeStep === 'Профиль' && progress !== 1 ) {
       
@@ -48,7 +57,7 @@ const Pagination = ( {
       
     }
     
-  }, [ activeStep, service.progress, progress, school, publications ] )
+  }, [ activeStep, service, progress, school, publications, allDocumentsFilled ] )
   
   return (
     

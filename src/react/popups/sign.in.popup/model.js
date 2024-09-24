@@ -42,7 +42,7 @@ export const useLogin = ( { closePopup, setShowRecoveryPopup } ) => {
   
   const handleLog = () => {
     
-    if ( userNumber.length >= 11 && userPassword !== '' ) {
+    if ( userNumber.length >= 11 ) {
       
       login( { phone: userNumber, password: userPassword } )
       

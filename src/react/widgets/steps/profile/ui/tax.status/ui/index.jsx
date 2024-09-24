@@ -64,6 +64,7 @@ const TaxStatus = ( { disabled } ) => {
             onChange={ ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
             error={ errors?.tax_inn }
             disabled={ disabled }
+            type = "number"
           
           />
           

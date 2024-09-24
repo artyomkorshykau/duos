@@ -102,7 +102,10 @@ export default function ConstructorPage() {
     .map( item => item.children.map( child => child.text ).join( '' ) )
     .join( ' ' )
   
-  const handleSavePublication = async( variant ) => {
+  const handleSavePublication = async( variant = null ) => {
+    
+    const actualSaveVariant = variant || saveVariant
+    console.log(variant)
     
     const categoryID = globalState.service.serviceCategories
       .find( ( category ) => category.value === selectDirection )
@@ -114,8 +117,8 @@ export default function ConstructorPage() {
       title: titleToString,
       content: contentToString,
       image_url: image ? await readFileAsDataURL( image ) : image,
-      is_draft: variant ? variant === 'draft' : saveVariant === 'draft',
-      in_library: saveVariant === 'profile',
+      is_draft: actualSaveVariant === 'draft',
+      in_library: actualSaveVariant === 'profile',
       tags: selectTags
       
     }
@@ -196,7 +199,7 @@ export default function ConstructorPage() {
             
             activeTab={ activeTab }
             setActiveTab={ setActiveTab }
-            handleSavePublication={ handleSavePublication }
+            handleSavePublication={ handleSaveDraft }
             setSaveVariant={ setSaveVariant }
           
           />

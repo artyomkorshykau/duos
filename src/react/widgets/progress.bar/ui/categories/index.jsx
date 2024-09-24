@@ -65,6 +65,8 @@ const Categories = ( props ) => {
     
   }, [ activeStep ] )
   
+  console.log(globalState)
+  
   useEffect( () => {
     
     if ( activeStep === steps.profile ) {
