@@ -5,9 +5,8 @@ import ProfileHeader from '@/react/widgets/section.header/ui/index.jsx'
 import { useEffect, useState } from 'react'
 import s from './profile.page.module.scss'
 import useGlobal from '@/store'
-import dynamic from 'next/dynamic'
+import Profile from '@/react/widgets/profile/ui/index.jsx'
 
-const ProfileWithoutSSR = dynamic( () => import('@/react/widgets/profile/ui/index.jsx'), { ssr: false } )
 
 export default function ProfilePage() {
   
@@ -30,20 +29,20 @@ export default function ProfilePage() {
       
       <Carcas
         
-        authorized = { true }
+        authorized={ true }
       
       >
         
-        <div className = { ` ${ s.profile_page }` }>
+        <div className={ ` ${ s.profile_page }` }>
           
           <ProfileHeader
             
-            activeTab = { activeTab }
-            setActiveTab = { setActiveTab }
+            activeTab={ activeTab }
+            setActiveTab={ setActiveTab }
           
           />
           
-          <ProfileWithoutSSR/>
+          <Profile/>
         
         </div>
       

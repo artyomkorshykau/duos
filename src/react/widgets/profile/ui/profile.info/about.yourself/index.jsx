@@ -7,7 +7,7 @@ import { useState } from 'react'
 export const AboutYourself = () => {
   
   const [ globalState, globalActions ] = useGlobal()
-  const { text } = globalState.publications.categories[0].profileInfo[1]
+  const { text } = globalState?.publications?.categories?.[0].profileInfo[1] || {}
   const { setAboutYourselfInfo } = globalActions.publications
   const [ edit, setEdit ] = useState(false)
   
