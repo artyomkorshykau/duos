@@ -1,0 +1,54 @@
+{
+  "name": "duos-editor",
+  "version": "0.1.13",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vite build --config config.js",
+    "dist": "sh ./dist.sh"
+  },
+  "prepublishOnly": "npm run build",
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "slate": "^0.103.0",
+    "slate-history": "^0.100.0",
+    "slate-react": "^0.107.1"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1",
+    "lodash": "^4.17.21",
+    "next": "14.2.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-tooltip": "^5.28.0",
+    "react-use": "^17.5.1",
+    "slate": "^0.103.0",
+    "slate-history": "^0.100.0",
+    "slate-react": "^0.107.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.7",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/slate": "^0.47.15",
+    "@vitejs/plugin-react": "^4.3.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "prettier": "^3.3.3",
+    "react-dropzone": "^14.2.3",
+    "reflect-metadata": "^0.2.2",
+    "sass": "^1.77.8",
+    "sass-embedded": "^1.77.8",
+    "typescript": "^5",
+    "vite": "^5.4.2",
+    "vite-plugin-dts": "^4.0.3",
+    "vite-plugin-lib-inject-css": "^2.1.1"
+  }
+}

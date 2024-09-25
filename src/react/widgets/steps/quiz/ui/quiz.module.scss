@@ -1,0 +1,127 @@
+@import "@/styles/apx.scss";
+
+.quiz {
+
+  width: $apx-1000;
+  background-color: var(--color-bw-white);
+  border-radius: $apx-32;
+  padding-left: $apx-64 $apx-32;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  &__form_logo {
+
+    margin-top: $apx-64;
+
+  }
+
+  &__title {
+
+    margin-top: $apx-10;
+    margin-bottom: $apx-10;
+    color: var(--color-accent-blue-700);
+    font-weight: 700;
+
+    &_bottom {
+
+      color: var(--color-accent-blue-700);
+
+    }
+
+  }
+
+  &__subtitle {
+
+    width: $apx-640;
+    color: var(--color-accent-black-900);
+    font-weight: 500;
+    text-align: center;
+
+  }
+
+  &__context_notise {
+
+    background-color: var(--color-accent-blue-100);
+    border-radius: $apx-28;
+    width: $apx-287;
+    height: $apx-33;
+    padding: $apx-8 $apx-16;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $apx-10;
+
+    &__title {
+
+      font-weight: 600;
+      color: var(--color-accent-blue-700);
+
+    }
+
+  }
+
+  &__button {
+
+    width: $apx-287;
+    margin-top: $apx-20;
+
+  }
+
+  &__separator {
+
+    width: 100%;
+
+  }
+
+  &__steps {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: $apx-90;
+
+    width: 100%;
+    margin-top: $apx-64;
+    border-top: 2px solid var(--color-accent-background);
+
+    &__item {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $apx-5;
+
+      &__title {
+
+        font-weight: 700;
+        color: var(--color-accent-black-500);
+
+      }
+
+      &__progress {
+
+        font-weight: 600;
+        color: var(--color-accent-black-500);
+
+      }
+
+      &__disabled {
+
+        color: var(--color-accent-blue-270);
+
+      }
+
+    }
+
+  }
+
+}
+
+.disabled {
+
+  color: var(--color-accent-blue-270);
+  margin-right: $apx-3;
+
+}

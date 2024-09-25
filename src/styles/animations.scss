@@ -1,0 +1,157 @@
+@keyframes pulseLoop {
+
+  from {
+    transform: scale(1);
+  }
+  
+  to {
+    transform: scale(1.05);
+  }
+
+}
+
+@keyframes fadeIn {
+  
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+  
+}
+
+@keyframes fadeInSlow {
+  
+  0% {
+    opacity: 0;
+  }
+
+  65% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+  
+}
+
+@keyframes fadeOut {
+  
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+  
+}
+
+@keyframes fadeOutSlow {
+  
+  0% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+  
+}
+
+@keyframes radialScale {
+
+  from {
+    transform: translateY(-100%);
+    transform: scale(1);
+  }
+
+  to {
+    transform: translateY(100%);
+    transform: scale(10);
+  }
+
+}
+
+@keyframes radialScaleReverse {
+
+  from {
+    transform: translateY(100%);
+    transform: scale(35);
+  }
+
+  to {
+    transform: translateY(-100%);
+    transform: scale(5);
+  }
+
+}
+
+@keyframes rotate {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+
+}
+
+@keyframes changeButtonBackground {
+  0% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 65%, #11E3E3 100%);
+  }
+  25% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 80%, #11E3E3 100%);
+  }
+  50% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 95%, #11E3E3 100%);
+  }
+  100% {
+    background: #18009E;
+  }
+}
+
+@keyframes returnButtonBackground {
+  0% {
+    background: #18009E;
+  }
+  25% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 50%, #11E3E3 100%);
+  }
+  50% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 65%, #11E3E3 100%);
+  }
+  100% {
+    background: linear-gradient(to right, #18009E 0%, #1A97E2 80%, #11E3E3 100%);
+  }
+}
+
+@keyframes greenShadowMoveAround {  
+
+  0% {
+    transform: rotate(360deg) ;  
+  } 
+  25% {    
+    transform: rotate(270deg) ;
+  } 
+  50% {
+    transform: rotate(180deg) ;  
+  } 
+  75% {
+    transform: rotate(90deg) ;  
+  } 
+  100% { 
+    transform: rotate(0deg) ;
+  }
+
+}

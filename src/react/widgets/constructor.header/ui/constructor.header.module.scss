@@ -1,0 +1,214 @@
+@import "@/styles/apx.scss";
+
+.constructorHeader {
+
+  display: flex;
+  flex-direction: column;
+  width: $apx-1000;
+  background-color: var(--color-bw-white);
+  padding: 0;
+  align-items: center;
+  gap: $apx-8;
+  z-index: 3;
+  height: $apx-267;
+  transition: height 0.5s ease;
+  border-bottom: $apx-1 solid #eeeeee;
+
+  &__wrapper {
+
+    display: flex;
+    flex-direction: column;
+    padding: $apx-32 $apx-32 $apx-44;
+    transition: padding 0.5s ease;
+    width: 100%;
+    gap: $apx-32;
+
+    &__navigation {
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 1;
+      max-height: 100%;
+      transition: opacity 0.5s ease, max-height 0.5s ease;
+      overflow: hidden;
+
+      &__back {
+
+        display: flex;
+        align-items: center;
+        gap: $apx-13;
+        width: 10%;
+        height: 100%;
+
+        &__title {
+
+          cursor: pointer;
+          font-weight: 600;
+          color: var(--color-accent-black-500);
+
+        }
+
+      }
+
+      &__breadcrumbs {
+
+        display: flex;
+        align-items: center;
+        gap: $apx-4;
+
+        &__text {
+
+          font-weight: 600;
+          color: var(--color-accent-black-500);
+
+          &:nth-of-type(3) {
+
+            max-width: $apx-150;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+          }
+
+        }
+
+        &__dot {
+
+          width: $apx-3;
+          height: $apx-3;
+          border-radius: $apx-3;
+          background-color: var(--color-accent-black-500);
+
+        }
+
+      }
+
+    }
+
+    &__title {
+
+      text-align: center;
+      font-weight: 700;
+      color: var(--color-accent-blue-700);
+      margin-bottom: $apx-30;
+
+    }
+
+    &__buttons {
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $apx-8;
+      opacity: 1;
+      max-height: 100%;
+      transition: opacity 0.5s ease, max-height 0.5s ease;
+      overflow: hidden;
+
+      &__promote {
+
+        gap: $apx-8;
+
+      }
+
+      &__cancel {
+
+        background: var(--color-notice-error-100) !important;
+
+        p {
+
+          color: var(--color-notice-error-500) !important;
+
+        }
+
+      }
+
+    }
+
+    &__tabs {
+
+      top: $apx-95;
+      width: max-content;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease, width 0.5s ease;
+
+      &__content {
+
+        width: $apx-30;
+        background-color: var(--color-accent-blue-270);
+        border-radius: $apx-50;
+        text-align: center;
+
+        opacity: 1;
+        max-height: max-content;
+        transition: opacity 0.5s ease, max-height 0.5s ease, width 0.5s ease;
+        visibility: visible;
+      }
+
+    }
+
+  }
+
+}
+
+.collapsed {
+
+  height: $apx-115;
+  transition: height 0.5s ease;
+
+  .constructorHeader {
+
+    &__wrapper {
+
+      padding: $apx-10 0;
+      transition: padding 0.5s ease;
+
+      &__navigation {
+
+        opacity: 0;
+        max-height: 0;
+        transition: opacity 0.2s ease, max-height 0.2s ease;
+        overflow: hidden;
+
+      }
+
+      &__buttons {
+
+        opacity: 0;
+        max-height: 0;
+        transition: opacity 0.1s ease, max-height 0.5s ease;
+        overflow: hidden;
+
+      }
+
+      &__tabs {
+
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s ease, visibility 0.5s ease, width 0.5s ease;
+        top: $apx-95;
+        width: max-content;
+
+        &__content {
+
+          width: $apx-30;
+          background-color: var(--color-accent-blue-270);
+          border-radius: $apx-50;
+          text-align: center;
+
+          opacity: 1;
+          max-height: max-content;
+          transition: opacity 0.5s ease, max-height 0.5s ease, width 0.5s ease;
+          visibility: visible;
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

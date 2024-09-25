@@ -1,0 +1,151 @@
+@import "@/styles/apx.scss";
+
+.itemselect_wrapper {
+
+  height: $apx-36;
+
+  &__container {
+
+    height: $apx-36;
+    display: flex;
+    flex-direction: column;
+    gap: $apx-5;
+
+    &__btn {
+
+      min-width: $apx-112;
+      height: $apx-36;
+      padding: $apx-8;
+      border: none;
+      outline: none;
+      background: transparent;
+      border-radius: $apx-36;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Raleway", sans-serif;
+      font-weight: 500 !important;
+      font-size: $apx-16;
+
+    }
+
+    &__year_btn {
+
+      width: $apx-100;
+      min-width: 0;
+
+    }
+
+    &__content_container {
+
+      width: $apx-273;
+      height: $apx-205;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $apx-4;
+      row-gap: $apx-8;
+      background-color: var(--color-bw-white);
+      overflow-y: auto;
+      position: relative;
+      z-index: 1;
+      transform: translateX( calc( ( $apx-112 + $apx-8 ) - var( --containerWidth ) ) );
+
+      @-moz-document url-prefix() {
+
+        scrollbar-color: var(--color-accent-blue-270) var(--color-accent-blue-230);
+
+      }
+
+      &::-webkit-scrollbar {
+
+        width: $apx-6;
+
+      }
+
+      &::-webkit-scrollbar-track {
+
+        background: var(--color-accent-blue-230);
+
+        &:active {
+
+          background: var(--color-accent-blue-270);
+
+        }
+
+        &:hover {
+
+          cursor: default;
+
+        }
+
+      }
+
+      &::-webkit-scrollbar-thumb {
+
+        background-color: #A7CAFF;
+        border-radius: $apx-40;
+
+        &:hover {
+
+          cursor: default;
+
+        }
+
+      }
+
+      &::-webkit-resizer {
+
+        background-color: var(--color-accent-background);
+        border-bottom-right-radius: $apx-28;
+
+      }
+
+      &::-moz-resizer {
+
+        background-color: var(--color-accent-background);
+        border-bottom-right-radius: $apx-28;
+        visibility: hidden;
+
+      }
+
+      &__item {
+
+        height: $apx-30;
+        border-radius: $apx-30;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $apx-14;
+        line-height: 110%;
+        font-weight: 600;
+        color: var(--color-accent-blue-700);
+        background: var(--color-accent-blue-100);
+
+
+        &:hover {
+
+          color: var(--color-bw-white);
+          background: var(--color-accent-blue-700);
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.open {
+
+  height: auto;
+
+}
+
+.months {
+
+  padding-bottom: $apx-20;
+  transform: translateX(-$apx-8);
+
+}

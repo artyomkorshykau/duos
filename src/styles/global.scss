@@ -1,0 +1,418 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./apx.scss";
+@import "./text.scss";
+@import "./variables.scss";
+@import "./animations.scss";
+
+/* СБРОС СТАНДАРТНЫХ СТИЛЕЙ */
+
+*,
+::after,
+::before {
+
+  outline: 0 !important;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent !important;
+
+}
+
+html,
+body {
+
+  cursor: default;
+  min-width: 100%;
+  min-height: 100%;
+  user-select: none;
+  font-display: swap;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+
+  font-variant-numeric: lining-nums;
+  -moz-font-feature-settings:"lnum" 1;
+  -moz-font-feature-settings:"lnum=1";
+  -ms-font-feature-settings:"lnum" 1;
+  -o-font-feature-settings:"lnum" 1;
+  -webkit-font-feature-settings:"lnum" 1;
+  font-feature-settings:"lnum" 1;
+
+}
+
+body {
+
+  z-index: 1;
+  background: var(--color-accent-background);
+  overflow: hidden;
+
+}
+
+body,
+textarea,
+input,
+button,
+span,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Убираем стрелки в Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+a,
+a:hover,
+a:visited {
+
+  text-decoration: none;
+  color: inherit !important;
+  font-family: inherit !important;
+
+}
+
+/* ОБЩИЕ СТИЛИ */
+
+.disabled {
+
+  opacity: 0.5;
+  pointer-events: none;
+
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.m-0 {
+  margin: 0 auto;
+}
+
+//стили дисплея
+.none {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.block {
+  display: block;
+}
+
+//стили позиционирования
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+//стили медиапоказа элементов
+.desktop-laptop-flex {
+  display: flex !important;
+}
+
+.desktop-laptop {
+  display: block !important;
+}
+
+.desktop {
+  display: block !important;
+}
+
+.desktop-flex {
+  display: flex !important;
+}
+
+.laptop {
+  display: none !important;
+}
+
+.laptop-flex {
+  display: none !important;
+}
+
+.mobile {
+  display: none !important;
+}
+
+.mobile-flex {
+  display: none !important;
+}
+
+//стили фона
+.bg {
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  z-index: -1;
+
+  &__img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: black;
+
+  }
+
+}
+
+//стили контейнера
+.wrapper {
+
+  padding: 10px;
+  width: 1600px;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+
+}
+
+//flex-стили
+.flex-center {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1 1;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.self-center {
+  place-self: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-24 {
+  gap: $apx-24
+}
+
+.my-6 {
+  margin: $apx-24 0
+}
+
+//grid-стили
+.col-span-5 {
+  grid-column: span 5 / span 5;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+//стили текста
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-thin {
+  font-weight: 100;
+}
+
+.font-extralight {
+  font-weight: 200;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-black {
+  font-weight: 900;
+}
+
+.font-extrablack {
+  font-weight: 1000;
+}
+
+//ширина
+.max-w-full {
+  max-width: 100% !important;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* АДАПТИВ */
+
+//адаптив 1200px
+@media screen and (max-width: 1200px) {
+
+  .desktop {
+    display: none !important;
+  }
+  .desktop-flex {
+    display: none !important;
+  }
+  .laptop {
+    display: block !important;
+  }
+  .laptop-flex {
+    display: block !important;
+  }
+  .mobile {
+    display: none !important;
+  }
+  .mobile-flex {
+    display: none !important;
+  }
+
+}
+
+//адаптив 800px
+@media screen and (max-width: 800px) {
+
+  .desktop-laptop-flex {
+    display: none !important;
+  }
+  .desktop-laptop {
+    display: none !important;
+  }
+  .desktop {
+    display: none !important;
+  }
+  .desktop-flex {
+    display: none !important;
+  }
+  .laptop {
+    display: none !important;
+  }
+  .laptop-flex {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
+  }
+  .mobile-flex {
+    display: flex !important;
+  }
+
+}
