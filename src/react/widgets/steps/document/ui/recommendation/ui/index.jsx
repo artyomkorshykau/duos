@@ -19,11 +19,8 @@ const Recommendation = ( {
   
   useEffect( () => {
     
-    if ( formatPhone.length === 11 ) {
-      
       globalActions.service.setPhone( phone, categoryIndex, index )
-      
-    }
+    
     
   }, [ phone ] )
   

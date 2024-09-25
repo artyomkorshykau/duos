@@ -14,6 +14,8 @@ const TaxStatus = ( { disabled } ) => {
   
   const { taxStatus, taxName, errors, taxIIN } = globalState
   
+  const maxLength = taxStatus === 'ooo' ? 10 : 12
+  
   return (
     
     <div>
@@ -39,32 +41,67 @@ const TaxStatus = ( { disabled } ) => {
         
         />
         
-        { taxStatus !== 'individual' && taxStatus !== 'self_employed' &&
+        
+        { ( taxStatus === 'ooo' || taxStatus === 'individual_entrepreneur') &&
           
-          <Textfield
+          <>
             
-            className={ `${ s.profile__section__filedsWrapper__filed }` }
-            placeholder={ 'Полное наименование' }
-            value={ taxName }
-            onChange={ ( e ) => globalActions.profile.setTaxName( e.target.value ) }
-            error={ errors?.tax_name }
-            disabled={ disabled }
+            <Textfield
+              
+              className={ `${ s.profile__section__filedsWrapper__filed }` }
+              placeholder={ 'Полное наименование' }
+              value={ taxName }
+              onChange={ ( e ) => globalActions.profile.setTaxName( e.target.value ) }
+              error={ errors?.tax_name }
+              disabled={ disabled }
+            
+            />
+            
+            <Textfield
+              
+              className={ `${ s.profile__section__filedsWrapper__filed }` }
+              placeholder={ 'ИНН' }
+              value={ taxIIN }
+              onChange={ ( e ) => {
+                
+                const value = e.target.value
+                
+                if ( /^\d*$/.test( value ) && value.length <= maxLength ) {
+                  globalActions.profile.setTaxIIN( value )
+                }
+                
+              } }
+              error={ errors?.tax_inn }
+              disabled={ disabled }
+              maxLength={ maxLength }
+            
+            
+            />
           
-          />
+          </>
           
         }
         
-        { taxStatus !== 'individual' &&
+        { taxStatus === 'self_employed' &&
           
           <Textfield
             
             className={ `${ s.profile__section__filedsWrapper__filed }` }
             placeholder={ 'ИНН' }
             value={ taxIIN }
-            onChange={ ( e ) => globalActions.profile.setTaxIIN( e.target.value ) }
+            onChange={ ( e ) => {
+              
+              const value = e.target.value
+              
+              if ( /^\d*$/.test( value ) && value.length <= 12 ) {
+                globalActions.profile.setTaxIIN( value )
+              }
+              
+            } }
             error={ errors?.tax_inn }
             disabled={ disabled }
-            type = "number"
+            maxLength={ 10 }
+          
           
           />
           

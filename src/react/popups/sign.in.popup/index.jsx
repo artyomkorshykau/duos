@@ -4,8 +4,6 @@ import SignInIconWhite from '@/react/components/icons/sign.in.icon.white'
 import DefaultButton from '@/react/components/buttons/default.button'
 import s from './sign.in.module.scss'
 import { useLogin } from '@/react/popups/sign.in.popup/model'
-import cssIf from '@/scripts/helpers/css.if'
-import { extractNumbers } from '@/scripts/helpers/extract.numbers'
 import RecoveryPopup from '@/react/popups/recovery.popup'
 
 const SignInPopup = ({
@@ -76,9 +74,13 @@ const SignInPopup = ({
 
             value = { userNumber }
             withTitle = { false }
-            onChange = { (e) => setUserNumber(e.target.value) }
+            onChange = { (e) => {
+              
+              setUserNumber( e.target.value )}
+          
+          }
             placeholder = { userNumber ? "Телефон" : "+7 (___) ___ - __ - __" }
-            error = { error?.error ? error?.error : error?.errors?.phone?.[0] }
+            error = { error?.error ? error?.error : error?.errors?.phone?.[0]  }
             type = 'phone'
             className = {`${s.signin_content__field}`}
 
@@ -100,8 +102,7 @@ const SignInPopup = ({
           <p
 
             className = { `text-14 
-          ${ s.signin_content__forgot } 
-          ${ cssIf( extractNumbers(userNumber).length < 11, s.signin_content__forgot__disabled )}` }
+          ${ s.signin_content__forgot }` }
             onClick = { handleRecovery }
 
           >

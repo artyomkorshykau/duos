@@ -4,6 +4,7 @@ import AccordionChildren from '@/react/widgets/accordion.children'
 import Recommendation from '../recommendation/ui'
 import s from './accordion.document.children.module.scss'
 import Reviews from '../reviews/ui'
+import { extractNumbers } from '@/scripts/helpers/extract.numbers.js'
 
 const AccordionDocumentChildren = ( {
                                       
@@ -66,7 +67,10 @@ const AccordionDocumentChildren = ( {
   }, [ el.documentStatus ] )
   
   useEffect( () => {
-    if ( phone && clientFullName && communication && reviewsFiles?.length > 2 && el.documentStatus !== 'New' ) {
+    
+    const filledPhone = extractNumbers(phone || '')
+    
+    if ( filledPhone?.length === 11 && clientFullName && communication && reviewsFiles?.length > 2 && el.documentStatus !== 'New' ) {
       
       setFilled( true )
       

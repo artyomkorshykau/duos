@@ -36,7 +36,12 @@ export const useLogin = ( { closePopup, setShowRecoveryPopup } ) => {
   const { mutate: recovery, data: recoveryData } = useMutation( {
     
     mutationKey: [ 'recovery' ],
-    mutationFn: ( { phone } ) => auth.recovery( phone )
+    mutationFn: ( { phone } ) => auth.recovery( phone ),
+    onSuccess: ( error ) => {
+      
+      setError( error )
+      
+    }
     
   } )
   
@@ -55,6 +60,10 @@ export const useLogin = ( { closePopup, setShowRecoveryPopup } ) => {
     if ( extractNumbers( userNumber ).length === 11 ) {
       
       recovery( { phone: userNumber } )
+      
+    } else {
+      
+      setError( { errors: { phone: ['Введите номер телефона'] } } )
       
     }
     
@@ -93,7 +102,7 @@ export const useLogin = ( { closePopup, setShowRecoveryPopup } ) => {
     handleRecovery,
     recoveryData,
     loginData,
-    error,
+    error
     
   }
   

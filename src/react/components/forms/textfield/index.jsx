@@ -33,6 +33,14 @@ const Textfield = ( props ) => {
     
   } = props
   
+  const handleKeyDown = ( e ) => {
+    if ( type === 'number' ) {
+      if ( [ 'e', 'E', '-', '+' ].includes( e.key ) ) {
+        e.preventDefault()
+      }
+    }
+  }
+  
   return (
     
     <div className={ `
@@ -51,12 +59,12 @@ const Textfield = ( props ) => {
           
           <InputMask
             
-            mask = { '+7 (999) 999-99-99' }
-            value = { value }
-            onChange = { onChange }
-            placeholder = { '' }
-            type = { 'tel' }
-            disabled = { disabled }
+            mask={ '+7 (999) 999-99-99' }
+            value={ value }
+            onChange={ onChange }
+            placeholder={ '' }
+            type={ 'tel' }
+            disabled={ disabled }
           
           >
             
@@ -64,16 +72,16 @@ const Textfield = ( props ) => {
           
           </InputMask>
           
-          <span className = { `${ s.placeholderLabel }` }>{ placeholder }</span>
+          <span className={ `${ s.placeholderLabel }` }>{ placeholder }</span>
           
           { !!error &&
             
-            <div className = { `flex items-start ${ s.textfield__error__text }` }>
+            <div className={ `flex items-start ${ s.textfield__error__text }` }>
               
-              <div className ={`${ s.textfield__error__text__icon }` }>
+              <div className={ `${ s.textfield__error__text__icon }` }>
                 
                 <NotiseError/>
-                
+              
               </div>
               
               <p>{ error }</p>
@@ -89,21 +97,22 @@ const Textfield = ( props ) => {
         <>
           { placeholderIcon &&
             
-            <div className = { s.textfield__icon }
-                 onClick = { onIconClick }> { placeholderIcon } </div>
+            <div className={ s.textfield__icon }
+                 onClick={ onIconClick }> { placeholderIcon } </div>
             
           }
           
           <input
             
-            value = { value }
-            type = { hide && password ? 'password' : type }
-            placeholder = { '' }
-            className = { `${ inputClassName } ${ cssIf( placeholderIcon, s.hasicon ) }` }
-            onChange = { onChange }
-            disabled = { disabled }
+            value={ value }
+            type={ hide && password ? 'password' : type }
+            placeholder={ '' }
+            className={ `${ inputClassName } ${ cssIf( placeholderIcon, s.hasicon ) }` }
+            onChange={ onChange }
+            onKeyDown={ handleKeyDown }
+            disabled={ disabled }
             { ...inputParams }
-            onClick = { ( e ) => {
+            onClick={ ( e ) => {
               
               onClick && onClick()
               e.stopPropagation()
@@ -113,7 +122,7 @@ const Textfield = ( props ) => {
           />
           
           <span
-            className = { `${ s.placeholderLabel } ${ cssIf( placeholderIcon, s.hasicon ) } ${ placeholderClassName }` }>
+            className={ `${ s.placeholderLabel } ${ cssIf( placeholderIcon, s.hasicon ) } ${ placeholderClassName }` }>
 
             { placeholder }
 
@@ -144,9 +153,9 @@ const Textfield = ( props ) => {
         <Eye
           
           stroke={ '#7C92A7' }
-          hide = { !hide }
-          className = { `${ s.textfield__eye }` }
-          onClick = { () => setHide( !hide ) }
+          hide={ !hide }
+          className={ `${ s.textfield__eye }` }
+          onClick={ () => setHide( !hide ) }
         
         />
         
