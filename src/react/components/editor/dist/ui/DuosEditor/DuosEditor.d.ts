@@ -9,13 +9,16 @@ type DuosEditorProps<SelectOptionValue> = {
     image: File | string | null;
     onChangeImage: (image: File) => void;
     removeImage: () => void;
+    imageError?: string;
     selectOptions: Option<SelectOptionValue>[];
     onChangeSelectOptions: (selectOptions: SelectOptionValue) => void;
     selectPlaceholder: string;
+    selectError?: string;
     availableTags: TagDTO[];
     onChangeTagInput: (tags: TagDTO[]) => void;
     defaultTagInputValues?: TagDTO[];
+    inputTagError?: string;
     className?: string;
 } & EditorContextValue;
-export declare function DuosEditor<SelectOptionValue>({ initialValue, onValueChange, className, image, removeImage, onChangeImage, uploadFile, selectOptions, availableTags, onChangeSelectOptions, onChangeTagInput, selectPlaceholder, defaultTagInputValues, }: DuosEditorProps<SelectOptionValue>): React.JSX.Element;
+export declare function DuosEditor<SelectOptionValue>({ initialValue, onValueChange, className, image, removeImage, onChangeImage, uploadFile, selectOptions, availableTags, onChangeSelectOptions, onChangeTagInput, selectPlaceholder, defaultTagInputValues, save, selectError, inputTagError, imageError, }: DuosEditorProps<SelectOptionValue>): React.JSX.Element;
 export {};

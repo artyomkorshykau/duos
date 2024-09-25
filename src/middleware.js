@@ -7,7 +7,8 @@ export async function middleware( request ) {
   const url = request.nextUrl.clone()
   
   if ( url.pathname === '/questionnaire'
-    || url.pathname === '/profile' ) {
+    || url.pathname === '/profile'
+    || url.pathname === '/constructor' ) {
     
     if ( !token ) {
       
@@ -24,6 +25,6 @@ export async function middleware( request ) {
 
 export const config = {
   
-  matcher: [ '/questionnaire', '/profile' ],
+  matcher: [ '/questionnaire', '/profile', '/constructor' ],
   
 }

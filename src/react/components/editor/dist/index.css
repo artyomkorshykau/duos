@@ -472,7 +472,15 @@ p {
     width: 100%
 }
 
-._select_z109c_1 {
+._errorText_uerhl_1 {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: var(--notice-error-500)
+}
+
+._select_1bd11_1 {
+    position: relative;
     display: flex;
     align-items: center;
     min-width: 312px;
@@ -486,33 +494,37 @@ p {
     cursor: pointer
 }
 
-._select_selected_z109c_14 {
+._select_error_1bd11_15 {
+    border-color: var(--notice-error-500)
+}
+
+._select_selected_1bd11_18 {
     background-color: var(--black-white);
     color: var(--black-900)
 }
 
-._select_open_z109c_18 {
+._select_open_1bd11_22 {
     border-bottom-left-radius: unset;
     border-bottom-right-radius: unset
 }
 
-._select__arrow_z109c_22 {
+._select__arrow_1bd11_26 {
     position: absolute;
     top: 50%;
     right: 16px;
     transform: translateY(-50%)
 }
 
-._select__arrow_opened_z109c_28 {
+._select__arrow_opened_1bd11_32 {
     transform: translateY(-50%) rotate(180deg)
 }
 
-._container_z109c_32 {
+._container_1bd11_36 {
     position: relative;
     width: max-content
 }
 
-._optionDropdown_z109c_37 {
+._optionDropdown_1bd11_41 {
     position: absolute;
     z-index: 100;
     top: 100%;
@@ -526,29 +538,40 @@ p {
     padding: 8px 4px
 }
 
-._optionDropdown_selected_z109c_50 {
+._optionDropdown__error_1bd11_54 {
+    top: calc(100% - 28px);
+    border-color: var(--notice-error-500);
+    border-top: 1px solid var(--notice-error-500)
+}
+
+._optionDropdown_selected_1bd11_59 {
     background-color: var(--black-white)
 }
 
-._optionDropdown__item_z109c_53 {
+._optionDropdown__item_1bd11_62 {
     color: var(--black-900);
     padding: 8px;
     cursor: pointer;
     border-radius: 8px
 }
 
-._optionDropdown__item_active_z109c_59 {
+._optionDropdown__item_active_1bd11_68 {
     color: var(--blue-700);
     background-color: var(--black-white);
     font-weight: 700
 }
 
-._optionDropdown__item_z109c_53:hover {
+._optionDropdown__item_1bd11_62:hover {
     background-color: var(--black-white)
 }
 
-._optionDropdown__item_selected_z109c_67:hover {
+._optionDropdown__item_selected_1bd11_76:hover {
     background-color: var(--blue-100)
+}
+
+._error_1bd11_80 {
+    margin-top: 8px;
+    margin-left: 16px
 }
 
 ._tag_aguqf_1 {
@@ -563,11 +586,11 @@ p {
     cursor: pointer
 }
 
-._container_10aq3_1 {
+._container_fcoz1_1 {
     position: relative
 }
 
-._selectedTag_10aq3_5 {
+._selectedTag_fcoz1_5 {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -575,7 +598,7 @@ p {
     width: max-content
 }
 
-._selectedTag__item_10aq3_12 {
+._selectedTag__item_fcoz1_12 {
     display: flex;
     gap: 4px;
     width: max-content;
@@ -586,7 +609,8 @@ p {
     background-color: var(--black-white)
 }
 
-._articleTagsInput_10aq3_23 {
+._articleTagsInput_fcoz1_23 {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -600,23 +624,27 @@ p {
     padding: 12px 16px
 }
 
-._articleTagsInput_active_10aq3_36 {
+._articleTagsInput__error_fcoz1_37 {
+    border-color: var(--notice-error-500)
+}
+
+._articleTagsInput_active_fcoz1_40 {
     background-color: var(--black-white)
 }
 
-._articleTagsInput__input_10aq3_39 {
+._articleTagsInput__input_fcoz1_43 {
     background-color: transparent;
     border: unset;
     outline: unset;
     min-width: 216px
 }
 
-._articleTagsInput_open_10aq3_45 {
+._articleTagsInput_open_fcoz1_49 {
     border-bottom-left-radius: unset !important;
     border-bottom-right-radius: unset !important
 }
 
-._searchList_10aq3_50 {
+._searchList_fcoz1_54 {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -634,62 +662,72 @@ p {
     padding: 8px 4px
 }
 
-._searchList_active_10aq3_67 {
+._searchList__error_fcoz1_71 {
+    top: calc(100% - 28px);
+    border-top: 1px solid var(--notice-error-500);
+    border-color: var(--notice-error-500)
+}
+
+._searchList_active_fcoz1_76 {
     background-color: var(--black-white)
 }
 
-._searchList_active_10aq3_67 ._searchListItem_10aq3_70:hover {
+._searchList_active_fcoz1_76 ._searchListItem_fcoz1_79:hover {
     background-color: var(--blue-100)
 }
 
-._searchList__empty_10aq3_73 {
+._searchList__empty_fcoz1_82 {
     padding: 8px
 }
 
-._searchListItem_10aq3_70 {
+._searchListItem_fcoz1_79 {
     color: var(--black-900);
     padding: 8px;
     cursor: pointer;
     border-radius: 8px
 }
 
-._searchListItem_active_10aq3_83 {
+._searchListItem_active_fcoz1_92 {
     color: var(--blue-700);
     background-color: var(--black-white);
     font-weight: 700
 }
 
-._searchListItem_10aq3_70:hover {
+._searchListItem_fcoz1_79:hover {
     background-color: var(--black-white)
 }
 
-._icon_10aq3_92 {
+._icon_fcoz1_101 {
     position: absolute;
     bottom: 12px;
     right: 16px
 }
 
-._tag_active_10aq3_98 {
+._tag_active_fcoz1_107 {
     background-color: var(--blue-100)
 }
 
-._imageContainer_1hh4h_1 {
+._error_fcoz1_111 {
+    margin-top: 8px;
+    margin-left: 16px
+}
+
+._imageContainer_2iyi3_1 {
     display: flex;
-    align-items: center;
     justify-content: center;
     position: relative;
     width: 100%;
     max-height: 270px
 }
 
-._image_1hh4h_1 {
+._image_2iyi3_1 {
     width: max-content;
     max-height: 270px;
     object-fit: contain;
     border-radius: 24px;
 }
 
-._actions_1hh4h_15 {
+._actions_2iyi3_14 {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -698,7 +736,7 @@ p {
     right: 16px
 }
 
-._actionButton_1hh4h_24 {
+._actionButton_2iyi3_23 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -713,8 +751,16 @@ p {
     box-shadow: 0 4px 16px #15009d0d
 }
 
-._test_1hh4h_39 {
+._hiddenDropZone_2iyi3_38 {
     display: none
+}
+
+._errorDropZone_2iyi3_42 {
+    border: 1px solid var(--notice-error-500)
+}
+
+._errorText_2iyi3_46 {
+    margin-top: 8px
 }
 
 ._format_list_1akmg_1 {
@@ -880,7 +926,7 @@ p {
     max-width: 100%;
     margin: 0 auto;
     max-height: 20em;
-    background-size: contain
+    background-size: contain;
 }
 
 ._buttons_1ljc2_13 {
@@ -936,14 +982,14 @@ p {
     cursor: pointer
 }
 
-._editor_vh21c_1 {
+._editor_1o5i4_1 {
     max-width: 656px;
     width: 100%;
     margin: 0 auto;
-    padding-bottom: 32px
+    padding-bottom: 80px
 }
 
-._editable_vh21c_8 {
+._editable_1o5i4_8 {
     outline: none;
     color: var(--black-900)
 }
@@ -984,6 +1030,18 @@ p {
 
 ._markButton_active_rex3g_1 svg, ._markButton_rex3g_1 :hover svg {
     fill: var(--blue-700)
+}
+
+._saveButton_2wf8v_1 {
+    width: max-content;
+    min-width: unset;
+    padding: 12px 16px
+}
+
+@media screen and (max-width: 375px) {
+    ._saveButton_2wf8v_1 {
+        display: none
+    }
 }
 
 ._toolbar_ncui2_1 {

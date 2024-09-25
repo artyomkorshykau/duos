@@ -10,4 +10,5 @@ export * from './FormatCommandList';
 export * from './InsertImageButton';
 export * from './InsertVideoButton';
 export * from './MarkButton';
+export * from './SaveButton';
 export * from './Toolbar';

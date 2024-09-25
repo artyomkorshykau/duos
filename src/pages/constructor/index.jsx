@@ -113,7 +113,7 @@ export default function ConstructorPage() {
     
     const newArticle = {
       
-      article_category_id: globalState.constructor.currentArticle?.category?.id || categoryID,
+      article_category_id: globalState.constructor.currentArticle?.category?.id || categoryID || null,
       title: titleToString,
       content: contentToString,
       image_url: image ? await readFileAsDataURL( image ) : image,
@@ -183,9 +183,6 @@ export default function ConstructorPage() {
     
   }
   
-  console.log( errors?.article_category_id?.[ 0 ], 'Ошибка категории' )
-  console.log( errors?.image_url?.[ 0 ], 'Ошибка фотографии' )
-  
   return (
     
     <main>
@@ -215,9 +212,11 @@ export default function ConstructorPage() {
             
             image={ image }
             onChangeImage={ setImage }
+            imageError={ errors?.image_url?.[ 0 ] }
             
             selectOptions={ globalState.service.serviceCategories }
             onChangeSelectOptions={ ( optionValue ) => setSelectDirection( optionValue ) }
+            selectError={ errors?.article_category_id?.[ 0 ] }
             
             
             removeImage={ () => setImage( null ) }
