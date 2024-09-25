@@ -69,7 +69,6 @@ const expert = {
       if ( !response.ok ) {
         
         const { errors } = await response.json()
-        alert( '500: ( Internal Server Error )' )
         throw errors
         
       }
@@ -203,7 +202,6 @@ const expert = {
       
       if ( !response.ok ) {
         
-        alert( '500: ( Internal Server Error )' )
         throw new Error()
         
       }
