@@ -44,7 +44,7 @@
   &__logoword {
 
     top: $apx-25;
-    left: $apx-25;
+    left: $apx-22;
     min-width: $apx-64;
     max-width: $apx-64;
     min-height: $apx-18;
@@ -101,7 +101,7 @@
 
   z-index: 110;
   top: -50%;
-  right: $apx-20;
+  right: $apx-26;
   left: $apx-26;
   margin: auto;
   width: $apx-125;
@@ -110,7 +110,7 @@
   animation: radialScale 2s forwards;
   -webkit-animation: radialScale 2s forwards; /* Safari support */
   background: var(--color-gradient-blue-light);
-  box-shadow: 0 0 $apx-20 $apx-10 #1f00cc24;
+  box-shdow: 0 0 $apx-20 $apx-10 #1f00cc24;
 
   &--closed {
 

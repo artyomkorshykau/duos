@@ -35,7 +35,6 @@ const AccordionServiceChildren = ({
             size = "big"
           />
 
-          {el.status !== "Filled" && (
             <DefaultButton
               gray
               name = "Сохранить"
@@ -44,7 +43,6 @@ const AccordionServiceChildren = ({
               positionIcon = "right"
               action = { () => setOpen(false) }
             />
-          )}
         </div>
 
         <div className = {`${ s.services__children__right }`}>

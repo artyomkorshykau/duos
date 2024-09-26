@@ -30,6 +30,13 @@ export default function ConstructorPage() {
   const [ selectTags, setSelectTags ] = useState( [] )
   const [ errors, setErrors ] = useState( null )
   
+  const myCategories = globalState.service.serviceCategories?.filter( category =>
+    
+    globalState.service.category.some( c => c.direction === category.value )
+    
+  )
+  
+  
   initializeState()
   
   const { back } = useRouter()
@@ -184,7 +191,7 @@ export default function ConstructorPage() {
             image={ image }
             onChangeImage={ setImage }
             imageError={ errors?.image_url?.[ 0 ] }
-            selectOptions={ globalState.service.serviceCategories }
+            selectOptions={ myCategories }
             onChangeSelectOptions={ setSelectDirection }
             selectError={ errors?.article_category_id?.[ 0 ] }
             removeImage={ () => setImage( null ) }

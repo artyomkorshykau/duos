@@ -37,7 +37,7 @@ const AccordionDocument = ({
 
         globalActions.service.setChangeDocumentStatusCategory("NotFinished", index)
 
-      }, 15000)
+      }, 10000)
 
       return () => clearTimeout(timer)
     }

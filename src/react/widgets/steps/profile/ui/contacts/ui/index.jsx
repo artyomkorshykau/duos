@@ -2,7 +2,7 @@ import s from '../../profile.module.scss'
 import Textfield from '@/react/components/forms/textfield'
 import useGlobal from '@/store'
 
-const Contacts = ( { disabled } ) => {
+const Contacts = ( ) => {
   
   const [ globalState, globalActions ] = useGlobal()
   
@@ -28,7 +28,7 @@ const Contacts = ( { disabled } ) => {
           onChange={ ( e ) => globalActions.profile.setPhoneNumber( e.target.value ) }
           type="phone"
           error={ errors?.phone }
-          disabled={ disabled }
+          disabled
         
         />
         
@@ -39,7 +39,7 @@ const Contacts = ( { disabled } ) => {
           value={ globalState.user.email }
           onChange={ ( e ) => globalActions.profile.setEmail( e.target.value ) }
           error={ errors?.email }
-          disabled={ disabled }
+          disabled
         
         />
       
