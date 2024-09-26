@@ -11,7 +11,6 @@ import {
 const HeaderAuthPanel = ({
 
   quizHadCompleted = false,
-  status
 
 }) => {
 

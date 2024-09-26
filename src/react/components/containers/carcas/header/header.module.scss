@@ -10,7 +10,7 @@
   border-bottom-left-radius: $apx-36;
   border-bottom-right-radius: $apx-36;
   background: var(--color-bw-white);
-  box-shadow: 0 0 $apx-25 $apx-5 rgba( 10, 10, 10, 0.05 );
+  box-shadow: 0 0 $apx-25 $apx-5 rgba(10, 10, 10, 0.05);
   position: fixed !important;
   top: 0;
   box-sizing: border-box;
@@ -28,6 +28,7 @@
     border-radius: 0 0 $apx-600 $apx-600;
     background: var(--color-gradient-blue-light);
 
+
   }
 
   &__logo,
@@ -38,6 +39,7 @@
     right: $apx-20;
     z-index: 110;
     margin: 0 auto;
+
 
   }
 
@@ -60,7 +62,11 @@
       line-height: 110%;
       font-weight: 600;
       color: var(--color-accent-blue-700) !important;
-      &:hover, &:checked, &:visited { color: var(--color-accent-blue-700) !important; }
+
+      &:hover, &:checked, &:visited {
+        color: var(--color-accent-blue-700) !important;
+      }
+
       transition: 0.35s;
       display: flex;
       align-items: center;
@@ -110,7 +116,14 @@
   animation: radialScale 2s forwards;
   -webkit-animation: radialScale 2s forwards; /* Safari support */
   background: var(--color-gradient-blue-light);
-  box-shdow: 0 0 $apx-20 $apx-10 #1f00cc24;
+
+  &--shadow {
+
+    box-shadow: 0 0 1.04166vw .52083vw rgba(31, 0, 204, .141)
+
+
+  }
+
 
   &--closed {
 
@@ -128,6 +141,7 @@
     -webkit-transform: scale(5); /* Safari support */
     animation: unset;
     -webkit-animation: unset;
+
 
   }
 

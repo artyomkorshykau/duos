@@ -105,7 +105,6 @@ const HeaderSignPanel = ({
         <HeaderAuthPanel
 
           quizHadCompleted = { quizHadCompleted }
-          status = { status }
 
         />
 

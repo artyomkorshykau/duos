@@ -71,11 +71,15 @@
   from {
     transform: translateY(-100%);
     transform: scale(1);
+    box-shadow: 0 0 1.04166vw .52083vw rgba(31, 0, 204, .141);
+
   }
 
   to {
     transform: translateY(100%);
     transform: scale(10);
+    box-shadow: 0 0 1.04166vw .52083vw rgba(31, 0, 204, .141);
+
   }
 
 }
