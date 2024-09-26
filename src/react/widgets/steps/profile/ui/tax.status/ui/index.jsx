@@ -16,8 +16,6 @@ const TaxStatus = ( { disabled } ) => {
   
   const maxLength = taxStatus === 'ooo' ? 10 : 12
   
-  console.log(taxStatus)
-  
   return (
     
     <div>

@@ -500,42 +500,35 @@ const expert = {
   },
   
   async editArticleById( article_id, data ) {
-    
     try {
+      let image_url = data.image_url
       
-      let image_url = ''
+      const isBase64 = ( str ) => {
+        const base64Pattern = /^data:image\/(png|jpeg|jpg);base64,[A-Za-z0-9+/=]+$/
+        return base64Pattern.test( str )
+      }
       
-      if ( data.image_url ) {
-        
+      if ( data.image_url && isBase64( data.image_url ) ) {
         const result = await postImage( data.image_url )
         image_url = result.image_url
-        
       }
       
       const response = await fetch( `${ BASE_URL }/article/${ article_id }`, {
-        
         method: 'PUT',
         headers: getHeaders(),
         body: JSON.stringify( { ...data, image_url } )
-        
       } )
       
       if ( !response.ok ) {
-        
         console.log( 'Ошибка сервера (500)' )
         throw new Error()
-        
       }
       
       return await response.json()
-      
     } catch ( error ) {
-      
       console.error( `Ошибка при отправке данных: ${ error.message }` )
       throw error
-      
     }
-    
   }
   
 }
